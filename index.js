@@ -1904,17 +1904,17 @@
     <div id="toastContainer"></div>
 
     <script>
-        // Firebase Configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyABEnVaSOR5b1FL1V3-C13KoR9O7MqAoHg",
-            authDomain: "studio-3650831122-2eea3.firebaseapp.com",
-            databaseURL: "https://studio-3650831122-2eea3-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "studio-3650831122-2eea3",
-            storageBucket: "studio-3650831122-2eea3.firebasestorage.app",
-            messagingSenderId: "893787872699",
-            appId: "1:893787872699:web:91268a1b8fb18b7bc4f89e"
-        };
-
+        // // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyDtWAjmGIWVr3QGESAClBzRkQ5AZr5Zeys",
+  authDomain: "stanybots.firebaseapp.com",
+  databaseURL: "https://stanybots-default-rtdb.firebaseio.com",
+  projectId: "stanybots",
+  storageBucket: "stanybots.firebasestorage.app",
+  messagingSenderId: "381983533939",
+  appId: "1:381983533939:web:201157399592c6389df306",
+  measurementId: "G-W3C0C280BY"
+};
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
