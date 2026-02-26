@@ -7,1066 +7,304 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="mobile-web-app-capable" content="yes">
-    <meta name="description" content="STANY TV - Premium Global Streaming. Watch Movies, Live TV, Sports & Entertainment in HD.">
-    <meta name="keywords" content="streaming, movies, live tv, sports, entertainment, HD, premium, africa, global">
+    <meta name="description" content="STANY TV - Premium International Streaming Platform. Watch Live TV, Movies, Sports in HD Quality.">
+    <meta name="keywords" content="streaming, live tv, movies, sports, HD, premium, Tanzania, Africa, global">
     <meta name="author" content="STANY TV">
     <meta name="robots" content="index, follow">
-    
-    <!-- Open Graph / Social -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://stanytv.com/">
     <meta property="og:title" content="STANY TV - Premium Streaming">
-    <meta property="og:description" content="Watch Movies, Live TV, Sports & Entertainment in HD Quality.">
+    <meta property="og:description" content="Watch Live TV, Movies, Sports in HD Quality.">
     <meta property="og:image" content="https://raw.githubusercontent.com/Official123-12/STANYFREEBOT-/refs/heads/main/IMG_1637.jpeg">
-    
     <title>STANY TV | Premium Streaming</title>
-    
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/Official123-12/STANYFREEBOT-/refs/heads/main/IMG_1637.jpeg">
-    
-    <!-- Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://www.gstatic.com">
-    
-    <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Video.js Player -->
     <link href="https://unpkg.com/video.js@7.21.1/dist/video-js.min.css" rel="stylesheet">
-    
-    <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
-    
     <style>
         :root {
             --primary: #FF0000;
             --primary-dark: #CC0000;
             --bg: #000000;
             --bg-card: #0a0a0a;
-            --bg-overlay: rgba(0, 0, 0, 0.95);
+            --bg-overlay: rgba(0, 0, 0, 0.92);
             --text: #FFFFFF;
-            --text-dim: #CCCCCC;
-            --border: #222222;
-            --success: #4CAF50;
-            --warning: #FFC107;
-            --error: #F44336;
+            --text-dim: #B0B0B0;
+            --border: #1a1a1a;
+            --success: #22C55E;
+            --warning: #F59E0B;
+            --error: #EF4444;
             --google-blue: #4285F4;
-            --whatsapp-green: #25D366;
         }
-
-        * { 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
-            font-family: 'Montserrat', sans-serif; 
-            user-select: none; 
-            -webkit-user-select: none;
-            -webkit-tap-highlight-color: transparent;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; user-select: none; -webkit-user-select: none; -webkit-tap-highlight-color: transparent; }
         html { scroll-behavior: smooth; }
+        body { background: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; padding-bottom: 80px; font-size: 14px; line-height: 1.5; }
         
-        body {
-            background: var(--bg);
-            color: var(--text);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow-x: hidden;
-            padding-bottom: 75px;
-            font-size: 14px;
-            line-height: 1.5;
-        }
-
-        /* ===== SIMPLE LOADING ANIMATION (Stack Style) ===== */
-        #loadingScreen {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--bg);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 10000;
-            transition: opacity 0.4s ease;
-        }
+        /* Loading */
+        #loadingScreen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 10000; transition: opacity 0.4s ease; }
         #loadingScreen.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-        
-        .loading-stack {
-            display: flex;
-            gap: 4px;
-            margin-bottom: 25px;
-        }
-        .loading-stack span {
-            width: 8px;
-            height: 40px;
-            background: var(--primary);
-            border-radius: 4px;
-            animation: stackBounce 1.4s ease-in-out infinite both;
-        }
+        .loading-stack { display: flex; gap: 4px; margin-bottom: 24px; }
+        .loading-stack span { width: 7px; height: 38px; background: var(--primary); border-radius: 3px; animation: stackBounce 1.4s ease-in-out infinite both; }
         .loading-stack span:nth-child(1) { animation-delay: -0.32s; }
         .loading-stack span:nth-child(2) { animation-delay: -0.16s; }
         .loading-stack span:nth-child(3) { animation-delay: 0s; }
         .loading-stack span:nth-child(4) { animation-delay: 0.16s; }
         .loading-stack span:nth-child(5) { animation-delay: 0.32s; }
-        
-        @keyframes stackBounce {
-            0%, 80%, 100% { transform: scaleY(0.4); opacity: 0.6; }
-            40% { transform: scaleY(1); opacity: 1; }
-        }
-        
-        .loading-text {
-            font-family: 'Orbitron', sans-serif;
-            color: var(--primary);
-            font-size: 1.3em;
-            font-weight: 700;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            animation: pulseText 2s ease-in-out infinite;
-        }
+        @keyframes stackBounce { 0%, 80%, 100% { transform: scaleY(0.4); opacity: 0.6; } 40% { transform: scaleY(1); opacity: 1; } }
+        .loading-text { font-family: 'Orbitron', sans-serif; color: var(--primary); font-size: 1.25em; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; animation: pulseText 2s ease-in-out infinite; }
         @keyframes pulseText { 0%,100%{opacity:1} 50%{opacity:0.7} }
-        
-        .loading-bar {
-            width: 180px;
-            height: 3px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 2px;
-            margin-top: 20px;
-            overflow: hidden;
-        }
-        .loading-bar::after {
-            content: '';
-            display: block;
-            width: 40%;
-            height: 100%;
-            background: var(--primary);
-            animation: barSlide 1.2s ease-in-out infinite;
-            border-radius: 2px;
-        }
-        @keyframes barSlide { 0%{transform:translateX(-100%)} 100%{transform:translateX(250%)} }
+        .loading-bar { width: 170px; height: 2px; background: rgba(255,255,255,0.08); border-radius: 1px; margin-top: 18px; overflow: hidden; }
+        .loading-bar::after { content: ''; display: block; width: 35%; height: 100%; background: var(--primary); animation: barSlide 1.2s ease-in-out infinite; border-radius: 1px; }
+        @keyframes barSlide { 0%{transform:translateX(-100%)} 100%{transform:translateX(285%)} }
 
-        /* ===== PRIVACY MODAL ===== */
-        #privacyModal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--bg-overlay);
-            z-index: 9999;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            backdrop-filter: blur(5px);
-        }
-        .privacy-box {
-            background: var(--bg-card);
-            max-width: 420px;
-            width: 100%;
-            max-height: 85vh;
-            border-radius: 16px;
-            border: 1px solid var(--primary);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-        .privacy-header {
-            padding: 18px 20px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            text-align: center;
-        }
-        .privacy-header h2 {
-            font-family: 'Orbitron', sans-serif;
-            color: var(--bg);
-            font-size: 1.4em;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .privacy-body {
-            padding: 20px;
-            overflow-y: auto;
-            max-height: 50vh;
-            font-size: 0.9em;
-            line-height: 1.7;
-        }
-        .privacy-body h3 {
-            color: var(--primary);
-            margin: 18px 0 10px;
-            font-size: 1.1em;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .privacy-body p, .privacy-body ul { margin-bottom: 12px; color: var(--text-dim); }
-        .privacy-body ul { padding-left: 20px; }
-        .privacy-body li { margin-bottom: 6px; }
-        
-        .privacy-footer {
-            padding: 18px 20px;
-            background: rgba(255,255,255,0.03);
-            border-top: 1px solid var(--border);
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        .checkbox-container {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-right: 10px;
-        }
-        .checkbox-container input[type="checkbox"] {
-            width: 16px; height: 16px;
-            accent-color: var(--primary);
-            cursor: pointer;
-        }
-        .checkbox-container label {
-            color: var(--text);
-            cursor: pointer;
-            font-size: 0.9em;
-        }
-        
-        .btn-accept, .btn-decline {
-            padding: 12px 28px;
-            border: none;
-            border-radius: 10px;
-            font-size: 0.95em;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .btn-accept {
-            background: var(--success);
-            color: white;
-        }
-        .btn-accept:hover { background: #43A047; transform: translateY(-2px); }
-        .btn-decline {
-            background: var(--error);
-            color: white;
-        }
-        .btn-decline:hover { background: #E53935; transform: translateY(-2px); }
-        .btn-accept:disabled { opacity: 0.6; cursor: not-allowed; transform: none !important; }
+        /* Privacy Modal */
+        #privacyModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-overlay); z-index: 9999; justify-content: center; align-items: center; padding: 20px; backdrop-filter: blur(4px); }
+        .privacy-box { background: var(--bg-card); max-width: 400px; width: 100%; max-height: 82vh; border-radius: 14px; border: 1px solid var(--primary); overflow: hidden; display: flex; flex-direction: column; }
+        .privacy-header { padding: 16px 18px; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); text-align: center; }
+        .privacy-header h2 { font-family: 'Orbitron', sans-serif; color: var(--bg); font-size: 1.3em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; }
+        .privacy-body { padding: 18px; overflow-y: auto; max-height: 48vh; font-size: 0.88em; line-height: 1.65; }
+        .privacy-body h3 { color: var(--primary); margin: 16px 0 9px; font-size: 1.05em; font-weight: 600; }
+        .privacy-body p, .privacy-body ul { margin-bottom: 10px; color: var(--text-dim); }
+        .privacy-body ul { padding-left: 18px; }
+        .privacy-body li { margin-bottom: 5px; }
+        .privacy-footer { padding: 16px 18px; background: rgba(255,255,255,0.02); border-top: 1px solid var(--border); display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+        .checkbox-container { display: flex; align-items: center; gap: 7px; margin-right: 8px; }
+        .checkbox-container input[type="checkbox"] { width: 15px; height: 15px; accent-color: var(--primary); cursor: pointer; }
+        .checkbox-container label { color: var(--text); cursor: pointer; font-size: 0.88em; }
+        .btn-accept, .btn-decline { padding: 11px 24px; border: none; border-radius: 9px; font-size: 0.92em; font-weight: 600; cursor: pointer; transition: all 0.22s ease; text-transform: uppercase; letter-spacing: 0.4px; display: flex; align-items: center; gap: 5px; }
+        .btn-accept { background: var(--success); color: white; }
+        .btn-accept:hover { background: #16A34A; transform: translateY(-1px); }
+        .btn-decline { background: var(--error); color: white; }
+        .btn-decline:hover { background: #DC2626; transform: translateY(-1px); }
+        .btn-accept:disabled { opacity: 0.55; cursor: not-allowed; transform: none !important; }
 
-        /* ===== AUTH OVERLAY ===== */
-        .auth-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--bg);
-            z-index: 5000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            padding: 20px;
-        }
-        .auth-box {
-            width: 90%;
-            max-width: 380px;
-            background: var(--bg-card);
-            padding: 32px 28px;
-            border-radius: 18px;
-            border: 1px solid var(--primary);
-            text-align: center;
-            box-shadow: 0 10px 40px rgba(255,0,0,0.15);
-        }
-        .auth-box h2 {
-            font-family: 'Orbitron', sans-serif;
-            color: var(--primary);
-            margin-bottom: 8px;
-            font-size: 1.8em;
-            letter-spacing: 2px;
-        }
-        .auth-box .subtitle {
-            color: var(--text-dim);
-            font-size: 0.9em;
-            margin-bottom: 28px;
-        }
-        
-        .input-field {
-            width: 100%;
-            padding: 13px 16px;
-            margin-bottom: 14px;
-            background: #000;
-            border: 1px solid var(--border);
-            color: var(--text);
-            border-radius: 10px;
-            outline: none;
-            font-size: 1em;
-            transition: border-color 0.2s;
-        }
+        /* Auth */
+        .auth-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg); z-index: 5000; display: flex; justify-content: center; align-items: center; flex-direction: column; padding: 20px; }
+        .auth-box { width: 92%; max-width: 360px; background: var(--bg-card); padding: 28px 24px; border-radius: 16px; border: 1px solid var(--primary); text-align: center; box-shadow: 0 8px 32px rgba(255,0,0,0.12); }
+        .auth-box h2 { font-family: 'Orbitron', sans-serif; color: var(--primary); margin-bottom: 6px; font-size: 1.7em; letter-spacing: 1.8px; }
+        .auth-box .subtitle { color: var(--text-dim); font-size: 0.88em; margin-bottom: 24px; }
+        .input-field { width: 100%; padding: 12px 14px; margin-bottom: 12px; background: #000; border: 1px solid var(--border); color: var(--text); border-radius: 9px; outline: none; font-size: 0.98em; transition: border-color 0.2s; }
         .input-field:focus { border-color: var(--primary); }
-        .input-field::placeholder { color: #666; }
-        
-        .action-btn {
-            width: 100%;
-            padding: 14px;
-            background: var(--primary);
-            border: none;
-            color: white;
-            font-weight: 700;
-            border-radius: 10px;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 1em;
-            transition: all 0.25s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-        .action-btn:hover { background: var(--primary-dark); transform: translateY(-2px); }
+        .input-field::placeholder { color: #555; }
+        .action-btn { width: 100%; padding: 13px; background: var(--primary); border: none; color: white; font-weight: 600; border-radius: 9px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.8px; font-size: 0.98em; transition: all 0.22s ease; display: flex; align-items: center; justify-content: center; gap: 7px; }
+        .action-btn:hover { background: var(--primary-dark); transform: translateY(-1px); }
         .action-btn:active { transform: translateY(0); }
-        
-        .btn-google {
-            background: linear-gradient(135deg, #ffffff, #f8f9fa);
-            color: #333;
-            border: 1px solid rgba(0,0,0,0.1);
-            margin-top: 12px;
-        }
-        .btn-google:hover {
-            background: linear-gradient(135deg, #f8f9fa, #ffffff);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.12);
-        }
-        .btn-google i { color: var(--google-blue); font-size: 1.2em; }
-        
-        .auth-links {
-            margin-top: 22px;
-            font-size: 0.9em;
-        }
-        .auth-links a {
-            color: var(--text-dim);
-            text-decoration: none;
-            transition: color 0.2s;
-            display: block;
-            margin: 8px 0;
-        }
+        .btn-google { background: linear-gradient(135deg, #ffffff, #f8f9fa); color: #333; border: 1px solid rgba(0,0,0,0.08); margin-top: 10px; }
+        .btn-google:hover { background: linear-gradient(135deg, #f8f9fa, #ffffff); box-shadow: 0 3px 12px rgba(0,0,0,0.1); }
+        .btn-google i { color: var(--google-blue); font-size: 1.15em; }
+        .auth-links { margin-top: 18px; font-size: 0.88em; }
+        .auth-links a { color: var(--text-dim); text-decoration: none; transition: color 0.2s; display: block; margin: 7px 0; }
         .auth-links a:hover { color: var(--primary); }
-        
-        .divider {
-            margin: 20px 0;
-            position: relative;
-            text-align: center;
-        }
-        .divider::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 0; right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--border), transparent);
-        }
-        .divider span {
-            background: var(--bg-card);
-            padding: 0 14px;
-            color: var(--text-dim);
-            position: relative;
-            font-size: 0.85em;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+        .divider { margin: 18px 0; position: relative; text-align: center; }
+        .divider::before { content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); }
+        .divider span { background: var(--bg-card); padding: 0 12px; color: var(--text-dim); position: relative; font-size: 0.82em; text-transform: uppercase; letter-spacing: 0.8px; }
 
-        /* ===== DEVICE OVERLAY ===== */
-        #deviceOverlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--bg);
-            z-index: 9500;
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 25px;
-            text-align: center;
-        }
-        #deviceOverlay i {
-            font-size: 4.5em;
-            color: var(--warning);
-            margin-bottom: 22px;
-            animation: pulseIcon 2s ease-in-out infinite;
-        }
-        @keyframes pulseIcon { 0%,100%{transform:scale(1)} 50%{transform:scale(1.08)} }
-        #deviceOverlay h2 { color: white; margin-bottom: 12px; font-size: 1.5em; }
-        #deviceOverlay p { color: var(--text-dim); font-size: 0.95em; margin-bottom: 22px; max-width: 320px; }
-        #reqStatus { color: var(--primary); font-weight: 700; margin-bottom: 20px; font-size: 1.05em; }
+        /* Device Overlay */
+        #deviceOverlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg); z-index: 9500; display: none; flex-direction: column; justify-content: center; align-items: center; padding: 22px; text-align: center; }
+        #deviceOverlay i { font-size: 4.2em; color: var(--warning); margin-bottom: 18px; animation: pulseIcon 2s ease-in-out infinite; }
+        @keyframes pulseIcon { 0%,100%{transform:scale(1)} 50%{transform:scale(1.06)} }
+        #deviceOverlay h2 { color: white; margin-bottom: 10px; font-size: 1.4em; }
+        #deviceOverlay p { color: var(--text-dim); font-size: 0.92em; margin-bottom: 18px; max-width: 300px; }
+        #reqStatus { color: var(--primary); font-weight: 600; margin-bottom: 18px; font-size: 1em; }
 
-        /* ===== HEADER ===== */
-        .header {
-            padding: 14px 18px;
-            background: rgba(10,10,10,0.97);
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(10px);
-        }
-        .logo {
-            font-family: 'Orbitron', sans-serif;
-            color: var(--primary);
-            font-size: 1.3em;
-            letter-spacing: 1.5px;
-            font-weight: 700;
-        }
-        .header-actions {
-            display: flex;
-            gap: 18px;
-        }
-        .header-actions i {
-            font-size: 1.25em;
-            color: var(--text-dim);
-            cursor: pointer;
-            transition: color 0.2s;
-        }
+        /* Header */
+        .header { padding: 12px 16px; background: rgba(8,8,8,0.96); border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(8px); }
+        .logo { font-family: 'Orbitron', sans-serif; color: var(--primary); font-size: 1.25em; letter-spacing: 1.2px; font-weight: 700; }
+        .header-actions { display: flex; gap: 16px; }
+        .header-actions i { font-size: 1.2em; color: var(--text-dim); cursor: pointer; transition: color 0.2s; }
         .header-actions i:hover { color: var(--primary); }
 
-        /* ===== SEARCH BAR ===== */
-        #searchBar {
-            display: none;
-            padding: 10px 18px;
-            background: rgba(10,10,10,0.95);
-            border-bottom: 1px solid var(--border);
-            position: sticky;
-            top: 52px;
-            z-index: 99;
-        }
-        #searchInput {
-            width: 100%;
-            padding: 11px 18px;
-            background: #000;
-            border: 1px solid var(--border);
-            color: var(--text);
-            border-radius: 22px;
-            outline: none;
-            font-size: 0.95em;
-        }
-        #searchInput::placeholder { color: #666; }
+        /* Search */
+        #searchBar { display: none; padding: 9px 16px; background: rgba(8,8,8,0.94); border-bottom: 1px solid var(--border); position: sticky; top: 50px; z-index: 99; }
+        #searchInput { width: 100%; padding: 10px 16px; background: #000; border: 1px solid var(--border); color: var(--text); border-radius: 20px; outline: none; font-size: 0.93em; }
+        #searchInput::placeholder { color: #555; }
 
-        /* ===== CATEGORY TAGS ===== */
-        .cat-scroll {
-            display: flex;
-            gap: 9px;
-            overflow-x: auto;
-            padding: 10px 18px;
-            scrollbar-width: none;
-            white-space: nowrap;
-            background: var(--bg);
-            -webkit-overflow-scrolling: touch;
-        }
+        /* Categories */
+        .cat-scroll { display: flex; gap: 8px; overflow-x: auto; padding: 9px 16px; scrollbar-width: none; white-space: nowrap; background: var(--bg); -webkit-overflow-scrolling: touch; }
         .cat-scroll::-webkit-scrollbar { display: none; }
-        .cat-tag {
-            padding: 7px 15px;
-            background: #111;
-            border: 1px solid var(--border);
-            border-radius: 22px;
-            font-size: 0.82em;
-            color: var(--text-dim);
-            transition: all 0.2s ease;
-            cursor: pointer;
-            font-weight: 600;
-        }
+        .cat-tag { padding: 6px 13px; background: #0f0f0f; border: 1px solid var(--border); border-radius: 20px; font-size: 0.8em; color: var(--text-dim); transition: all 0.18s ease; cursor: pointer; font-weight: 500; }
         .cat-tag:hover { border-color: var(--primary); color: var(--text); }
-        .cat-tag.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-            font-weight: 700;
-        }
+        .cat-tag.active { background: var(--primary); color: white; border-color: var(--primary); font-weight: 600; }
 
-        /* ===== SECTION TITLES ===== */
-        .section-title {
-            margin: 18px 18px 12px;
-            font-size: 0.95em;
-            font-weight: 700;
-            color: var(--primary);
-            border-left: 4px solid var(--primary);
-            padding-left: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
+        /* Section Titles */
+        .section-title { margin: 16px 16px 10px; font-size: 0.92em; font-weight: 600; color: var(--primary); border-left: 3px solid var(--primary); padding-left: 10px; text-transform: uppercase; letter-spacing: 0.4px; }
 
-        /* ===== GRIDS ===== */
-        .grid-mov {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            padding: 0 18px 22px;
-        }
-        .grid-chan {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
-            padding: 0 18px 22px;
-        }
+        /* Grids */
+        .grid-mov { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; padding: 0 16px 20px; }
+        .grid-chan { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; padding: 0 16px 20px; }
 
-        /* ===== CARDS ===== */
-        .card {
-            background: var(--bg-card);
-            border-radius: 8px;
-            overflow: hidden;
-            position: relative;
-            border: 1px solid var(--border);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.35);
-            transition: transform 0.15s ease;
-        }
-        .card:active { transform: scale(0.97); }
-        
-        .card img {
-            width: 100%;
-            aspect-ratio: 2/3;
-            object-fit: cover;
-            display: block;
-            transition: opacity 0.2s;
-        }
-        .card:hover img { opacity: 0.92; }
-        
-        .card-name {
-            padding: 7px 5px;
-            text-align: center;
-            font-size: 0.78em;
-            font-weight: 700;
-            color: var(--text);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
+        /* Cards */
+        .card { background: var(--bg-card); border-radius: 7px; overflow: hidden; position: relative; border: 1px solid var(--border); box-shadow: 0 3px 10px rgba(0,0,0,0.3); transition: transform 0.12s ease; }
+        .card:active { transform: scale(0.98); }
+        .card img { width: 100%; aspect-ratio: 2/3; object-fit: cover; display: block; transition: opacity 0.18s; }
+        .card:hover img { opacity: 0.94; }
+        .card-name { padding: 6px 4px; text-align: center; font-size: 0.76em; font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-        /* ===== CARD OVERLAYS ===== */
-        .locked-cover {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.82);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 5;
-            backdrop-filter: blur(2px);
-        }
-        .locked-cover i {
-            font-size: 20px;
-            color: var(--warning);
-            text-shadow: 0 2px 8px rgba(0,0,0,0.5);
-        }
-        
-        .fav-star {
-            position: absolute;
-            top: 6px; right: 6px;
-            z-index: 10;
-            color: rgba(255,255,255,0.7);
-            font-size: 13px;
-            text-shadow: 0 2px 6px black;
-            cursor: pointer;
-            transition: all 0.2s;
-            padding: 4px;
-            border-radius: 50%;
-            background: rgba(0,0,0,0.4);
-        }
-        .fav-star:hover { background: rgba(0,0,0,0.6); transform: scale(1.1); }
-        .fav-star.active { color: var(--primary); text-shadow: 0 0 10px var(--primary); }
+        /* Card Overlays */
+        .locked-cover { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; justify-content: center; align-items: center; z-index: 5; }
+        .locked-cover i { font-size: 18px; color: var(--warning); }
+        .fav-star { position: absolute; top: 5px; right: 5px; z-index: 10; color: rgba(255,255,255,0.65); font-size: 12px; cursor: pointer; transition: all 0.18s; padding: 3px; border-radius: 50%; background: rgba(0,0,0,0.35); }
+        .fav-star:hover { background: rgba(0,0,0,0.55); }
+        .fav-star.active { color: var(--primary); }
+        .premium-badge { position: absolute; top: 7px; left: 7px; background: linear-gradient(135deg, var(--warning), #E69500); color: black; padding: 2px 8px; border-radius: 10px; font-weight: 600; font-size: 0.68em; text-transform: uppercase; letter-spacing: 0.4px; z-index: 6; }
 
-        .premium-badge {
-            position: absolute;
-            top: 8px; left: 8px;
-            background: linear-gradient(135deg, var(--warning), #FF9800);
-            color: black;
-            padding: 3px 10px;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 0.7em;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            z-index: 6;
-            box-shadow: 0 3px 10px rgba(255,193,7,0.4);
-        }
-
-        /* ===== BETTING TIPS (Blurred for Free) ===== */
-        .tip-card {
-            background: var(--bg-card);
-            margin: 15px 18px;
-            padding: 16px;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            position: relative;
-        }
-        .tip-blur .tip-content {
-            filter: blur(7px);
-            opacity: 0.35;
-            pointer-events: none;
-        }
-        .tip-msg {
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            font-weight: 700;
-            color: var(--warning);
-            display: none;
-            text-shadow: 0 2px 6px black;
-            border: 1px solid var(--warning);
-            padding: 6px 18px;
-            border-radius: 18px;
-            background: rgba(0,0,0,0.85);
-            font-size: 0.9em;
-            z-index: 3;
-        }
+        /* Betting Tips */
+        .tip-card { background: var(--bg-card); margin: 13px 16px; padding: 14px; border-radius: 11px; border: 1px solid var(--border); position: relative; }
+        .tip-blur .tip-content { filter: blur(6px); opacity: 0.32; pointer-events: none; }
+        .tip-msg { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-weight: 600; color: var(--warning); display: none; border: 1px solid var(--warning); padding: 5px 14px; border-radius: 16px; background: rgba(0,0,0,0.82); font-size: 0.88em; z-index: 3; }
         .tip-blur .tip-msg { display: block; }
-        .tip-card h4 { color: var(--primary); margin-bottom: 6px; font-size: 1.05em; }
-        .tip-card p { margin: 4px 0; color: var(--text-dim); font-size: 0.92em; }
+        .tip-card h4 { color: var(--primary); margin-bottom: 5px; font-size: 1em; font-weight: 600; }
+        .tip-card p { margin: 3px 0; color: var(--text-dim); font-size: 0.9em; }
         .tip-card b { color: var(--text); }
 
-        /* ===== CHAT ===== */
-        .chat-box {
-            height: calc(100vh - 165px);
-            overflow-y: auto;
-            padding: 15px 18px;
-            display: flex;
-            flex-direction: column;
-            gap: 11px;
-            scrollbar-width: thin;
-            scrollbar-color: var(--primary) transparent;
-        }
-        .chat-box::-webkit-scrollbar { width: 5px; }
-        .chat-box::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
-        
-        .msg {
-            padding: 11px 16px;
-            border-radius: 18px;
-            max-width: 82%;
-            font-size: 0.92em;
-            line-height: 1.45;
-            word-wrap: break-word;
-        }
-        .msg-user {
-            align-self: flex-end;
-            background: var(--primary);
-            color: white;
-            border-bottom-right-radius: 4px;
-        }
-        .msg-admin {
-            align-self: flex-start;
-            background: #1a1a1a;
-            color: var(--text-dim);
-            border-bottom-left-radius: 4px;
-        }
+        /* Chat Modal - Medium, Centered */
+        .chat-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-overlay); z-index: 8500; justify-content: center; align-items: center; padding: 20px; backdrop-filter: blur(3px); }
+        .chat-modal-content { background: var(--bg-card); width: 92%; max-width: 420px; max-height: 75vh; border-radius: 16px; border: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+        .chat-header { padding: 14px 18px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.02); }
+        .chat-header h3 { font-size: 1.05em; font-weight: 600; color: var(--text); }
+        .chat-header .back-btn { background: none; border: none; color: var(--text-dim); font-size: 1.3em; cursor: pointer; padding: 4px; }
+        .chat-header .back-btn:hover { color: var(--primary); }
+        .chat-user-info { padding: 10px 18px; border-bottom: 1px solid var(--border); font-size: 0.85em; color: var(--text-dim); background: rgba(255,255,255,0.01); }
+        .chat-user-info .premium-tag { color: var(--warning); font-weight: 600; margin-left: 6px; }
+        .chat-box { flex: 1; overflow-y: auto; padding: 14px 18px; display: flex; flex-direction: column; gap: 10px; }
+        .msg { padding: 10px 14px; border-radius: 16px; max-width: 80%; font-size: 0.9em; line-height: 1.4; word-wrap: break-word; }
+        .msg-user { align-self: flex-end; background: var(--primary); color: white; border-bottom-right-radius: 3px; }
+        .msg-admin { align-self: flex-start; background: #151515; color: var(--text-dim); border-bottom-left-radius: 3px; }
+        .chat-input-area { padding: 12px 18px; border-top: 1px solid var(--border); display: flex; gap: 9px; background: rgba(255,255,255,0.02); }
+        .chat-input-area input { flex: 1; padding: 11px 15px; background: #000; border: 1px solid var(--border); color: var(--text); border-radius: 20px; outline: none; font-size: 0.92em; }
+        .chat-input-area input::placeholder { color: #555; }
+        .chat-input-area button { width: 44px; height: 44px; border-radius: 50%; background: var(--primary); border: none; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.1em; transition: background 0.2s; }
+        .chat-input-area button:hover { background: var(--primary-dark); }
 
-        /* ===== BOTTOM NAVIGATION ===== */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0; left: 0; width: 100%;
-            background: #0a0a0a;
-            border-top: 1px solid var(--border);
-            display: flex;
-            justify-content: space-around;
-            padding: 6px 0 8px;
-            z-index: 1000;
-            padding-bottom: env(safe-area-inset-bottom);
-        }
-        .nav-item {
-            text-align: center;
-            color: #666;
-            font-size: 0.75em;
-            text-decoration: none;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 5px 2px;
-            transition: color 0.2s;
-            cursor: pointer;
-        }
-        .nav-item i {
-            font-size: 1.35em;
-            margin-bottom: 3px;
-            transition: transform 0.2s;
-        }
+        /* Bottom Navigation - iOS Style with Center WhatsApp */
+        .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: #080808; border-top: 1px solid var(--border); display: flex; justify-content: space-around; align-items: center; padding: 6px 0 10px; z-index: 1000; padding-bottom: env(safe-area-inset-bottom); }
+        .nav-item { text-align: center; color: #666; font-size: 0.72em; text-decoration: none; display: flex; flex-direction: column; align-items: center; padding: 4px 2px; transition: color 0.18s; cursor: pointer; min-width: 52px; }
+        .nav-item i { font-size: 1.3em; margin-bottom: 2px; transition: transform 0.18s; }
         .nav-item.active { color: var(--primary); }
-        .nav-item.active i { transform: translateY(-3px); }
-        .nav-item:hover { color: var(--text-dim); }
+        .nav-item.active i { transform: translateY(-2px); }
+        .nav-item.whatsapp-center { color: var(--success); }
+        .nav-item.whatsapp-center i { font-size: 1.6em; color: var(--success); }
+        .nav-item.whatsapp-center.active i { transform: scale(1.08); }
 
-        /* ===== PAGES & ANIMATIONS ===== */
-        .page { display: none; animation: fadeIn 0.25s ease; }
+        /* Pages */
+        .page { display: none; animation: fadeIn 0.22s ease; }
         .page.active { display: block; }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* ===== MODALS ===== */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--bg-overlay);
-            z-index: 9000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            backdrop-filter: blur(5px);
-        }
-        .modal-content {
-            background: var(--bg-card);
-            width: 90%;
-            max-width: 360px;
-            padding: 26px 24px;
-            border-radius: 16px;
-            border: 1px solid var(--primary);
-            text-align: center;
-            box-shadow: 0 15px 50px rgba(255,0,0,0.2);
-        }
-        .modal-content h3 {
-            color: var(--primary);
-            margin-bottom: 12px;
-            font-size: 1.3em;
-        }
-        .modal-content p {
-            color: var(--text-dim);
-            font-size: 0.95em;
-            margin: 10px 0 20px;
-            line-height: 1.6;
-        }
-        .modal-close {
-            margin-top: 15px;
-            font-size: 0.85em;
-            color: var(--text-dim);
-            cursor: pointer;
-            transition: color 0.2s;
-        }
+        /* Modals */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-overlay); z-index: 9000; justify-content: center; align-items: center; padding: 20px; backdrop-filter: blur(4px); }
+        .modal-content { background: var(--bg-card); width: 90%; max-width: 340px; padding: 24px 22px; border-radius: 14px; border: 1px solid var(--primary); text-align: center; box-shadow: 0 12px 40px rgba(255,0,0,0.18); }
+        .modal-content h3 { color: var(--primary); margin-bottom: 10px; font-size: 1.25em; font-weight: 600; }
+        .modal-content p { color: var(--text-dim); font-size: 0.93em; margin: 9px 0 18px; line-height: 1.55; }
+        .modal-close { margin-top: 13px; font-size: 0.83em; color: var(--text-dim); cursor: pointer; transition: color 0.18s; }
         .modal-close:hover { color: var(--primary); }
 
-        /* ===== VIDEO PLAYER MODAL ===== */
-        #playerModal {
-            background: black;
-            z-index: 9999;
-        }
-        #playerModal .modal-close {
-            position: absolute;
-            top: 15px; right: 20px;
-            font-size: 2.2em;
-            color: white;
-            cursor: pointer;
-            z-index: 100;
-            transition: color 0.2s;
-        }
+        /* Player Modal */
+        #playerModal { background: black; z-index: 9999; }
+        #playerModal .modal-close { position: absolute; top: 12px; right: 18px; font-size: 2em; color: white; cursor: pointer; z-index: 100; transition: color 0.18s; }
         #playerModal .modal-close:hover { color: var(--primary); }
-        #vPlayer {
-            width: 100%;
-            height: 100%;
-            max-height: 85vh;
-        }
-        .video-js .vjs-big-play-button {
-            background: var(--primary) !important;
-            border: none !important;
-            border-radius: 50% !important;
-            width: 70px !important;
-            height: 70px !important;
-            line-height: 70px !important;
-            font-size: 2em !important;
-        }
-        .video-js .vjs-control-bar {
-            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent) !important;
-        }
-        .video-js .vjs-play-progress {
-            background: var(--primary) !important;
-        }
+        #vPlayer { width: 100%; height: 100%; max-height: 82vh; }
+        .video-js .vjs-big-play-button { background: var(--primary) !important; border: none !important; border-radius: 50% !important; width: 64px !important; height: 64px !important; line-height: 64px !important; font-size: 1.8em !important; }
+        .video-js .vjs-control-bar { background: linear-gradient(to top, rgba(0,0,0,0.88), transparent) !important; }
+        .video-js .vjs-play-progress { background: var(--primary) !important; }
 
-        /* ===== NOTIFICATIONS MODAL ===== */
-        #notifList {
-            text-align: left;
-            margin-top: 15px;
-            max-height: 320px;
-            overflow-y: auto;
-        }
-        #notifList > div {
-            background: #111;
-            padding: 12px 15px;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            border-left: 3px solid var(--primary);
-        }
-        #notifList b { color: var(--text); display: block; margin-bottom: 4px; }
-        #notifList small { color: var(--text-dim); }
+        /* Notifications */
+        #notifList { text-align: left; margin-top: 13px; max-height: 280px; overflow-y: auto; }
+        #notifList > div { background: #0f0f0f; padding: 11px 14px; border-radius: 9px; margin-bottom: 9px; border-left: 3px solid var(--primary); }
+        #notifList b { color: var(--text); display: block; margin-bottom: 3px; font-size: 0.95em; }
+        #notifList small { color: var(--text-dim); font-size: 0.85em; }
 
-        /* ===== FLOATING WHATSAPP BUTTON ===== */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 90px;
-            right: 20px;
-            background: var(--whatsapp-green);
-            color: white;
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.8em;
-            box-shadow: 0 6px 22px rgba(37,211,102,0.45);
-            z-index: 950;
-            transition: all 0.25s ease;
-            text-decoration: none;
-            border: 2px solid rgba(255,255,255,0.15);
-            animation: whatsappPulse 2.5s ease-in-out infinite;
-        }
-        @keyframes whatsappPulse {
-            0%,100% { transform: scale(1); box-shadow: 0 6px 22px rgba(37,211,102,0.45); }
-            50% { transform: scale(1.08); box-shadow: 0 10px 30px rgba(37,211,102,0.65); }
-        }
-        .whatsapp-float:hover {
-            transform: scale(1.12) rotate(5deg);
-            box-shadow: 0 10px 30px rgba(37,211,102,0.65);
-        }
+        /* Profile */
+        #profile .profile-header { text-align: center; padding: 30px 18px 22px; }
+        #profile .profile-avatar { width: 82px; height: 82px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); display: flex; justify-content: center; align-items: center; margin: 0 auto 16px; border: 2px solid var(--border); }
+        #profile .profile-avatar i { font-size: 2.5em; color: white; }
+        #profile h2 { color: white; margin: 7px 0 3px; font-size: 1.35em; font-weight: 600; }
+        #profile p { color: var(--text-dim); font-size: 0.93em; margin-bottom: 20px; }
+        #profile .subscription-card { background: #0f0f0f; margin: 0 18px 20px; padding: 18px; border-radius: 13px; border: 1px solid var(--border); }
+        #profile .subscription-card small { color: #666; display: block; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.4px; font-size: 0.78em; }
+        #profile .subscription-card h3 { color: var(--primary); font-size: 1.4em; margin: 0; font-weight: 600; }
+        #profile .subscription-card h3.expired { color: var(--error); }
+        #profile .action-btn { width: 82%; margin: 0 auto 11px; display: flex; align-items: center; justify-content: center; gap: 7px; font-size: 0.95em; }
+        #profile .btn-logout { background: var(--error); }
+        #profile .btn-logout:hover { background: #DC2626; }
+        #favGridProfile { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; padding: 0 16px 20px; }
 
-        /* ===== MANUAL AD BANNER (Non-Intrusive) ===== */
-        .ad-banner {
-            position: fixed;
-            bottom: 82px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-left: 4px solid var(--warning);
-            border-radius: 10px;
-            padding: 10px 16px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-            z-index: 940;
-            max-width: 92%;
-            width: fit-content;
-            animation: slideUp 0.35s ease;
-        }
-        @keyframes slideUp {
-            from { opacity: 0; transform: translate(-50%, 25px); }
-            to { opacity: 1; transform: translate(-50%, 0); }
-        }
-        .ad-banner img {
-            width: 42px;
-            height: 42px;
-            border-radius: 8px;
-            object-fit: cover;
-            border: 1px solid var(--border);
-        }
-        .ad-banner .ad-text {
-            font-size: 0.88em;
-            font-weight: 600;
-            color: var(--text);
-            max-width: 240px;
-        }
-        .ad-banner .ad-text small {
-            display: block;
-            color: var(--text-dim);
-            font-size: 0.8em;
-            margin-top: 2px;
-        }
-        .ad-banner .ad-close {
-            background: rgba(255,255,255,0.1);
-            border: none;
-            color: var(--text-dim);
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.85em;
-            transition: all 0.2s;
-            flex-shrink: 0;
-        }
-        .ad-banner .ad-close:hover {
-            background: var(--error);
-            color: white;
-        }
+        /* Ad Banner */
+        .ad-banner { position: fixed; bottom: 78px; left: 50%; transform: translateX(-50%); background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--warning); border-radius: 9px; padding: 9px 14px; display: flex; align-items: center; gap: 10px; box-shadow: 0 5px 18px rgba(0,0,0,0.38); z-index: 940; max-width: 90%; width: fit-content; animation: slideUp 0.32s ease; }
+        @keyframes slideUp { from { opacity: 0; transform: translate(-50%, 22px); } to { opacity: 1; transform: translate(-50%, 0); } }
+        .ad-banner img { width: 38px; height: 38px; border-radius: 7px; object-fit: cover; border: 1px solid var(--border); }
+        .ad-banner .ad-text { font-size: 0.86em; font-weight: 500; color: var(--text); max-width: 220px; }
+        .ad-banner .ad-text small { display: block; color: var(--text-dim); font-size: 0.78em; margin-top: 1px; }
+        .ad-banner .ad-close { background: rgba(255,255,255,0.08); border: none; color: var(--text-dim); width: 22px; height: 22px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.82em; transition: all 0.18s; flex-shrink: 0; }
+        .ad-banner .ad-close:hover { background: var(--error); color: white; }
         .ad-banner.hidden { display: none; }
 
-        /* ===== TOAST NOTIFICATIONS ===== */
-        #toastContainer {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 10000;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            max-width: 320px;
-        }
-        .toast {
-            background: var(--bg-card);
-            color: var(--text);
-            padding: 13px 18px;
-            border-radius: 12px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
-            min-width: 260px;
-            opacity: 0;
-            transform: translateX(100px);
-            animation: toastIn 0.35s forwards, toastOut 0.35s 3.8s forwards;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border-left: 4px solid;
-            font-size: 0.92em;
-        }
-        @keyframes toastIn {
-            from { opacity: 0; transform: translateX(100px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-        @keyframes toastOut {
-            from { opacity: 1; transform: translateX(0); }
-            to { opacity: 0; transform: translateX(100px); }
-        }
+        /* Toast */
+        #toastContainer { position: fixed; top: 18px; right: 18px; z-index: 10000; display: flex; flex-direction: column; gap: 9px; max-width: 300px; }
+        .toast { background: var(--bg-card); color: var(--text); padding: 12px 16px; border-radius: 11px; box-shadow: 0 7px 22px rgba(0,0,0,0.48); min-width: 240px; opacity: 0; transform: translateX(90px); animation: toastIn 0.32s forwards, toastOut 0.32s 3.6s forwards; display: flex; align-items: center; gap: 9px; border-left: 3px solid; font-size: 0.9em; }
+        @keyframes toastIn { from { opacity: 0; transform: translateX(90px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes toastOut { from { opacity: 1; transform: translateX(0); } to { opacity: 0; transform: translateX(90px); } }
         .toast.success { border-color: var(--success); }
         .toast.error { border-color: var(--error); }
         .toast.warning { border-color: var(--warning); }
         .toast.info { border-color: var(--primary); }
-        .toast i { font-size: 1.2em; }
+        .toast i { font-size: 1.15em; }
         .toast.success i { color: var(--success); }
         .toast.error i { color: var(--error); }
         .toast.warning i { color: var(--warning); }
         .toast.info i { color: var(--primary); }
 
-        /* ===== PROFILE PAGE ===== */
-        #profile .profile-header {
-            text-align: center;
-            padding: 35px 20px 25px;
-        }
-        #profile .profile-avatar {
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0 auto 18px;
-            border: 3px solid var(--border);
-        }
-        #profile .profile-avatar i {
-            font-size: 2.8em;
-            color: white;
-        }
-        #profile h2 { color: white; margin: 8px 0 4px; font-size: 1.4em; }
-        #profile p { color: var(--text-dim); font-size: 0.95em; margin-bottom: 22px; }
-        
-        #profile .subscription-card {
-            background: #111;
-            margin: 0 20px 22px;
-            padding: 20px;
-            border-radius: 14px;
-            border: 1px solid var(--border);
-        }
-        #profile .subscription-card small {
-            color: #777;
-            display: block;
-            margin-bottom: 6px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-size: 0.8em;
-        }
-        #profile .subscription-card h3 {
-            color: var(--primary);
-            font-size: 1.5em;
-            margin: 0;
-        }
-        #profile .subscription-card h3.expired { color: var(--error); }
-        
-        #profile .action-btn {
-            width: 85%;
-            margin: 0 auto 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-        #profile .btn-logout {
-            background: var(--error);
-        }
-        #profile .btn-logout:hover { background: #E53935; }
-
-        /* ===== FAVORITES IN PROFILE ===== */
-        #favGridProfile {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
-            padding: 0 18px 22px;
-        }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 480px) {
-            .grid-mov { grid-template-columns: repeat(3, 1fr); gap: 8px; }
-            .grid-chan { grid-template-columns: repeat(4, 1fr); gap: 6px; }
-            .card-name { font-size: 0.72em; padding: 5px 3px; }
-            .cat-tag { padding: 6px 13px; font-size: 0.78em; }
-            .header { padding: 12px 15px; }
-            .logo { font-size: 1.2em; }
-            .bottom-nav { padding-bottom: calc(8px + env(safe-area-inset-bottom)); }
-            .whatsapp-float { bottom: 85px; right: 16px; width: 52px; height: 52px; }
-            .ad-banner { bottom: 77px; padding: 9px 14px; }
-            .ad-banner img { width: 38px; height: 38px; }
-        }
-
-        /* ===== UTILITIES ===== */
+        /* Utilities */
         .hidden { display: none !important; }
         .text-center { text-align: center; }
-        .mt-15 { margin-top: 15px; }
-        .mb-10 { margin-bottom: 10px; }
-        .flex-center { display: flex; justify-content: center; align-items: center; }
-        
-        /* ===== SCROLLBAR ===== */
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        .mt-12 { margin-top: 12px; }
+        ::-webkit-scrollbar { width: 5px; height: 5px; }
         ::-webkit-scrollbar-track { background: var(--bg); }
-        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--primary-dark); }
-
-        /* ===== SELECTION ===== */
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 2px; }
         ::selection { background: var(--primary); color: white; }
+
+        @media (max-width: 480px) {
+            .grid-mov { grid-template-columns: repeat(3, 1fr); gap: 7px; }
+            .grid-chan { grid-template-columns: repeat(4, 1fr); gap: 5px; }
+            .card-name { font-size: 0.71em; padding: 5px 3px; }
+            .cat-tag { padding: 5px 11px; font-size: 0.76em; }
+            .header { padding: 11px 14px; }
+            .logo { font-size: 1.18em; }
+            .bottom-nav { padding-bottom: calc(10px + env(safe-area-inset-bottom)); }
+            .ad-banner { bottom: 74px; padding: 8px 12px; }
+            .ad-banner img { width: 34px; height: 34px; }
+        }
     </style>
 </head>
 <body>
-
-    <!-- ===== SIMPLE LOADING SCREEN ===== -->
     <div id="loadingScreen">
-        <div class="loading-stack">
-            <span></span><span></span><span></span><span></span><span></span>
-        </div>
+        <div class="loading-stack"><span></span><span></span><span></span><span></span><span></span></div>
         <div class="loading-text">STANY TV</div>
         <div class="loading-bar"></div>
     </div>
 
-    <!-- ===== PRIVACY POLICY MODAL ===== -->
     <div id="privacyModal">
         <div class="privacy-box">
-            <div class="privacy-header">
-                <h2><i class="fas fa-shield-alt"></i> Privacy & Terms</h2>
-            </div>
+            <div class="privacy-header"><h2>Privacy & Terms</h2></div>
             <div class="privacy-body">
-                <h3><i class="fas fa-user-shield"></i> Privacy</h3>
-                <p>We protect your data. Account info, usage data, and preferences are used only to improve your streaming experience.</p>
-                
-                <h3><i class="fas fa-exclamation-triangle"></i> Disclaimer</h3>
+                <h3>Privacy</h3>
+                <p>We protect your data. Account information and preferences are used only to improve your streaming experience.</p>
+                <h3>Disclaimer</h3>
                 <ul>
                     <li>STANY TV is for entertainment purposes</li>
-                    <li>We do NOT host content - streams from third parties</li>
-                    <li>Users must comply with local streaming laws</li>
+                    <li>Content streams from third-party sources</li>
+                    <li>Users must comply with local laws</li>
                     <li>Service depends on internet connectivity</li>
                 </ul>
-
-                <h3><i class="fas fa-gavel"></i> Terms</h3>
+                <h3>Terms</h3>
                 <ul>
                     <li>Users must be 18+ or have parental consent</li>
-                    <li>Account credentials are personal & non-transferable</li>
+                    <li>Account credentials are personal and non-transferable</li>
                     <li>We reserve rights to terminate violating accounts</li>
                 </ul>
             </div>
@@ -1075,235 +313,152 @@
                     <input type="checkbox" id="acceptTerms">
                     <label for="acceptTerms">I accept Privacy Policy & Terms</label>
                 </div>
-                <button class="btn-accept" id="acceptBtn" disabled>
-                    <i class="fas fa-check"></i> Accept
-                </button>
-                <button class="btn-decline" id="declineBtn">
-                    <i class="fas fa-times"></i> Decline
-                </button>
+                <button class="btn-accept" id="acceptBtn" disabled>Accept</button>
+                <button class="btn-decline" id="declineBtn">Decline</button>
             </div>
         </div>
     </div>
 
-    <!-- ===== AUTH OVERLAY ===== -->
     <div id="authModal" class="auth-overlay">
         <div class="auth-box">
             <h2>STANY TV</h2>
-            <p class="subtitle">Premium Global Streaming</p>
-            
+            <p class="subtitle">Premium International Streaming</p>
             <div id="loginForm">
                 <input type="email" id="lemail" class="input-field" placeholder="Email Address">
                 <input type="password" id="lpass" class="input-field" placeholder="Password">
-                <button class="action-btn" id="loginBtn">
-                    <i class="fas fa-sign-in-alt"></i> Sign In
-                </button>
-                
+                <button class="action-btn" id="loginBtn">Sign In</button>
                 <div class="divider"><span>OR</span></div>
-                
-                <button class="action-btn btn-google" id="googleSignInBtn">
-                    <i class="fab fa-google"></i> Sign in with Google
-                </button>
-                
+                <button class="action-btn btn-google" id="googleSignInBtn"><i class="fab fa-google"></i> Sign in with Google</button>
                 <div class="auth-links">
-                    <a href="#" id="showRegisterLink"><i class="fas fa-user-plus"></i> Create Account</a>
-                    <a href="#" id="showForgotLink"><i class="fas fa-key"></i> Forgot Password?</a>
+                    <a href="#" id="showRegisterLink">Create Account</a>
+                    <a href="#" id="showForgotLink">Forgot Password?</a>
                 </div>
             </div>
-            
             <div id="regForm" style="display:none;">
                 <input type="text" id="rname" class="input-field" placeholder="Full Name">
                 <input type="email" id="remail" class="input-field" placeholder="Email Address">
                 <input type="password" id="rpass" class="input-field" placeholder="Password (min 6 chars)">
-                <button class="action-btn" id="registerBtn">
-                    <i class="fas fa-user-plus"></i> Register
-                </button>
-                
+                <button class="action-btn" id="registerBtn">Register</button>
                 <div class="divider"><span>OR</span></div>
-                
-                <button class="action-btn btn-google" id="googleSignUpBtn">
-                    <i class="fab fa-google"></i> Sign up with Google
-                </button>
-                
-                <div class="auth-links">
-                    <a href="#" id="showLoginLink"><i class="fas fa-sign-in-alt"></i> Already have account? Sign In</a>
-                </div>
+                <button class="action-btn btn-google" id="googleSignUpBtn"><i class="fab fa-google"></i> Sign up with Google</button>
+                <div class="auth-links"><a href="#" id="showLoginLink">Already have account? Sign In</a></div>
             </div>
         </div>
     </div>
 
-    <!-- ===== DEVICE SECURITY OVERLAY ===== -->
     <div id="deviceOverlay">
         <i class="fas fa-mobile-alt"></i>
         <h2>Device Security</h2>
         <p>New device detected. Please wait for Admin approval to access your account.</p>
         <div id="reqStatus">Checking...</div>
-        <button class="action-btn" style="background:#222;color:white;width:auto;padding:10px 28px;" onclick="location.reload()">
-            <i class="fas fa-redo"></i> Refresh
-        </button>
-        <div style="margin-top:25px;color:#666;font-size:0.9em;cursor:pointer" onclick="firebase.auth().signOut()">
-            <i class="fas fa-sign-out-alt"></i> Logout
-        </div>
+        <button class="action-btn" style="background:#1a1a1a;color:white;width:auto;padding:9px 24px;" onclick="location.reload()">Refresh</button>
+        <div style="margin-top:22px;color:#666;font-size:0.88em;cursor:pointer" onclick="firebase.auth().signOut()">Logout</div>
     </div>
 
-    <!-- ===== MAIN APP ===== -->
     <div id="mainApp" style="display:none;">
-        
-        <!-- HEADER -->
         <div class="header">
             <div class="logo">STANY TV</div>
             <div class="header-actions">
-                <i class="fas fa-search" id="searchToggle" title="Search"></i>
-                <i class="fas fa-bell" id="notifToggle" title="Notifications"></i>
+                <i class="fas fa-search" id="searchToggle"></i>
+                <i class="fas fa-bell" id="notifToggle"></i>
             </div>
         </div>
-        
-        <!-- SEARCH BAR -->
-        <div id="searchBar">
-            <input type="text" id="searchInput" placeholder="Search movies, channels..." onkeyup="globalSearch()">
-        </div>
+        <div id="searchBar"><input type="text" id="searchInput" placeholder="Search..." onkeyup="globalSearch()"></div>
 
-        <!-- 1. HOME PAGE -->
         <div id="home" class="page active">
-            <!-- Categories -->
-            <div class="cat-scroll" id="catTags">
-                <div class="cat-tag active" onclick="filter('all',this)">All</div>
-            </div>
-
-            <!-- Movies -->
+            <div class="cat-scroll" id="catTags"><div class="cat-tag active" onclick="filter('all',this)">All</div></div>
             <div class="section-title">Latest Movies</div>
             <div id="movGrid" class="grid-mov"></div>
-
-            <!-- Channels -->
             <div class="section-title">Live Channels</div>
             <div id="chanGrid" class="grid-chan"></div>
         </div>
 
-        <!-- 2. CATEGORIES PAGE -->
         <div id="cats" class="page">
             <div class="section-title">All Categories</div>
-            <div id="fullCatList" style="padding:10px 18px;"></div>
+            <div id="fullCatList" style="padding:10px 16px;"></div>
         </div>
 
-        <!-- 3. BETTING TIPS PAGE -->
         <div id="tips" class="page">
             <div class="section-title">Betting Tips</div>
             <div id="tipsList"></div>
         </div>
 
-        <!-- 4. CHAT BOT PAGE -->
-        <div id="bot" class="page">
-            <div id="chatBox" class="chat-box"></div>
-            <div style="position:fixed;bottom:75px;left:0;width:100%;padding:10px 18px;background:#0a0a0a;display:flex;gap:10px;z-index:99;">
-                <input id="chatInput" class="input-field" style="margin:0;border-radius:22px;" placeholder="Type message...">
-                <button class="action-btn" style="width:48px;border-radius:50%;padding:0;" onclick="sendChat()">
-                    <i class="fas fa-paper-plane"></i>
-                </button>
-            </div>
-        </div>
-
-        <!-- 5. PROFILE PAGE -->
         <div id="profile" class="page">
             <div class="profile-header">
                 <div class="profile-avatar"><i class="fas fa-user"></i></div>
                 <h2 id="pName">User</h2>
                 <p id="pEmail">email@example.com</p>
             </div>
-            
             <div class="subscription-card">
                 <small>Subscription Status</small>
                 <h3 id="pDays">Loading...</h3>
             </div>
-            
-            <button class="action-btn" onclick="openWhatsApp()">
-                <i class="fab fa-whatsapp"></i> Contact Support
-            </button>
-            <button class="action-btn btn-logout" id="logoutBtn">
-                <i class="fas fa-sign-out-alt"></i> Sign Out
-            </button>
-            
-            <div class="section-title" style="margin-top:25px;">My Favorites</div>
+            <button class="action-btn" onclick="openWhatsApp()">Contact Support</button>
+            <button class="action-btn btn-logout" id="logoutBtn">Sign Out</button>
+            <div class="section-title" style="margin-top:22px;">My Favorites</div>
             <div id="favGridProfile"></div>
         </div>
 
-        <!-- BOTTOM NAVIGATION -->
         <div class="bottom-nav">
-            <div class="nav-item active" onclick="nav('home',this)">
-                <i class="fas fa-home"></i>
-                <span>Home</span>
-            </div>
-            <div class="nav-item" onclick="nav('cats',this)">
-                <i class="fas fa-th-large"></i>
-                <span>Catg</span>
-            </div>
-            <div class="nav-item" onclick="nav('tips',this)">
-                <i class="fas fa-futbol"></i>
-                <span>Tips</span>
-            </div>
-            <div class="nav-item" onclick="nav('bot',this)">
-                <i class="fas fa-comment-dots"></i>
-                <span>Bot</span>
-            </div>
-            <div class="nav-item" onclick="nav('profile',this)">
-                <i class="fas fa-user"></i>
-                <span>Me</span>
-            </div>
+            <div class="nav-item active" onclick="nav('home',this)"><i class="fas fa-home"></i><span>Home</span></div>
+            <div class="nav-item" onclick="nav('cats',this)"><i class="fas fa-th-large"></i><span>Catg</span></div>
+            <div class="nav-item whatsapp-center" onclick="openChatModal()"><i class="fab fa-whatsapp"></i><span>Chat</span></div>
+            <div class="nav-item" onclick="nav('tips',this)"><i class="fas fa-futbol"></i><span>Tips</span></div>
+            <div class="nav-item" onclick="nav('profile',this)"><i class="fas fa-user"></i><span>Me</span></div>
         </div>
 
-        <!-- FLOATING WHATSAPP -->
-        <a href="https://wa.me/255787069580" target="_blank" class="whatsapp-float" title="Chat Support">
-            <i class="fab fa-whatsapp"></i>
-        </a>
-
-        <!-- MANUAL AD BANNER (Firebase Controlled) -->
         <div id="manualAdBanner" class="ad-banner hidden">
             <img id="adImage" src="" alt="Ad">
-            <div class="ad-text">
-                <span id="adTitle">Sponsored</span>
-                <small id="adSubtitle">Tap to learn more</small>
-            </div>
-            <button class="ad-close" id="closeAdBtn" title="Close"><i class="fas fa-times"></i></button>
+            <div class="ad-text"><span id="adTitle">Sponsored</span><small id="adSubtitle">Tap to learn more</small></div>
+            <button class="ad-close" id="closeAdBtn"><i class="fas fa-times"></i></button>
         </div>
     </div>
 
-    <!-- ===== MODALS ===== -->
-    
-    <!-- Block/Locked Content Modal -->
     <div id="blockModal" class="modal">
         <div class="modal-content">
-            <i class="fas fa-lock" style="font-size:3em;color:var(--error);margin-bottom:12px;"></i>
+            <i class="fas fa-lock" style="font-size:2.8em;color:var(--error);margin-bottom:10px;"></i>
             <h3>Locked Content</h3>
             <p>Premium subscription required to access this content.</p>
-            <button class="action-btn" onclick="openWhatsApp()">
-                <i class="fab fa-whatsapp"></i> Upgrade Now
-            </button>
-            <div class="modal-close" onclick="document.getElementById('blockModal').style.display='none'">
-                <i class="fas fa-times"></i> Close
-            </div>
+            <button class="action-btn" onclick="openWhatsApp()">Upgrade Now</button>
+            <div class="modal-close" onclick="document.getElementById('blockModal').style.display='none'">Close</div>
         </div>
     </div>
 
-    <!-- Video Player Modal -->
     <div id="playerModal" class="modal">
-        <span class="modal-close" onclick="closePlayer()">×</span>
+        <span class="modal-close" onclick="closePlayer">×</span>
         <video id="vPlayer" class="video-js vjs-big-play-centered" controls preload="auto"></video>
     </div>
     
-    <!-- Notifications Modal -->
     <div id="notifModal" class="modal">
         <div class="modal-content">
-            <h3><i class="fas fa-bell"></i> Notifications</h3>
+            <h3>Notifications</h3>
             <div id="notifList"></div>
-            <button class="action-btn" style="margin-top:15px;background:#222;color:white;" onclick="document.getElementById('notifModal').style.display='none'">
-                <i class="fas fa-times"></i> Close
-            </button>
+            <button class="action-btn" style="margin-top:13px;background:#1a1a1a;color:white;" onclick="document.getElementById('notifModal').style.display='none'">Close</button>
         </div>
     </div>
 
-    <!-- Toast Container -->
+    <div id="chatModal" class="chat-modal">
+        <div class="chat-modal-content">
+            <div class="chat-header">
+                <button class="back-btn" onclick="closeChatModal()"><i class="fas fa-arrow-left"></i></button>
+                <h3>Support Chat</h3>
+                <div style="width:24px"></div>
+            </div>
+            <div class="chat-user-info">
+                <span id="chatUserName">User</span>
+                <span id="chatUserStatus" class="premium-tag"></span>
+            </div>
+            <div id="chatBox" class="chat-box"></div>
+            <div class="chat-input-area">
+                <input id="chatInput" placeholder="Type message...">
+                <button onclick="sendChat()"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
     <div id="toastContainer"></div>
 
     <script>
-        // ===== FIREBASE CONFIG =====
         const firebaseConfig = {
             apiKey: "AIzaSyCJ0ZQPHOopo4pk6Eni-WqpShyQ6z_ivZk",
             authDomain: "stanytv.firebaseapp.com",
@@ -1314,12 +469,10 @@
             appId: "1:898881603619:web:f3689aac0c4fc34c474996",
             measurementId: "G-KY2KYRY6NC"
         };
-        
         if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
         const db = firebase.database();
 
-        // ===== GLOBAL STATE =====
         let currentUser = null;
         let isPremium = false;
         let userHWID = localStorage.getItem('stany_hwid') || 'HWID-' + Math.random().toString(36).substr(2, 10);
@@ -1327,10 +480,10 @@
         let allData = { movies: [], channels: [] };
         let player = null;
         let adBannerVisible = false;
+        let chatListener = null;
         
         localStorage.setItem('stany_hwid', userHWID);
 
-        // ===== DOM ELEMENTS =====
         const loadingScreen = document.getElementById('loadingScreen');
         const privacyModal = document.getElementById('privacyModal');
         const authModal = document.getElementById('authModal');
@@ -1341,7 +494,6 @@
         const acceptTermsCheckbox = document.getElementById('acceptTerms');
         const manualAdBanner = document.getElementById('manualAdBanner');
 
-        // ===== SECURITY =====
         document.addEventListener('contextmenu', e => e.preventDefault());
         document.addEventListener('keydown', e => {
             if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && ['I','J','C'].includes(e.key))) {
@@ -1350,7 +502,6 @@
             }
         });
 
-        // ===== LOADING =====
         window.addEventListener('load', () => {
             setTimeout(() => {
                 loadingScreen.classList.add('hidden');
@@ -1359,66 +510,57 @@
                 } else {
                     initAuthCheck();
                 }
-            }, 1800);
+            }, 1600);
         });
 
-        // ===== PRIVACY MODAL =====
-        acceptTermsCheckbox.addEventListener('change', () => {
-            acceptBtn.disabled = !acceptTermsCheckbox.checked;
-        });
-        
+        acceptTermsCheckbox.addEventListener('change', () => { acceptBtn.disabled = !acceptTermsCheckbox.checked; });
         acceptBtn.addEventListener('click', () => {
             privacyAccepted = true;
             localStorage.setItem('privacy_accepted', 'true');
             privacyModal.style.display = 'none';
             initAuthCheck();
-            showToast('Welcome to STANY TV!', 'success');
+            showToast('Welcome to STANY TV', 'success');
         });
-        
-        declineBtn.addEventListener('click', () => {
-            showToast('Access requires accepting terms', 'error');
-        });
+        declineBtn.addEventListener('click', () => { showToast('Access requires accepting terms', 'error'); });
 
-        // ===== AUTH CHECK =====
         function initAuthCheck() {
             auth.onAuthStateChanged(user => {
                 if (user) {
-                    db.ref('users/' + user.uid).once('value')
-                        .then(snapshot => {
-                            const userData = snapshot.val();
-                            if (!userData) { auth.signOut(); return; }
-                            if (userData.isBlocked) { showToast('Account blocked', 'error'); auth.signOut(); return; }
-                            
-                            // Device locking
-                            if (!userData.activeDeviceId) {
-                                db.ref('users/' + user.uid).update({ activeDeviceId: userHWID });
-                            } else if (userData.activeDeviceId !== userHWID) {
-                                mainApp.style.display = 'none';
-                                deviceOverlay.style.display = 'flex';
-                                checkDeviceRequest(user.uid);
-                                return;
-                            }
-                            
-                            currentUser = { uid: user.uid, email: user.email, ...userData };
-                            isPremium = userData.premium || false;
-                            
-                            // Update profile UI
-                            document.getElementById('pName').textContent = userData.name || user.displayName || 'User';
-                            document.getElementById('pEmail').textContent = user.email;
-                            updateSubscriptionDisplay(userData.accessExpiry);
-                            
-                            deviceOverlay.style.display = 'none';
-                            authModal.style.display = 'none';
-                            mainApp.style.display = 'block';
-                            
-                            loadContent();
-                            checkManualAd();
-                        })
-                        .catch(error => {
-                            console.error('Auth error:', error);
-                            showToast('Session error - please re-login', 'error');
-                            auth.signOut();
-                        });
+                    db.ref('users/' + user.uid).once('value').then(snapshot => {
+                        const userData = snapshot.val();
+                        if (!userData) { auth.signOut(); return; }
+                        if (userData.isBlocked) { showToast('Account blocked', 'error'); auth.signOut(); return; }
+                        
+                        if (!userData.activeDeviceId) {
+                            db.ref('users/' + user.uid).update({ activeDeviceId: userHWID });
+                        } else if (userData.activeDeviceId !== userHWID) {
+                            mainApp.style.display = 'none';
+                            deviceOverlay.style.display = 'flex';
+                            checkDeviceRequest(user.uid);
+                            return;
+                        }
+                        
+                        currentUser = { uid: user.uid, email: user.email, ...userData };
+                        isPremium = userData.premium || false;
+                        
+                        document.getElementById('pName').textContent = userData.name || user.displayName || 'User';
+                        document.getElementById('pEmail').textContent = user.email;
+                        updateSubscriptionDisplay(userData.accessExpiry);
+                        
+                        // Auto-collect user analytics
+                        collectUserAnalytics(user.uid, userData);
+                        
+                        deviceOverlay.style.display = 'none';
+                        authModal.style.display = 'none';
+                        mainApp.style.display = 'block';
+                        
+                        loadContent();
+                        checkManualAd();
+                    }).catch(error => {
+                        console.error('Auth error:', error);
+                        showToast('Session error - please re-login', 'error');
+                        auth.signOut();
+                    });
                 } else {
                     mainApp.style.display = 'none';
                     authModal.style.display = 'flex';
@@ -1427,11 +569,30 @@
             });
         }
 
+        function collectUserAnalytics(uid, userData) {
+            const analytics = {
+                lastLogin: firebase.database.ServerValue.TIMESTAMP,
+                deviceHWID: userHWID,
+                userAgent: navigator.userAgent,
+                language: navigator.language,
+                platform: navigator.platform,
+                screenResolution: screen.width + 'x' + screen.height,
+                timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
+            };
+            db.ref('analytics/users/' + uid).update(analytics).catch(e => console.log('Analytics:', e));
+            
+            db.ref('analytics/logins').push({
+                uid: uid,
+                timestamp: firebase.database.ServerValue.TIMESTAMP,
+                device: userHWID,
+                premium: isPremium
+            });
+        }
+
         function checkDeviceRequest(uid) {
             db.ref('deviceRequests/' + uid).on('value', snapshot => {
                 const req = snapshot.val();
                 const statusEl = document.getElementById('reqStatus');
-                
                 if (!req) {
                     db.ref('deviceRequests/' + uid).set({
                         email: auth.currentUser.email,
@@ -1443,7 +604,7 @@
                 } else if (req.status === 'approved') {
                     statusEl.textContent = 'Approved! Reloading...';
                     statusEl.style.color = 'var(--success)';
-                    setTimeout(() => location.reload(), 1200);
+                    setTimeout(() => location.reload(), 1000);
                 } else if (req.status === 'rejected') {
                     statusEl.textContent = 'Request Rejected';
                     statusEl.style.color = 'var(--error)';
@@ -1470,20 +631,13 @@
             }
         }
 
-        // ===== AUTH PAGE NAVIGATION =====
         function showAuthPage(page) {
             document.getElementById('loginForm').style.display = page === 'login' ? 'block' : 'none';
             document.getElementById('regForm').style.display = page === 'register' ? 'block' : 'none';
         }
-        
-        document.getElementById('showRegisterLink').addEventListener('click', e => {
-            e.preventDefault(); showAuthPage('register');
-        });
-        document.getElementById('showLoginLink').addEventListener('click', e => {
-            e.preventDefault(); showAuthPage('login');
-        });
+        document.getElementById('showRegisterLink').addEventListener('click', e => { e.preventDefault(); showAuthPage('register'); });
+        document.getElementById('showLoginLink').addEventListener('click', e => { e.preventDefault(); showAuthPage('login'); });
 
-        // ===== EMAIL AUTH =====
         document.getElementById('loginBtn').addEventListener('click', () => {
             const email = document.getElementById('lemail').value.trim();
             const pass = document.getElementById('lpass').value;
@@ -1497,52 +651,37 @@
             const pass = document.getElementById('rpass').value;
             if (!name || !email || !pass) { showToast('Fill all fields', 'warning'); return; }
             if (pass.length < 6) { showToast('Password min 6 chars', 'warning'); return; }
-            
-            auth.createUserWithEmailAndPassword(email, pass)
-                .then(cred => {
-                    return db.ref('users/' + cred.user.uid).set({
-                        name: name, email: email, premium: false,
-                        activeDeviceId: userHWID,
-                        createdAt: firebase.database.ServerValue.TIMESTAMP
-                    });
-                })
-                .then(() => showToast('Account created!', 'success'))
-                .catch(e => showToast(getAuthMsg(e.code), 'error'));
+            auth.createUserWithEmailAndPassword(email, pass).then(cred => {
+                return db.ref('users/' + cred.user.uid).set({
+                    name: name, email: email, premium: false,
+                    activeDeviceId: userHWID,
+                    createdAt: firebase.database.ServerValue.TIMESTAMP
+                });
+            }).then(() => showToast('Account created', 'success')).catch(e => showToast(getAuthMsg(e.code), 'error'));
         });
 
-        // ===== GOOGLE AUTH =====
         function setupGoogleAuth() {
             const provider = new firebase.auth.GoogleAuthProvider();
-            
             const handleGoogleAuth = (isNewUser) => {
-                return auth.signInWithPopup(provider)
-                    .then(result => {
-                        const uid = result.user.uid;
-                        const userData = {
-                            name: result.user.displayName,
-                            email: result.user.email,
-                            premium: false,
-                            activeDeviceId: userHWID,
-                            photoURL: result.user.photoURL,
-                            lastLogin: firebase.database.ServerValue.TIMESTAMP
-                        };
-                        
-                        if (isNewUser) {
-                            userData.createdAt = firebase.database.ServerValue.TIMESTAMP;
-                            return db.ref('users/' + uid).set(userData);
-                        }
-                        return db.ref('users/' + uid).update({ lastLogin: firebase.database.ServerValue.TIMESTAMP });
-                    })
-                    .catch(e => showToast(getAuthMsg(e.code), 'error'));
+                return auth.signInWithPopup(provider).then(result => {
+                    const uid = result.user.uid;
+                    const userData = {
+                        name: result.user.displayName,
+                        email: result.user.email,
+                        premium: false,
+                        activeDeviceId: userHWID,
+                        photoURL: result.user.photoURL,
+                        lastLogin: firebase.database.ServerValue.TIMESTAMP
+                    };
+                    if (isNewUser) {
+                        userData.createdAt = firebase.database.ServerValue.TIMESTAMP;
+                        return db.ref('users/' + uid).set(userData);
+                    }
+                    return db.ref('users/' + uid).update({ lastLogin: firebase.database.ServerValue.TIMESTAMP });
+                }).catch(e => showToast(getAuthMsg(e.code), 'error'));
             };
-            
-            document.getElementById('googleSignInBtn').addEventListener('click', () => {
-                handleGoogleAuth(false);
-            });
-            
-            document.getElementById('googleSignUpBtn').addEventListener('click', () => {
-                handleGoogleAuth(true).then(() => showToast('Welcome!', 'success'));
-            });
+            document.getElementById('googleSignInBtn').addEventListener('click', () => handleGoogleAuth(false));
+            document.getElementById('googleSignUpBtn').addEventListener('click', () => handleGoogleAuth(true).then(() => showToast('Welcome', 'success')));
         }
         setupGoogleAuth();
 
@@ -1559,28 +698,23 @@
             return msgs[code] || 'Authentication error';
         }
 
-        // ===== CONTENT LOADING =====
         function loadContent() {
-            // Categories
             db.ref('genres').on('value', snapshot => {
                 const tags = document.getElementById('catTags');
                 const fullList = document.getElementById('fullCatList');
                 tags.innerHTML = '<div class="cat-tag active" onclick="filter(\'all\',this)">All</div>';
                 fullList.innerHTML = '';
-                
                 snapshot.forEach(g => {
                     const cat = g.val().name;
                     tags.innerHTML += `<div class="cat-tag" onclick="filter('${cat}',this)">${cat}</div>`;
-                    fullList.innerHTML += `<div class="action-btn" style="margin-bottom:10px;background:#111;border:1px solid var(--border);color:white;" onclick="filter('${cat}');nav('home')">${cat}</div>`;
+                    fullList.innerHTML += `<div class="action-btn" style="margin-bottom:9px;background:#0f0f0f;border:1px solid var(--border);color:white;" onclick="filter('${cat}');nav('home')">${cat}</div>`;
                 });
             });
 
-            // Movies
             db.ref('movies').limitToFirst(12).on('value', snapshot => {
                 allData.movies = [];
                 const grid = document.getElementById('movGrid');
                 grid.innerHTML = '';
-                
                 snapshot.forEach(c => {
                     const movie = { id: c.key, ...c.val(), type: 'm' };
                     allData.movies.push(movie);
@@ -1588,12 +722,10 @@
                 });
             });
 
-            // Channels
             db.ref('channels').limitToFirst(20).on('value', snapshot => {
                 allData.channels = [];
                 const grid = document.getElementById('chanGrid');
                 grid.innerHTML = '';
-                
                 snapshot.forEach(c => {
                     const channel = { id: c.key, ...c.val(), type: 'c' };
                     allData.channels.push(channel);
@@ -1602,39 +734,16 @@
                 updateFavoritesDisplay();
             });
 
-            // Betting Tips
             db.ref('bettingTips').limitToLast(5).on('value', snapshot => {
                 const list = document.getElementById('tipsList');
                 list.innerHTML = '';
-                
                 snapshot.forEach(x => {
                     const tip = x.val();
                     const blurred = !isPremium ? 'tip-blur' : '';
-                    list.innerHTML += `
-                        <div class="tip-card ${blurred}">
-                            <div class="tip-msg"><i class="fas fa-lock"></i> PREMIUM</div>
-                            <div class="tip-content">
-                                <h4>${tip.title}</h4>
-                                <p>${tip.team1} vs ${tip.team2}</p>
-                                <p><b>${tip.prediction}</b> @ ${tip.odds}x</p>
-                                <small style="color:var(--text-dim)">${tip.time}</small>
-                            </div>
-                        </div>
-                    `;
+                    list.innerHTML += `<div class="tip-card ${blurred}"><div class="tip-msg">PREMIUM</div><div class="tip-content"><h4>${tip.title}</h4><p>${tip.team1} vs ${tip.team2}</p><p><b>${tip.prediction}</b> @ ${tip.odds}x</p><small style="color:var(--text-dim)">${tip.time}</small></div></div>`;
                 });
             });
 
-            // Chat Messages
-            if (currentUser) {
-                db.ref(`chat/${currentUser.uid}`).limitToLast(30).on('child_added', snapshot => {
-                    const msg = snapshot.val();
-                    const chatBox = document.getElementById('chatBox');
-                    chatBox.innerHTML += `<div class="msg ${msg.sender==='user'?'msg-user':'msg-admin'}">${msg.text}</div>`;
-                    chatBox.scrollTop = chatBox.scrollHeight;
-                });
-            }
-
-            // Notifications
             if (currentUser) {
                 db.ref(`notifications/${currentUser.uid}`).limitToLast(5).on('child_added', snapshot => {
                     const notif = snapshot.val();
@@ -1644,83 +753,32 @@
             }
         }
 
-        // ===== CARD GENERATION =====
         function makeCard(item) {
-            // TBC channel free even if expired
             const isExpired = !isPremium;
             const isTBC = item.type === 'c' && item.name && item.name.toUpperCase().includes('TBC');
             const locked = isExpired && !isTBC;
-            
             const isFav = currentUser?.favorites?.[item.id];
-            const favIcon = item.type === 'c' 
-                ? `<i class="${isFav?'fas':'far'} fa-heart fav-star ${isFav?'active':''}" onclick="toggleFav('${item.id}',event)"></i>` 
-                : '';
-            
-            const premiumBadge = item.premium && !isPremium 
-                ? `<div class="premium-badge"><i class="fas fa-crown"></i> PREMIUM</div>` 
-                : '';
-            
-            const lockOverlay = locked 
-                ? `<div class="locked-cover"><i class="fas fa-lock"></i></div>` 
-                : '';
-            
-            const poster = item.posterURL || item.poster || 'https://via.placeholder.com/150x225/111/FF0000?text=No+Image';
+            const favIcon = item.type === 'c' ? `<i class="${isFav?'fas':'far'} fa-heart fav-star ${isFav?'active':''}" onclick="toggleFav('${item.id}',event)"></i>` : '';
+            const premiumBadge = item.premium && !isPremium ? `<div class="premium-badge">PREMIUM</div>` : '';
+            const lockOverlay = locked ? `<div class="locked-cover"><i class="fas fa-lock"></i></div>` : '';
+            const poster = item.posterURL || item.poster || 'https://via.placeholder.com/150x225/0a0a0a/FF0000?text=No+Image';
             const title = item.name || item.title || 'Untitled';
-            
-            return `
-                <div class="card" onclick="openItem('${item.type}','${item.id}',${locked})">
-                    ${premiumBadge}
-                    ${favIcon}
-                    ${lockOverlay}
-                    <img src="${poster}" alt="${title}" onerror="this.src='https://via.placeholder.com/150x225/111/FF0000?text=Error'">
-                    <div class="card-name">${title}</div>
-                </div>
-            `;
+            return `<div class="card" onclick="openItem('${item.type}','${item.id}',${locked})">${premiumBadge}${favIcon}${lockOverlay}<img src="${poster}" alt="${title}" onerror="this.src='https://via.placeholder.com/150x225/0a0a0a/FF0000?text=Error'"><div class="card-name">${title}</div></div>`;
         }
 
-        // ===== ITEM OPENING =====
         function openItem(type, id, locked) {
-            if (locked) {
-                document.getElementById('blockModal').style.display = 'flex';
-                return;
-            }
-            
-            const item = type === 'c' 
-                ? allData.channels.find(x => x.id === id) 
-                : allData.movies.find(x => x.id === id);
-            
+            if (locked) { document.getElementById('blockModal').style.display = 'flex'; return; }
+            const item = type === 'c' ? allData.channels.find(x => x.id === id) : allData.movies.find(x => x.id === id);
             if (!item) { showToast('Content not found', 'error'); return; }
-            
-            // External player handling
-            if (item.playerType === 'external_browser') {
-                window.open(item.m3u8Link || item.movieURL || item.streamUrl, '_blank');
-                return;
-            }
-            if (item.playerType === 'external_section') {
-                window.location.href = 'go:' + (item.externalCode || '');
-                return;
-            }
-            
-            // Internal player
+            if (item.playerType === 'external_browser') { window.open(item.m3u8Link || item.movieURL || item.streamUrl, '_blank'); return; }
+            if (item.playerType === 'external_section') { window.location.href = 'go:' + (item.externalCode || ''); return; }
             document.getElementById('playerModal').style.display = 'flex';
             const url = item.m3u8Link || item.movieURL || item.streamUrl;
             const isHLS = url && (url.includes('.m3u8') || item.type === 'live');
             const typeAttr = isHLS ? 'application/x-mpegURL' : 'video/mp4';
-            
-            if (!player) {
-                player = videojs('vPlayer', {
-                    fluid: true,
-                    autoplay: true,
-                    controls: true,
-                    preload: 'auto'
-                });
-            }
-            
+            if (!player) { player = videojs('vPlayer', { fluid: true, autoplay: true, controls: true, preload: 'auto' }); }
             player.src({ src: url, type: typeAttr });
-            player.play().catch(e => {
-                console.log('Autoplay prevented:', e);
-                showToast('Tap play to start', 'info');
-            });
+            player.play().catch(e => { console.log('Autoplay prevented:', e); showToast('Tap play to start', 'info'); });
         }
 
         function closePlayer() {
@@ -1728,27 +786,18 @@
             if (player) { player.pause(); player.src({ src: '', type: '' }); }
         }
 
-        // ===== FAVORITES =====
         function toggleFav(id, e) {
             e.stopPropagation();
             if (!currentUser) return;
-            
             const path = `users/${currentUser.uid}/favorites/${id}`;
             const isFav = currentUser.favorites?.[id];
-            
-            if (isFav) {
-                db.ref(path).remove();
-                showToast('Removed from favorites', 'info');
-            } else {
-                db.ref(path).set(true);
-                showToast('Added to favorites', 'success');
-            }
+            if (isFav) { db.ref(path).remove(); showToast('Removed from favorites', 'info'); }
+            else { db.ref(path).set(true); showToast('Added to favorites', 'success'); }
         }
 
         function updateFavoritesDisplay() {
             const grid = document.getElementById('favGridProfile');
             grid.innerHTML = '';
-            
             if (currentUser?.favorites) {
                 Object.keys(currentUser.favorites).forEach(id => {
                     const channel = allData.channels.find(c => c.id === id);
@@ -1757,16 +806,10 @@
             }
         }
 
-        // ===== FILTER & SEARCH =====
         function filter(category, btn) {
-            if (btn) {
-                document.querySelectorAll('.cat-tag').forEach(t => t.classList.remove('active'));
-                btn.classList.add('active');
-            }
-            
+            if (btn) { document.querySelectorAll('.cat-tag').forEach(t => t.classList.remove('active')); btn.classList.add('active'); }
             const grid = document.getElementById('chanGrid');
             grid.innerHTML = '';
-            
             allData.channels.forEach(channel => {
                 if (category === 'all' || (channel.categories && channel.categories.includes(category))) {
                     grid.innerHTML += makeCard(channel);
@@ -1777,170 +820,124 @@
         function globalSearch() {
             const query = document.getElementById('searchInput').value.toLowerCase().trim();
             if (query.length < 2) { loadContent(); return; }
-            
             const chanGrid = document.getElementById('chanGrid');
             const movGrid = document.getElementById('movGrid');
-            chanGrid.innerHTML = '';
-            movGrid.innerHTML = '';
-            
-            allData.channels.forEach(c => {
-                if ((c.name || '').toLowerCase().includes(query)) {
-                    chanGrid.innerHTML += makeCard(c);
-                }
-            });
-            allData.movies.forEach(m => {
-                if ((m.title || '').toLowerCase().includes(query)) {
-                    movGrid.innerHTML += makeCard(m);
-                }
-            });
+            chanGrid.innerHTML = ''; movGrid.innerHTML = '';
+            allData.channels.forEach(c => { if ((c.name || '').toLowerCase().includes(query)) chanGrid.innerHTML += makeCard(c); });
+            allData.movies.forEach(m => { if ((m.title || '').toLowerCase().includes(query)) movGrid.innerHTML += makeCard(m); });
         }
 
-        // ===== NAVIGATION =====
         function nav(pageId, el) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
-            
-            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-            if (el) el.classList.add('active');
-            
-            // Hide search when navigating
+            document.querySelectorAll('.nav-item').forEach(n => { if (!n.classList.contains('whatsapp-center')) n.classList.remove('active'); });
+            if (el && !el.classList.contains('whatsapp-center')) el.classList.add('active');
             document.getElementById('searchBar').style.display = 'none';
             document.getElementById('searchToggle').style.color = '';
         }
 
-        // ===== CHAT =====
+        function openChatModal() {
+            if (!currentUser) { showToast('Please sign in first', 'warning'); return; }
+            document.getElementById('chatModal').style.display = 'flex';
+            document.getElementById('chatUserName').textContent = currentUser.name || 'User';
+            document.getElementById('chatUserStatus').textContent = isPremium ? 'PREMIUM' : 'FREE';
+            document.getElementById('chatUserStatus').style.display = isPremium ? 'inline' : 'none';
+            loadChatMessages();
+        }
+
+        function closeChatModal() {
+            document.getElementById('chatModal').style.display = 'none';
+            if (chatListener) { chatListener.off(); chatListener = null; }
+        }
+
+        function loadChatMessages() {
+            if (!currentUser) return;
+            const chatBox = document.getElementById('chatBox');
+            chatBox.innerHTML = '';
+            
+            if (chatListener) chatListener.off();
+            chatListener = db.ref(`chat/${currentUser.uid}`).limitToLast(40);
+            
+            chatListener.on('child_added', snapshot => {
+                const msg = snapshot.val();
+                chatBox.innerHTML += `<div class="msg ${msg.sender==='user'?'msg-user':'msg-admin'}">${msg.text}</div>`;
+                chatBox.scrollTop = chatBox.scrollHeight;
+                
+                if (msg.sender === 'user') {
+                    db.ref(`chatMetadata/${currentUser.uid}`).update({
+                        displayName: currentUser.name || 'User',
+                        isPremium: isPremium,
+                        lastMessage: firebase.database.ServerValue.TIMESTAMP
+                    });
+                }
+            });
+        }
+
         function sendChat() {
             const input = document.getElementById('chatInput');
             const text = input.value.trim();
             if (!text || !currentUser) return;
-            
             db.ref(`chat/${currentUser.uid}`).push({
                 text: text,
                 sender: 'user',
-                timestamp: firebase.database.ServerValue.TIMESTAMP
+                timestamp: firebase.database.ServerValue.TIMESTAMP,
+                userDisplayName: currentUser.name || 'User',
+                userIsPremium: isPremium
             });
             input.value = '';
         }
-        
-        document.getElementById('chatInput').addEventListener('keypress', e => {
-            if (e.key === 'Enter') sendChat();
-        });
+        document.getElementById('chatInput').addEventListener('keypress', e => { if (e.key === 'Enter') sendChat(); });
 
-        // ===== UTILITIES =====
-        function openWhatsApp() {
-            window.open('https://wa.me/255787069580?text=Hello%20STANY%20TV%20Support!', '_blank');
-        }
-        
-        document.getElementById('logoutBtn').addEventListener('click', () => {
-            auth.signOut().then(() => showToast('Signed out', 'success'));
-        });
-        
+        function openWhatsApp() { window.open('https://wa.me/255787069580?text=Hello%20STANY%20TV%20Support', '_blank'); }
+        document.getElementById('logoutBtn').addEventListener('click', () => { auth.signOut().then(() => showToast('Signed out', 'success')); });
         document.getElementById('searchToggle').addEventListener('click', () => {
             const bar = document.getElementById('searchBar');
             bar.style.display = bar.style.display === 'block' ? 'none' : 'block';
             document.getElementById('searchToggle').style.color = bar.style.display === 'block' ? 'var(--primary)' : '';
-            if (bar.style.display === 'block') {
-                document.getElementById('searchInput').focus();
-            }
+            if (bar.style.display === 'block') document.getElementById('searchInput').focus();
         });
-        
-        document.getElementById('notifToggle').addEventListener('click', () => {
-            document.getElementById('notifModal').style.display = 'flex';
-        });
+        document.getElementById('notifToggle').addEventListener('click', () => { document.getElementById('notifModal').style.display = 'flex'; });
 
-        // ===== MANUAL AD SYSTEM =====
         function checkManualAd() {
-            db.ref('ads/manual').once('value')
-                .then(snapshot => {
-                    const ad = snapshot.val();
-                    if (ad?.active && ad?.imageUrl && ad?.title) {
-                        document.getElementById('adImage').src = ad.imageUrl;
-                        document.getElementById('adTitle').textContent = ad.title;
-                        document.getElementById('adSubtitle').textContent = ad.subtitle || 'Sponsored';
-                        
-                        if (ad.clickUrl) {
-                            manualAdBanner.onclick = (e) => {
-                                if (!e.target.closest('.ad-close')) {
-                                    window.open(ad.clickUrl, '_blank');
-                                }
-                            };
-                        }
-                        
-                        manualAdBanner.classList.remove('hidden');
-                        adBannerVisible = true;
-                        
-                        // Auto-hide after 25 seconds (non-intrusive)
-                        setTimeout(() => {
-                            if (adBannerVisible) {
-                                manualAdBanner.classList.add('hidden');
-                                adBannerVisible = false;
-                            }
-                        }, 25000);
+            db.ref('ads/manual').once('value').then(snapshot => {
+                const ad = snapshot.val();
+                if (ad?.active && ad?.imageUrl && ad?.title) {
+                    document.getElementById('adImage').src = ad.imageUrl;
+                    document.getElementById('adTitle').textContent = ad.title;
+                    document.getElementById('adSubtitle').textContent = ad.subtitle || 'Sponsored';
+                    if (ad.clickUrl) {
+                        manualAdBanner.onclick = (e) => { if (!e.target.closest('.ad-close')) window.open(ad.clickUrl, '_blank'); };
                     }
-                })
-                .catch(e => console.log('Ad check:', e));
+                    manualAdBanner.classList.remove('hidden');
+                    adBannerVisible = true;
+                    setTimeout(() => { if (adBannerVisible) { manualAdBanner.classList.add('hidden'); adBannerVisible = false; } }, 22000);
+                }
+            }).catch(e => console.log('Ad check:', e));
         }
-        
-        document.getElementById('closeAdBtn').addEventListener('click', (e) => {
-            e.stopPropagation();
-            manualAdBanner.classList.add('hidden');
-            adBannerVisible = false;
-        });
+        document.getElementById('closeAdBtn').addEventListener('click', (e) => { e.stopPropagation(); manualAdBanner.classList.add('hidden'); adBannerVisible = false; });
 
-        // ===== TOAST NOTIFICATIONS =====
         function showToast(message, type = 'info') {
             const container = document.getElementById('toastContainer');
             const toast = document.createElement('div');
             toast.className = `toast ${type}`;
-            
-            const icons = {
-                success: 'fa-check-circle',
-                error: 'fa-exclamation-circle',
-                warning: 'fa-exclamation-triangle',
-                info: 'fa-info-circle'
-            };
-            
+            const icons = { success: 'fa-check-circle', error: 'fa-exclamation-circle', warning: 'fa-exclamation-triangle', info: 'fa-info-circle' };
             toast.innerHTML = `<i class="fas ${icons[type]}"></i><span>${message}</span>`;
             container.appendChild(toast);
-            
-            setTimeout(() => toast.remove(), 4300);
+            setTimeout(() => toast.remove(), 4100);
         }
 
-        // ===== PWA & GLOBAL OPTIMIZATIONS =====
         if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                // Register service worker in production
-                console.log('PWA ready for global deployment');
-            });
+            window.addEventListener('load', () => { console.log('PWA ready'); });
         }
-        
-        // Prevent zoom on input focus (mobile UX)
+
         document.querySelectorAll('input').forEach(input => {
-            input.addEventListener('focus', () => {
-                if (window.innerWidth < 768) {
-                    const viewport = document.querySelector('meta[name="viewport"]');
-                    viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
-                }
-            });
-            input.addEventListener('blur', () => {
-                const viewport = document.querySelector('meta[name="viewport"]');
-                viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover');
-            });
+            input.addEventListener('focus', () => { if (window.innerWidth < 768) { const vp = document.querySelector('meta[name="viewport"]'); vp.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'); } });
+            input.addEventListener('blur', () => { const vp = document.querySelector('meta[name="viewport"]'); vp.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover'); });
         });
 
-        // ===== ERROR HANDLING =====
-        window.addEventListener('error', e => {
-            console.error('App error:', e);
-            showToast('Something went wrong', 'error');
-        });
-        
-        window.addEventListener('unhandledrejection', e => {
-            console.error('Promise error:', e.reason);
-            showToast('Connection issue - check internet', 'warning');
-        });
+        window.addEventListener('error', e => { console.error('App error:', e); showToast('Something went wrong', 'error'); });
+        window.addEventListener('unhandledrejection', e => { console.error('Promise error:', e.reason); showToast('Connection issue - check internet', 'warning'); });
     </script>
-    
-    <!-- Video.js Plugins -->
     <script src="https://unpkg.com/@videojs/http-streaming@2.14.2/dist/videojs-http-streaming.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-quality-levels/2.0.9/videojs-contrib-quality-levels.min.js"></script>
 </body>
