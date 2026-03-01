@@ -1,945 +1,395 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sw" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <meta name="theme-color" content="#FF0000">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="description" content="STANY TV - Premium International Streaming Platform. Watch Live TV, Movies, Sports in HD Quality.">
-    <meta name="keywords" content="streaming, live tv, movies, sports, HD, premium, Tanzania, Africa, global">
-    <meta name="author" content="STANY TV">
-    <meta name="robots" content="index, follow">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://stanytv.com/">
-    <meta property="og:title" content="STANY TV - Premium Streaming">
-    <meta property="og:description" content="Watch Live TV, Movies, Sports in HD Quality.">
-    <meta property="og:image" content="https://raw.githubusercontent.com/Official123-12/STANYFREEBOT-/refs/heads/main/IMG_1637.jpeg">
-    <title>STANY TV | Premium Streaming</title>
-    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/Official123-12/STANYFREEBOT-/refs/heads/main/IMG_1637.jpeg">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://unpkg.com/video.js@7.21.1/dist/video-js.min.css" rel="stylesheet">
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
-    <style>
-        :root {
-            --primary: #FF0000;
-            --primary-dark: #CC0000;
-            --bg: #000000;
-            --bg-card: #0a0a0a;
-            --bg-overlay: rgba(0, 0, 0, 0.92);
-            --text: #FFFFFF;
-            --text-dim: #B0B0B0;
-            --border: #1a1a1a;
-            --success: #22C55E;
-            --warning: #F59E0B;
-            --error: #EF4444;
-            --google-blue: #4285F4;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"/>
+  
+  <title>STANY NA KITABU | 2026 Victory Plan - Exam Survival Hub</title>
+  <meta name="description" content="STANY NA KITABU - Your ultimate study companion for NECTA, VETA & University exams in Tanzania. AI-powered learning, past papers, and peer support.">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Outfit', 'sans-serif'] },
+          colors: {
+            brand: {
+              dark: '#020617',
+              card: '#0f172a',
+              purple: '#8b5cf6',
+              pink: '#ec4899',
+              teal: '#14b8a6',
+              whatsapp: '#25D366',
+              telegram: '#0088cc'
+            }
+          },
+          animation: {
+            'blob': 'blob 7s infinite',
+            'float': 'float 6s ease-in-out infinite',
+          },
+          keyframes: {
+            blob: {
+              '0%, 100%': { transform: 'translate(0, 0) scale(1)' },
+              '50%': { transform: 'translate(-15px, 15px) scale(0.95)' },
+            },
+            float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-15px)' } },
+          }
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; user-select: none; -webkit-user-select: none; -webkit-tap-highlight-color: transparent; }
-        html { scroll-behavior: smooth; }
-        body { background: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; padding-bottom: 80px; font-size: 14px; line-height: 1.5; }
-        
-        /* Loading */
-        #loadingScreen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 10000; transition: opacity 0.4s ease; }
-        #loadingScreen.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-        .loading-stack { display: flex; gap: 4px; margin-bottom: 24px; }
-        .loading-stack span { width: 7px; height: 38px; background: var(--primary); border-radius: 3px; animation: stackBounce 1.4s ease-in-out infinite both; }
-        .loading-stack span:nth-child(1) { animation-delay: -0.32s; }
-        .loading-stack span:nth-child(2) { animation-delay: -0.16s; }
-        .loading-stack span:nth-child(3) { animation-delay: 0s; }
-        .loading-stack span:nth-child(4) { animation-delay: 0.16s; }
-        .loading-stack span:nth-child(5) { animation-delay: 0.32s; }
-        @keyframes stackBounce { 0%, 80%, 100% { transform: scaleY(0.4); opacity: 0.6; } 40% { transform: scaleY(1); opacity: 1; } }
-        .loading-text { font-family: 'Orbitron', sans-serif; color: var(--primary); font-size: 1.25em; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; animation: pulseText 2s ease-in-out infinite; }
-        @keyframes pulseText { 0%,100%{opacity:1} 50%{opacity:0.7} }
-        .loading-bar { width: 170px; height: 2px; background: rgba(255,255,255,0.08); border-radius: 1px; margin-top: 18px; overflow: hidden; }
-        .loading-bar::after { content: ''; display: block; width: 35%; height: 100%; background: var(--primary); animation: barSlide 1.2s ease-in-out infinite; border-radius: 1px; }
-        @keyframes barSlide { 0%{transform:translateX(-100%)} 100%{transform:translateX(285%)} }
-
-        /* Privacy Modal */
-        #privacyModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-overlay); z-index: 9999; justify-content: center; align-items: center; padding: 20px; backdrop-filter: blur(4px); }
-        .privacy-box { background: var(--bg-card); max-width: 400px; width: 100%; max-height: 82vh; border-radius: 14px; border: 1px solid var(--primary); overflow: hidden; display: flex; flex-direction: column; }
-        .privacy-header { padding: 16px 18px; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); text-align: center; }
-        .privacy-header h2 { font-family: 'Orbitron', sans-serif; color: var(--bg); font-size: 1.3em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; }
-        .privacy-body { padding: 18px; overflow-y: auto; max-height: 48vh; font-size: 0.88em; line-height: 1.65; }
-        .privacy-body h3 { color: var(--primary); margin: 16px 0 9px; font-size: 1.05em; font-weight: 600; }
-        .privacy-body p, .privacy-body ul { margin-bottom: 10px; color: var(--text-dim); }
-        .privacy-body ul { padding-left: 18px; }
-        .privacy-body li { margin-bottom: 5px; }
-        .privacy-footer { padding: 16px 18px; background: rgba(255,255,255,0.02); border-top: 1px solid var(--border); display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
-        .checkbox-container { display: flex; align-items: center; gap: 7px; margin-right: 8px; }
-        .checkbox-container input[type="checkbox"] { width: 15px; height: 15px; accent-color: var(--primary); cursor: pointer; }
-        .checkbox-container label { color: var(--text); cursor: pointer; font-size: 0.88em; }
-        .btn-accept, .btn-decline { padding: 11px 24px; border: none; border-radius: 9px; font-size: 0.92em; font-weight: 600; cursor: pointer; transition: all 0.22s ease; text-transform: uppercase; letter-spacing: 0.4px; display: flex; align-items: center; gap: 5px; }
-        .btn-accept { background: var(--success); color: white; }
-        .btn-accept:hover { background: #16A34A; transform: translateY(-1px); }
-        .btn-decline { background: var(--error); color: white; }
-        .btn-decline:hover { background: #DC2626; transform: translateY(-1px); }
-        .btn-accept:disabled { opacity: 0.55; cursor: not-allowed; transform: none !important; }
-
-        /* Auth */
-        .auth-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg); z-index: 5000; display: flex; justify-content: center; align-items: center; flex-direction: column; padding: 20px; }
-        .auth-box { width: 92%; max-width: 360px; background: var(--bg-card); padding: 28px 24px; border-radius: 16px; border: 1px solid var(--primary); text-align: center; box-shadow: 0 8px 32px rgba(255,0,0,0.12); }
-        .auth-box h2 { font-family: 'Orbitron', sans-serif; color: var(--primary); margin-bottom: 6px; font-size: 1.7em; letter-spacing: 1.8px; }
-        .auth-box .subtitle { color: var(--text-dim); font-size: 0.88em; margin-bottom: 24px; }
-        .input-field { width: 100%; padding: 12px 14px; margin-bottom: 12px; background: #000; border: 1px solid var(--border); color: var(--text); border-radius: 9px; outline: none; font-size: 0.98em; transition: border-color 0.2s; }
-        .input-field:focus { border-color: var(--primary); }
-        .input-field::placeholder { color: #555; }
-        .action-btn { width: 100%; padding: 13px; background: var(--primary); border: none; color: white; font-weight: 600; border-radius: 9px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.8px; font-size: 0.98em; transition: all 0.22s ease; display: flex; align-items: center; justify-content: center; gap: 7px; }
-        .action-btn:hover { background: var(--primary-dark); transform: translateY(-1px); }
-        .action-btn:active { transform: translateY(0); }
-        .btn-google { background: linear-gradient(135deg, #ffffff, #f8f9fa); color: #333; border: 1px solid rgba(0,0,0,0.08); margin-top: 10px; }
-        .btn-google:hover { background: linear-gradient(135deg, #f8f9fa, #ffffff); box-shadow: 0 3px 12px rgba(0,0,0,0.1); }
-        .btn-google i { color: var(--google-blue); font-size: 1.15em; }
-        .auth-links { margin-top: 18px; font-size: 0.88em; }
-        .auth-links a { color: var(--text-dim); text-decoration: none; transition: color 0.2s; display: block; margin: 7px 0; }
-        .auth-links a:hover { color: var(--primary); }
-        .divider { margin: 18px 0; position: relative; text-align: center; }
-        .divider::before { content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); }
-        .divider span { background: var(--bg-card); padding: 0 12px; color: var(--text-dim); position: relative; font-size: 0.82em; text-transform: uppercase; letter-spacing: 0.8px; }
-
-        /* Device Overlay */
-        #deviceOverlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg); z-index: 9500; display: none; flex-direction: column; justify-content: center; align-items: center; padding: 22px; text-align: center; }
-        #deviceOverlay i { font-size: 4.2em; color: var(--warning); margin-bottom: 18px; animation: pulseIcon 2s ease-in-out infinite; }
-        @keyframes pulseIcon { 0%,100%{transform:scale(1)} 50%{transform:scale(1.06)} }
-        #deviceOverlay h2 { color: white; margin-bottom: 10px; font-size: 1.4em; }
-        #deviceOverlay p { color: var(--text-dim); font-size: 0.92em; margin-bottom: 18px; max-width: 300px; }
-        #reqStatus { color: var(--primary); font-weight: 600; margin-bottom: 18px; font-size: 1em; }
-
-        /* Header */
-        .header { padding: 12px 16px; background: rgba(8,8,8,0.96); border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(8px); }
-        .logo { font-family: 'Orbitron', sans-serif; color: var(--primary); font-size: 1.25em; letter-spacing: 1.2px; font-weight: 700; }
-        .header-actions { display: flex; gap: 16px; }
-        .header-actions i { font-size: 1.2em; color: var(--text-dim); cursor: pointer; transition: color 0.2s; }
-        .header-actions i:hover { color: var(--primary); }
-
-        /* Search */
-        #searchBar { display: none; padding: 9px 16px; background: rgba(8,8,8,0.94); border-bottom: 1px solid var(--border); position: sticky; top: 50px; z-index: 99; }
-        #searchInput { width: 100%; padding: 10px 16px; background: #000; border: 1px solid var(--border); color: var(--text); border-radius: 20px; outline: none; font-size: 0.93em; }
-        #searchInput::placeholder { color: #555; }
-
-        /* Categories */
-        .cat-scroll { display: flex; gap: 8px; overflow-x: auto; padding: 9px 16px; scrollbar-width: none; white-space: nowrap; background: var(--bg); -webkit-overflow-scrolling: touch; }
-        .cat-scroll::-webkit-scrollbar { display: none; }
-        .cat-tag { padding: 6px 13px; background: #0f0f0f; border: 1px solid var(--border); border-radius: 20px; font-size: 0.8em; color: var(--text-dim); transition: all 0.18s ease; cursor: pointer; font-weight: 500; }
-        .cat-tag:hover { border-color: var(--primary); color: var(--text); }
-        .cat-tag.active { background: var(--primary); color: white; border-color: var(--primary); font-weight: 600; }
-
-        /* Section Titles */
-        .section-title { margin: 16px 16px 10px; font-size: 0.92em; font-weight: 600; color: var(--primary); border-left: 3px solid var(--primary); padding-left: 10px; text-transform: uppercase; letter-spacing: 0.4px; }
-
-        /* Grids */
-        .grid-mov { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; padding: 0 16px 20px; }
-        .grid-chan { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; padding: 0 16px 20px; }
-
-        /* Cards */
-        .card { background: var(--bg-card); border-radius: 7px; overflow: hidden; position: relative; border: 1px solid var(--border); box-shadow: 0 3px 10px rgba(0,0,0,0.3); transition: transform 0.12s ease; }
-        .card:active { transform: scale(0.98); }
-        .card img { width: 100%; aspect-ratio: 2/3; object-fit: cover; display: block; transition: opacity 0.18s; }
-        .card:hover img { opacity: 0.94; }
-        .card-name { padding: 6px 4px; text-align: center; font-size: 0.76em; font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-
-        /* Card Overlays */
-        .locked-cover { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; justify-content: center; align-items: center; z-index: 5; }
-        .locked-cover i { font-size: 18px; color: var(--warning); }
-        .fav-star { position: absolute; top: 5px; right: 5px; z-index: 10; color: rgba(255,255,255,0.65); font-size: 12px; cursor: pointer; transition: all 0.18s; padding: 3px; border-radius: 50%; background: rgba(0,0,0,0.35); }
-        .fav-star:hover { background: rgba(0,0,0,0.55); }
-        .fav-star.active { color: var(--primary); }
-        .premium-badge { position: absolute; top: 7px; left: 7px; background: linear-gradient(135deg, var(--warning), #E69500); color: black; padding: 2px 8px; border-radius: 10px; font-weight: 600; font-size: 0.68em; text-transform: uppercase; letter-spacing: 0.4px; z-index: 6; }
-
-        /* Betting Tips */
-        .tip-card { background: var(--bg-card); margin: 13px 16px; padding: 14px; border-radius: 11px; border: 1px solid var(--border); position: relative; }
-        .tip-blur .tip-content { filter: blur(6px); opacity: 0.32; pointer-events: none; }
-        .tip-msg { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-weight: 600; color: var(--warning); display: none; border: 1px solid var(--warning); padding: 5px 14px; border-radius: 16px; background: rgba(0,0,0,0.82); font-size: 0.88em; z-index: 3; }
-        .tip-blur .tip-msg { display: block; }
-        .tip-card h4 { color: var(--primary); margin-bottom: 5px; font-size: 1em; font-weight: 600; }
-        .tip-card p { margin: 3px 0; color: var(--text-dim); font-size: 0.9em; }
-        .tip-card b { color: var(--text); }
-
-        /* Chat Modal - Medium, Centered */
-        .chat-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-overlay); z-index: 8500; justify-content: center; align-items: center; padding: 20px; backdrop-filter: blur(3px); }
-        .chat-modal-content { background: var(--bg-card); width: 92%; max-width: 420px; max-height: 75vh; border-radius: 16px; border: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
-        .chat-header { padding: 14px 18px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.02); }
-        .chat-header h3 { font-size: 1.05em; font-weight: 600; color: var(--text); }
-        .chat-header .back-btn { background: none; border: none; color: var(--text-dim); font-size: 1.3em; cursor: pointer; padding: 4px; }
-        .chat-header .back-btn:hover { color: var(--primary); }
-        .chat-user-info { padding: 10px 18px; border-bottom: 1px solid var(--border); font-size: 0.85em; color: var(--text-dim); background: rgba(255,255,255,0.01); }
-        .chat-user-info .premium-tag { color: var(--warning); font-weight: 600; margin-left: 6px; }
-        .chat-box { flex: 1; overflow-y: auto; padding: 14px 18px; display: flex; flex-direction: column; gap: 10px; }
-        .msg { padding: 10px 14px; border-radius: 16px; max-width: 80%; font-size: 0.9em; line-height: 1.4; word-wrap: break-word; }
-        .msg-user { align-self: flex-end; background: var(--primary); color: white; border-bottom-right-radius: 3px; }
-        .msg-admin { align-self: flex-start; background: #151515; color: var(--text-dim); border-bottom-left-radius: 3px; }
-        .chat-input-area { padding: 12px 18px; border-top: 1px solid var(--border); display: flex; gap: 9px; background: rgba(255,255,255,0.02); }
-        .chat-input-area input { flex: 1; padding: 11px 15px; background: #000; border: 1px solid var(--border); color: var(--text); border-radius: 20px; outline: none; font-size: 0.92em; }
-        .chat-input-area input::placeholder { color: #555; }
-        .chat-input-area button { width: 44px; height: 44px; border-radius: 50%; background: var(--primary); border: none; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.1em; transition: background 0.2s; }
-        .chat-input-area button:hover { background: var(--primary-dark); }
-
-        /* Bottom Navigation - iOS Style with Center WhatsApp */
-        .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: #080808; border-top: 1px solid var(--border); display: flex; justify-content: space-around; align-items: center; padding: 6px 0 10px; z-index: 1000; padding-bottom: env(safe-area-inset-bottom); }
-        .nav-item { text-align: center; color: #666; font-size: 0.72em; text-decoration: none; display: flex; flex-direction: column; align-items: center; padding: 4px 2px; transition: color 0.18s; cursor: pointer; min-width: 52px; }
-        .nav-item i { font-size: 1.3em; margin-bottom: 2px; transition: transform 0.18s; }
-        .nav-item.active { color: var(--primary); }
-        .nav-item.active i { transform: translateY(-2px); }
-        .nav-item.whatsapp-center { color: var(--success); }
-        .nav-item.whatsapp-center i { font-size: 1.6em; color: var(--success); }
-        .nav-item.whatsapp-center.active i { transform: scale(1.08); }
-
-        /* Pages */
-        .page { display: none; animation: fadeIn 0.22s ease; }
-        .page.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* Modals */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-overlay); z-index: 9000; justify-content: center; align-items: center; padding: 20px; backdrop-filter: blur(4px); }
-        .modal-content { background: var(--bg-card); width: 90%; max-width: 340px; padding: 24px 22px; border-radius: 14px; border: 1px solid var(--primary); text-align: center; box-shadow: 0 12px 40px rgba(255,0,0,0.18); }
-        .modal-content h3 { color: var(--primary); margin-bottom: 10px; font-size: 1.25em; font-weight: 600; }
-        .modal-content p { color: var(--text-dim); font-size: 0.93em; margin: 9px 0 18px; line-height: 1.55; }
-        .modal-close { margin-top: 13px; font-size: 0.83em; color: var(--text-dim); cursor: pointer; transition: color 0.18s; }
-        .modal-close:hover { color: var(--primary); }
-
-        /* Player Modal */
-        #playerModal { background: black; z-index: 9999; }
-        #playerModal .modal-close { position: absolute; top: 12px; right: 18px; font-size: 2em; color: white; cursor: pointer; z-index: 100; transition: color 0.18s; }
-        #playerModal .modal-close:hover { color: var(--primary); }
-        #vPlayer { width: 100%; height: 100%; max-height: 82vh; }
-        .video-js .vjs-big-play-button { background: var(--primary) !important; border: none !important; border-radius: 50% !important; width: 64px !important; height: 64px !important; line-height: 64px !important; font-size: 1.8em !important; }
-        .video-js .vjs-control-bar { background: linear-gradient(to top, rgba(0,0,0,0.88), transparent) !important; }
-        .video-js .vjs-play-progress { background: var(--primary) !important; }
-
-        /* Notifications */
-        #notifList { text-align: left; margin-top: 13px; max-height: 280px; overflow-y: auto; }
-        #notifList > div { background: #0f0f0f; padding: 11px 14px; border-radius: 9px; margin-bottom: 9px; border-left: 3px solid var(--primary); }
-        #notifList b { color: var(--text); display: block; margin-bottom: 3px; font-size: 0.95em; }
-        #notifList small { color: var(--text-dim); font-size: 0.85em; }
-
-        /* Profile */
-        #profile .profile-header { text-align: center; padding: 30px 18px 22px; }
-        #profile .profile-avatar { width: 82px; height: 82px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); display: flex; justify-content: center; align-items: center; margin: 0 auto 16px; border: 2px solid var(--border); }
-        #profile .profile-avatar i { font-size: 2.5em; color: white; }
-        #profile h2 { color: white; margin: 7px 0 3px; font-size: 1.35em; font-weight: 600; }
-        #profile p { color: var(--text-dim); font-size: 0.93em; margin-bottom: 20px; }
-        #profile .subscription-card { background: #0f0f0f; margin: 0 18px 20px; padding: 18px; border-radius: 13px; border: 1px solid var(--border); }
-        #profile .subscription-card small { color: #666; display: block; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.4px; font-size: 0.78em; }
-        #profile .subscription-card h3 { color: var(--primary); font-size: 1.4em; margin: 0; font-weight: 600; }
-        #profile .subscription-card h3.expired { color: var(--error); }
-        #profile .action-btn { width: 82%; margin: 0 auto 11px; display: flex; align-items: center; justify-content: center; gap: 7px; font-size: 0.95em; }
-        #profile .btn-logout { background: var(--error); }
-        #profile .btn-logout:hover { background: #DC2626; }
-        #favGridProfile { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; padding: 0 16px 20px; }
-
-        /* Ad Banner */
-        .ad-banner { position: fixed; bottom: 78px; left: 50%; transform: translateX(-50%); background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--warning); border-radius: 9px; padding: 9px 14px; display: flex; align-items: center; gap: 10px; box-shadow: 0 5px 18px rgba(0,0,0,0.38); z-index: 940; max-width: 90%; width: fit-content; animation: slideUp 0.32s ease; }
-        @keyframes slideUp { from { opacity: 0; transform: translate(-50%, 22px); } to { opacity: 1; transform: translate(-50%, 0); } }
-        .ad-banner img { width: 38px; height: 38px; border-radius: 7px; object-fit: cover; border: 1px solid var(--border); }
-        .ad-banner .ad-text { font-size: 0.86em; font-weight: 500; color: var(--text); max-width: 220px; }
-        .ad-banner .ad-text small { display: block; color: var(--text-dim); font-size: 0.78em; margin-top: 1px; }
-        .ad-banner .ad-close { background: rgba(255,255,255,0.08); border: none; color: var(--text-dim); width: 22px; height: 22px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.82em; transition: all 0.18s; flex-shrink: 0; }
-        .ad-banner .ad-close:hover { background: var(--error); color: white; }
-        .ad-banner.hidden { display: none; }
-
-        /* Toast */
-        #toastContainer { position: fixed; top: 18px; right: 18px; z-index: 10000; display: flex; flex-direction: column; gap: 9px; max-width: 300px; }
-        .toast { background: var(--bg-card); color: var(--text); padding: 12px 16px; border-radius: 11px; box-shadow: 0 7px 22px rgba(0,0,0,0.48); min-width: 240px; opacity: 0; transform: translateX(90px); animation: toastIn 0.32s forwards, toastOut 0.32s 3.6s forwards; display: flex; align-items: center; gap: 9px; border-left: 3px solid; font-size: 0.9em; }
-        @keyframes toastIn { from { opacity: 0; transform: translateX(90px); } to { opacity: 1; transform: translateX(0); } }
-        @keyframes toastOut { from { opacity: 1; transform: translateX(0); } to { opacity: 0; transform: translateX(90px); } }
-        .toast.success { border-color: var(--success); }
-        .toast.error { border-color: var(--error); }
-        .toast.warning { border-color: var(--warning); }
-        .toast.info { border-color: var(--primary); }
-        .toast i { font-size: 1.15em; }
-        .toast.success i { color: var(--success); }
-        .toast.error i { color: var(--error); }
-        .toast.warning i { color: var(--warning); }
-        .toast.info i { color: var(--primary); }
-
-        /* Utilities */
-        .hidden { display: none !important; }
-        .text-center { text-align: center; }
-        .mt-12 { margin-top: 12px; }
-        ::-webkit-scrollbar { width: 5px; height: 5px; }
-        ::-webkit-scrollbar-track { background: var(--bg); }
-        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 2px; }
-        ::selection { background: var(--primary); color: white; }
-
-        @media (max-width: 480px) {
-            .grid-mov { grid-template-columns: repeat(3, 1fr); gap: 7px; }
-            .grid-chan { grid-template-columns: repeat(4, 1fr); gap: 5px; }
-            .card-name { font-size: 0.71em; padding: 5px 3px; }
-            .cat-tag { padding: 5px 11px; font-size: 0.76em; }
-            .header { padding: 11px 14px; }
-            .logo { font-size: 1.18em; }
-            .bottom-nav { padding-bottom: calc(10px + env(safe-area-inset-bottom)); }
-            .ad-banner { bottom: 74px; padding: 8px 12px; }
-            .ad-banner img { width: 34px; height: 34px; }
-        }
-    </style>
-</head>
-<body>
-    <div id="loadingScreen">
-        <div class="loading-stack"><span></span><span></span><span></span><span></span><span></span></div>
-        <div class="loading-text">STANY TV</div>
-        <div class="loading-bar"></div>
-    </div>
-
-    <div id="privacyModal">
-        <div class="privacy-box">
-            <div class="privacy-header"><h2>Privacy & Terms</h2></div>
-            <div class="privacy-body">
-                <h3>Privacy</h3>
-                <p>We protect your data. Account information and preferences are used only to improve your streaming experience.</p>
-                <h3>Disclaimer</h3>
-                <ul>
-                    <li>STANY TV is for entertainment purposes</li>
-                    <li>Content streams from third-party sources</li>
-                    <li>Users must comply with local laws</li>
-                    <li>Service depends on internet connectivity</li>
-                </ul>
-                <h3>Terms</h3>
-                <ul>
-                    <li>Users must be 18+ or have parental consent</li>
-                    <li>Account credentials are personal and non-transferable</li>
-                    <li>We reserve rights to terminate violating accounts</li>
-                </ul>
-            </div>
-            <div class="privacy-footer">
-                <div class="checkbox-container">
-                    <input type="checkbox" id="acceptTerms">
-                    <label for="acceptTerms">I accept Privacy Policy & Terms</label>
-                </div>
-                <button class="btn-accept" id="acceptBtn" disabled>Accept</button>
-                <button class="btn-decline" id="declineBtn">Decline</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="authModal" class="auth-overlay">
-        <div class="auth-box">
-            <h2>STANY TV</h2>
-            <p class="subtitle">Premium International Streaming</p>
-            <div id="loginForm">
-                <input type="email" id="lemail" class="input-field" placeholder="Email Address">
-                <input type="password" id="lpass" class="input-field" placeholder="Password">
-                <button class="action-btn" id="loginBtn">Sign In</button>
-                <div class="divider"><span>OR</span></div>
-                <button class="action-btn btn-google" id="googleSignInBtn"><i class="fab fa-google"></i> Sign in with Google</button>
-                <div class="auth-links">
-                    <a href="#" id="showRegisterLink">Create Account</a>
-                    <a href="#" id="showForgotLink">Forgot Password?</a>
-                </div>
-            </div>
-            <div id="regForm" style="display:none;">
-                <input type="text" id="rname" class="input-field" placeholder="Full Name">
-                <input type="email" id="remail" class="input-field" placeholder="Email Address">
-                <input type="password" id="rpass" class="input-field" placeholder="Password (min 6 chars)">
-                <button class="action-btn" id="registerBtn">Register</button>
-                <div class="divider"><span>OR</span></div>
-                <button class="action-btn btn-google" id="googleSignUpBtn"><i class="fab fa-google"></i> Sign up with Google</button>
-                <div class="auth-links"><a href="#" id="showLoginLink">Already have account? Sign In</a></div>
-            </div>
-        </div>
-    </div>
-
-    <div id="deviceOverlay">
-        <i class="fas fa-mobile-alt"></i>
-        <h2>Device Security</h2>
-        <p>New device detected. Please wait for Admin approval to access your account.</p>
-        <div id="reqStatus">Checking...</div>
-        <button class="action-btn" style="background:#1a1a1a;color:white;width:auto;padding:9px 24px;" onclick="location.reload()">Refresh</button>
-        <div style="margin-top:22px;color:#666;font-size:0.88em;cursor:pointer" onclick="firebase.auth().signOut()">Logout</div>
-    </div>
-
-    <div id="mainApp" style="display:none;">
-        <div class="header">
-            <div class="logo">STANY TV</div>
-            <div class="header-actions">
-                <i class="fas fa-search" id="searchToggle"></i>
-                <i class="fas fa-bell" id="notifToggle"></i>
-            </div>
-        </div>
-        <div id="searchBar"><input type="text" id="searchInput" placeholder="Search..." onkeyup="globalSearch()"></div>
-
-        <div id="home" class="page active">
-            <div class="cat-scroll" id="catTags"><div class="cat-tag active" onclick="filter('all',this)">All</div></div>
-            <div class="section-title">Latest Movies</div>
-            <div id="movGrid" class="grid-mov"></div>
-            <div class="section-title">Live Channels</div>
-            <div id="chanGrid" class="grid-chan"></div>
-        </div>
-
-        <div id="cats" class="page">
-            <div class="section-title">All Categories</div>
-            <div id="fullCatList" style="padding:10px 16px;"></div>
-        </div>
-
-        <div id="tips" class="page">
-            <div class="section-title">Betting Tips</div>
-            <div id="tipsList"></div>
-        </div>
-
-        <div id="profile" class="page">
-            <div class="profile-header">
-                <div class="profile-avatar"><i class="fas fa-user"></i></div>
-                <h2 id="pName">User</h2>
-                <p id="pEmail">email@example.com</p>
-            </div>
-            <div class="subscription-card">
-                <small>Subscription Status</small>
-                <h3 id="pDays">Loading...</h3>
-            </div>
-            <button class="action-btn" onclick="openWhatsApp()">Contact Support</button>
-            <button class="action-btn btn-logout" id="logoutBtn">Sign Out</button>
-            <div class="section-title" style="margin-top:22px;">My Favorites</div>
-            <div id="favGridProfile"></div>
-        </div>
-
-        <div class="bottom-nav">
-            <div class="nav-item active" onclick="nav('home',this)"><i class="fas fa-home"></i><span>Home</span></div>
-            <div class="nav-item" onclick="nav('cats',this)"><i class="fas fa-th-large"></i><span>Catg</span></div>
-            <div class="nav-item whatsapp-center" onclick="openChatModal()"><i class="fab fa-whatsapp"></i><span>Chat</span></div>
-            <div class="nav-item" onclick="nav('tips',this)"><i class="fas fa-futbol"></i><span>Tips</span></div>
-            <div class="nav-item" onclick="nav('profile',this)"><i class="fas fa-user"></i><span>Me</span></div>
-        </div>
-
-        <div id="manualAdBanner" class="ad-banner hidden">
-            <img id="adImage" src="" alt="Ad">
-            <div class="ad-text"><span id="adTitle">Sponsored</span><small id="adSubtitle">Tap to learn more</small></div>
-            <button class="ad-close" id="closeAdBtn"><i class="fas fa-times"></i></button>
-        </div>
-    </div>
-
-    <div id="blockModal" class="modal">
-        <div class="modal-content">
-            <i class="fas fa-lock" style="font-size:2.8em;color:var(--error);margin-bottom:10px;"></i>
-            <h3>Locked Content</h3>
-            <p>Premium subscription required to access this content.</p>
-            <button class="action-btn" onclick="openWhatsApp()">Upgrade Now</button>
-            <div class="modal-close" onclick="document.getElementById('blockModal').style.display='none'">Close</div>
-        </div>
-    </div>
-
-    <div id="playerModal" class="modal">
-        <span class="modal-close" onclick="closePlayer">×</span>
-        <video id="vPlayer" class="video-js vjs-big-play-centered" controls preload="auto"></video>
-    </div>
+      }
+    }
+  </script>
+  
+  <style>
+    body { 
+      font-family: 'Inter', sans-serif; 
+      background: linear-gradient(135deg, #020617 0%, #0f172a 100%);
+      color: #f1f5f9; 
+      overflow-x: hidden;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+    input, textarea, select { user-select: text; -webkit-user-select: text; }
     
-    <div id="notifModal" class="modal">
-        <div class="modal-content">
-            <h3>Notifications</h3>
-            <div id="notifList"></div>
-            <button class="action-btn" style="margin-top:13px;background:#1a1a1a;color:white;" onclick="document.getElementById('notifModal').style.display='none'">Close</button>
+    .glass { 
+      background: rgba(15, 23, 42, 0.85); 
+      backdrop-filter: blur(20px); 
+      border: 1px solid rgba(139, 92, 246, 0.2);
+      transition: all 0.3s ease;
+    }
+    
+    .topic-card {
+      border-left: 4px solid #8b5cf6;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .topic-card:hover {
+      transform: translateX(8px);
+      background: rgba(139, 92, 246, 0.15);
+    }
+    
+    #loader {
+      position: fixed; inset: 0; z-index: 9999;
+      background: #020617;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+    }
+    .spinner {
+      width: 50px; height: 50px;
+      border: 4px solid rgba(139, 92, 246, 0.2);
+      border-radius: 50%; border-top-color: #8b5cf6;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    
+    #toast {
+      position: fixed; bottom: 100px; right: 20px;
+      background: #14b8a6; color: white;
+      padding: 14px 24px; border-radius: 16px;
+      z-index: 9999; transform: translateX(150%);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    #toast.show { transform: translateX(0); }
+    
+    .subject-visual {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 12px;
+      border: 1px solid rgba(139, 92, 246, 0.3);
+    }
+  </style>
+</head>
+<body class="pb-24">
+
+  <div id="toast">
+    <i class="fas fa-check-circle mr-2"></i>
+    <span id="toastMessage">Imefanikiwa!</span>
+  </div>
+
+  <div id="loader">
+    <img src="https://raw.githubusercontent.com/Official123-12/STANYFREEBOT-/refs/heads/main/IMG_1378.jpeg" class="w-24 h-24 rounded-3xl mb-6 animate-float object-cover border-4 border-brand-purple">
+    <div class="spinner mb-4"></div>
+    <h2 class="text-2xl font-display font-black text-white">STANY NA KITABU</h2>
+  </div>
+
+  <div id="auth-screen" class="fixed inset-0 z-[90] bg-slate-950/95 backdrop-blur-xl flex items-center justify-center p-4">
+    <div class="glass w-full max-w-md p-6 rounded-[2rem] shadow-2xl">
+      <div class="text-center mb-6">
+        <img src="https://raw.githubusercontent.com/Official123-12/STANYFREEBOT-/refs/heads/main/IMG_1378.jpeg" class="w-20 h-20 rounded-2xl mx-auto mb-4 border-4 border-brand-purple object-cover animate-float">
+        <h1 class="text-2xl font-black text-white">STANY NA KITABU</h1>
+        <p class="text-brand-purple font-bold text-sm uppercase">2026 Exam Survival Hub</p>
+      </div>
+      
+      <div class="space-y-3">
+        <input id="reg-name" type="text" placeholder="Jina Kamili *" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none text-white">
+        <div class="grid grid-cols-2 gap-3">
+          <input id="reg-school" type="text" placeholder="Shule/Chuo *" class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none text-white">
+          <select id="reg-level" class="bg-slate-900 border border-white/10 rounded-xl px-3 py-3 text-white">
+            <option value="FTNA">FTNA (F2)</option>
+            <option value="CSEE" selected>CSEE (F4)</option>
+            <option value="ACSEE">ACSEE (F6)</option>
+            <option value="VETA">VETA/College</option>
+          </select>
         </div>
+        <input id="reg-email" type="email" placeholder="Email Address *" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white">
+        <input id="reg-pass" type="password" placeholder="Password *" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white">
+        <button onclick="handleAuth()" class="w-full bg-gradient-to-r from-brand-purple to-brand-pink py-4 rounded-xl font-black text-white shadow-lg">INGIA SASA</button>
+      </div>
     </div>
+  </div>
 
-    <div id="chatModal" class="chat-modal">
-        <div class="chat-modal-content">
-            <div class="chat-header">
-                <button class="back-btn" onclick="closeChatModal()"><i class="fas fa-arrow-left"></i></button>
-                <h3>Support Chat</h3>
-                <div style="width:24px"></div>
-            </div>
-            <div class="chat-user-info">
-                <span id="chatUserName">User</span>
-                <span id="chatUserStatus" class="premium-tag"></span>
-            </div>
-            <div id="chatBox" class="chat-box"></div>
-            <div class="chat-input-area">
-                <input id="chatInput" placeholder="Type message...">
-                <button onclick="sendChat()"><i class="fas fa-paper-plane"></i></button>
-            </div>
+  <main id="main-app" class="hidden">
+    
+    <header class="sticky top-0 z-50 glass px-4 py-3 flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <img src="https://raw.githubusercontent.com/Official123-12/STANYFREEBOT-/refs/heads/main/IMG_1378.jpeg" class="w-10 h-10 rounded-full border-2 border-brand-pink object-cover">
+        <div>
+          <h2 id="user-display" class="font-bold text-sm text-white">Mwanafunzi</h2>
+          <p id="school-display" class="text-[10px] text-brand-purple uppercase font-black">Azania | CSEE</p>
         </div>
-    </div>
+      </div>
+      <button onclick="logout()" class="text-gray-400 p-2"><i class="fas fa-power-off"></i></button>
+    </header>
 
-    <div id="toastContainer"></div>
+    <section id="plan-tab" class="p-4 md:p-6 animate-fade-in">
+      <h2 class="text-xl font-black mb-5 text-white flex items-center gap-2">
+        <i class="fas fa-fire text-orange-500"></i> 2026 REPEATED TOPICS (VITA!)
+      </h2>
+      
+      <div class="space-y-6">
+        <div class="glass p-4 rounded-2xl" data-aos="fade-up">
+          <h3 class="text-brand-purple font-bold mb-3 flex items-center gap-2">
+            <i class="fas fa-atom"></i> PHYSICS (95% Repeat)
+          </h3>
+          
+          <ul class="space-y-2 text-sm text-gray-300">
+            <li class="topic-card bg-white/5 p-3 rounded-xl"><b>Mechanics:</b> Forces, Archimedes, Pulleys & Newton's Laws.</li>
+            <li class="topic-card bg-white/5 p-3 rounded-xl"><b>Electricity:</b> Current, Ohm's Law & Circuit Analysis.</li>
+            <li class="topic-card bg-white/5 p-3 rounded-xl"><b>Light:</b> Lenses, Human Eye defects & Refraction.</li>
+          </ul>
+        </div>
 
-    <script>
-        const firebaseConfig = {
-            apiKey: "AIzaSyCJ0ZQPHOopo4pk6Eni-WqpShyQ6z_ivZk",
-            authDomain: "stanytv.firebaseapp.com",
-            databaseURL: "https://stanytv-default-rtdb.firebaseio.com",
-            projectId: "stanytv",
-            storageBucket: "stanytv.firebasestorage.app",
-            messagingSenderId: "898881603619",
-            appId: "1:898881603619:web:f3689aac0c4fc34c474996",
-            measurementId: "G-KY2KYRY6NC"
-        };
-        if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-        const db = firebase.database();
+        <div class="glass p-4 rounded-2xl" data-aos="fade-up">
+          <h3 class="text-green-500 font-bold mb-3 flex items-center gap-2">
+            <i class="fas fa-dna"></i> BIOLOGY (Must Master)
+          </h3>
+          [attachment_0](attachment)
+          <ul class="space-y-2 text-sm text-gray-300">
+            <li class="topic-card bg-white/5 p-3 rounded-xl"><b>Classification:</b> Kingdom Animalia & Plantae traits.</li>
+            <li class="topic-card bg-white/5 p-3 rounded-xl"><b>Genetics:</b> Mendel's Laws & Inheritance (Punnett Squares).</li>
+            <li class="topic-card bg-white/5 p-3 rounded-xl"><b>Physiology:</b> Excretion, Nervous Coordination & Respiration.</li>
+          </ul>
+        </div>
 
-        let currentUser = null;
-        let isPremium = false;
-        let userHWID = localStorage.getItem('stany_hwid') || 'HWID-' + Math.random().toString(36).substr(2, 10);
-        let privacyAccepted = localStorage.getItem('privacy_accepted') === 'true';
-        let allData = { movies: [], channels: [] };
-        let player = null;
-        let adBannerVisible = false;
-        let chatListener = null;
-        
-        localStorage.setItem('stany_hwid', userHWID);
+        <div class="glass p-4 rounded-2xl" data-aos="fade-up">
+          <h3 class="text-brand-pink font-bold mb-3 flex items-center gap-2">
+            <i class="fas fa-flask"></i> CHEMISTRY (Top Scores)
+          </h3>
+          
+          <ul class="space-y-2 text-sm text-gray-300">
+            <li class="topic-card bg-white/5 p-3 rounded-xl"><b>Mole Concept:</b> Volumetric Analysis & Titration calculations.</li>
+            <li class="topic-card bg-white/5 p-3 rounded-xl"><b>Organic Chemistry:</b> Alkanes, Alkenes & Functional Groups.</li>
+            <li class="topic-card bg-white/5 p-3 rounded-xl"><b>Extraction of Metals:</b> Iron, Al & Copper processes.</li>
+          </ul>
+        </div>
 
-        const loadingScreen = document.getElementById('loadingScreen');
-        const privacyModal = document.getElementById('privacyModal');
-        const authModal = document.getElementById('authModal');
-        const mainApp = document.getElementById('mainApp');
-        const deviceOverlay = document.getElementById('deviceOverlay');
-        const acceptBtn = document.getElementById('acceptBtn');
-        const declineBtn = document.getElementById('declineBtn');
-        const acceptTermsCheckbox = document.getElementById('acceptTerms');
-        const manualAdBanner = document.getElementById('manualAdBanner');
+        <div class="glass p-4 rounded-2xl" data-aos="fade-up">
+          <h3 class="text-brand-teal font-bold mb-3 flex items-center gap-2">
+            <i class="fas fa-calculator"></i> MATHEMATICS (Core Topics)
+          </h3>
+          
+          <ul class="space-y-2 text-sm text-gray-300">
+            <li class="topic-card bg-white/5 p-3 rounded-xl"><b>Linear Programming:</b> Graph shading & Max profit.</li>
+            <li class="topic-card bg-white/5 p-3 rounded-xl"><b>Circle Theorems:</b> Chord and Tangent properties.</li>
+            <li class="topic-card bg-white/5 p-3 rounded-xl"><b>Statistics:</b> Cumulative Frequency (Ogive) & Mean.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-        document.addEventListener('contextmenu', e => e.preventDefault());
-        document.addEventListener('keydown', e => {
-            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && ['I','J','C'].includes(e.key))) {
-                e.preventDefault();
-                showToast('Developer tools disabled', 'warning');
-            }
+    <section id="ai-tab" class="hidden p-4 md:p-6">
+      <div class="glass p-5 rounded-2xl mb-4 border-l-4 border-brand-purple">
+        <h3 class="text-lg font-black text-white flex items-center gap-2">
+          <i class="fas fa-robot text-brand-purple"></i>STANY AI TUTOR (2026)
+        </h3>
+        <p class="text-xs text-gray-400">Uliza swali lolote, nitakuelekeza STEP BY STEP kwa Kiswahili au English.</p>
+      </div>
+      <div id="ai-chat-box" class="space-y-4 mb-36 min-h-[60vh]"></div>
+      <div class="fixed bottom-20 left-0 right-0 p-4">
+        <div class="max-w-3xl mx-auto flex gap-2">
+          <input id="ai-input" type="text" placeholder="Fundisha Newton's 2nd Law hatua kwa hatua..." class="flex-1 bg-slate-900 border border-brand-purple/30 rounded-2xl py-4 px-5 text-white outline-none">
+          <button onclick="askAI()" class="w-14 h-14 bg-gradient-to-r from-brand-purple to-brand-pink rounded-2xl flex items-center justify-center shadow-lg"><i class="fas fa-paper-plane text-white"></i></button>
+        </div>
+      </div>
+    </section>
+
+    <section id="chat-tab" class="hidden h-[85vh] flex flex-col">
+      <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-4"></div>
+      <div class="p-3 glass mb-16">
+        <div class="flex gap-2">
+          <label class="w-11 h-11 bg-slate-800 rounded-xl flex items-center justify-center cursor-pointer">
+            <i class="fas fa-paperclip text-brand-purple"></i>
+            <input type="file" id="file-input" class="hidden" onchange="uploadFile()">
+          </label>
+          <input id="chat-input" type="text" placeholder="Tuma PDF au Ujumbe..." class="flex-1 bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white outline-none">
+          <button onclick="sendChatMessage()" class="w-11 h-11 bg-brand-purple rounded-xl flex items-center justify-center"><i class="fas fa-paper-plane text-white"></i></button>
+        </div>
+      </div>
+    </section>
+
+    <nav class="fixed bottom-0 left-0 right-0 h-16 glass flex justify-around items-center px-4 z-50">
+      <button onclick="switchTab('plan')" id="nav-plan" class="text-brand-purple flex flex-col items-center"><i class="fas fa-star"></i><span class="text-[9px] font-bold">Plan</span></button>
+      <button onclick="switchTab('ai')" id="nav-ai" class="text-gray-400 flex flex-col items-center"><i class="fas fa-robot"></i><span class="text-[9px] font-bold">AI</span></button>
+      <button onclick="switchTab('chat')" id="nav-chat" class="text-gray-400 flex flex-col items-center"><i class="fas fa-comments"></i><span class="text-[9px] font-bold">Chat</span></button>
+    </nav>
+  </main>
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <script>
+    // --- FIREBASE CONFIG (YOURS) ---
+    const firebaseConfig = {
+      apiKey: "AIzaSyCJ0ZQPHOopo4pk6Eni-WqpShyQ6z_ivZk",
+      authDomain: "stanytv.firebaseapp.com",
+      databaseURL: "https://stanytv-default-rtdb.firebaseio.com",
+      projectId: "stanytv",
+      storageBucket: "stanytv.firebasestorage.app",
+      messagingSenderId: "898881603619",
+      appId: "1:898881603619:web:f3689aac0c4fc34c474996"
+    };
+    
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.database();
+    const storage = firebase.storage();
+    
+    let currentUser = null;
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      document.getElementById('toastMessage').innerText = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 3000);
+    }
+
+    // --- AUTH ---
+    async function handleAuth() {
+      const email = document.getElementById('reg-email').value;
+      const pass = document.getElementById('reg-pass').value;
+      const name = document.getElementById('reg-name').value;
+      const school = document.getElementById('reg-school').value;
+      const level = document.getElementById('reg-level').value;
+
+      try {
+        const cred = await auth.signInWithEmailAndPassword(email, pass).catch(() => {
+          return auth.createUserWithEmailAndPassword(email, pass);
         });
+        await db.ref('users/' + cred.user.uid).set({ username: name, school, level });
+        showToast("Karibu!");
+      } catch (e) { showToast("Error: " + e.message); }
+    }
 
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                loadingScreen.classList.add('hidden');
-                if (!privacyAccepted) {
-                    privacyModal.style.display = 'flex';
-                } else {
-                    initAuthCheck();
-                }
-            }, 1600);
+    auth.onAuthStateChanged(user => {
+      if(user) {
+        db.ref('users/' + user.uid).on('value', snap => {
+          currentUser = { uid: user.uid, ...snap.val() };
+          document.getElementById('auth-screen').classList.add('hidden');
+          document.getElementById('main-app').classList.remove('hidden');
+          document.getElementById('user-display').innerText = currentUser.username;
+          document.getElementById('school-display').innerText = `${currentUser.school} | ${currentUser.level}`;
+          loadChat();
         });
+      }
+      document.getElementById('loader').style.display = 'none';
+    });
 
-        acceptTermsCheckbox.addEventListener('change', () => { acceptBtn.disabled = !acceptTermsCheckbox.checked; });
-        acceptBtn.addEventListener('click', () => {
-            privacyAccepted = true;
-            localStorage.setItem('privacy_accepted', 'true');
-            privacyModal.style.display = 'none';
-            initAuthCheck();
-            showToast('Welcome to STANY TV', 'success');
+    // --- AI TUTOR (STEP BY STEP) ---
+    async function askAI() {
+      const input = document.getElementById('ai-input');
+      const box = document.getElementById('ai-chat-box');
+      const q = input.value.trim();
+      if(!q) return;
+
+      box.innerHTML += `<div class="flex justify-end"><div class="bg-brand-purple p-4 rounded-2xl rounded-tr-none text-sm message-bubble">${q}</div></div>`;
+      input.value = '';
+
+      try {
+        const system = "Wewe ni STANY AI TUTOR. Fundisha mtaala wa Tanzania (NECTA/VETA/Vyuo). Jibu kwa hatua kwa hatua (Step-by-Step). Tumia lugha aliyotumia user (Kiswahili/English). Kama ni hesabu, solve hatua zote mpaka jibu.";
+        const res = await fetch(`https://text.pollinations.ai/${encodeURIComponent(q)}?system=${encodeURIComponent(system)}`);
+        const text = await res.text();
+        box.innerHTML += `<div class="flex justify-start"><div class="glass p-4 rounded-2xl rounded-tl-none text-sm message-bubble border-l-4 border-brand-teal">${text.replace(/\n/g, '<br>')}</div></div>`;
+        box.scrollTop = box.scrollHeight;
+      } catch (e) { showToast("AI Error"); }
+    }
+
+    // --- CHAT ---
+    function sendChatMessage() {
+      const input = document.getElementById('chat-input');
+      if(!input.value) return;
+      db.ref('global_chat_2026').push({
+        uid: currentUser.uid, username: currentUser.username, school: currentUser.school,
+        text: input.value, timestamp: Date.now()
+      });
+      input.value = '';
+    }
+
+    function loadChat() {
+      db.ref('global_chat_2026').limitToLast(50).on('value', snap => {
+        const box = document.getElementById('chat-messages');
+        box.innerHTML = '';
+        snap.forEach(child => {
+          const m = child.val();
+          const isMe = m.uid === currentUser.uid;
+          box.innerHTML += `
+            <div class="flex ${isMe ? 'justify-end' : 'justify-start'}">
+              <div class="${isMe ? 'bg-brand-purple/80' : 'glass'} p-3 rounded-2xl message-bubble">
+                <div class="text-[9px] font-bold text-pink-400 uppercase">${m.username}</div>
+                <div class="text-sm text-white">${m.fileUrl ? `<a href="${m.fileUrl}" target="_blank" class="text-teal-400">📄 ${m.text}</a>` : m.text}</div>
+              </div>
+            </div>
+          `;
         });
-        declineBtn.addEventListener('click', () => { showToast('Access requires accepting terms', 'error'); });
+        box.scrollTop = box.scrollHeight;
+      });
+    }
 
-        function initAuthCheck() {
-            auth.onAuthStateChanged(user => {
-                if (user) {
-                    db.ref('users/' + user.uid).once('value').then(snapshot => {
-                        const userData = snapshot.val();
-                        if (!userData) { auth.signOut(); return; }
-                        if (userData.isBlocked) { showToast('Account blocked', 'error'); auth.signOut(); return; }
-                        
-                        if (!userData.activeDeviceId) {
-                            db.ref('users/' + user.uid).update({ activeDeviceId: userHWID });
-                        } else if (userData.activeDeviceId !== userHWID) {
-                            mainApp.style.display = 'none';
-                            deviceOverlay.style.display = 'flex';
-                            checkDeviceRequest(user.uid);
-                            return;
-                        }
-                        
-                        currentUser = { uid: user.uid, email: user.email, ...userData };
-                        isPremium = userData.premium || false;
-                        
-                        document.getElementById('pName').textContent = userData.name || user.displayName || 'User';
-                        document.getElementById('pEmail').textContent = user.email;
-                        updateSubscriptionDisplay(userData.accessExpiry);
-                        
-                        // Auto-collect user analytics
-                        collectUserAnalytics(user.uid, userData);
-                        
-                        deviceOverlay.style.display = 'none';
-                        authModal.style.display = 'none';
-                        mainApp.style.display = 'block';
-                        
-                        loadContent();
-                        checkManualAd();
-                    }).catch(error => {
-                        console.error('Auth error:', error);
-                        showToast('Session error - please re-login', 'error');
-                        auth.signOut();
-                    });
-                } else {
-                    mainApp.style.display = 'none';
-                    authModal.style.display = 'flex';
-                    showAuthPage('login');
-                }
-            });
-        }
+    async function uploadFile() {
+      const file = document.getElementById('file-input').files[0];
+      if(!file) return;
+      showToast("Inapakia...");
+      const ref = storage.ref(`papers_2026/${Date.now()}_${file.name}`);
+      await ref.put(file);
+      const url = await ref.getDownloadURL();
+      db.ref('global_chat_2026').push({
+        uid: currentUser.uid, username: currentUser.username, school: currentUser.school,
+        text: file.name, fileUrl: url, timestamp: Date.now()
+      });
+    }
 
-        function collectUserAnalytics(uid, userData) {
-            const analytics = {
-                lastLogin: firebase.database.ServerValue.TIMESTAMP,
-                deviceHWID: userHWID,
-                userAgent: navigator.userAgent,
-                language: navigator.language,
-                platform: navigator.platform,
-                screenResolution: screen.width + 'x' + screen.height,
-                timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
-            };
-            db.ref('analytics/users/' + uid).update(analytics).catch(e => console.log('Analytics:', e));
-            
-            db.ref('analytics/logins').push({
-                uid: uid,
-                timestamp: firebase.database.ServerValue.TIMESTAMP,
-                device: userHWID,
-                premium: isPremium
-            });
-        }
+    function switchTab(tab) {
+      ['plan', 'ai', 'chat'].forEach(t => {
+        document.getElementById(`${t}-tab`).classList.add('hidden');
+        document.getElementById(`nav-${t}`).classList.replace('text-brand-purple', 'text-gray-400');
+      });
+      document.getElementById(`${tab}-tab`).classList.remove('hidden');
+      document.getElementById(`nav-${tab}`).classList.replace('text-gray-400', 'text-brand-purple');
+    }
 
-        function checkDeviceRequest(uid) {
-            db.ref('deviceRequests/' + uid).on('value', snapshot => {
-                const req = snapshot.val();
-                const statusEl = document.getElementById('reqStatus');
-                if (!req) {
-                    db.ref('deviceRequests/' + uid).set({
-                        email: auth.currentUser.email,
-                        deviceId: userHWID,
-                        status: 'pending',
-                        requestedAt: firebase.database.ServerValue.TIMESTAMP
-                    });
-                    statusEl.textContent = 'Request Sent...';
-                } else if (req.status === 'approved') {
-                    statusEl.textContent = 'Approved! Reloading...';
-                    statusEl.style.color = 'var(--success)';
-                    setTimeout(() => location.reload(), 1000);
-                } else if (req.status === 'rejected') {
-                    statusEl.textContent = 'Request Rejected';
-                    statusEl.style.color = 'var(--error)';
-                } else {
-                    statusEl.textContent = 'Pending Approval...';
-                }
-            });
-        }
-
-        function updateSubscriptionDisplay(expiry) {
-            const daysEl = document.getElementById('pDays');
-            if (!expiry) {
-                daysEl.textContent = 'Free Account';
-                daysEl.className = '';
-            } else {
-                const daysLeft = Math.ceil((expiry - Date.now()) / 86400000);
-                if (daysLeft <= 0) {
-                    daysEl.textContent = 'EXPIRED';
-                    daysEl.className = 'expired';
-                } else {
-                    daysEl.textContent = daysLeft + ' Days Left';
-                    daysEl.className = '';
-                }
-            }
-        }
-
-        function showAuthPage(page) {
-            document.getElementById('loginForm').style.display = page === 'login' ? 'block' : 'none';
-            document.getElementById('regForm').style.display = page === 'register' ? 'block' : 'none';
-        }
-        document.getElementById('showRegisterLink').addEventListener('click', e => { e.preventDefault(); showAuthPage('register'); });
-        document.getElementById('showLoginLink').addEventListener('click', e => { e.preventDefault(); showAuthPage('login'); });
-
-        document.getElementById('loginBtn').addEventListener('click', () => {
-            const email = document.getElementById('lemail').value.trim();
-            const pass = document.getElementById('lpass').value;
-            if (!email || !pass) { showToast('Enter email and password', 'warning'); return; }
-            auth.signInWithEmailAndPassword(email, pass).catch(e => showToast(getAuthMsg(e.code), 'error'));
-        });
-        
-        document.getElementById('registerBtn').addEventListener('click', () => {
-            const name = document.getElementById('rname').value.trim();
-            const email = document.getElementById('remail').value.trim();
-            const pass = document.getElementById('rpass').value;
-            if (!name || !email || !pass) { showToast('Fill all fields', 'warning'); return; }
-            if (pass.length < 6) { showToast('Password min 6 chars', 'warning'); return; }
-            auth.createUserWithEmailAndPassword(email, pass).then(cred => {
-                return db.ref('users/' + cred.user.uid).set({
-                    name: name, email: email, premium: false,
-                    activeDeviceId: userHWID,
-                    createdAt: firebase.database.ServerValue.TIMESTAMP
-                });
-            }).then(() => showToast('Account created', 'success')).catch(e => showToast(getAuthMsg(e.code), 'error'));
-        });
-
-        function setupGoogleAuth() {
-            const provider = new firebase.auth.GoogleAuthProvider();
-            const handleGoogleAuth = (isNewUser) => {
-                return auth.signInWithPopup(provider).then(result => {
-                    const uid = result.user.uid;
-                    const userData = {
-                        name: result.user.displayName,
-                        email: result.user.email,
-                        premium: false,
-                        activeDeviceId: userHWID,
-                        photoURL: result.user.photoURL,
-                        lastLogin: firebase.database.ServerValue.TIMESTAMP
-                    };
-                    if (isNewUser) {
-                        userData.createdAt = firebase.database.ServerValue.TIMESTAMP;
-                        return db.ref('users/' + uid).set(userData);
-                    }
-                    return db.ref('users/' + uid).update({ lastLogin: firebase.database.ServerValue.TIMESTAMP });
-                }).catch(e => showToast(getAuthMsg(e.code), 'error'));
-            };
-            document.getElementById('googleSignInBtn').addEventListener('click', () => handleGoogleAuth(false));
-            document.getElementById('googleSignUpBtn').addEventListener('click', () => handleGoogleAuth(true).then(() => showToast('Welcome', 'success')));
-        }
-        setupGoogleAuth();
-
-        function getAuthMsg(code) {
-            const msgs = {
-                'auth/invalid-email': 'Invalid email',
-                'auth/user-not-found': 'Account not found',
-                'auth/wrong-password': 'Wrong password',
-                'auth/email-already-in-use': 'Email already registered',
-                'auth/weak-password': 'Password too weak',
-                'auth/popup-closed-by-user': 'Cancelled',
-                'auth/network-request-failed': 'Check internet connection'
-            };
-            return msgs[code] || 'Authentication error';
-        }
-
-        function loadContent() {
-            db.ref('genres').on('value', snapshot => {
-                const tags = document.getElementById('catTags');
-                const fullList = document.getElementById('fullCatList');
-                tags.innerHTML = '<div class="cat-tag active" onclick="filter(\'all\',this)">All</div>';
-                fullList.innerHTML = '';
-                snapshot.forEach(g => {
-                    const cat = g.val().name;
-                    tags.innerHTML += `<div class="cat-tag" onclick="filter('${cat}',this)">${cat}</div>`;
-                    fullList.innerHTML += `<div class="action-btn" style="margin-bottom:9px;background:#0f0f0f;border:1px solid var(--border);color:white;" onclick="filter('${cat}');nav('home')">${cat}</div>`;
-                });
-            });
-
-            db.ref('movies').limitToFirst(12).on('value', snapshot => {
-                allData.movies = [];
-                const grid = document.getElementById('movGrid');
-                grid.innerHTML = '';
-                snapshot.forEach(c => {
-                    const movie = { id: c.key, ...c.val(), type: 'm' };
-                    allData.movies.push(movie);
-                    grid.innerHTML += makeCard(movie);
-                });
-            });
-
-            db.ref('channels').limitToFirst(20).on('value', snapshot => {
-                allData.channels = [];
-                const grid = document.getElementById('chanGrid');
-                grid.innerHTML = '';
-                snapshot.forEach(c => {
-                    const channel = { id: c.key, ...c.val(), type: 'c' };
-                    allData.channels.push(channel);
-                    grid.innerHTML += makeCard(channel);
-                });
-                updateFavoritesDisplay();
-            });
-
-            db.ref('bettingTips').limitToLast(5).on('value', snapshot => {
-                const list = document.getElementById('tipsList');
-                list.innerHTML = '';
-                snapshot.forEach(x => {
-                    const tip = x.val();
-                    const blurred = !isPremium ? 'tip-blur' : '';
-                    list.innerHTML += `<div class="tip-card ${blurred}"><div class="tip-msg">PREMIUM</div><div class="tip-content"><h4>${tip.title}</h4><p>${tip.team1} vs ${tip.team2}</p><p><b>${tip.prediction}</b> @ ${tip.odds}x</p><small style="color:var(--text-dim)">${tip.time}</small></div></div>`;
-                });
-            });
-
-            if (currentUser) {
-                db.ref(`notifications/${currentUser.uid}`).limitToLast(5).on('child_added', snapshot => {
-                    const notif = snapshot.val();
-                    const list = document.getElementById('notifList');
-                    list.innerHTML = `<div><b>${notif.title}</b><br><small>${notif.message}</small></div>` + list.innerHTML;
-                });
-            }
-        }
-
-        function makeCard(item) {
-            const isExpired = !isPremium;
-            const isTBC = item.type === 'c' && item.name && item.name.toUpperCase().includes('TBC');
-            const locked = isExpired && !isTBC;
-            const isFav = currentUser?.favorites?.[item.id];
-            const favIcon = item.type === 'c' ? `<i class="${isFav?'fas':'far'} fa-heart fav-star ${isFav?'active':''}" onclick="toggleFav('${item.id}',event)"></i>` : '';
-            const premiumBadge = item.premium && !isPremium ? `<div class="premium-badge">PREMIUM</div>` : '';
-            const lockOverlay = locked ? `<div class="locked-cover"><i class="fas fa-lock"></i></div>` : '';
-            const poster = item.posterURL || item.poster || 'https://via.placeholder.com/150x225/0a0a0a/FF0000?text=No+Image';
-            const title = item.name || item.title || 'Untitled';
-            return `<div class="card" onclick="openItem('${item.type}','${item.id}',${locked})">${premiumBadge}${favIcon}${lockOverlay}<img src="${poster}" alt="${title}" onerror="this.src='https://via.placeholder.com/150x225/0a0a0a/FF0000?text=Error'"><div class="card-name">${title}</div></div>`;
-        }
-
-        function openItem(type, id, locked) {
-            if (locked) { document.getElementById('blockModal').style.display = 'flex'; return; }
-            const item = type === 'c' ? allData.channels.find(x => x.id === id) : allData.movies.find(x => x.id === id);
-            if (!item) { showToast('Content not found', 'error'); return; }
-            if (item.playerType === 'external_browser') { window.open(item.m3u8Link || item.movieURL || item.streamUrl, '_blank'); return; }
-            if (item.playerType === 'external_section') { window.location.href = 'go:' + (item.externalCode || ''); return; }
-            document.getElementById('playerModal').style.display = 'flex';
-            const url = item.m3u8Link || item.movieURL || item.streamUrl;
-            const isHLS = url && (url.includes('.m3u8') || item.type === 'live');
-            const typeAttr = isHLS ? 'application/x-mpegURL' : 'video/mp4';
-            if (!player) { player = videojs('vPlayer', { fluid: true, autoplay: true, controls: true, preload: 'auto' }); }
-            player.src({ src: url, type: typeAttr });
-            player.play().catch(e => { console.log('Autoplay prevented:', e); showToast('Tap play to start', 'info'); });
-        }
-
-        function closePlayer() {
-            document.getElementById('playerModal').style.display = 'none';
-            if (player) { player.pause(); player.src({ src: '', type: '' }); }
-        }
-
-        function toggleFav(id, e) {
-            e.stopPropagation();
-            if (!currentUser) return;
-            const path = `users/${currentUser.uid}/favorites/${id}`;
-            const isFav = currentUser.favorites?.[id];
-            if (isFav) { db.ref(path).remove(); showToast('Removed from favorites', 'info'); }
-            else { db.ref(path).set(true); showToast('Added to favorites', 'success'); }
-        }
-
-        function updateFavoritesDisplay() {
-            const grid = document.getElementById('favGridProfile');
-            grid.innerHTML = '';
-            if (currentUser?.favorites) {
-                Object.keys(currentUser.favorites).forEach(id => {
-                    const channel = allData.channels.find(c => c.id === id);
-                    if (channel) grid.innerHTML += makeCard(channel);
-                });
-            }
-        }
-
-        function filter(category, btn) {
-            if (btn) { document.querySelectorAll('.cat-tag').forEach(t => t.classList.remove('active')); btn.classList.add('active'); }
-            const grid = document.getElementById('chanGrid');
-            grid.innerHTML = '';
-            allData.channels.forEach(channel => {
-                if (category === 'all' || (channel.categories && channel.categories.includes(category))) {
-                    grid.innerHTML += makeCard(channel);
-                }
-            });
-        }
-
-        function globalSearch() {
-            const query = document.getElementById('searchInput').value.toLowerCase().trim();
-            if (query.length < 2) { loadContent(); return; }
-            const chanGrid = document.getElementById('chanGrid');
-            const movGrid = document.getElementById('movGrid');
-            chanGrid.innerHTML = ''; movGrid.innerHTML = '';
-            allData.channels.forEach(c => { if ((c.name || '').toLowerCase().includes(query)) chanGrid.innerHTML += makeCard(c); });
-            allData.movies.forEach(m => { if ((m.title || '').toLowerCase().includes(query)) movGrid.innerHTML += makeCard(m); });
-        }
-
-        function nav(pageId, el) {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
-            document.querySelectorAll('.nav-item').forEach(n => { if (!n.classList.contains('whatsapp-center')) n.classList.remove('active'); });
-            if (el && !el.classList.contains('whatsapp-center')) el.classList.add('active');
-            document.getElementById('searchBar').style.display = 'none';
-            document.getElementById('searchToggle').style.color = '';
-        }
-
-        function openChatModal() {
-            if (!currentUser) { showToast('Please sign in first', 'warning'); return; }
-            document.getElementById('chatModal').style.display = 'flex';
-            document.getElementById('chatUserName').textContent = currentUser.name || 'User';
-            document.getElementById('chatUserStatus').textContent = isPremium ? 'PREMIUM' : 'FREE';
-            document.getElementById('chatUserStatus').style.display = isPremium ? 'inline' : 'none';
-            loadChatMessages();
-        }
-
-        function closeChatModal() {
-            document.getElementById('chatModal').style.display = 'none';
-            if (chatListener) { chatListener.off(); chatListener = null; }
-        }
-
-        function loadChatMessages() {
-            if (!currentUser) return;
-            const chatBox = document.getElementById('chatBox');
-            chatBox.innerHTML = '';
-            
-            if (chatListener) chatListener.off();
-            chatListener = db.ref(`chat/${currentUser.uid}`).limitToLast(40);
-            
-            chatListener.on('child_added', snapshot => {
-                const msg = snapshot.val();
-                chatBox.innerHTML += `<div class="msg ${msg.sender==='user'?'msg-user':'msg-admin'}">${msg.text}</div>`;
-                chatBox.scrollTop = chatBox.scrollHeight;
-                
-                if (msg.sender === 'user') {
-                    db.ref(`chatMetadata/${currentUser.uid}`).update({
-                        displayName: currentUser.name || 'User',
-                        isPremium: isPremium,
-                        lastMessage: firebase.database.ServerValue.TIMESTAMP
-                    });
-                }
-            });
-        }
-
-        function sendChat() {
-            const input = document.getElementById('chatInput');
-            const text = input.value.trim();
-            if (!text || !currentUser) return;
-            db.ref(`chat/${currentUser.uid}`).push({
-                text: text,
-                sender: 'user',
-                timestamp: firebase.database.ServerValue.TIMESTAMP,
-                userDisplayName: currentUser.name || 'User',
-                userIsPremium: isPremium
-            });
-            input.value = '';
-        }
-        document.getElementById('chatInput').addEventListener('keypress', e => { if (e.key === 'Enter') sendChat(); });
-
-        function openWhatsApp() { window.open('https://wa.me/255787069580?text=Hello%20STANY%20TV%20Support', '_blank'); }
-        document.getElementById('logoutBtn').addEventListener('click', () => { auth.signOut().then(() => showToast('Signed out', 'success')); });
-        document.getElementById('searchToggle').addEventListener('click', () => {
-            const bar = document.getElementById('searchBar');
-            bar.style.display = bar.style.display === 'block' ? 'none' : 'block';
-            document.getElementById('searchToggle').style.color = bar.style.display === 'block' ? 'var(--primary)' : '';
-            if (bar.style.display === 'block') document.getElementById('searchInput').focus();
-        });
-        document.getElementById('notifToggle').addEventListener('click', () => { document.getElementById('notifModal').style.display = 'flex'; });
-
-        function checkManualAd() {
-            db.ref('ads/manual').once('value').then(snapshot => {
-                const ad = snapshot.val();
-                if (ad?.active && ad?.imageUrl && ad?.title) {
-                    document.getElementById('adImage').src = ad.imageUrl;
-                    document.getElementById('adTitle').textContent = ad.title;
-                    document.getElementById('adSubtitle').textContent = ad.subtitle || 'Sponsored';
-                    if (ad.clickUrl) {
-                        manualAdBanner.onclick = (e) => { if (!e.target.closest('.ad-close')) window.open(ad.clickUrl, '_blank'); };
-                    }
-                    manualAdBanner.classList.remove('hidden');
-                    adBannerVisible = true;
-                    setTimeout(() => { if (adBannerVisible) { manualAdBanner.classList.add('hidden'); adBannerVisible = false; } }, 22000);
-                }
-            }).catch(e => console.log('Ad check:', e));
-        }
-        document.getElementById('closeAdBtn').addEventListener('click', (e) => { e.stopPropagation(); manualAdBanner.classList.add('hidden'); adBannerVisible = false; });
-
-        function showToast(message, type = 'info') {
-            const container = document.getElementById('toastContainer');
-            const toast = document.createElement('div');
-            toast.className = `toast ${type}`;
-            const icons = { success: 'fa-check-circle', error: 'fa-exclamation-circle', warning: 'fa-exclamation-triangle', info: 'fa-info-circle' };
-            toast.innerHTML = `<i class="fas ${icons[type]}"></i><span>${message}</span>`;
-            container.appendChild(toast);
-            setTimeout(() => toast.remove(), 4100);
-        }
-
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => { console.log('PWA ready'); });
-        }
-
-        document.querySelectorAll('input').forEach(input => {
-            input.addEventListener('focus', () => { if (window.innerWidth < 768) { const vp = document.querySelector('meta[name="viewport"]'); vp.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'); } });
-            input.addEventListener('blur', () => { const vp = document.querySelector('meta[name="viewport"]'); vp.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover'); });
-        });
-
-        window.addEventListener('error', e => { console.error('App error:', e); showToast('Something went wrong', 'error'); });
-        window.addEventListener('unhandledrejection', e => { console.error('Promise error:', e.reason); showToast('Connection issue - check internet', 'warning'); });
-    </script>
-    <script src="https://unpkg.com/@videojs/http-streaming@2.14.2/dist/videojs-http-streaming.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-quality-levels/2.0.9/videojs-contrib-quality-levels.min.js"></script>
+    function logout() { auth.signOut(); location.reload(); }
+    AOS.init();
+  </script>
 </body>
 </html>
-
