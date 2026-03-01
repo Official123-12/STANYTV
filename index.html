@@ -4,14 +4,38 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"/>
   
+  <!-- Meta Tags -->
   <title>STANY NA KITABU | 2026 Victory Plan - Exam Survival Hub</title>
   <meta name="description" content="STANY NA KITABU - Your ultimate study companion for NECTA, VETA & University exams in Tanzania. AI-powered learning, past papers, and peer support.">
+  <meta name="keywords" content="STANY NA KITABU, NECTA, CSEE, ACSEE, FTNA, VETA, study app Tanzania, exam prep, AI tutor">
+  <meta name="author" content="Stanley Assanaly - STANYTZ">
+  <meta name="theme-color" content="#8b5cf6">
   
+  <!-- PWA Manifest (inline for demo) -->
+  <link rel="manifest" href="application/json;base64,eyJuYW1lIjoiU1RBTlkgTkEgS0lUQUJVIiwic2hvcnRfbmFtZSI6IlNUQU5ZS0lUQUJVIiwiZGVzY3JpcHRpb24iOiIyMDI2IEV4YW0gU3Vydml2YWwgSHViIiwic3RhcnRfdXJsIjoiLyIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwiYmFja2dyb3VuZF9jb2xvciI6IiMwMjA2MTciLCJ0aGVtZV9jb2xvciI6IiM4YjVjZjYiLCJpY29ucyI6W3sic3JjIjoiaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL09mZmljaWFsMTIzLTEyL1NUQU5ZRlJFRUJPVC0vcmVmcy9oZWFkcy9tYWluL0lNR18xMzc4LmpwZWciLCJzaXplcyI6IjE5MngxOTIiLCJ0eXBlIjoiaW1hZ2UvanBlZyJ9XX0=">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="STANY NA KITABU | 2026 Victory Plan">
+  <meta property="og:description" content="AI-powered study companion for Tanzanian students. Master your exams with repeated topics, AI explanations & peer support.">
+  <meta property="og:image" content="https://raw.githubusercontent.com/Official123-12/STANYFREEBOT-/refs/heads/main/IMG_1378.jpeg">
+  
+  <!-- PWA -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="STANY KITABU">
+  <link rel="icon" type="image/jpeg" href="https://raw.githubusercontent.com/Official123-12/STANYFREEBOT-/refs/heads/main/IMG_1378.jpeg">
+  <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/Official123-12/STANYFREEBOT-/refs/heads/main/IMG_1378.jpeg">
+  
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@700;800;900&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  
+  <!-- AOS Animation -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
   <script>
@@ -34,13 +58,18 @@
           animation: {
             'blob': 'blob 7s infinite',
             'float': 'float 6s ease-in-out infinite',
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'shake': 'shake 0.5s ease-in-out'
           },
           keyframes: {
             blob: {
               '0%, 100%': { transform: 'translate(0, 0) scale(1)' },
+              '25%': { transform: 'translate(20px, -30px) scale(1.05)' },
               '50%': { transform: 'translate(-15px, 15px) scale(0.95)' },
+              '75%': { transform: 'translate(10px, -10px) scale(1.02)' }
             },
             float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-15px)' } },
+            shake: { '0%, 100%': { transform: 'translateX(0)' }, '25%': { transform: 'translateX(-5px)' }, '75%': { transform: 'translateX(5px)' } }
           }
         }
       }
@@ -48,38 +77,54 @@
   </script>
   
   <style>
+    /* Core Styles */
     body { 
       font-family: 'Inter', sans-serif; 
       background: linear-gradient(135deg, #020617 0%, #0f172a 100%);
       color: #f1f5f9; 
       overflow-x: hidden;
       -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
       user-select: none;
     }
     input, textarea, select { user-select: text; -webkit-user-select: text; }
     
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0f172a; }
+    ::-webkit-scrollbar-thumb { background: #8b5cf6; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #ec4899; }
+    
+    /* Safe Area */
+    .safe-top { padding-top: env(safe-area-inset-top); }
+    .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
+    
+    /* Glassmorphism */
     .glass { 
       background: rgba(15, 23, 42, 0.85); 
       backdrop-filter: blur(20px); 
+      -webkit-backdrop-filter: blur(20px);
       border: 1px solid rgba(139, 92, 246, 0.2);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
       transition: all 0.3s ease;
     }
+    .glass:hover { border-color: rgba(139, 92, 246, 0.4); }
     
-    .topic-card {
-      border-left: 4px solid #8b5cf6;
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-    .topic-card:hover {
-      transform: translateX(8px);
-      background: rgba(139, 92, 246, 0.15);
+    .glass-nav {
+      background: rgba(2, 6, 23, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(139, 92, 246, 0.15);
     }
     
+    /* Loader */
     #loader {
       position: fixed; inset: 0; z-index: 9999;
-      background: #020617;
+      background: linear-gradient(135deg, #020617, #0f172a);
       display: flex; flex-direction: column;
       justify-content: center; align-items: center;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
     }
     .spinner {
       width: 50px; height: 50px;
@@ -89,178 +134,427 @@
     }
     @keyframes spin { to { transform: rotate(360deg); } }
     
+    /* Text Gradient */
+    .text-gradient {
+      background: linear-gradient(135deg, #8b5cf6, #ec4899, #14b8a6);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; background-size: 200% auto;
+      animation: gradientShift 6s ease infinite;
+    }
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% center; }
+      50% { background-position: 100% center; }
+    }
+    
+    /* Topic Card */
+    .topic-card {
+      border-left: 4px solid #8b5cf6;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .topic-card:hover {
+      transform: translateX(8px);
+      background: rgba(139, 92, 246, 0.15);
+      border-left-color: #ec4899;
+      box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+    }
+    .topic-card.active {
+      background: rgba(139, 92, 246, 0.2);
+      border-left-color: #14b8a6;
+    }
+    
+    /* Chat Messages */
+    #chat-messages, #ai-chat-box {
+      scroll-behavior: smooth;
+    }
+    .message-bubble {
+      max-width: 85%;
+      animation: slideUp 0.3s ease;
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Progress Bar */
+    .progress-bar {
+      position: fixed; top: 0; left: 0; height: 3px;
+      background: linear-gradient(90deg, #8b5cf6, #ec4899, #14b8a6);
+      z-index: 9999; transition: width 0.15s ease;
+    }
+    
+    /* Toast Notification */
     #toast {
       position: fixed; bottom: 100px; right: 20px;
       background: #14b8a6; color: white;
       padding: 14px 24px; border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
       z-index: 9999; transform: translateX(150%);
       transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex; align-items: center; gap: 12px;
+      font-weight: 500;
     }
     #toast.show { transform: translateX(0); }
+    #toast.error { background: #ef4444; }
+    #toast.success { background: #22c55e; }
     
-    .subject-visual {
-      width: 100%;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 12px;
-      margin-bottom: 12px;
-      border: 1px solid rgba(139, 92, 246, 0.3);
+    /* Bottom Nav */
+    .bottom-nav {
+      background: rgba(2, 6, 23, 0.98);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(139, 92, 246, 0.15);
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+    .nav-item { transition: all 0.2s ease; }
+    .nav-item:active { transform: scale(0.92); }
+    .nav-item.active { color: #8b5cf6; }
+    
+    /* WhatsApp Pulse */
+    @keyframes pulse-green {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
+      50% { box-shadow: 0 0 0 12px rgba(37, 211, 102, 0); }
+    }
+    .whatsapp-pulse { animation: pulse-green 2s infinite; }
+    
+    /* Offline Banner */
+    #offlineBanner {
+      position: fixed; top: 0; left: 0; right: 0;
+      background: linear-gradient(90deg, #ef4444, #f97316);
+      color: white; text-align: center; padding: 10px;
+      font-size: 13px; z-index: 9999;
+      display: none; animation: slideDown 0.3s ease;
+    }
+    @keyframes slideDown {
+      from { transform: translateY(-100%); }
+      to { transform: translateY(0); }
+    }
+    
+    /* Typing Indicator */
+    .typing-dot {
+      width: 8px; height: 8px;
+      background: #8b5cf6; border-radius: 50%;
+      display: inline-block; margin: 0 2px;
+      animation: typingBounce 1.4s infinite ease-in-out;
+    }
+    .typing-dot:nth-child(1) { animation-delay: 0s; }
+    .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes typingBounce {
+      0%, 60%, 100% { transform: translateY(0); }
+      30% { transform: translateY(-10px); }
+    }
+    
+    /* Section Spacing */
+    section { scroll-margin-top: 90px; }
+    
+    /* Input Focus */
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.3);
+      border-color: #8b5cf6 !important;
+    }
+    
+    /* Button Ripple */
+    .btn-ripple {
+      position: relative; overflow: hidden;
+    }
+    .btn-ripple:after {
+      content: ''; position: absolute;
+      width: 100%; height: 100%;
+      top: 0; left: 0;
+      background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+      transform: scale(0); opacity: 0;
+      transition: transform 0.5s, opacity 0.3s;
+      border-radius: inherit;
+    }
+    .btn-ripple:active:after {
+      transform: scale(2); opacity: 0;
+      transition: 0s;
     }
   </style>
 </head>
-<body class="pb-24">
+<body class="pb-24 md:pb-0">
 
-  <div id="toast">
-    <i class="fas fa-check-circle mr-2"></i>
+  <!-- Progress Bar -->
+  <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+
+  <!-- Offline Banner -->
+  <div id="offlineBanner">
+    <i class="fas fa-wifi-slash mr-2"></i> Hauna intaneti. Baadhi ya vipengele vinaweza kufanya kazi offline.
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" role="alert">
+    <i class="fas fa-check-circle text-xl"></i>
     <span id="toastMessage">Imefanikiwa!</span>
   </div>
 
-  <div id="loader">
-    <img src="https://raw.githubusercontent.com/Official123-12/STANYFREEBOT-/refs/heads/main/IMG_1378.jpeg" class="w-24 h-24 rounded-3xl mb-6 animate-float object-cover border-4 border-brand-purple">
+  <!-- LOADING SCREEN -->
+  <div id="loader" role="status" aria-live="polite">
+    <img src="https://raw.githubusercontent.com/Official123-12/STANYFREEBOT-/refs/heads/main/IMG_1378.jpeg" 
+         alt="STANY NA KITABU" 
+         class="w-24 h-24 rounded-3xl mb-6 animate-float shadow-2xl shadow-brand-purple/40 object-cover border-4 border-brand-purple/60">
     <div class="spinner mb-4"></div>
-    <h2 class="text-2xl font-display font-black text-white">STANY NA KITABU</h2>
+    <h2 class="text-2xl font-display font-black text-white tracking-wider mb-2">STANY NA KITABU</h2>
+    <p class="text-sm text-brand-teal uppercase tracking-[0.2em] animate-pulse">Inapakua... 📚</p>
+    <div class="mt-4 text-xs text-gray-500">2026 Exam Survival Hub</div>
   </div>
 
+  <!-- WELCOME MESSAGE -->
+  <div id="welcomeMsg" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[100] glass px-6 py-5 rounded-2xl max-w-sm mx-4 text-center pointer-events-none opacity-0 transition-opacity duration-500" role="alert">
+    <h3 class="text-xl font-bold text-white mb-2">Karibu, <span id="welcomeName">Mwanafunzi</span>! 🎓</h3>
+    <p class="text-gray-300 text-sm">Tuanze kujifunza na kufaulu mitihani yako ya 2026!</p>
+  </div>
+
+  <!-- BACKGROUND ANIMATION -->
+  <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden" aria-hidden="true">
+    <div class="absolute top-1/4 -left-20 w-72 h-72 bg-brand-purple/20 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob"></div>
+    <div class="absolute top-1/3 -right-20 w-72 h-72 bg-brand-teal/20 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob" style="animation-delay: -2s"></div>
+    <div class="absolute -bottom-20 left-1/4 w-72 h-72 bg-brand-pink/20 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob" style="animation-delay: -4s"></div>
+  </div>
+
+  <!-- AUTH SCREEN -->
   <div id="auth-screen" class="fixed inset-0 z-[90] bg-slate-950/95 backdrop-blur-xl flex items-center justify-center p-4">
-    <div class="glass w-full max-w-md p-6 rounded-[2rem] shadow-2xl">
+    <div class="glass w-full max-w-md p-6 md:p-8 rounded-[2rem] shadow-2xl border-brand-purple/30" data-aos="zoom-in">
       <div class="text-center mb-6">
-        <img src="https://raw.githubusercontent.com/Official123-12/STANYFREEBOT-/refs/heads/main/IMG_1378.jpeg" class="w-20 h-20 rounded-2xl mx-auto mb-4 border-4 border-brand-purple object-cover animate-float">
-        <h1 class="text-2xl font-black text-white">STANY NA KITABU</h1>
-        <p class="text-brand-purple font-bold text-sm uppercase">2026 Exam Survival Hub</p>
+        <img src="https://raw.githubusercontent.com/Official123-12/STANYFREEBOT-/refs/heads/main/IMG_1378.jpeg" 
+             class="w-20 h-20 rounded-2xl mx-auto mb-4 border-4 border-brand-purple shadow-xl object-cover animate-float">
+        <h1 class="text-2xl md:text-3xl font-black tracking-tight text-white">STANY NA KITABU</h1>
+        <p class="text-brand-purple font-bold mt-1 text-sm">2026 EXAM SURVIVAL HUB 🔥</p>
       </div>
       
       <div class="space-y-3">
-        <input id="reg-name" type="text" placeholder="Jina Kamili *" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none text-white">
+        <input id="reg-name" type="text" placeholder="Jina Kamili *" 
+               class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-brand-purple transition text-white placeholder-gray-500" autocomplete="name">
         <div class="grid grid-cols-2 gap-3">
-          <input id="reg-school" type="text" placeholder="Shule/Chuo *" class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none text-white">
-          <select id="reg-level" class="bg-slate-900 border border-white/10 rounded-xl px-3 py-3 text-white">
+          <input id="reg-school" type="text" placeholder="Shule/Chuo *" 
+                 class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-brand-purple transition text-white placeholder-gray-500" autocomplete="organization">
+          <select id="reg-level" 
+                  class="bg-slate-900 border border-white/10 rounded-xl px-3 py-3 outline-none focus:border-brand-purple transition text-white">
             <option value="FTNA">FTNA (F2)</option>
             <option value="CSEE" selected>CSEE (F4)</option>
             <option value="ACSEE">ACSEE (F6)</option>
             <option value="VETA">VETA/College</option>
           </select>
         </div>
-        <input id="reg-email" type="email" placeholder="Email Address *" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white">
-        <input id="reg-pass" type="password" placeholder="Password *" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white">
-        <button onclick="handleAuth()" class="w-full bg-gradient-to-r from-brand-purple to-brand-pink py-4 rounded-xl font-black text-white shadow-lg">INGIA SASA</button>
+        <input id="reg-email" type="email" placeholder="Email Address *" 
+               class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-brand-purple transition text-white placeholder-gray-500" autocomplete="email">
+        <input id="reg-pass" type="password" placeholder="Password (min 6) *" 
+               class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-brand-purple transition text-white placeholder-gray-500" autocomplete="new-password">
+        
+        <button onclick="handleAuth()" class="w-full bg-gradient-to-r from-brand-purple to-brand-pink py-4 rounded-xl font-black text-white shadow-lg shadow-brand-purple/40 hover:shadow-brand-purple/60 hover:scale-[1.02] active:scale-95 transition btn-ripple mt-2">
+          <i class="fas fa-sign-in-alt mr-2"></i>INGIA KWENYE MFUMO
+        </button>
+        
+        <p class="text-center text-xs text-gray-500 mt-4">
+          Tayari una akaunti? 
+          <button onclick="toggleAuthMode()" class="text-brand-teal font-semibold hover:underline">Ingia hapa</button>
+        </p>
       </div>
     </div>
   </div>
 
+  <!-- MAIN APP -->
   <main id="main-app" class="hidden">
     
-    <header class="sticky top-0 z-50 glass px-4 py-3 flex justify-between items-center">
+    <!-- HEADER -->
+    <header class="sticky top-0 z-50 glass-nav safe-top px-4 py-3 flex justify-between items-center">
       <div class="flex items-center gap-3">
-        <img src="https://raw.githubusercontent.com/Official123-12/STANYFREEBOT-/refs/heads/main/IMG_1378.jpeg" class="w-10 h-10 rounded-full border-2 border-brand-pink object-cover">
+        <div class="w-10 h-10 rounded-full border-2 border-brand-pink overflow-hidden bg-slate-800">
+          <img src="https://raw.githubusercontent.com/Official123-12/STANYFREEBOT-/refs/heads/main/IMG_1378.jpeg" 
+               class="w-full h-full object-cover" alt="Profile">
+        </div>
         <div>
-          <h2 id="user-display" class="font-bold text-sm text-white">Mwanafunzi</h2>
-          <p id="school-display" class="text-[10px] text-brand-purple uppercase font-black">Azania | CSEE</p>
+          <h2 id="user-display" class="font-bold text-sm leading-none text-white">Stanley</h2>
+          <p id="school-display" class="text-[10px] text-brand-purple uppercase font-black tracking-wide">Azania | CSEE</p>
         </div>
       </div>
-      <button onclick="logout()" class="text-gray-400 p-2"><i class="fas fa-power-off"></i></button>
+      <div class="flex items-center gap-3">
+        <button onclick="showQuickActions()" class="text-brand-purple p-2 hover:bg-white/10 rounded-lg transition" aria-label="Quick actions">
+          <i class="fas fa-plus text-lg"></i>
+        </button>
+        <button onclick="logout()" class="text-gray-400 hover:text-red-400 p-2 hover:bg-white/10 rounded-lg transition" aria-label="Logout">
+          <i class="fas fa-power-off"></i>
+        </button>
+      </div>
     </header>
 
+    <!-- PLAN TAB -->
     <section id="plan-tab" class="p-4 md:p-6 animate-fade-in">
-      <h2 class="text-xl font-black mb-5 text-white flex items-center gap-2">
-        <i class="fas fa-fire text-orange-500"></i> 2026 REPEATED TOPICS (VITA!)
-      </h2>
+      <div class="flex items-center justify-between mb-5">
+        <h2 class="text-xl md:text-2xl font-black flex items-center gap-2 text-white">
+          <i class="fas fa-fire text-orange-500 animate-pulse"></i> 2026 REPEATED TOPICS
+        </h2>
+        <span class="text-xs bg-brand-purple/20 text-brand-purple px-3 py-1 rounded-full font-semibold">Updated</span>
+      </div>
       
-      <div class="space-y-6">
-        <div class="glass p-4 rounded-2xl" data-aos="fade-up">
-          <h3 class="text-brand-purple font-bold mb-3 flex items-center gap-2">
-            <i class="fas fa-atom"></i> PHYSICS (95% Repeat)
+      <div class="space-y-4">
+        <!-- Physics -->
+        <div class="glass p-4 md:p-5 rounded-2xl">
+          <h3 class="text-brand-purple font-bold mb-3 flex justify-between items-center cursor-pointer" onclick="toggleSection('physics')">
+            <span><i class="fas fa-atom mr-2"></i>PHYSICS</span>
+            <span class="text-xs bg-orange-500/20 text-orange-400 px-2 py-1 rounded">90% Repeated</span>
           </h3>
-          
-          <ul class="space-y-2 text-sm text-gray-300">
-            <li class="topic-card bg-white/5 p-3 rounded-xl"><b>Mechanics:</b> Forces, Archimedes, Pulleys & Newton's Laws.</li>
-            <li class="topic-card bg-white/5 p-3 rounded-xl"><b>Electricity:</b> Current, Ohm's Law & Circuit Analysis.</li>
-            <li class="topic-card bg-white/5 p-3 rounded-xl"><b>Light:</b> Lenses, Human Eye defects & Refraction.</li>
+          <ul id="physics-list" class="space-y-2 text-sm text-gray-300">
+            <li class="topic-card bg-white/5 p-3 rounded-xl" onclick="copyTopic(this)">
+              <b class="text-white">Mechanics:</b> Archimedes, Newton's Laws, Pulleys.
+              <span class="text-[10px] text-brand-teal ml-2"><i class="fas fa-copy"></i> Copy</span>
+            </li>
+            <li class="topic-card bg-white/5 p-3 rounded-xl" onclick="copyTopic(this)">
+              <b class="text-white">Electricity:</b> Ohm's Law, Power, Circuits.
+              <span class="text-[10px] text-brand-teal ml-2"><i class="fas fa-copy"></i> Copy</span>
+            </li>
+            <li class="topic-card bg-white/5 p-3 rounded-xl" onclick="copyTopic(this)">
+              <b class="text-white">Optics:</b> Lenses, Refraction (Snell's Law).
+              <span class="text-[10px] text-brand-teal ml-2"><i class="fas fa-copy"></i> Copy</span>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Chemistry -->
+        <div class="glass p-4 md:p-5 rounded-2xl">
+          <h3 class="text-brand-pink font-bold mb-3 flex justify-between items-center cursor-pointer" onclick="toggleSection('chemistry')">
+            <span><i class="fas fa-flask mr-2"></i>CHEMISTRY</span>
+            <span class="text-xs bg-brand-pink/20 text-brand-pink px-2 py-1 rounded">Top Secrets</span>
+          </h3>
+          <ul id="chemistry-list" class="space-y-2 text-sm text-gray-300">
+            <li class="topic-card bg-white/5 p-3 rounded-xl" onclick="copyTopic(this)">
+              <b class="text-white">Organic Chem:</b> Isomers, Alkanes, Functional Groups.
+              <span class="text-[10px] text-brand-teal ml-2"><i class="fas fa-copy"></i> Copy</span>
+            </li>
+            <li class="topic-card bg-white/5 p-3 rounded-xl" onclick="copyTopic(this)">
+              <b class="text-white">Extraction:</b> Iron (Blast Furnace), Aluminium.
+              <span class="text-[10px] text-brand-teal ml-2"><i class="fas fa-copy"></i> Copy</span>
+            </li>
+            <li class="topic-card bg-white/5 p-3 rounded-xl" onclick="copyTopic(this)">
+              <b class="text-white">Mole Concept:</b> Titration, Molarity Calculations.
+              <span class="text-[10px] text-brand-teal ml-2"><i class="fas fa-copy"></i> Copy</span>
+            </li>
           </ul>
         </div>
 
-        <div class="glass p-4 rounded-2xl" data-aos="fade-up">
-          <h3 class="text-green-500 font-bold mb-3 flex items-center gap-2">
-            <i class="fas fa-dna"></i> BIOLOGY (Must Master)
+        <!-- Mathematics -->
+        <div class="glass p-4 md:p-5 rounded-2xl">
+          <h3 class="text-brand-teal font-bold mb-3 flex justify-between items-center cursor-pointer" onclick="toggleSection('math')">
+            <span><i class="fas fa-calculator mr-2"></i>MATHEMATICS</span>
+            <span class="text-xs bg-brand-teal/20 text-brand-teal px-2 py-1 rounded">Marks 10 Topics</span>
           </h3>
-          [attachment_0](attachment)
-          <ul class="space-y-2 text-sm text-gray-300">
-            <li class="topic-card bg-white/5 p-3 rounded-xl"><b>Classification:</b> Kingdom Animalia & Plantae traits.</li>
-            <li class="topic-card bg-white/5 p-3 rounded-xl"><b>Genetics:</b> Mendel's Laws & Inheritance (Punnett Squares).</li>
-            <li class="topic-card bg-white/5 p-3 rounded-xl"><b>Physiology:</b> Excretion, Nervous Coordination & Respiration.</li>
+          <ul id="math-list" class="space-y-2 text-sm text-gray-300">
+            <li class="topic-card bg-white/5 p-3 rounded-xl" onclick="copyTopic(this)">
+              <b class="text-white">Linear Programming:</b> Graph shading & Max Profit.
+              <span class="text-[10px] text-brand-teal ml-2"><i class="fas fa-copy"></i> Copy</span>
+            </li>
+            <li class="topic-card bg-white/5 p-3 rounded-xl" onclick="copyTopic(this)">
+              <b class="text-white">Statistics:</b> Cumulative Frequency (Ogive), Mean.
+              <span class="text-[10px] text-brand-teal ml-2"><i class="fas fa-copy"></i> Copy</span>
+            </li>
+            <li class="topic-card bg-white/5 p-3 rounded-xl" onclick="copyTopic(this)">
+              <b class="text-white">Accounts:</b> Balance Sheets, Ledgers.
+              <span class="text-[10px] text-brand-teal ml-2"><i class="fas fa-copy"></i> Copy</span>
+            </li>
           </ul>
         </div>
+      </div>
 
-        <div class="glass p-4 rounded-2xl" data-aos="fade-up">
-          <h3 class="text-brand-pink font-bold mb-3 flex items-center gap-2">
-            <i class="fas fa-flask"></i> CHEMISTRY (Top Scores)
-          </h3>
-          
-          <ul class="space-y-2 text-sm text-gray-300">
-            <li class="topic-card bg-white/5 p-3 rounded-xl"><b>Mole Concept:</b> Volumetric Analysis & Titration calculations.</li>
-            <li class="topic-card bg-white/5 p-3 rounded-xl"><b>Organic Chemistry:</b> Alkanes, Alkenes & Functional Groups.</li>
-            <li class="topic-card bg-white/5 p-3 rounded-xl"><b>Extraction of Metals:</b> Iron, Al & Copper processes.</li>
-          </ul>
-        </div>
-
-        <div class="glass p-4 rounded-2xl" data-aos="fade-up">
-          <h3 class="text-brand-teal font-bold mb-3 flex items-center gap-2">
-            <i class="fas fa-calculator"></i> MATHEMATICS (Core Topics)
-          </h3>
-          
-          <ul class="space-y-2 text-sm text-gray-300">
-            <li class="topic-card bg-white/5 p-3 rounded-xl"><b>Linear Programming:</b> Graph shading & Max profit.</li>
-            <li class="topic-card bg-white/5 p-3 rounded-xl"><b>Circle Theorems:</b> Chord and Tangent properties.</li>
-            <li class="topic-card bg-white/5 p-3 rounded-xl"><b>Statistics:</b> Cumulative Frequency (Ogive) & Mean.</li>
-          </ul>
-        </div>
+      <!-- Quick Study Tips -->
+      <div class="glass p-4 rounded-2xl mt-6 border-l-4 border-brand-teal">
+        <h4 class="font-bold text-white mb-2"><i class="fas fa-lightbulb text-yellow-400 mr-2"></i>Study Tip of the Day</h4>
+        <p class="text-sm text-gray-300" id="studyTip">Anza na mada unazozielewa vizuri, kisha endelea kwa ngumu. Pombea baada ya kila saa 45! ⏰</p>
       </div>
     </section>
 
+    <!-- AI TAB -->
     <section id="ai-tab" class="hidden p-4 md:p-6">
       <div class="glass p-5 rounded-2xl mb-4 border-l-4 border-brand-purple">
         <h3 class="text-lg font-black text-white flex items-center gap-2">
-          <i class="fas fa-robot text-brand-purple"></i>STANY AI TUTOR (2026)
+          <i class="fas fa-robot text-brand-purple"></i>STANY AI TUTOR
         </h3>
-        <p class="text-xs text-gray-400">Uliza swali lolote, nitakuelekeza STEP BY STEP kwa Kiswahili au English.</p>
+        <p class="text-xs text-gray-400 mt-1">Uliza chochote kuhusu mada za NECTA, VETA au Vyuo. Ninajibu kwa Kiswahili! 🇹🇿</p>
       </div>
+      
       <div id="ai-chat-box" class="space-y-4 mb-36 min-h-[60vh]"></div>
-      <div class="fixed bottom-20 left-0 right-0 p-4">
-        <div class="max-w-3xl mx-auto flex gap-2">
-          <input id="ai-input" type="text" placeholder="Fundisha Newton's 2nd Law hatua kwa hatua..." class="flex-1 bg-slate-900 border border-brand-purple/30 rounded-2xl py-4 px-5 text-white outline-none">
-          <button onclick="askAI()" class="w-14 h-14 bg-gradient-to-r from-brand-purple to-brand-pink rounded-2xl flex items-center justify-center shadow-lg"><i class="fas fa-paper-plane text-white"></i></button>
+      
+      <!-- AI Input -->
+      <div class="fixed bottom-20 left-0 right-0 p-4 z-30">
+        <div class="max-w-3xl mx-auto relative flex gap-2">
+          <input id="ai-input" type="text" placeholder="Uliza kuhusu Mole Concept, Newton's Laws..." 
+                 class="flex-1 bg-slate-900/80 border border-brand-purple/30 rounded-2xl py-4 px-5 outline-none focus:ring-2 ring-brand-purple text-white placeholder-gray-500"
+                 onkeypress="if(event.key==='Enter') askAI()">
+          <button onclick="askAI()" class="w-14 h-14 bg-gradient-to-r from-brand-purple to-brand-pink rounded-2xl flex items-center justify-center shadow-lg hover:shadow-brand-purple/40 transition btn-ripple">
+            <i class="fas fa-paper-plane text-white"></i>
+          </button>
         </div>
       </div>
     </section>
 
+    <!-- CHAT TAB -->
     <section id="chat-tab" class="hidden h-[85vh] flex flex-col">
-      <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-4"></div>
-      <div class="p-3 glass mb-16">
-        <div class="flex gap-2">
-          <label class="w-11 h-11 bg-slate-800 rounded-xl flex items-center justify-center cursor-pointer">
+      <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-4 pb-4"></div>
+      
+      <!-- Reply Box -->
+      <div id="reply-box" class="hidden glass mx-4 p-3 mb-2 rounded-xl text-xs flex justify-between items-center border-l-4 border-brand-pink">
+        <span id="reply-info" class="truncate">Replying...</span>
+        <button onclick="cancelReply()" class="text-gray-400 hover:text-white p-1"><i class="fas fa-times"></i></button>
+      </div>
+      
+      <!-- Chat Input -->
+      <div class="p-3 glass border-t border-brand-purple/20">
+        <div class="flex gap-2 items-center">
+          <label class="w-11 h-11 bg-slate-800 rounded-xl flex items-center justify-center cursor-pointer hover:bg-slate-700 transition" title="Attach file">
             <i class="fas fa-paperclip text-brand-purple"></i>
-            <input type="file" id="file-input" class="hidden" onchange="uploadFile()">
+            <input type="file" id="file-input" class="hidden" accept=".pdf,.jpg,.png,.doc,.docx" onchange="uploadFile()">
           </label>
-          <input id="chat-input" type="text" placeholder="Tuma PDF au Ujumbe..." class="flex-1 bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white outline-none">
-          <button onclick="sendChatMessage()" class="w-11 h-11 bg-brand-purple rounded-xl flex items-center justify-center"><i class="fas fa-paper-plane text-white"></i></button>
+          <input id="chat-input" type="text" placeholder="Tuma ujumbe au PDF..." 
+                 class="flex-1 bg-black/40 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-brand-purple text-white placeholder-gray-500"
+                 onkeypress="if(event.key==='Enter') sendChatMessage()">
+          <button onclick="sendChatMessage()" class="w-11 h-11 bg-gradient-to-r from-brand-purple to-brand-pink rounded-xl flex items-center justify-center hover:opacity-90 transition btn-ripple">
+            <i class="fas fa-paper-plane text-white text-sm"></i>
+          </button>
         </div>
       </div>
     </section>
 
-    <nav class="fixed bottom-0 left-0 right-0 h-16 glass flex justify-around items-center px-4 z-50">
-      <button onclick="switchTab('plan')" id="nav-plan" class="text-brand-purple flex flex-col items-center"><i class="fas fa-star"></i><span class="text-[9px] font-bold">Plan</span></button>
-      <button onclick="switchTab('ai')" id="nav-ai" class="text-gray-400 flex flex-col items-center"><i class="fas fa-robot"></i><span class="text-[9px] font-bold">AI</span></button>
-      <button onclick="switchTab('chat')" id="nav-chat" class="text-gray-400 flex flex-col items-center"><i class="fas fa-comments"></i><span class="text-[9px] font-bold">Chat</span></button>
+    <!-- BOTTOM NAVIGATION -->
+    <nav class="fixed bottom-0 left-0 right-0 z-40 bottom-nav safe-bottom flex justify-around items-center px-2 h-16 md:hidden">
+      <button onclick="switchTab('plan')" class="nav-btn nav-item active flex flex-col items-center justify-center gap-0.5 text-brand-purple w-full h-full" id="nav-plan" aria-label="Study Plan">
+        <i class="fas fa-star text-lg"></i><span class="text-[9px] font-bold">Plan</span>
+      </button>
+      <button onclick="switchTab('ai')" class="nav-btn nav-item flex flex-col items-center justify-center gap-0.5 text-gray-400 w-full h-full" id="nav-ai" aria-label="AI Tutor">
+        <i class="fas fa-robot text-lg"></i><span class="text-[9px] font-bold">AI</span>
+      </button>
+      <button onclick="switchTab('chat')" class="nav-btn nav-item flex flex-col items-center justify-center gap-0.5 text-gray-400 w-full h-full" id="nav-chat" aria-label="Group Chat">
+        <i class="fas fa-comments text-lg"></i><span class="text-[9px] font-bold">Chat</span>
+      </button>
+      <a href="https://wa.me/255787069580?text=Hello%20STANY%20👋%20Ninahitaji%20msaada%20kwenye%20masomo" 
+         target="_blank" rel="noopener"
+         class="flex flex-col items-center justify-center w-full h-full" aria-label="Contact via WhatsApp">
+        <div class="w-12 h-12 rounded-full bg-brand-whatsapp flex items-center justify-center -mt-7 border-4 border-[#020617] shadow-lg whatsapp-pulse">
+          <i class="fab fa-whatsapp text-xl text-white"></i>
+        </div>
+        <span class="text-[9px] font-bold mt-1 text-brand-whatsapp">WhatsApp</span>
+      </a>
     </nav>
+
+    <!-- DESKTOP WHATSAPP FLOAT -->
+    <a href="https://wa.me/255787069580?text=Hello%20STANY%20👋%20Ninahitaji%20msaada%20kwenye%20masomo" 
+       target="_blank" rel="noopener"
+       class="hidden md:flex fixed bottom-6 right-6 z-50 w-14 h-14 bg-brand-whatsapp hover:bg-brand-whatsapp/90 rounded-full items-center justify-center shadow-lg shadow-brand-whatsapp/30 hover:scale-110 transition-all whatsapp-pulse"
+       aria-label="Chat on WhatsApp">
+      <i class="fab fa-whatsapp text-white text-2xl"></i>
+    </a>
+
   </main>
 
+  <!-- FIREBASE & APP SCRIPTS -->
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
+  
   <script>
-    // --- FIREBASE CONFIG (YOURS) ---
+    // === CONFIG & INIT ===
     const firebaseConfig = {
       apiKey: "AIzaSyCJ0ZQPHOopo4pk6Eni-WqpShyQ6z_ivZk",
       authDomain: "stanytv.firebaseapp.com",
@@ -271,125 +565,521 @@
       appId: "1:898881603619:web:f3689aac0c4fc34c474996"
     };
     
-    firebase.initializeApp(firebaseConfig);
+    if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
     const db = firebase.database();
     const storage = firebase.storage();
     
     let currentUser = null;
-
-    function showToast(msg) {
-      const t = document.getElementById('toast');
-      document.getElementById('toastMessage').innerText = msg;
-      t.classList.add('show');
-      setTimeout(() => t.classList.remove('show'), 3000);
+    let replyingTo = null;
+    let isLoginMode = false;
+    
+    // === UTILITY FUNCTIONS ===
+    const $ = sel => document.querySelector(sel);
+    const $$ = sel => document.querySelectorAll(sel);
+    
+    function showToast(msg, type = 'success') {
+      const toast = $('#toast');
+      $('#toastMessage').textContent = msg;
+      toast.className = '';
+      toast.classList.add(type, 'show');
+      setTimeout(() => toast.classList.remove('show'), 3000);
     }
-
-    // --- AUTH ---
-    async function handleAuth() {
-      const email = document.getElementById('reg-email').value;
-      const pass = document.getElementById('reg-pass').value;
-      const name = document.getElementById('reg-name').value;
-      const school = document.getElementById('reg-school').value;
-      const level = document.getElementById('reg-level').value;
-
-      try {
-        const cred = await auth.signInWithEmailAndPassword(email, pass).catch(() => {
-          return auth.createUserWithEmailAndPassword(email, pass);
-        });
-        await db.ref('users/' + cred.user.uid).set({ username: name, school, level });
-        showToast("Karibu!");
-      } catch (e) { showToast("Error: " + e.message); }
-    }
-
-    auth.onAuthStateChanged(user => {
-      if(user) {
-        db.ref('users/' + user.uid).on('value', snap => {
-          currentUser = { uid: user.uid, ...snap.val() };
-          document.getElementById('auth-screen').classList.add('hidden');
-          document.getElementById('main-app').classList.remove('hidden');
-          document.getElementById('user-display').innerText = currentUser.username;
-          document.getElementById('school-display').innerText = `${currentUser.school} | ${currentUser.level}`;
-          loadChat();
-        });
+    
+    // === OFFLINE DETECTION ===
+    function updateOnlineStatus() {
+      const banner = $('#offlineBanner');
+      if (!navigator.onLine) {
+        banner.style.display = 'block';
+        showToast('Hauna intaneti. Baadhi ya vipengele vinafanya kazi offline.', 'error');
+      } else {
+        banner.style.display = 'none';
+        showToast('Umeunganishwa tena! 🎉', 'success');
       }
-      document.getElementById('loader').style.display = 'none';
+    }
+    window.addEventListener('online', updateOnlineStatus);
+    window.addEventListener('offline', updateOnlineStatus);
+    
+    // === LOADER & WELCOME ===
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const loader = $('#loader');
+        loader.style.opacity = '0';
+        loader.style.visibility = 'hidden';
+        
+        // Show welcome if user already logged in
+        if (currentUser) {
+          setTimeout(() => {
+            $('#welcomeName').textContent = currentUser.username?.split(' ')[0] || 'Mwanafunzi';
+            const welcome = $('#welcomeMsg');
+            welcome.classList.add('opacity-100');
+            setTimeout(() => welcome.classList.remove('opacity-100'), 3000);
+          }, 300);
+        }
+      }, 1800);
+      
+      // Check auth state
+      checkAuth();
+      
+      // Init AOS
+      AOS.init({ once: true, offset: 30, duration: 600, easing: 'ease-out' });
+      
+      // Initial online check
+      updateOnlineStatus();
     });
-
-    // --- AI TUTOR (STEP BY STEP) ---
-    async function askAI() {
-      const input = document.getElementById('ai-input');
-      const box = document.getElementById('ai-chat-box');
-      const q = input.value.trim();
-      if(!q) return;
-
-      box.innerHTML += `<div class="flex justify-end"><div class="bg-brand-purple p-4 rounded-2xl rounded-tr-none text-sm message-bubble">${q}</div></div>`;
-      input.value = '';
-
+    
+    // === AUTH LOGIC ===
+    function toggleAuthMode() {
+      isLoginMode = !isLoginMode;
+      const btn = document.querySelector('#auth-screen button');
+      btn.innerHTML = isLoginMode ? 
+        '<i class="fas fa-sign-in-alt mr-2"></i>INGIA SASA' : 
+        '<i class="fas fa-user-plus mr-2"></i>JISAJILI SASA';
+      showToast(isLoginMode ? 'Mode: Ingia' : 'Mode: Jisajili');
+    }
+    
+    async function handleAuth() {
+      const email = $('#reg-email').value.trim();
+      const pass = $('#reg-pass').value;
+      const name = $('#reg-name').value.trim();
+      const school = $('#reg-school').value.trim();
+      const level = $('#reg-level').value;
+      
+      if (!email || !pass || !name || !school) {
+        showToast('Jaza taarifa zote muhimu!', 'error');
+        return;
+      }
+      if (pass.length < 6) {
+        showToast('Password lazima iwe na herufi 6+', 'error');
+        return;
+      }
+      
+      const btn = document.querySelector('#auth-screen button');
+      const originalText = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Inasubiri...';
+      
       try {
-        const system = "Wewe ni STANY AI TUTOR. Fundisha mtaala wa Tanzania (NECTA/VETA/Vyuo). Jibu kwa hatua kwa hatua (Step-by-Step). Tumia lugha aliyotumia user (Kiswahili/English). Kama ni hesabu, solve hatua zote mpaka jibu.";
-        const res = await fetch(`https://text.pollinations.ai/${encodeURIComponent(q)}?system=${encodeURIComponent(system)}`);
-        const text = await res.text();
-        box.innerHTML += `<div class="flex justify-start"><div class="glass p-4 rounded-2xl rounded-tl-none text-sm message-bubble border-l-4 border-brand-teal">${text.replace(/\n/g, '<br>')}</div></div>`;
-        box.scrollTop = box.scrollHeight;
-      } catch (e) { showToast("AI Error"); }
+        if (isLoginMode) {
+          // SIGN IN
+          await auth.signInWithEmailAndPassword(email, pass);
+        } else {
+          // SIGN UP
+          const cred = await auth.createUserWithEmailAndPassword(email, pass);
+          await db.ref('users/' + cred.user.uid).set({
+            username: name, school, level, email,
+            joined: Date.now(), lastActive: Date.now()
+          });
+        }
+        showToast(isLoginMode ? 'Karibu tena! 👋' : 'Akaunti imeundwa! 🎉', 'success');
+      } catch (err) {
+        showToast('Hitilafu: ' + (err.message?.split(':')[1]?.trim() || err.message), 'error');
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+      }
     }
-
-    // --- CHAT ---
-    function sendChatMessage() {
-      const input = document.getElementById('chat-input');
-      if(!input.value) return;
-      db.ref('global_chat_2026').push({
-        uid: currentUser.uid, username: currentUser.username, school: currentUser.school,
-        text: input.value, timestamp: Date.now()
+    
+    function checkAuth() {
+      auth.onAuthStateChanged(async user => {
+        if (user) {
+          // Fetch user data
+          db.ref('users/' + user.uid).once('value').then(snap => {
+            currentUser = { uid: user.uid, ...snap.val() };
+            
+            // Update UI
+            $('#auth-screen').classList.add('hidden');
+            $('#main-app').classList.remove('hidden');
+            $('#user-display').textContent = currentUser.username;
+            $('#school-display').textContent = `${currentUser.school} | ${currentUser.level}`;
+            
+            // Load chat
+            loadChat();
+            
+            // Show welcome
+            $('#welcomeName').textContent = currentUser.username?.split(' ')[0] || 'Mwanafunzi';
+            const welcome = $('#welcomeMsg');
+            welcome.classList.add('opacity-100');
+            setTimeout(() => welcome.classList.remove('opacity-100'), 3000);
+            
+            // Update last active
+            db.ref('users/' + user.uid + '/lastActive').set(Date.now());
+          });
+        } else {
+          $('#auth-screen').classList.remove('hidden');
+          $('#main-app').classList.add('hidden');
+        }
       });
-      input.value = '';
     }
-
-    function loadChat() {
-      db.ref('global_chat_2026').limitToLast(50).on('value', snap => {
-        const box = document.getElementById('chat-messages');
-        box.innerHTML = '';
-        snap.forEach(child => {
-          const m = child.val();
-          const isMe = m.uid === currentUser.uid;
-          box.innerHTML += `
-            <div class="flex ${isMe ? 'justify-end' : 'justify-start'}">
-              <div class="${isMe ? 'bg-brand-purple/80' : 'glass'} p-3 rounded-2xl message-bubble">
-                <div class="text-[9px] font-bold text-pink-400 uppercase">${m.username}</div>
-                <div class="text-sm text-white">${m.fileUrl ? `<a href="${m.fileUrl}" target="_blank" class="text-teal-400">📄 ${m.text}</a>` : m.text}</div>
+    
+    // === TAB SWITCHING ===
+    function switchTab(tab) {
+      // Hide all tabs
+      ['plan', 'ai', 'chat'].forEach(t => {
+        $(`#${t}-tab`).classList.add('hidden');
+        $(`#nav-${t}`)?.classList.remove('active', 'text-brand-purple');
+        $(`#nav-${t}`)?.classList.add('text-gray-400');
+      });
+      
+      // Show selected tab
+      $(`#${tab}-tab`).classList.remove('hidden');
+      const navBtn = $(`#nav-${tab}`);
+      if (navBtn) {
+        navBtn.classList.remove('text-gray-400');
+        navBtn.classList.add('active', 'text-brand-purple');
+      }
+      
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    
+    // === AI TUTOR (Pollinations API) ===
+    async function askAI() {
+      const input = $('#ai-input');
+      const box = $('#ai-chat-box');
+      const question = input.value.trim();
+      
+      if (!question) {
+        showToast('Andika swali lako kwanza! 🤔', 'error');
+        return;
+      }
+      
+      // Add user message
+      box.innerHTML += `
+        <div class="flex justify-end">
+          <div class="bg-gradient-to-r from-brand-purple to-brand-pink p-4 rounded-2xl rounded-tr-none text-sm message-bubble shadow-lg">
+            ${escapeHtml(question)}
+          </div>
+        </div>
+      `;
+      input.value = '';
+      scrollToBottom(box);
+      
+      // Show typing indicator
+      const typingId = 'typing-' + Date.now();
+      box.innerHTML += `
+        <div class="flex justify-start" id="${typingId}">
+          <div class="glass p-4 rounded-2xl rounded-tl-none">
+            <div class="flex gap-1">
+              <span class="typing-dot"></span>
+              <span class="typing-dot"></span>
+              <span class="typing-dot"></span>
+            </div>
+          </div>
+        </div>
+      `;
+      scrollToBottom(box);
+      
+      try {
+        // Fetch from Pollinations AI
+        const systemPrompt = `Wewe ni STANY AI TUTOR - mwalimu wa masomo wa Tanzania. 
+        Jibu kwa Kiswahili rahisi na kina. 
+        Tumia mifano ya mitihani ya NECTA, VETA na vyuo vya Tanzania. 
+        Elezea kwa hatua kwa hatua. 
+        Kama swali linahusu hesabu, toa mfano wa nambari.
+        Weka majibu yako mafupi lakini yenye maana (max 300 words).`;
+        
+        const response = await fetch(
+          `https://text.pollinations.ai/${encodeURIComponent(question)}?model=openai&system=${encodeURIComponent(systemPrompt)}`,
+          { headers: { 'Content-Type': 'text/plain' } }
+        );
+        
+        const answer = await response.text();
+        
+        // Remove typing indicator
+        document.getElementById(typingId)?.remove();
+        
+        // Add AI response
+        box.innerHTML += `
+          <div class="flex justify-start">
+            <div class="glass p-4 rounded-2xl rounded-tl-none text-sm message-bubble border-l-4 border-brand-teal max-w-[90%]">
+              <div class="text-xs text-brand-teal font-bold mb-1"><i class="fas fa-robot mr-1"></i>STANY AI:</div>
+              ${formatAnswer(answer)}
+              <div class="mt-3 flex gap-2">
+                <button onclick="copyToClipboard(this)" class="text-[10px] text-gray-400 hover:text-brand-teal transition">
+                  <i class="fas fa-copy mr-1"></i>Copy
+                </button>
+                <button onclick="askFollowUp('${escapeHtml(question)}')" class="text-[10px] text-gray-400 hover:text-brand-purple transition">
+                  <i class="fas fa-redo mr-1"></i>Follow-up
+                </button>
               </div>
             </div>
-          `;
-        });
-        box.scrollTop = box.scrollHeight;
+          </div>
+        `;
+        scrollToBottom(box);
+        
+      } catch (err) {
+        document.getElementById(typingId)?.remove();
+        box.innerHTML += `
+          <div class="flex justify-start">
+            <div class="glass p-4 rounded-2xl rounded-tl-none text-sm message-bubble border-l-4 border-red-500 bg-red-500/10">
+              <span class="text-red-400"><i class="fas fa-exclamation-triangle mr-1"></i>Hitilafu ya kuunganisha AI.</span>
+              <br><span class="text-xs text-gray-400">Jaribu tena au angalia intaneti yako.</span>
+            </div>
+          </div>
+        `;
+        showToast('AI haipatikani kwa sasa', 'error');
+      }
+    }
+    
+    function formatAnswer(text) {
+      // Basic formatting: bold **, bullet points -, code ` `
+      return text
+        .replace(/\*\*(.*?)\*\*/g, '<b class="text-white">$1</b>')
+        .replace(/\n-\s/g, '<br>• ')
+        .replace(/`(.*?)`/g, '<code class="bg-black/30 px-1 rounded">$1</code>')
+        .replace(/\n/g, '<br>');
+    }
+    
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+    
+    function scrollToBottom(el) {
+      setTimeout(() => el.scrollTop = el.scrollHeight, 100);
+    }
+    
+    function askFollowUp(originalQ) {
+      $('#ai-input').value = `Elezea zaidi kuhusu: ${originalQ}`;
+      $('#ai-input').focus();
+      switchTab('ai');
+    }
+    
+    // === CHAT FUNCTIONS ===
+    function sendChatMessage(customText = null, fileUrl = null) {
+      const input = $('#chat-input');
+      const text = customText || input.value.trim();
+      
+      if (!text && !fileUrl) {
+        showToast('Andika ujumbe au chagua faili', 'error');
+        return;
+      }
+      
+      const message = {
+        uid: currentUser.uid,
+        username: currentUser.username,
+        school: currentUser.school,
+        level: currentUser.level,
+        text: text,
+        fileUrl: fileUrl,
+        replyTo: replyingTo,
+        timestamp: Date.now()
+      };
+      
+      db.ref('global_chat_2026').push(message).then(() => {
+        input.value = '';
+        cancelReply();
+        showToast('Ujumbe umetumwa! ✓', 'success');
+      }).catch(err => {
+        showToast('Hitilafu kutuma: ' + err.message, 'error');
       });
     }
-
+    
+    function loadChat() {
+      db.ref('global_chat_2026').limitToLast(50).on('child_added', snap => {
+        const m = snap.val();
+        const isMe = m.uid === currentUser?.uid;
+        const box = $('#chat-messages');
+        
+        const replyHtml = m.replyTo ? 
+          `<div class="text-[9px] opacity-40 border-l-2 border-brand-purple pl-2 mb-1">
+            ↩ Replying to: ${escapeHtml(m.replyTo.text?.substring(0, 30) || '...')}
+          </div>` : '';
+        
+        const fileHtml = m.fileUrl ? 
+          `<a href="${m.fileUrl}" target="_blank" class="inline-flex items-center gap-1 text-brand-teal hover:underline font-medium mt-2">
+            <i class="fas fa-file-alt"></i> ${escapeHtml(m.text?.replace('[FILE] ', '') || 'Download')}
+          </a>` : '';
+        
+        const messageHtml = `
+          <div class="flex ${isMe ? 'justify-end' : 'justify-start'}">
+            <div class="${isMe ? 'bg-brand-purple/80' : 'glass'} p-3 rounded-2xl ${isMe ? 'rounded-tr-none' : 'rounded-tl-none'} message-bubble max-w-[85%]">
+              ${replyHtml}
+              <div class="text-[9px] font-bold ${isMe ? 'text-purple-200' : 'text-brand-pink'} uppercase tracking-wide mb-1">
+                ${escapeHtml(m.username)} <span class="opacity-60">@ ${escapeHtml(m.school)}</span>
+              </div>
+              <div class="text-sm ${isMe ? 'text-white' : 'text-gray-200'}">
+                ${fileHtml || escapeHtml(m.text)}
+              </div>
+              <div class="flex justify-between items-center mt-2">
+                <span class="text-[8px] opacity-40">${formatTime(m.timestamp)}</span>
+                ${!isMe ? `<button onclick="setupReply('${escapeHtml(m.username)}', '${escapeHtml(m.text)}')" class="text-[8px] opacity-40 hover:opacity-100 transition">↩ Reply</button>` : ''}
+              </div>
+            </div>
+          </div>
+        `;
+        
+        box.insertAdjacentHTML('beforeend', messageHtml);
+        scrollToBottom(box);
+      });
+    }
+    
+    function formatTime(timestamp) {
+      const date = new Date(timestamp);
+      return date.toLocaleTimeString('sw-TZ', { hour: '2-digit', minute: '2-digit' });
+    }
+    
+    // === FILE UPLOAD ===
     async function uploadFile() {
-      const file = document.getElementById('file-input').files[0];
-      if(!file) return;
-      showToast("Inapakia...");
-      const ref = storage.ref(`papers_2026/${Date.now()}_${file.name}`);
-      await ref.put(file);
-      const url = await ref.getDownloadURL();
-      db.ref('global_chat_2026').push({
-        uid: currentUser.uid, username: currentUser.username, school: currentUser.school,
-        text: file.name, fileUrl: url, timestamp: Date.now()
+      const file = $('#file-input').files[0];
+      if (!file) return;
+      
+      // Validate file
+      const validTypes = ['application/pdf', 'image/jpeg', 'image/png', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+      if (!validTypes.includes(file.type)) {
+        showToast('Aina ya faili hairuhusiwi. Tumia PDF, JPG, PNG au DOC.', 'error');
+        return;
+      }
+      if (file.size > 10 * 1024 * 1024) { // 10MB
+        showToast('Faili ni kubwa sana. Chini ya 10MB tafadhali.', 'error');
+        return;
+      }
+      
+      showToast('Inapakia faili... 📤', 'success');
+      
+      try {
+        const ref = storage.ref(`past_papers/${currentUser.uid}/${Date.now()}_${file.name.replace(/\s/g, '_')}`);
+        const snapshot = await ref.put(file);
+        const url = await snapshot.ref.getDownloadURL();
+        
+        sendChatMessage(`[FILE] ${file.name}`, url);
+        showToast('Faili imetumwa! ✓', 'success');
+      } catch (err) {
+        showToast('Hitilafu kupakia: ' + err.message, 'error');
+      }
+      
+      // Reset input
+      $('#file-input').value = '';
+    }
+    
+    // === REPLY SYSTEM ===
+    function setupReply(name, text) {
+      replyingTo = { name, text };
+      $('#reply-box').classList.remove('hidden');
+      $('#reply-info').textContent = `↩ Kujibu ${name}: "${text.substring(0, 25)}..."`;
+      $('#chat-input').focus();
+    }
+    
+    function cancelReply() {
+      replyingTo = null;
+      $('#reply-box').classList.add('hidden');
+    }
+    
+    // === TOPIC INTERACTIONS ===
+    function copyTopic(el) {
+      const text = el.textContent.replace('Copy', '').trim();
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('Mada imecopy! 📋', 'success');
+        el.classList.add('active');
+        setTimeout(() => el.classList.remove('active'), 1000);
       });
     }
-
-    function switchTab(tab) {
-      ['plan', 'ai', 'chat'].forEach(t => {
-        document.getElementById(`${t}-tab`).classList.add('hidden');
-        document.getElementById(`nav-${t}`).classList.replace('text-brand-purple', 'text-gray-400');
-      });
-      document.getElementById(`${tab}-tab`).classList.remove('hidden');
-      document.getElementById(`nav-${tab}`).classList.replace('text-gray-400', 'text-brand-purple');
+    
+    function toggleSection(id) {
+      const list = document.getElementById(`${id}-list`);
+      if (list.style.display === 'none') {
+        list.style.display = 'block';
+        showToast('Mada zimeonyeshwa ✓');
+      } else {
+        list.style.display = 'none';
+        showToast('Mada zimefichwa');
+      }
     }
-
-    function logout() { auth.signOut(); location.reload(); }
-    AOS.init();
+    
+    // === COPY TO CLIPBOARD ===
+    function copyToClipboard(btn) {
+      const text = btn.closest('.message-bubble').textContent.replace('CopyFollow-up', '').trim();
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('Maelezo yamecopy! 📋', 'success');
+        btn.innerHTML = '<i class="fas fa-check mr-1"></i>Copied!';
+        setTimeout(() => btn.innerHTML = '<i class="fas fa-copy mr-1"></i>Copy', 2000);
+      });
+    }
+    
+    // === QUICK ACTIONS ===
+    function showQuickActions() {
+      const actions = [
+        { icon: 'fa-robot', text: 'Uliza AI', action: () => switchTab('ai') },
+        { icon: 'fa-file-pdf', text: 'Past Papers', action: () => showToast('Feature inakuja soon! 🚀') },
+        { icon: 'fa-calendar-check', text: 'Study Schedule', action: () => showToast('Feature inakuja soon! 🚀') },
+        { icon: 'fa-users', text: 'Study Group', action: () => switchTab('chat') }
+      ];
+      
+      // Simple alert for now (could be modal)
+      const choice = prompt("Chagua action:\n1. Uliza AI\n2. Past Papers\n3. Study Schedule\n4. Study Group\n\nAndika namba (1-4):");
+      if (choice && actions[choice-1]) {
+        actions[choice-1].action();
+      }
+    }
+    
+    // === LOGOUT ===
+    function logout() {
+      if (confirm('Je, una uhakika unataka kutoka?')) {
+        auth.signOut().then(() => {
+          showToast('Umetoka kwa mafanikio! 👋', 'success');
+          location.reload();
+        });
+      }
+    }
+    
+    // === PROGRESS BAR ===
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      $('#progressBar').style.width = `${scrolled}%`;
+    }, { passive: true });
+    
+    // === STUDY TIP ROTATOR ===
+    const studyTips = [
+      "Anza na mada unazozielewa vizuri, kisha endelea kwa ngumu. Pombea baada ya kila saa 45! ⏰",
+      "Fanya mazoezi ya mitihani ya zamani. NECTA inarudia maswali! 📝",
+      "Jifunze na marafiki. Kufundisha ndio njia bora ya kukumbuka! 👥",
+      "Lala mapema usiku wa mtihani. Ubongo unahitaji kupumzika! 😴",
+      "Tumia mnemonic na vitendawili kukumbuka dhana ngumu. 🧠"
+    ];
+    
+    // Change tip every 30 seconds
+    setInterval(() => {
+      const tipEl = $('#studyTip');
+      if (tipEl) {
+        tipEl.style.opacity = '0';
+        setTimeout(() => {
+          tipEl.textContent = studyTips[Math.floor(Math.random() * studyTips.length)];
+          tipEl.style.opacity = '1';
+        }, 300);
+      }
+    }, 30000);
+    
+    // === SECURITY: Disable Right Click on Content ===
+    document.addEventListener('contextmenu', e => {
+      // Allow on inputs/textarea
+      if (!['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName)) {
+        e.preventDefault();
+      }
+    });
+    
+    // === PWA: Service Worker Registration (for production) ===
+    if ('serviceWorker' in navigator && location.protocol === 'https:') {
+      // Uncomment when you have sw.js
+      // navigator.serviceWorker.register('/sw.js').catch(console.error);
+    }
+    
+    // === KEYBOARD SHORTCUTS ===
+    document.addEventListener('keydown', e => {
+      // Ctrl/Cmd + K: Focus AI input
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        switchTab('ai');
+        $('#ai-input')?.focus();
+      }
+      // Escape: Cancel reply
+      if (e.key === 'Escape') {
+        cancelReply();
+      }
+    });
   </script>
 </body>
 </html>
+
