@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="STANY TZ">
@@ -43,7 +43,11 @@
       --card-bg: rgba(20, 20, 30, 0.7);
     }
 
-    html, body {
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
       width: 100%;
       min-height: 100vh;
       background: var(--bg);
@@ -100,7 +104,7 @@
       to { transform: translate(50px, 50px); }
     }
 
-    /* Canvas for particles */
+    /* Particles canvas */
     #canvas {
       position: fixed;
       top: 0;
@@ -119,6 +123,63 @@
       padding: 20px;
       max-width: 1200px;
       margin: 0 auto;
+    }
+
+    /* Navigation */
+    .nav-bar {
+      position: sticky;
+      top: 10px;
+      z-index: 100;
+      background: var(--card-bg);
+      backdrop-filter: var(--glass);
+      -webkit-backdrop-filter: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 60px;
+      padding: 10px 20px;
+      margin-bottom: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      box-shadow: var(--shadow);
+    }
+
+    .nav-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 40px;
+      background: rgba(0, 207, 255, 0.05);
+      border: 1px solid rgba(0, 207, 255, 0.1);
+      color: var(--text-muted);
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .nav-item i {
+      font-size: 16px;
+      color: var(--neon2);
+    }
+
+    .nav-item:hover {
+      background: rgba(0, 207, 255, 0.15);
+      border-color: var(--neon2);
+      color: var(--text);
+      transform: translateY(-2px);
+    }
+
+    .nav-item.active {
+      background: rgba(0, 255, 136, 0.15);
+      border-color: var(--neon);
+      color: var(--neon);
+    }
+
+    .nav-item.active i {
+      color: var(--neon);
     }
 
     /* Header */
@@ -182,16 +243,17 @@
       margin: 20px auto 0;
     }
 
-    /* Section styling */
+    /* Section */
     .section {
-      margin-bottom: 50px;
+      scroll-margin-top: 80px;
+      margin-bottom: 40px;
       animation: fadeUp 0.6s ease 0.1s both;
     }
 
     .section-title {
       font-size: 2rem;
       font-weight: 700;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
       display: flex;
       align-items: center;
       gap: 10px;
@@ -220,8 +282,18 @@
       gap: 20px;
     }
 
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    @media (max-width: 992px) {
+      .grid-4 { grid-template-columns: repeat(2, 1fr); }
+    }
+
     @media (max-width: 768px) {
-      .grid-2, .grid-3 {
+      .grid-2, .grid-3, .grid-4 {
         grid-template-columns: 1fr;
       }
     }
@@ -266,7 +338,7 @@
       display: flex;
       align-items: center;
       gap: 15px;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
 
     .card-icon {
@@ -289,11 +361,11 @@
 
     .card p {
       color: var(--text-muted);
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       font-size: 0.95rem;
     }
 
-    .card .badge-sm {
+    .badge-sm {
       display: inline-block;
       padding: 4px 12px;
       background: rgba(0, 207, 255, 0.1);
@@ -317,6 +389,7 @@
       overflow-x: auto;
       white-space: pre-wrap;
       word-break: break-word;
+      position: relative;
     }
 
     .code-block code {
@@ -386,35 +459,6 @@
       text-decoration: underline;
     }
 
-    /* Environment Variables Section */
-    .env-table {
-      background: rgba(0, 0, 0, 0.3);
-      border-radius: 16px;
-      padding: 20px;
-      border: 1px solid var(--border);
-    }
-
-    .env-row {
-      display: flex;
-      padding: 12px 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .env-row:last-child {
-      border-bottom: none;
-    }
-
-    .env-key {
-      width: 30%;
-      font-weight: 700;
-      color: var(--neon);
-    }
-
-    .env-desc {
-      width: 70%;
-      color: var(--text-muted);
-    }
-
     /* Footer */
     .footer {
       margin-top: 60px;
@@ -460,54 +504,58 @@
       color: var(--neon2);
     }
 
+    /* Back to top */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--card-bg);
+      backdrop-filter: var(--glass);
+      border: 1px solid var(--neon);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--neon);
+      font-size: 20px;
+      text-decoration: none;
+      transition: 0.3s;
+      z-index: 99;
+      opacity: 0.8;
+    }
+
+    .back-to-top:hover {
+      opacity: 1;
+      transform: scale(1.1);
+      background: var(--surface-hover);
+    }
+
     @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     /* Responsive */
     @media (max-width: 480px) {
-      .container {
-        padding: 16px;
-      }
-      
-      .section-title {
-        font-size: 1.6rem;
-      }
-      
-      .card {
-        padding: 18px;
-      }
-      
-      .env-row {
-        flex-direction: column;
-        gap: 5px;
-      }
-      
-      .env-key, .env-desc {
-        width: 100%;
-      }
+      .container { padding: 16px; }
+      .section-title { font-size: 1.6rem; }
+      .card { padding: 18px; }
+      .nav-bar { border-radius: 30px; padding: 8px 12px; }
+      .nav-item { padding: 6px 12px; font-size: 12px; }
+      .back-to-top { bottom: 20px; right: 20px; }
+    }
+
+    /* iOS tap highlight */
+    a, button {
+      -webkit-tap-highlight-color: transparent;
     }
 
     /* Custom scrollbar */
-    ::-webkit-scrollbar {
-      width: 6px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: rgba(0, 207, 255, 0.3);
-      border-radius: 3px;
-    }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(0, 207, 255, 0.3); border-radius: 3px; }
   </style>
 </head>
 <body>
@@ -517,6 +565,22 @@
   
   <!-- Particles canvas -->
   <canvas id="canvas"></canvas>
+
+  <!-- Sticky Navigation -->
+  <div class="nav-bar">
+    <a href="#prerequisites" class="nav-item"><i class="fa-solid fa-clipboard-list"></i><span class="nav-text">Prerequisites</span></a>
+    <a href="#session" class="nav-item"><i class="fa-solid fa-key"></i><span class="nav-text">Session</span></a>
+    <a href="#termux" class="nav-item"><i class="fa-brands fa-android"></i><span class="nav-text">Termux</span></a>
+    <a href="#vps" class="nav-item"><i class="fa-brands fa-linux"></i><span class="nav-text">VPS</span></a>
+    <a href="#heroku" class="nav-item"><i class="fa-brands fa-connectdevelop"></i><span class="nav-text">Heroku</span></a>
+    <a href="#render" class="nav-item"><i class="fa-solid fa-dharmachakra"></i><span class="nav-text">Render</span></a>
+    <a href="#railway" class="nav-item"><i class="fa-solid fa-train"></i><span class="nav-text">Railway</span></a>
+    <a href="#koyeb" class="nav-item"><i class="fa-solid fa-globe"></i><span class="nav-text">Koyeb</span></a>
+    <a href="#fly" class="nav-item"><i class="fa-brands fa-fly"></i><span class="nav-text">Fly.io</span></a>
+    <a href="#replit" class="nav-item"><i class="fa-solid fa-code"></i><span class="nav-text">Replit</span></a>
+    <a href="#docker" class="nav-item"><i class="fa-brands fa-docker"></i><span class="nav-text">Docker</span></a>
+    <a href="#windows" class="nav-item"><i class="fa-brands fa-windows"></i><span class="nav-text">WSL</span></a>
+  </div>
 
   <div class="container">
     <!-- Header -->
@@ -530,8 +594,36 @@
       <div class="subtitle">Step-by-step instructions to deploy iamlegendv2 WhatsApp bot on all major platforms</div>
     </div>
 
+    <!-- Quick links grid -->
+    <div class="grid-4" style="margin-bottom: 30px;">
+      <a href="https://github.com/Stanytz378/iamlegendv2/fork" target="_blank" class="card" style="text-decoration: none;">
+        <div style="text-align: center;">
+          <i class="fa-brands fa-github" style="font-size: 40px; color: var(--neon2); margin-bottom: 10px;"></i>
+          <h4>Fork Repo</h4>
+        </div>
+      </a>
+      <a href="https://sessionspair.onrender.com" target="_blank" class="card" style="text-decoration: none;">
+        <div style="text-align: center;">
+          <i class="fa-solid fa-key" style="font-size: 40px; color: var(--neon); margin-bottom: 10px;"></i>
+          <h4>Session ID</h4>
+        </div>
+      </a>
+      <a href="https://whatsapp.com/channel/0029Vb7fzu4EwEjmsD4Tzs1p" target="_blank" class="card" style="text-decoration: none;">
+        <div style="text-align: center;">
+          <i class="fa-brands fa-whatsapp" style="font-size: 40px; color: #25d366; margin-bottom: 10px;"></i>
+          <h4>Join Channel</h4>
+        </div>
+      </a>
+      <a href="https://chat.whatsapp.com/J19JASXoaK0GVSoRvShr4Y" target="_blank" class="card" style="text-decoration: none;">
+        <div style="text-align: center;">
+          <i class="fa-solid fa-users" style="font-size: 40px; color: #00acee; margin-bottom: 10px;"></i>
+          <h4>Support Group</h4>
+        </div>
+      </a>
+    </div>
+
     <!-- Prerequisites Section -->
-    <div class="section">
+    <section id="prerequisites" class="section">
       <h2 class="section-title"><i class="fa-solid fa-clipboard-list"></i> Prerequisites</h2>
       <div class="card">
         <div class="card-header">
@@ -539,31 +631,19 @@
           <h3>Before You Begin</h3>
         </div>
         <ul class="step-list">
-          <li>
-            <span class="step-number">1</span>
-            <span class="step-text"><strong>GitHub Account:</strong> <a href="https://github.com" target="_blank" class="link">Create one</a> if you don't have it</span>
-          </li>
-          <li>
-            <span class="step-number">2</span>
-            <span class="step-text"><strong>WhatsApp Number:</strong> A dedicated phone number (not your personal one)</span>
-          </li>
-          <li>
-            <span class="step-number">3</span>
-            <span class="step-text"><strong>Fork the Repository:</strong> <a href="https://github.com/Stanytz378/iamlegendv2/fork" target="_blank" class="link">Click here to fork iamlegendv2</a></span>
-          </li>
-          <li>
-            <span class="step-number">4</span>
-            <span class="step-text"><strong>Get Session ID:</strong> Visit <a href="https://sessionspair.onrender.com" target="_blank" class="link">Session Generator</a> and get your SESSION_ID</span>
-          </li>
+          <li><span class="step-number">1</span> <span class="step-text"><strong>GitHub Account:</strong> <a href="https://github.com" target="_blank" class="link">Create one</a></span></li>
+          <li><span class="step-number">2</span> <span class="step-text"><strong>WhatsApp Number:</strong> A dedicated number (not personal)</span></li>
+          <li><span class="step-number">3</span> <span class="step-text"><strong>Fork Repository:</strong> <a href="https://github.com/Stanytz378/iamlegendv2/fork" target="_blank" class="link">Click here to fork</a></span></li>
+          <li><span class="step-number">4</span> <span class="step-text"><strong>Get Session ID:</strong> Visit <a href="https://sessionspair.onrender.com" target="_blank" class="link">Session Generator</a></span></li>
         </ul>
         <div class="code-block">
           <code>SESSION_ID example: Stanytz378/iamlegendv2_abc123</code>
         </div>
       </div>
-    </div>
+    </section>
 
     <!-- Session Generator Card -->
-    <div class="section">
+    <section id="session" class="section">
       <h2 class="section-title"><i class="fa-solid fa-key"></i> Session Generator</h2>
       <div class="grid-2">
         <div class="card">
@@ -583,362 +663,240 @@
           <a href="https://sessionspair.onrender.com/pair" target="_blank" class="link">Open Pairing Generator →</a>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- Environment Variables -->
-    <div class="section">
+    <!-- Environment Variables (Quick Reference) -->
+    <section class="section">
       <h2 class="section-title"><i class="fa-solid fa-gear"></i> Environment Variables</h2>
       <div class="card">
-        <p style="margin-bottom: 20px;">These are the essential variables you need to set in your `.env` file or platform dashboard:</p>
-        <div class="env-table">
-          <div class="env-row">
-            <div class="env-key">SESSION_ID</div>
-            <div class="env-desc">Your session ID from the generator (required)</div>
-          </div>
-          <div class="env-row">
-            <div class="env-key">OWNER_NUMBER</div>
-            <div class="env-desc">Your WhatsApp number (e.g., 255618558502) – no + sign</div>
-          </div>
-          <div class="env-row">
-            <div class="env-key">BOT_NAME</div>
-            <div class="env-desc">Your bot's display name (default: iamlegendv2)</div>
-          </div>
-          <div class="env-row">
-            <div class="env-key">PREFIXES</div>
-            <div class="env-desc">Command prefixes (default: .,!,/)</div>
-          </div>
-          <div class="env-row">
-            <div class="env-key">COMMAND_MODE</div>
-            <div class="env-desc">public or private (default: public)</div>
-          </div>
-          <div class="env-row">
-            <div class="env-key">TIMEZONE</div>
-            <div class="env-desc">Your timezone (default: Africa/Nairobi)</div>
-          </div>
+        <p style="margin-bottom: 20px;">Set these in your `.env` or platform dashboard:</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+          <div><span style="color: var(--neon);">SESSION_ID</span> <span style="color: var(--text-muted);">(required)</span></div>
+          <div><span style="color: var(--neon2);">OWNER_NUMBER</span> <span style="color: var(--text-muted);">(required)</span></div>
+          <div><span style="color: #fff;">BOT_NAME</span> <span style="color: var(--text-muted);">(optional)</span></div>
+          <div><span style="color: #fff;">PREFIXES</span> <span style="color: var(--text-muted);">(default: .,!,/)</span></div>
+          <div><span style="color: #fff;">COMMAND_MODE</span> <span style="color: var(--text-muted);">(public/private)</span></div>
+          <div><span style="color: #fff;">TIMEZONE</span> <span style="color: var(--text-muted);">(e.g., Africa/Nairobi)</span></div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- Termux Deployment -->
-    <div class="section">
+    <!-- Deployment Methods (each as a section with id) -->
+    <section id="termux" class="section">
       <h2 class="section-title"><i class="fa-brands fa-android"></i> Termux (Android)</h2>
       <div class="card">
-        <div class="badge-sm"><i class="fa-regular fa-clock"></i> 5 minutes</div>
-        <p>Run the bot directly on your Android phone. Copy and paste these commands one by one:</p>
+        <div class="badge-sm"><i class="fa-regular fa-clock"></i> 5 min</div>
         <div class="code-block">
-          <code>pkg update && pkg upgrade -y</code><br>
-          <code>pkg install git nodejs ffmpeg libvips -y</code><br>
-          <code>git clone https://github.com/YOUR_USERNAME/iamlegendv2.git</code><br>
-          <code>cd iamlegendv2</code><br>
-          <code>npm install</code><br>
-          <code>cp sample.env .env</code><br>
-          <code>nano .env   # Paste your SESSION_ID and OWNER_NUMBER here</code><br>
-          <code>npm start</code>
+          pkg update && pkg upgrade -y<br>
+          pkg install git nodejs ffmpeg libvips -y<br>
+          git clone https://github.com/YOUR_USERNAME/iamlegendv2.git<br>
+          cd iamlegendv2<br>
+          npm install<br>
+          cp sample.env .env<br>
+          nano .env   # Paste SESSION_ID & OWNER_NUMBER<br>
+          npm start
         </div>
-        <p><strong>To keep bot running after closing Termux:</strong></p>
+        <p><strong>Keep running after closing:</strong> install tmux</p>
         <div class="code-block">
-          <code>pkg install tmux</code><br>
-          <code>tmux new -s bot</code><br>
-          <code>npm start</code><br>
-          <code># Press Ctrl+B then D to detach</code>
+          pkg install tmux<br>
+          tmux new -s bot<br>
+          npm start   # Ctrl+B then D to detach
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- VPS / Linux Server -->
-    <div class="section">
+    <section id="vps" class="section">
       <h2 class="section-title"><i class="fa-brands fa-linux"></i> VPS / Linux Server</h2>
       <div class="card">
-        <div class="badge-sm"><i class="fa-regular fa-clock"></i> 5-7 minutes</div>
-        <p>For Ubuntu/Debian servers – recommended for 24/7 operation:</p>
+        <div class="badge-sm"><i class="fa-regular fa-clock"></i> 5-7 min</div>
         <div class="code-block">
-          <code>curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -</code><br>
-          <code>sudo apt install -y nodejs git ffmpeg libvips-dev libwebp-dev</code><br>
-          <code>git clone https://github.com/YOUR_USERNAME/iamlegendv2.git</code><br>
-          <code>cd iamlegendv2</code><br>
-          <code>npm install</code><br>
-          <code>cp sample.env .env</code><br>
-          <code>nano .env   # Add your SESSION_ID and OWNER_NUMBER</code><br>
-          <code>npm install -g pm2</code><br>
-          <code>pm2 start index.js --name iamlegendv2</code><br>
-          <code>pm2 save && pm2 startup</code>
+          curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -<br>
+          sudo apt install -y nodejs git ffmpeg libvips-dev libwebp-dev<br>
+          git clone https://github.com/YOUR_USERNAME/iamlegendv2.git<br>
+          cd iamlegendv2<br>
+          npm install<br>
+          cp sample.env .env<br>
+          nano .env   # Add SESSION_ID & OWNER_NUMBER<br>
+          npm install -g pm2<br>
+          pm2 start index.js --name iamlegendv2<br>
+          pm2 save && pm2 startup
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- Heroku Deployment -->
-    <div class="section">
+    <section id="heroku" class="section">
       <h2 class="section-title"><i class="fa-brands fa-connectdevelop"></i> Heroku</h2>
       <div class="card">
-        <div class="badge-sm"><i class="fa-regular fa-clock"></i> 2 minutes</div>
-        <p>One-click deploy with automatic Docker build:</p>
-        <a href="https://heroku.com/deploy?template=https://github.com/Stanytz378/iamlegendv2" target="_blank" style="display: inline-block; margin-bottom: 20px;">
+        <a href="https://heroku.com/deploy?template=https://github.com/Stanytz378/iamlegendv2" target="_blank" style="display: inline-block; margin-bottom: 15px;">
           <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy to Heroku" height="40">
         </a>
-        <p><strong>After clicking the button:</strong></p>
-        <ul class="step-list">
-          <li><span class="step-number">1</span> <span class="step-text">Enter your app name</span></li>
-          <li><span class="step-number">2</span> <span class="step-text">Add these environment variables:</span></li>
-        </ul>
+        <p>After clicking, set these config vars:</p>
         <div class="code-block">
-          <code>SESSION_ID=Stanytz378/iamlegendv2_abc123</code><br>
-          <code>OWNER_NUMBER=255618558502</code>
+          SESSION_ID=Stanytz378/iamlegendv2_abc123<br>
+          OWNER_NUMBER=255618558502
         </div>
-        <p><span class="step-number">3</span> Click "Deploy" and wait for completion.</p>
+        <p>Then click Deploy.</p>
       </div>
-    </div>
+    </section>
 
-    <!-- Render Deployment -->
-    <div class="section">
+    <section id="render" class="section">
       <h2 class="section-title"><i class="fa-solid fa-dharmachakra"></i> Render</h2>
       <div class="card">
-        <div class="badge-sm"><i class="fa-regular fa-clock"></i> 3 minutes</div>
-        <a href="https://render.com/deploy?repo=https://github.com/Stanytz378/iamlegendv2" target="_blank" style="display: inline-block; margin-bottom: 20px;">
+        <a href="https://render.com/deploy?repo=https://github.com/Stanytz378/iamlegendv2" target="_blank" style="display: inline-block; margin-bottom: 15px;">
           <img src="https://render.com/images/deploy-to-render-button.svg" alt="Deploy to Render" height="40">
         </a>
-        <p><strong>Steps:</strong></p>
-        <ul class="step-list">
-          <li><span class="step-number">1</span> <span class="step-text">Click the button above</span></li>
-          <li><span class="step-number">2</span> <span class="step-text">Connect your GitHub account and select your forked repo</span></li>
-          <li><span class="step-number">3</span> <span class="step-text">In the Environment Variables section, add:</span></li>
-        </ul>
+        <p>Add environment variables in the Render dashboard:</p>
         <div class="code-block">
-          <code>SESSION_ID=Stanytz378/iamlegendv2_abc123</code><br>
-          <code>OWNER_NUMBER=255618558502</code>
+          SESSION_ID=Stanytz378/iamlegendv2_abc123<br>
+          OWNER_NUMBER=255618558502
         </div>
-        <p><span class="step-number">4</span> Click "Create Web Service"</p>
       </div>
-    </div>
+    </section>
 
-    <!-- Railway Deployment -->
-    <div class="section">
+    <section id="railway" class="section">
       <h2 class="section-title"><i class="fa-solid fa-train"></i> Railway</h2>
       <div class="card">
-        <div class="badge-sm"><i class="fa-regular fa-clock"></i> 2 minutes</div>
-        <a href="https://railway.app/new/template?template=https://github.com/Stanytz378/iamlegendv2" target="_blank" style="display: inline-block; margin-bottom: 20px;">
+        <a href="https://railway.app/new/template?template=https://github.com/Stanytz378/iamlegendv2" target="_blank" style="display: inline-block; margin-bottom: 15px;">
           <img src="https://railway.app/button.svg" alt="Deploy to Railway" height="40">
         </a>
-        <p><strong>Steps:</strong></p>
-        <ul class="step-list">
-          <li><span class="step-number">1</span> <span class="step-text">Click the button above</span></li>
-          <li><span class="step-number">2</span> <span class="step-text">Select your GitHub repo</span></li>
-          <li><span class="step-number">3</span> <span class="step-text">Go to the Variables tab and add:</span></li>
-        </ul>
+        <p>In Variables tab, add:</p>
         <div class="code-block">
-          <code>SESSION_ID=Stanytz378/iamlegendv2_abc123</code><br>
-          <code>OWNER_NUMBER=255618558502</code>
+          SESSION_ID=Stanytz378/iamlegendv2_abc123<br>
+          OWNER_NUMBER=255618558502
         </div>
-        <p><span class="step-number">4</span> Click "Deploy"</p>
       </div>
-    </div>
+    </section>
 
-    <!-- Koyeb Deployment -->
-    <div class="section">
+    <section id="koyeb" class="section">
       <h2 class="section-title"><i class="fa-solid fa-globe"></i> Koyeb</h2>
       <div class="card">
-        <div class="badge-sm"><i class="fa-regular fa-clock"></i> 3 minutes</div>
-        <a href="https://app.koyeb.com/deploy?type=git&repository=github.com/Stanytz378/iamlegendv2" target="_blank" style="display: inline-block; margin-bottom: 20px;">
+        <a href="https://app.koyeb.com/deploy?type=git&repository=github.com/Stanytz378/iamlegendv2" target="_blank" style="display: inline-block; margin-bottom: 15px;">
           <img src="https://www.koyeb.com/static/images/deploy/button.svg" alt="Deploy to Koyeb" height="40">
         </a>
-        <p><strong>Steps:</strong></p>
-        <ul class="step-list">
-          <li><span class="step-number">1</span> <span class="step-text">Click the button</span></li>
-          <li><span class="step-number">2</span> <span class="step-text">Select your GitHub repository</span></li>
-          <li><span class="step-number">3</span> <span class="step-text">Add environment variables:</span></li>
-        </ul>
+        <p>Add environment variables:</p>
         <div class="code-block">
-          <code>SESSION_ID=Stanytz378/iamlegendv2_abc123</code><br>
-          <code>OWNER_NUMBER=255618558502</code>
+          SESSION_ID=Stanytz378/iamlegendv2_abc123<br>
+          OWNER_NUMBER=255618558502
         </div>
-        <p><span class="step-number">4</span> Click "Deploy"</p>
       </div>
-    </div>
+    </section>
 
-    <!-- Fly.io Deployment -->
-    <div class="section">
+    <section id="fly" class="section">
       <h2 class="section-title"><i class="fa-brands fa-fly"></i> Fly.io</h2>
       <div class="card">
-        <div class="badge-sm"><i class="fa-regular fa-clock"></i> 4 minutes</div>
-        <a href="https://fly.io/launch?repo=https://github.com/Stanytz378/iamlegendv2" target="_blank" style="display: inline-block; margin-bottom: 20px;">
+        <a href="https://fly.io/launch?repo=https://github.com/Stanytz378/iamlegendv2" target="_blank" style="display: inline-block; margin-bottom: 15px;">
           <img src="https://fly.io/button.svg" alt="Deploy to Fly.io" height="40">
         </a>
-        <p><strong>Steps:</strong></p>
-        <ul class="step-list">
-          <li><span class="step-number">1</span> <span class="step-text">Install Fly CLI: <code>curl -L https://fly.io/install.sh | sh</code></span></li>
-          <li><span class="step-number">2</span> <span class="step-text">Login: <code>fly auth login</code></span></li>
-          <li><span class="step-number">3</span> <span class="step-text">Clone your fork and run: <code>fly launch</code></span></li>
-          <li><span class="step-number">4</span> <span class="step-text">Set secrets:</span></li>
-        </ul>
+        <p>Set secrets via CLI:</p>
         <div class="code-block">
-          <code>fly secrets set SESSION_ID=Stanytz378/iamlegendv2_abc123</code><br>
-          <code>fly secrets set OWNER_NUMBER=255618558502</code>
+          fly secrets set SESSION_ID=Stanytz378/iamlegendv2_abc123<br>
+          fly secrets set OWNER_NUMBER=255618558502
         </div>
-        <p><span class="step-number">5</span> <code>fly deploy</code></p>
       </div>
-    </div>
+    </section>
 
-    <!-- Replit Deployment -->
-    <div class="section">
+    <section id="replit" class="section">
       <h2 class="section-title"><i class="fa-solid fa-code"></i> Replit</h2>
       <div class="card">
-        <div class="badge-sm"><i class="fa-regular fa-clock"></i> 2 minutes</div>
-        <a href="https://replit.com/github/Stanytz378/iamlegendv2" target="_blank" class="link" style="font-size: 1.2rem; display: block; margin-bottom: 15px;">Open in Replit →</a>
-        <p><strong>Steps:</strong></p>
-        <ul class="step-list">
-          <li><span class="step-number">1</span> <span class="step-text">Click the link above</span></li>
-          <li><span class="step-number">2</span> <span class="step-text">Go to Secrets tab (lock icon) and add:</span></li>
-        </ul>
+        <a href="https://replit.com/github/Stanytz378/iamlegendv2" target="_blank" class="link" style="font-size: 1.2rem;">Open in Replit →</a>
+        <p>Add to Secrets (lock icon):</p>
         <div class="code-block">
-          <code>SESSION_ID=Stanytz378/iamlegendv2_abc123</code><br>
-          <code>OWNER_NUMBER=255618558502</code>
+          SESSION_ID=Stanytz378/iamlegendv2_abc123<br>
+          OWNER_NUMBER=255618558502
         </div>
-        <p><span class="step-number">3</span> Click "Run"</p>
       </div>
-    </div>
+    </section>
 
-    <!-- Docker Deployment -->
-    <div class="section">
+    <section id="docker" class="section">
       <h2 class="section-title"><i class="fa-brands fa-docker"></i> Docker</h2>
       <div class="card">
-        <div class="badge-sm"><i class="fa-regular fa-clock"></i> 2 minutes</div>
-        <p>Run anywhere Docker is installed:</p>
         <div class="code-block">
-          <code>docker build -t iamlegendv2 .</code><br>
-          <code>docker run -d \</code><br>
-          <code>  -e SESSION_ID=Stanytz378/iamlegendv2_abc123 \</code><br>
-          <code>  -e OWNER_NUMBER=255618558502 \</code><br>
-          <code>  -p 5000:5000 \</code><br>
-          <code>  --name iamlegendv2 \</code><br>
-          <code>  iamlegendv2</code>
+          docker build -t iamlegendv2 .<br>
+          docker run -d -e SESSION_ID=... -e OWNER_NUMBER=... -p 5000:5000 iamlegendv2
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- Windows WSL -->
-    <div class="section">
+    <section id="windows" class="section">
       <h2 class="section-title"><i class="fa-brands fa-windows"></i> Windows WSL</h2>
       <div class="card">
-        <div class="badge-sm"><i class="fa-regular fa-clock"></i> 5 minutes</div>
-        <p>Run on Windows using WSL (Ubuntu):</p>
         <div class="code-block">
-          <code># Open WSL Ubuntu terminal</code><br>
-          <code>sudo apt update</code><br>
-          <code>curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -</code><br>
-          <code>sudo apt install -y nodejs git ffmpeg libvips-dev</code><br>
-          <code>git clone https://github.com/YOUR_USERNAME/iamlegendv2.git</code><br>
-          <code>cd iamlegendv2</code><br>
-          <code>npm install</code><br>
-          <code>cp sample.env .env</code><br>
-          <code>nano .env   # Add SESSION_ID and OWNER_NUMBER</code><br>
-          <code>npm start</code>
+          # In WSL Ubuntu terminal<br>
+          sudo apt update<br>
+          curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -<br>
+          sudo apt install -y nodejs git ffmpeg libvips-dev<br>
+          git clone https://github.com/YOUR_USERNAME/iamlegendv2.git<br>
+          cd iamlegendv2<br>
+          npm install<br>
+          cp sample.env .env<br>
+          nano .env<br>
+          npm start
         </div>
       </div>
-    </div>
+    </section>
 
     <!-- Database Options -->
-    <div class="section">
+    <section class="section">
       <h2 class="section-title"><i class="fa-solid fa-database"></i> Database Options</h2>
       <div class="grid-3">
         <div class="card">
-          <div class="card-header">
-            <div class="card-icon"><i class="fa-solid fa-leaf"></i></div>
-            <h3>MongoDB</h3>
-          </div>
-          <p>Recommended for cloud deployments. Get free tier at <a href="https://mongodb.com/atlas" target="_blank" class="link">MongoDB Atlas</a></p>
-          <div class="code-block">MONGO_URL=mongodb+srv://user:pass@cluster.mongodb.net/db</div>
+          <h3>MongoDB</h3>
+          <p>Free tier at <a href="https://mongodb.com/atlas" target="_blank">MongoDB Atlas</a></p>
+          <div class="code-block">MONGO_URL=mongodb+srv://...</div>
         </div>
         <div class="card">
-          <div class="card-header">
-            <div class="card-icon"><i class="fa-solid fa-elephant"></i></div>
-            <h3>PostgreSQL</h3>
-          </div>
-          <p>Use with <a href="https://supabase.com" target="_blank" class="link">Supabase</a> or <a href="https://neon.tech" target="_blank" class="link">Neon</a></p>
-          <div class="code-block">POSTGRES_URL=postgresql://user:pass@host:5432/db</div>
+          <h3>PostgreSQL</h3>
+          <p><a href="https://supabase.com" target="_blank">Supabase</a> or <a href="https://neon.tech" target="_blank">Neon</a></p>
+          <div class="code-block">POSTGRES_URL=postgresql://...</div>
         </div>
         <div class="card">
-          <div class="card-header">
-            <div class="card-icon"><i class="fa-solid fa-database"></i></div>
-            <h3>MySQL</h3>
-          </div>
-          <p>Compatible with many hosting providers</p>
-          <div class="code-block">MYSQL_URL=mysql://user:pass@host:3306/db</div>
+          <h3>MySQL</h3>
+          <div class="code-block">MYSQL_URL=mysql://...</div>
         </div>
       </div>
-    </div>
+    </section>
 
     <!-- Troubleshooting -->
-    <div class="section">
+    <section class="section">
       <h2 class="section-title"><i class="fa-solid fa-circle-exclamation"></i> Troubleshooting</h2>
       <div class="card">
         <ul class="step-list">
-          <li><span class="step-number">🔍</span> <span class="step-text"><strong>Session ID not working?</strong> Make sure you copied the full string including the prefix <code>Stanytz378/iamlegendv2_</code></span></li>
-          <li><span class="step-number">🔄</span> <span class="step-text"><strong>Bot disconnects?</strong> Check your internet connection. On cloud platforms, ensure you're not exceeding free tier limits.</span></li>
-          <li><span class="step-number">📝</span> <span class="step-text"><strong>"Cannot find module" error?</strong> Run <code>npm install</code> again and make sure all dependencies are installed.</span></li>
-          <li><span class="step-number">🚫</span> <span class="step-text"><strong>Commands not responding?</strong> Verify your <code>OWNER_NUMBER</code> in .env is correct and matches your WhatsApp number.</span></li>
-          <li><span class="step-number">💾</span> <span class="step-text"><strong>Data lost after restart?</strong> Add a database (MongoDB, PostgreSQL, etc.) for persistent storage.</span></li>
+          <li><span class="step-number">🔍</span> <span class="step-text"><strong>Session ID not working?</strong> Ensure full prefix <code>Stanytz378/iamlegendv2_</code></span></li>
+          <li><span class="step-number">🔄</span> <span class="step-text"><strong>Bot disconnects?</strong> Check internet/limits.</span></li>
+          <li><span class="step-number">📝</span> <span class="step-text"><strong>"Cannot find module"</strong> Run <code>npm install</code></span></li>
+          <li><span class="step-number">🚫</span> <span class="step-text"><strong>Commands not responding?</strong> Verify OWNER_NUMBER</span></li>
+          <li><span class="step-number">💾</span> <span class="step-text"><strong>Data lost?</strong> Add a database</span></li>
         </ul>
       </div>
-    </div>
-
-    <!-- Quick Links -->
-    <div class="section">
-      <h2 class="section-title"><i class="fa-solid fa-link"></i> Quick Links</h2>
-      <div class="grid-3">
-        <a href="https://github.com/Stanytz378/iamlegendv2/fork" target="_blank" class="card">
-          <div class="card-header">
-            <div class="card-icon"><i class="fa-brands fa-github"></i></div>
-            <h3>Fork Repo</h3>
-          </div>
-          <p>Get your own copy</p>
-        </a>
-        <a href="https://sessionspair.onrender.com" target="_blank" class="card">
-          <div class="card-header">
-            <div class="card-icon"><i class="fa-solid fa-key"></i></div>
-            <h3>Session Generator</h3>
-          </div>
-          <p>Get SESSION_ID instantly</p>
-        </a>
-        <a href="https://whatsapp.com/channel/0029Vb7fzu4EwEjmsD4Tzs1p" target="_blank" class="card">
-          <div class="card-header">
-            <div class="card-icon"><i class="fa-brands fa-whatsapp"></i></div>
-            <h3>Join Channel</h3>
-          </div>
-          <p>Get updates and support</p>
-        </a>
-      </div>
-    </div>
+    </section>
 
     <!-- Footer -->
     <div class="footer">
       <div class="developer">
-        <i class="fa-solid fa-code"></i>
-        Developed by <a href="tel:+255787069580">STANY TZ</a>
+        <i class="fa-solid fa-code"></i> Developed by <a href="tel:+255787069580">STANY TZ</a>
       </div>
       <div class="footer-links">
         <a href="https://github.com/Stanytz378" target="_blank"><i class="fa-brands fa-github"></i></a>
         <a href="https://youtube.com/@STANYTZ" target="_blank"><i class="fa-brands fa-youtube"></i></a>
         <a href="https://whatsapp.com/channel/0029Vb7fzu4EwEjmsD4Tzs1p" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
       </div>
-      <div>
-        &copy; <span id="year"></span> IAM LEGEND DEPLOYMENT GUIDE
-      </div>
+      <div>&copy; <span id="year"></span> IAM LEGEND DEPLOYMENT GUIDE</div>
     </div>
   </div>
 
+  <!-- Back to top button -->
+  <a href="#" class="back-to-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></a>
+
   <script>
-    // Set current year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Disable right click (optional)
-    document.addEventListener('contextmenu', e => e.preventDefault());
-
-    // Copy functionality (add to code blocks)
+    // Copy functionality
     document.querySelectorAll('.code-block').forEach(block => {
       const copyBtn = document.createElement('button');
       copyBtn.className = 'btn-copy';
       copyBtn.innerHTML = '<i class="fa-regular fa-copy"></i> Copy';
       copyBtn.onclick = () => {
-        const text = block.innerText;
+        const text = block.innerText.replace('Copy', '').trim();
         navigator.clipboard.writeText(text);
         copyBtn.innerHTML = '<i class="fa-regular fa-check"></i> Copied!';
         setTimeout(() => {
@@ -948,7 +906,7 @@
       block.appendChild(copyBtn);
     });
 
-    // Particles animation
+    // Particles animation (same as before)
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
     let width, height, particles = [];
@@ -959,10 +917,8 @@
       height = window.innerHeight;
       canvas.width = width;
       canvas.height = height;
-
       const particleCount = Math.min(Math.floor(width * height / 15000), 50);
       particles = [];
-
       for (let i = 0; i < particleCount; i++) {
         particles.push({
           x: Math.random() * width,
@@ -977,62 +933,48 @@
 
     function drawParticles() {
       ctx.clearRect(0, 0, width, height);
-
-      // Draw connections
       ctx.strokeStyle = 'rgba(0, 207, 255, 0.1)';
       ctx.lineWidth = 0.5;
-
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
           const dy = particles[i].y - particles[j].y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-
-          if (distance < 120) {
+          const dist = Math.sqrt(dx*dx + dy*dy);
+          if (dist < 120) {
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(0, 207, 255, ${0.1 * (1 - distance / 120)})`;
+            ctx.strokeStyle = `rgba(0, 207, 255, ${0.1 * (1 - dist/120)})`;
             ctx.stroke();
           }
         }
-      }
-
-      // Draw particles
-      particles.forEach(p => {
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.x < 0 || p.x > width) p.vx *= -1;
-        if (p.y < 0 || p.y > height) p.vy *= -1;
+        particles[i].x += particles[i].vx;
+        particles[i].y += particles[i].vy;
+        if (particles[i].x < 0 || particles[i].x > width) particles[i].vx *= -1;
+        if (particles[i].y < 0 || particles[i].y > height) particles[i].vy *= -1;
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0, 207, 255, ${p.opacity})`;
+        ctx.arc(particles[i].x, particles[i].y, particles[i].size, 0, Math.PI*2);
+        ctx.fillStyle = `rgba(0, 207, 255, ${particles[i].opacity})`;
         ctx.fill();
-      });
-
+      }
       animationFrame = requestAnimationFrame(drawParticles);
     }
 
-    // Handle resize
-    let resizeTimeout;
     window.addEventListener('resize', () => {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(() => {
+      clearTimeout(window.resizeTimer);
+      window.resizeTimer = setTimeout(() => {
+        cancelAnimationFrame(animationFrame);
         initParticles();
+        drawParticles();
       }, 200);
     });
 
-    // Start animation
     initParticles();
     drawParticles();
 
-    // Pause animation when tab is hidden
     document.addEventListener('visibilitychange', () => {
-      if (document.hidden) {
-        cancelAnimationFrame(animationFrame);
-      } else {
-        drawParticles();
-      }
+      if (document.hidden) cancelAnimationFrame(animationFrame);
+      else drawParticles();
     });
   </script>
 </body>
