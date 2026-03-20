@@ -1,1531 +1,1039 @@
 <!DOCTYPE html>
-<html lang="sw" class="scroll-smooth">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"/>
-  
-  <!-- Meta Tags -->
-  <title>ELIMU HUB TZ | Premium Learning Platform - All Levels Free</title>
-  <meta name="description" content="ELIMU HUB TZ - Platform ya elimu ya kisasa kwa wanafunzi wa Tanzania. Past papers, AI tutor, notes, map reading, health tips - YOTE FREE!">
-  <meta name="keywords" content="ELIMU HUB, NECTA, CSEE, ACSEE, FTNA, VETA, University, AI tutor Tanzania, past papers free, map reading, study app">
-  <meta name="author" content="Stany - ELIMU HUB TZ">
-  <meta name="theme-color" content="#7c3aed">
-  
-  <!-- PWA Manifest -->
-  <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiRUxJTVUgSFVCIFRaIiwic2hvcnRfbmFtZSI6IkVMSU1VSFVCIiwiZGVzY3JpcHRpb24iOiJQcmVtaXVtIExlYXJuaW5nIFBsYXRmb3JtIGZvciBUYW56YW5pYW4gU3R1ZGVudHMiLCJzdGFydF91cmwiOiIvIiwiZGlzcGxheSI6InN0YW5kYWxvbmUiLCJiYWNrZ3JvdW5kX2NvbG9yIjoiIzA5MDkxMCIsInRoZW1lX2NvbG9yIjoiIzdjM2FlZCIsImljb25zIjpbeyJzcmMiOiJodHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVudC5jb20vT2ZmaWNpYWwxMjMtMTIvU1RBTllGUkVFQk9ULS9yZWZzL2hlYWRzL21haW4vSU1HXzEzNzguanBlZyIsInNpemVzIjoiMTkyeDE5MiIsInR5cGUiOiJpbWFnZS9qcGVnIn1dfQ==">
-  
-  <!-- Open Graph / Social -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="ELIMU HUB TZ | Premium Learning - All Resources FREE">
-  <meta property="og:description" content="Past papers, AI tutor, notes za kila subject, map reading, health tips - YOTE FREE kwa wanafunzi wa Tanzania!">
-  <meta property="og:image" content="https://raw.githubusercontent.com/Official123-12/STANYFREEBOT-/refs/heads/main/IMG_1378.jpeg">
-  
-  <!-- PWA -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="ELIMU HUB">
-  <link rel="icon" type="image/jpeg" href="https://raw.githubusercontent.com/Official123-12/STANYFREEBOT-/refs/heads/main/IMG_1378.jpeg">
-  <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/Official123-12/STANYFREEBOT-/refs/heads/main/IMG_1378.jpeg">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="STANY TZ">
+  <meta name="theme-color" content="#0a0a12">
+  <meta name="description" content="IAM LEGEND - Complete Deployment Guide for iamlegendv2 WhatsApp Bot">
   
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Open Graph -->
+  <meta property="og:title" content="IAM LEGEND DEPLOYMENT GUIDE">
+  <meta property="og:description" content="Step-by-step guide to deploy iamlegendv2 on all platforms">
+  <meta property="og:image" content="https://raw.githubusercontent.com/stanytz378/stanyimagesservers/refs/heads/main/bg.png">
+  <meta property="og:url" content="https://sessionspair.onrender.com/guide">
   
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@700;800;900&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <title>STANY TZ • Deployment Guide</title>
   
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-  
-  <!-- AOS Animation -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: { 
-            sans: ['Inter', 'sans-serif'], 
-            display: ['Outfit', 'sans-serif'],
-            body: ['Manrope', 'sans-serif']
-          },
-          colors: {
-            brand: {
-              dark: '#090910',
-              card: '#11111a',
-              primary: '#7c3aed',    // Purple
-              secondary: '#ec4899',   // Pink
-              accent: '#14b8a6',      // Teal
-              gold: '#fbbf24',        // Gold for premium
-              whatsapp: '#25D366',
-              telegram: '#0088cc',
-              success: '#22c55e',
-              warning: '#f59e0b',
-              danger: '#ef4444'
-            }
-          },
-          animation: {
-            'blob': 'blob 7s infinite',
-            'float': 'float 6s ease-in-out infinite',
-            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-            'shake': 'shake 0.5s ease-in-out',
-            'glow': 'glow 2s ease-in-out infinite alternate',
-            'slideIn': 'slideIn 0.3s ease-out'
-          },
-          keyframes: {
-            blob: {
-              '0%, 100%': { transform: 'translate(0, 0) scale(1)' },
-              '25%': { transform: 'translate(20px, -30px) scale(1.05)' },
-              '50%': { transform: 'translate(-15px, 15px) scale(0.95)' },
-              '75%': { transform: 'translate(10px, -10px) scale(1.02)' }
-            },
-            float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-15px)' } },
-            shake: { '0%, 100%': { transform: 'translateX(0)' }, '25%': { transform: 'translateX(-5px)' }, '75%': { transform: 'translateX(5px)' } },
-            glow: { 'from': { boxShadow: '0 0 20px rgba(124, 58, 237, 0.5)' }, 'to': { boxShadow: '0 0 40px rgba(236, 72, 153, 0.8)' } },
-            slideIn: { 'from': { opacity: '0', transform: 'translateY(10px)' }, 'to': { opacity: '1', transform: 'translateY(0)' } }
-          }
-        }
-      }
-    }
-  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <style>
-    /* ===== CORE STYLES ===== */
-    * { box-sizing: border-box; }
-    body { 
-      font-family: 'Manrope', sans-serif; 
-      background: linear-gradient(135deg, #090910 0%, #11111a 50%, #0a0a12 100%);
-      color: #f1f5f9; 
-      overflow-x: hidden;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    :root {
+      --bg: #0a0a12;
+      --surface: rgba(255, 255, 255, 0.05);
+      --surface-hover: rgba(255, 255, 255, 0.08);
+      --border: rgba(255, 255, 255, 0.08);
+      --neon: #00ff88;
+      --neon2: #00cfff;
+      --accent: #a259ff;
+      --text: #ffffff;
+      --text-muted: rgba(255, 255, 255, 0.5);
+      --glass: blur(20px) saturate(180%);
+      --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      --card-bg: rgba(20, 20, 30, 0.7);
+    }
+
+    html, body {
+      width: 100%;
       min-height: 100vh;
+      background: var(--bg);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: var(--text);
+      line-height: 1.5;
+      overflow-x: hidden;
+      position: relative;
     }
-    input, textarea, select { user-select: text; -webkit-user-select: text; }
-    
-    /* ===== CUSTOM SCROLLBAR ===== */
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: #11111a; }
-    ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #7c3aed, #ec4899); border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #ec4899, #7c3aed); }
-    
-    /* ===== SAFE AREA (Notch) ===== */
-    .safe-top { padding-top: env(safe-area-inset-top); }
-    .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
-    
-    /* ===== GLASSMORPHISM PREMIUM ===== */
-    .glass { 
-      background: linear-gradient(145deg, rgba(17, 17, 26, 0.9), rgba(23, 23, 36, 0.85));
-      backdrop-filter: blur(24px); 
-      -webkit-backdrop-filter: blur(24px);
-      border: 1px solid rgba(124, 58, 237, 0.25);
-      box-shadow: 
-        0 8px 32px rgba(0, 0, 0, 0.4),
-        0 0 0 1px rgba(124, 58, 237, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05);
-      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Background with overlay */
+    body {
+      background: url('https://raw.githubusercontent.com/stanytz378/stanyimagesservers/refs/heads/main/bg.png') center/cover fixed;
+      background-blend-mode: overlay;
     }
-    .glass:hover { 
-      border-color: rgba(124, 58, 237, 0.5);
-      box-shadow: 
-        0 12px 48px rgba(124, 58, 237, 0.25),
-        0 0 0 1px rgba(124, 58, 237, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-      transform: translateY(-2px);
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse at top, rgba(10, 10, 18, 0.7), rgba(10, 10, 18, 0.95));
+      z-index: 0;
     }
-    
-    .glass-nav {
-      background: linear-gradient(180deg, rgba(9, 9, 16, 0.98), rgba(17, 17, 26, 0.95));
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border-bottom: 1px solid rgba(124, 58, 237, 0.2);
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+
+    /* Animated background orbs */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.5;
     }
-    
-    .glass-premium {
-      background: linear-gradient(145deg, rgba(124, 58, 237, 0.15), rgba(236, 72, 153, 0.1));
-      border: 1px solid rgba(251, 191, 36, 0.4);
-      box-shadow: 
-        0 0 30px rgba(124, 58, 237, 0.2),
-        0 0 60px rgba(236, 72, 153, 0.15),
-        inset 0 1px 0 rgba(251, 191, 36, 0.3);
+
+    .orb-1 {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(0, 255, 136, 0.2), transparent 70%);
+      top: -100px;
+      left: -100px;
+      animation: drift 20s ease-in-out infinite alternate;
     }
-    
-    /* ===== LOADER PREMIUM ===== */
-    #loader {
-      position: fixed; inset: 0; z-index: 9999;
-      background: linear-gradient(135deg, #090910, #11111a, #0a0a12);
-      display: flex; flex-direction: column;
-      justify-content: center; align-items: center;
-      transition: opacity 0.6s ease, visibility 0.6s ease;
+
+    .orb-2 {
+      width: 350px;
+      height: 350px;
+      background: radial-gradient(circle, rgba(0, 207, 255, 0.15), transparent 70%);
+      bottom: -100px;
+      right: -80px;
+      animation: drift 24s ease-in-out infinite alternate-reverse;
     }
-    .spinner-premium {
-      width: 60px; height: 60px;
-      border: 3px solid rgba(124, 58, 237, 0.2);
-      border-radius: 50%; 
-      border-top-color: #7c3aed;
-      border-right-color: #ec4899;
-      animation: spin 1s linear infinite;
-      box-shadow: 0 0 20px rgba(124, 58, 237, 0.4);
+
+    @keyframes drift {
+      to { transform: translate(50px, 50px); }
     }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    
-    /* ===== TEXT GRADIENT PREMIUM ===== */
-    .text-gradient {
-      background: linear-gradient(135deg, #7c3aed, #ec4899, #14b8a6, #fbbf24);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text; background-size: 300% auto;
-      animation: gradientShift 8s ease infinite;
+
+    /* Canvas for particles */
+    #canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    /* Main container */
+    .container {
+      position: relative;
+      z-index: 10;
+      min-height: 100vh;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+      animation: fadeUp 0.6s ease;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 20px;
+      background: rgba(0, 255, 136, 0.1);
+      border: 1px solid rgba(0, 255, 136, 0.2);
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--neon);
+      margin-bottom: 20px;
+      backdrop-filter: blur(10px);
+    }
+
+    .logo {
+      width: 90px;
+      height: 90px;
+      border-radius: 24px;
+      border: 2px solid var(--neon);
+      box-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
+      margin-bottom: 16px;
+      animation: pulse 3s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 30px rgba(0, 255, 136, 0.3); }
+      50% { box-shadow: 0 0 50px rgba(0, 255, 136, 0.6); }
+    }
+
+    .title {
+      font-size: clamp(2.5rem, 8vw, 4rem);
       font-weight: 800;
+      letter-spacing: -2px;
+      background: linear-gradient(135deg, #fff, rgba(255, 255, 255, 0.7));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
-    @keyframes gradientShift {
-      0%, 100% { background-position: 0% center; }
-      50% { background-position: 100% center; }
+
+    .title span {
+      background: linear-gradient(135deg, var(--neon), var(--neon2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
-    
-    .text-glow {
-      text-shadow: 0 0 20px rgba(124, 58, 237, 0.6);
+
+    .subtitle {
+      font-size: 16px;
+      color: var(--text-muted);
+      max-width: 700px;
+      margin: 20px auto 0;
     }
-    
-    /* ===== PREMIUM CARD ===== */
-    .premium-card {
-      border: 1px solid rgba(251, 191, 36, 0.3);
-      background: linear-gradient(145deg, rgba(251, 191, 36, 0.08), rgba(124, 58, 237, 0.05));
+
+    /* Section styling */
+    .section {
+      margin-bottom: 50px;
+      animation: fadeUp 0.6s ease 0.1s both;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #fff, #aaa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .section-title i {
+      background: linear-gradient(135deg, var(--neon), var(--neon2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 2rem;
+    }
+
+    /* Cards grid */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .grid-2, .grid-3 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Card styles */
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: var(--glass);
+      -webkit-backdrop-filter: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 24px;
+      transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
     }
-    .premium-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: linear-gradient(90deg, transparent, #fbbf24, #7c3aed, #ec4899, transparent);
-      animation: gradientShift 3s linear infinite;
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 255, 255, 0.15);
+      background: var(--surface-hover);
+      box-shadow: var(--shadow);
     }
-    .premium-badge {
-      position: absolute; top: 12px; right: 12px;
-      background: linear-gradient(135deg, #fbbf24, #f59e0b);
-      color: #090910; font-size: 10px; font-weight: 800;
-      padding: 4px 10px; border-radius: 20px;
-      text-transform: uppercase; letter-spacing: 0.5px;
-      box-shadow: 0 4px 12px rgba(251, 191, 36, 0.4);
-      animation: glow 2s ease-in-out infinite alternate;
+
+    .card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--neon), var(--neon2), transparent);
+      transform: scaleX(0);
+      transition: transform 0.4s;
     }
-    
-    /* ===== TOPIC CARD INTERACTIVE ===== */
-    .topic-card {
-      border-left: 4px solid #7c3aed;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    .card:hover::after {
+      transform: scaleX(1);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .card-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 16px;
+      background: rgba(0, 255, 136, 0.1);
+      border: 1px solid rgba(0, 255, 136, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: var(--neon);
+    }
+
+    .card h3 {
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+
+    .card p {
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+    }
+
+    .card .badge-sm {
+      display: inline-block;
+      padding: 4px 12px;
+      background: rgba(0, 207, 255, 0.1);
+      border: 1px solid rgba(0, 207, 255, 0.2);
+      border-radius: 50px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--neon2);
+      margin-bottom: 15px;
+    }
+
+    .code-block {
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 16px;
+      padding: 15px;
+      margin: 15px 0;
+      border: 1px solid var(--border);
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      color: var(--neon2);
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .code-block code {
+      display: block;
+    }
+
+    .btn-copy {
+      background: rgba(0, 207, 255, 0.1);
+      border: 1px solid rgba(0, 207, 255, 0.2);
+      border-radius: 8px;
+      padding: 5px 10px;
+      font-size: 12px;
+      color: var(--neon2);
       cursor: pointer;
-      position: relative;
-      overflow: hidden;
+      transition: 0.3s;
+      margin-top: 10px;
     }
-    .topic-card::before {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.1), transparent);
-      transform: translateX(-100%); transition: transform 0.5s;
+
+    .btn-copy:hover {
+      background: rgba(0, 207, 255, 0.2);
     }
-    .topic-card:hover::before { transform: translateX(100%); }
-    .topic-card:hover {
-      transform: translateX(8px);
-      background: linear-gradient(145deg, rgba(124, 58, 237, 0.15), rgba(236, 72, 153, 0.1));
-      border-left-color: #ec4899;
-      box-shadow: 0 10px 40px rgba(124, 58, 237, 0.3);
+
+    .step-list {
+      list-style: none;
+      margin: 15px 0;
     }
-    .topic-card.active {
-      background: linear-gradient(145deg, rgba(124, 58, 237, 0.25), rgba(20, 184, 166, 0.15));
-      border-left-color: #14b8a6;
-      box-shadow: 0 0 30px rgba(20, 184, 166, 0.2);
+
+    .step-list li {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 12px;
+      align-items: flex-start;
     }
-    
-    /* ===== CHAT MESSAGES PREMIUM ===== */
-    #chat-messages, #ai-chat-box { scroll-behavior: smooth; }
-    .message-bubble {
-      max-width: 85%;
-      animation: slideIn 0.3s ease-out;
-      position: relative;
+
+    .step-number {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(0, 207, 255, 0.1);
+      border: 1px solid rgba(0, 207, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--neon2);
+      flex-shrink: 0;
     }
-    .message-bubble.user {
-      background: linear-gradient(135deg, #7c3aed, #8b5cf6);
-      border-bottom-right-radius: 4px;
+
+    .step-text {
+      color: var(--text-muted);
+      font-size: 14px;
     }
-    .message-bubble.ai {
-      background: linear-gradient(145deg, rgba(17, 17, 26, 0.95), rgba(23, 23, 36, 0.9));
-      border: 1px solid rgba(20, 184, 166, 0.3);
-      border-bottom-left-radius: 4px;
+
+    .step-text strong {
+      color: var(--text);
     }
-    
-    /* ===== PROGRESS BAR PREMIUM ===== */
-    .progress-bar {
-      position: fixed; top: 0; left: 0; height: 3px;
-      background: linear-gradient(90deg, #7c3aed, #ec4899, #14b8a6, #fbbf24);
-      z-index: 9999; transition: width 0.15s ease;
-      box-shadow: 0 0 10px rgba(124, 58, 237, 0.5);
+
+    .link {
+      color: var(--neon2);
+      text-decoration: none;
+      font-weight: 600;
     }
-    
-    /* ===== TOAST NOTIFICATION PREMIUM ===== */
-    #toast {
-      position: fixed; bottom: 100px; right: 20px;
-      background: linear-gradient(135deg, #14b8a6, #22c55e);
-      color: white; padding: 16px 24px; border-radius: 20px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.5), 0 0 30px rgba(20, 184, 166, 0.4);
-      z-index: 9999; transform: translateX(150%);
-      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      display: flex; align-items: center; gap: 12px;
-      font-weight: 600; border: 1px solid rgba(255,255,255,0.2);
+
+    .link:hover {
+      color: var(--neon);
+      text-decoration: underline;
     }
-    #toast.show { transform: translateX(0); }
-    #toast.error { 
-      background: linear-gradient(135deg, #ef4444, #f97316);
-      box-shadow: 0 10px 40px rgba(0,0,0,0.5), 0 0 30px rgba(239, 68, 68, 0.4);
-    }
-    
-    /* ===== BOTTOM NAV PREMIUM ===== */
-    .bottom-nav {
-      background: linear-gradient(180deg, rgba(17, 17, 26, 0.98), rgba(9, 9, 16, 0.99));
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border-top: 1px solid rgba(124, 58, 237, 0.25);
-      padding-bottom: env(safe-area-inset-bottom);
-      box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.4);
-    }
-    .nav-item { transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
-    .nav-item:active { transform: scale(0.92); }
-    .nav-item.active { 
-      color: #7c3aed; 
-      text-shadow: 0 0 15px rgba(124, 58, 237, 0.6);
-    }
-    
-    /* ===== WHATSAPP PULSE PREMIUM ===== */
-    @keyframes pulse-premium {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7), 0 0 30px rgba(37, 211, 102, 0.3); }
-      50% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0), 0 0 40px rgba(37, 211, 102, 0.5); }
-    }
-    .whatsapp-pulse { animation: pulse-premium 2.5s infinite; }
-    
-    /* ===== OFFLINE BANNER ===== */
-    #offlineBanner {
-      position: fixed; top: 0; left: 0; right: 0;
-      background: linear-gradient(90deg, #ef4444, #f97316);
-      color: white; text-align: center; padding: 12px;
-      font-size: 13px; z-index: 9999;
-      display: none; animation: slideDown 0.3s ease;
-      font-weight: 500;
-    }
-    @keyframes slideDown {
-      from { transform: translateY(-100%); }
-      to { transform: translateY(0); }
-    }
-    
-    /* ===== TYPING INDICATOR ===== */
-    .typing-dot {
-      width: 8px; height: 8px;
-      background: linear-gradient(135deg, #7c3aed, #ec4899);
-      border-radius: 50%; display: inline-block; margin: 0 2px;
-      animation: typingBounce 1.4s infinite ease-in-out;
-    }
-    .typing-dot:nth-child(1) { animation-delay: 0s; }
-    .typing-dot:nth-child(2) { animation-delay: 0.2s; }
-    .typing-dot:nth-child(3) { animation-delay: 0.4s; }
-    @keyframes typingBounce {
-      0%, 60%, 100% { transform: translateY(0); }
-      30% { transform: translateY(-10px); }
-    }
-    
-    /* ===== SECTION SPACING ===== */
-    section { scroll-margin-top: 100px; }
-    
-    /* ===== INPUT FOCUS PREMIUM ===== */
-    input:focus, textarea:focus, select:focus {
-      outline: none;
-      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.4), 0 0 20px rgba(124, 58, 237, 0.2);
-      border-color: #7c3aed !important;
-    }
-    
-    /* ===== BUTTON RIPPLE PREMIUM ===== */
-    .btn-ripple {
-      position: relative; overflow: hidden;
-      transform: translateZ(0);
-    }
-    .btn-ripple:after {
-      content: ''; position: absolute;
-      width: 100%; height: 100%;
-      top: 0; left: 0;
-      background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 70%);
-      transform: scale(0); opacity: 0;
-      transition: transform 0.5s, opacity 0.3s;
-      border-radius: inherit;
-    }
-    .btn-ripple:active:after {
-      transform: scale(2.5); opacity: 0;
-      transition: 0s;
-    }
-    
-    /* ===== RESOURCE BADGE ===== */
-    .resource-badge {
-      display: inline-flex; align-items: center; gap: 4px;
-      background: linear-gradient(135deg, rgba(124, 58, 237, 0.2), rgba(236, 72, 153, 0.2));
-      border: 1px solid rgba(124, 58, 237, 0.4);
-      padding: 4px 12px; border-radius: 20px;
-      font-size: 11px; font-weight: 600;
-      color: #e2e8f0;
-    }
-    
-    /* ===== MAP READING SECTION ===== */
-    .map-container {
-      background: linear-gradient(145deg, rgba(20, 184, 166, 0.1), rgba(124, 58, 237, 0.05));
-      border: 1px dashed rgba(20, 184, 166, 0.4);
+
+    /* Environment Variables Section */
+    .env-table {
+      background: rgba(0, 0, 0, 0.3);
       border-radius: 16px;
       padding: 20px;
+      border: 1px solid var(--border);
     }
-    
-    /* ===== SUBJECT GRID ===== */
-    .subject-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-      gap: 12px;
+
+    .env-row {
+      display: flex;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
     }
-    .subject-card {
-      background: linear-gradient(145deg, rgba(124, 58, 237, 0.1), rgba(236, 72, 153, 0.05));
-      border: 1px solid rgba(124, 58, 237, 0.2);
-      border-radius: 16px;
-      padding: 16px 12px;
+
+    .env-row:last-child {
+      border-bottom: none;
+    }
+
+    .env-key {
+      width: 30%;
+      font-weight: 700;
+      color: var(--neon);
+    }
+
+    .env-desc {
+      width: 70%;
+      color: var(--text-muted);
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 60px;
       text-align: center;
-      cursor: pointer;
-      transition: all 0.3s ease;
+      padding: 30px 0;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
     }
-    .subject-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(124, 58, 237, 0.5);
-      box-shadow: 0 10px 30px rgba(124, 58, 237, 0.2);
+
+    .footer .developer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 15px;
+      font-size: 14px;
     }
-    .subject-icon {
-      width: 48px; height: 48px;
-      background: linear-gradient(135deg, #7c3aed, #ec4899);
-      border-radius: 14px;
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 10px;
+
+    .footer .developer a {
+      color: var(--neon2);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .footer .developer a:hover {
+      color: var(--neon);
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 20px 0;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
       font-size: 20px;
-      box-shadow: 0 8px 24px rgba(124, 58, 237, 0.4);
+      transition: color 0.3s;
     }
-    
-    /* ===== LEVEL TABS ===== */
-    .level-tabs {
-      display: flex; gap: 8px; overflow-x: auto; padding: 4px;
-      background: rgba(17, 17, 26, 0.6);
-      border-radius: 16px; margin-bottom: 20px;
+
+    .footer-links a:hover {
+      color: var(--neon2);
     }
-    .level-tab {
-      padding: 10px 20px; border-radius: 12px;
-      font-size: 13px; font-weight: 600;
-      white-space: nowrap; cursor: pointer;
-      transition: all 0.25s ease;
-      border: 1px solid transparent;
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
-    .level-tab.active {
-      background: linear-gradient(135deg, #7c3aed, #ec4899);
-      color: white; border-color: rgba(255,255,255,0.2);
-      box-shadow: 0 4px 16px rgba(124, 58, 237, 0.4);
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .container {
+        padding: 16px;
+      }
+      
+      .section-title {
+        font-size: 1.6rem;
+      }
+      
+      .card {
+        padding: 18px;
+      }
+      
+      .env-row {
+        flex-direction: column;
+        gap: 5px;
+      }
+      
+      .env-key, .env-desc {
+        width: 100%;
+      }
     }
-    .level-tab:hover:not(.active) {
-      background: rgba(124, 58, 237, 0.15);
-      border-color: rgba(124, 58, 237, 0.3);
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
     }
-    
-    /* ===== HEALTH SECTION ===== */
-    .health-card {
-      border-left: 4px solid #22c55e;
-      background: linear-gradient(145deg, rgba(34, 197, 94, 0.1), rgba(20, 184, 166, 0.05));
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
     }
-    
-    /* ===== ANIMATIONS ===== */
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .animate-fade-in-up { animation: fadeInUp 0.5s ease-out forwards; }
-    
-    /* ===== RESPONSIVE ===== */
-    @media (min-width: 768px) {
-      .subject-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(0, 207, 255, 0.3);
+      border-radius: 3px;
     }
   </style>
 </head>
-<body class="pb-24 md:pb-0">
-
-  <!-- Progress Bar -->
-  <div class="progress-bar" id="progressBar" style="width: 0%"></div>
-
-  <!-- Offline Banner -->
-  <div id="offlineBanner">
-    <i class="fas fa-wifi-slash mr-2"></i> Hauna intaneti. Baadhi ya vipengele vinafanya kazi offline.
-  </div>
-
-  <!-- Toast Notification -->
-  <div id="toast" role="alert">
-    <i class="fas fa-check-circle text-xl"></i>
-    <span id="toastMessage">Imefanikiwa!</span>
-  </div>
-
-  <!-- LOADING SCREEN PREMIUM -->
-  <div id="loader" role="status" aria-live="polite">
-    <div class="relative">
-      <div class="w-28 h-28 rounded-3xl mb-6 animate-float shadow-2xl animate-glow" 
-           style="background: linear-gradient(135deg, #7c3aed, #ec4899, #14b8a6); display: flex; align-items: center; justify-content: center;">
-        <i class="fas fa-graduation-cap text-4xl text-white"></i>
-      </div>
-      <div class="absolute -bottom-2 -right-2 w-8 h-8 rounded-full bg-brand-gold flex items-center justify-center text-xs font-black text-brand-dark animate-bounce">
-        FREE
-      </div>
-    </div>
-    <div class="spinner-premium mb-5"></div>
-    <h2 class="text-3xl font-display font-black text-white tracking-tight mb-2 text-gradient">ELIMU HUB TZ</h2>
-    <p class="text-sm text-brand-accent uppercase tracking-[0.3em] animate-pulse">Inapakua Premium Resources... ✨</p>
-    <div class="mt-5 text-xs text-gray-500 flex items-center gap-2">
-      <i class="fas fa-sparkles text-brand-gold"></i>
-      All Levels • All Subjects • 100% Free
-    </div>
-  </div>
-
-  <!-- WELCOME MESSAGE PREMIUM -->
-  <div id="welcomeMsg" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[100] glass-premium px-6 py-5 rounded-3xl max-w-sm mx-4 text-center pointer-events-none opacity-0 transition-opacity duration-500 shadow-2xl" role="alert">
-    <div class="flex items-center justify-center gap-2 mb-3">
-      <i class="fas fa-crown text-brand-gold text-xl"></i>
-      <h3 class="text-xl font-black text-white">Karibu Premium, <span id="welcomeName">Mwanafunzi</span>! 🎓</h3>
-    </div>
-    <p class="text-gray-300 text-sm">Resources zote za NECTA, VETA & University - <span class="text-brand-gold font-bold">FREE KABISA!</span></p>
-  </div>
-
-  <!-- BACKGROUND ANIMATION PREMIUM -->
-  <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden" aria-hidden="true">
-    <div class="absolute top-1/4 -left-20 w-96 h-96 bg-brand-primary/15 rounded-full mix-blend-screen filter blur-3xl opacity-25 animate-blob"></div>
-    <div class="absolute top-1/3 -right-20 w-96 h-96 bg-brand-secondary/15 rounded-full mix-blend-screen filter blur-3xl opacity-25 animate-blob" style="animation-delay: -2s"></div>
-    <div class="absolute -bottom-20 left-1/4 w-96 h-96 bg-brand-accent/15 rounded-full mix-blend-screen filter blur-3xl opacity-25 animate-blob" style="animation-delay: -4s"></div>
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-gold/5 rounded-full mix-blend-screen filter blur-3xl opacity-20 animate-pulse-slow"></div>
-  </div>
-
-  <!-- AUTH SCREEN PREMIUM -->
-  <div id="auth-screen" class="fixed inset-0 z-[90] bg-brand-dark/98 backdrop-blur-2xl flex items-center justify-center p-4">
-    <div class="glass-premium w-full max-w-md p-6 md:p-8 rounded-[2.5rem] shadow-2xl border-brand-primary/40" data-aos="zoom-in">
-      <div class="text-center mb-7">
-        <div class="relative inline-block mb-4">
-          <div class="w-20 h-20 rounded-2xl mx-auto border-4 border-brand-primary shadow-xl flex items-center justify-center animate-float" 
-               style="background: linear-gradient(135deg, #7c3aed, #ec4899);">
-            <i class="fas fa-graduation-cap text-3xl text-white"></i>
-          </div>
-          <div class="absolute -bottom-1 -right-1 w-7 h-7 rounded-full bg-brand-gold flex items-center justify-center text-[10px] font-black text-brand-dark border-2 border-brand-dark">
-            VIP
-          </div>
-        </div>
-        <h1 class="text-3xl font-black tracking-tight text-white text-gradient">ELIMU HUB TZ</h1>
-        <p class="text-brand-accent font-bold mt-2 text-sm flex items-center justify-center gap-2">
-          <i class="fas fa-sparkles"></i> PREMIUM LEARNING • 100% FREE <i class="fas fa-sparkles"></i>
-        </p>
-      </div>
-      
-      <div class="space-y-3">
-        <input id="reg-name" type="text" placeholder="Jina Kamili *" 
-               class="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3.5 outline-none focus:border-brand-primary transition text-white placeholder-gray-500 font-medium" autocomplete="name">
-        <div class="grid grid-cols-2 gap-3">
-          <input id="reg-school" type="text" placeholder="Shule/Chuo *" 
-                 class="bg-white/5 border border-white/10 rounded-2xl px-4 py-3.5 outline-none focus:border-brand-primary transition text-white placeholder-gray-500 font-medium" autocomplete="organization">
-          <select id="reg-level" 
-                  class="bg-brand-card border border-white/10 rounded-2xl px-3 py-3.5 outline-none focus:border-brand-primary transition text-white font-medium">
-            <option value="PRIMARY">Primary</option>
-            <option value="FTNA">FTNA (F2)</option>
-            <option value="CSEE" selected>CSEE (F4)</option>
-            <option value="ACSEE">ACSEE (F6)</option>
-            <option value="VETA">VETA/Diploma</option>
-            <option value="UNIVERSITY">University</option>
-          </select>
-        </div>
-        <input id="reg-email" type="email" placeholder="Email Address *" 
-               class="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3.5 outline-none focus:border-brand-primary transition text-white placeholder-gray-500 font-medium" autocomplete="email">
-        <input id="reg-pass" type="password" placeholder="Password (min 6) *" 
-               class="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3.5 outline-none focus:border-brand-primary transition text-white placeholder-gray-500 font-medium" autocomplete="new-password">
-        
-        <button onclick="handleAuth()" class="w-full bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-accent py-4.5 rounded-2xl font-black text-white shadow-lg shadow-brand-primary/40 hover:shadow-brand-primary/60 hover:scale-[1.02] active:scale-95 transition-all btn-ripple mt-3 relative overflow-hidden">
-          <span class="relative z-10"><i class="fas fa-rocket mr-2"></i>ANZA KUSOMA SASA - FREE!</span>
-          <div class="absolute inset-0 bg-gradient-to-r from-brand-gold/20 to-transparent opacity-0 hover:opacity-100 transition-opacity"></div>
-        </button>
-        
-        <p class="text-center text-xs text-gray-500 mt-5">
-          Tayari una akaunti? 
-          <button onclick="toggleAuthMode()" class="text-brand-accent font-semibold hover:underline hover:text-brand-primary transition">Ingia hapa</button>
-        </p>
-        
-        <div class="text-center mt-4 p-3 rounded-xl bg-brand-primary/10 border border-brand-primary/20">
-          <p class="text-xs text-gray-400">
-            <i class="fas fa-gift text-brand-gold mr-1"></i>
-            <span class="font-semibold text-brand-gold">Habari Njema:</span> Premium features zote ni <span class="text-brand-accent font-bold">FREE</span> kwa wanafunzi wote! 🎁
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- MAIN APP -->
-  <main id="main-app" class="hidden">
-    
-    <!-- HEADER PREMIUM -->
-    <header class="sticky top-0 z-50 glass-nav safe-top px-4 py-3.5 flex justify-between items-center">
-      <div class="flex items-center gap-3">
-        <div class="relative">
-          <div class="w-11 h-11 rounded-full border-2 border-brand-secondary overflow-hidden bg-gradient-to-br from-brand-primary to-brand-secondary flex items-center justify-center">
-            <i class="fas fa-user text-white text-lg"></i>
-          </div>
-          <div class="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-brand-gold flex items-center justify-center text-[9px] font-black text-brand-dark border-2 border-brand-dark">
-            ★
-          </div>
-        </div>
-        <div>
-          <h2 id="user-display" class="font-bold text-sm leading-none text-white">Stanley</h2>
-          <p id="school-display" class="text-[10px] text-brand-primary uppercase font-black tracking-wide flex items-center gap-1">
-            <i class="fas fa-school"></i> Azania | CSEE
-          </p>
-        </div>
-      </div>
-      <div class="flex items-center gap-2">
-        <button onclick="showQuickActions()" class="text-brand-primary p-2.5 hover:bg-white/10 rounded-xl transition group" aria-label="Quick actions" title="Quick Actions">
-          <i class="fas fa-plus text-lg group-hover:rotate-90 transition-transform"></i>
-        </button>
-        <button onclick="logout()" class="text-gray-400 hover:text-brand-danger p-2.5 hover:bg-white/10 rounded-xl transition" aria-label="Logout" title="Logout">
-          <i class="fas fa-power-off"></i>
-        </button>
-      </div>
-    </header>
-
-    <!-- ===== TAB: RESOURCES (MAIN) ===== -->
-    <section id="resources-tab" class="p-4 md:p-6 animate-fade-in">
-      
-      <!-- Hero Banner -->
-      <div class="glass-premium p-5 md:p-6 rounded-3xl mb-6 relative overflow-hidden" data-aos="fade-up">
-        <div class="absolute top-0 right-0 w-40 h-40 bg-brand-gold/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-        <div class="relative z-10">
-          <div class="flex items-center gap-2 mb-3">
-            <span class="resource-badge"><i class="fas fa-crown text-brand-gold"></i> PREMIUM FREE</span>
-            <span class="text-xs text-brand-accent bg-brand-accent/15 px-3 py-1 rounded-full font-semibold">Updated: March 2026</span>
-          </div>
-          <h2 class="text-2xl md:text-3xl font-black text-white mb-2 text-gradient">
-            <i class="fas fa-sparkles mr-2"></i>ELIMU HUB PREMIUM
-          </h2>
-          <p class="text-gray-300 text-sm md:text-base">
-            Past papers, notes, AI tutor, map reading, health tips - <span class="text-brand-gold font-bold">YOTE FREE</span> kwa wanafunzi wa Tanzania! 🇹🇿✨
-          </p>
-        </div>
-      </div>
-
-      <!-- Level Selector Tabs -->
-      <div class="level-tabs" role="tablist">
-        <button class="level-tab active" data-level="all" onclick="filterByLevel('all')">🎯 Zote</button>
-        <button class="level-tab" data-level="PRIMARY" onclick="filterByLevel('PRIMARY')">🔤 Primary</button>
-        <button class="level-tab" data-level="FTNA" onclick="filterByLevel('FTNA')">📚 FTNA</button>
-        <button class="level-tab" data-level="CSEE" onclick="filterByLevel('CSEE')">🎓 CSEE</button>
-        <button class="level-tab" data-level="ACSEE" onclick="filterByLevel('ACSEE')">🎓 ACSEE</button>
-        <button class="level-tab" data-level="VETA" onclick="filterByLevel('VETA')">🔧 VETA</button>
-        <button class="level-tab" data-level="UNIVERSITY" onclick="filterByLevel('UNIVERSITY')">🎓 University</button>
-      </div>
-
-      <!-- Subject Grid -->
-      <h3 class="text-lg font-black text-white mb-4 flex items-center gap-2">
-        <i class="fas fa-layer-group text-brand-primary"></i>CHAGUA SOMO
-      </h3>
-      <div class="subject-grid mb-8">
-        <!-- Physics -->
-        <div class="subject-card" onclick="openSubject('physics')" data-subject="physics" data-levels="CSEE,ACSEE,VETA">
-          <div class="subject-icon"><i class="fas fa-atom"></i></div>
-          <div class="font-bold text-white text-sm">Physics</div>
-          <div class="text-[10px] text-gray-400 mt-1">O/A-Level, VETA</div>
-        </div>
-        <!-- Chemistry -->
-        <div class="subject-card" onclick="openSubject('chemistry')" data-subject="chemistry" data-levels="CSEE,ACSEE,VETA">
-          <div class="subject-icon"><i class="fas fa-flask"></i></div>
-          <div class="font-bold text-white text-sm">Chemistry</div>
-          <div class="text-[10px] text-gray-400 mt-1">O/A-Level, VETA</div>
-        </div>
-        <!-- Biology -->
-        <div class="subject-card" onclick="openSubject('biology')" data-subject="biology" data-levels="CSEE,ACSEE,VETA">
-          <div class="subject-icon"><i class="fas fa-dna"></i></div>
-          <div class="font-bold text-white text-sm">Biology</div>
-          <div class="text-[10px] text-gray-400 mt-1">O/A-Level, VETA</div>
-        </div>
-        <!-- Mathematics -->
-        <div class="subject-card" onclick="openSubject('math')" data-subject="math" data-levels="PRIMARY,FTNA,CSEE,ACSEE,VETA">
-          <div class="subject-icon"><i class="fas fa-calculator"></i></div>
-          <div class="font-bold text-white text-sm">Mathematics</div>
-          <div class="text-[10px] text-gray-400 mt-1">All Levels</div>
-        </div>
-        <!-- Geography -->
-        <div class="subject-card" onclick="openSubject('geography')" data-subject="geography" data-levels="CSEE,ACSEE">
-          <div class="subject-icon"><i class="fas fa-globe-africa"></i></div>
-          <div class="font-bold text-white text-sm">Geography</div>
-          <div class="text-[10px] text-gray-400 mt-1">Map Reading ✨</div>
-        </div>
-        <!-- Civics -->
-        <div class="subject-card" onclick="openSubject('civics')" data-subject="civics" data-levels="FTNA,CSEE,ACSEE">
-          <div class="subject-icon"><i class="fas fa-balance-scale"></i></div>
-          <div class="font-bold text-white text-sm">Civics</div>
-          <div class="text-[10px] text-gray-400 mt-1">Life Skills</div>
-        </div>
-        <!-- History -->
-        <div class="subject-card" onclick="openSubject('history')" data-subject="history" data-levels="FTNA,CSEE,ACSEE">
-          <div class="subject-icon"><i class="fas fa-landmark"></i></div>
-          <div class="font-bold text-white text-sm">History</div>
-          <div class="text-[10px] text-gray-400 mt-1">Tanzania & World</div>
-        </div>
-        <!-- Kiswahili -->
-        <div class="subject-card" onclick="openSubject('kiswahili')" data-subject="kiswahili" data-levels="PRIMARY,FTNA,CSEE,ACSEE">
-          <div class="subject-icon"><i class="fas fa-language"></i></div>
-          <div class="font-bold text-white text-sm">Kiswahili</div>
-          <div class="text-[10px] text-gray-400 mt-1">Sarufi & Insha</div>
-        </div>
-        <!-- English -->
-        <div class="subject-card" onclick="openSubject('english')" data-subject="english" data-levels="PRIMARY,FTNA,CSEE,ACSEE,UNIVERSITY">
-          <div class="subject-icon"><i class="fas fa-book-open"></i></div>
-          <div class="font-bold text-white text-sm">English</div>
-          <div class="text-[10px] text-gray-400 mt-1">Grammar & Writing</div>
-        </div>
-        <!-- Health -->
-        <div class="subject-card" onclick="openSubject('health')" data-subject="health" data-levels="all">
-          <div class="subject-icon" style="background: linear-gradient(135deg, #22c55e, #14b8a6);"><i class="fas fa-heartbeat"></i></div>
-          <div class="font-bold text-white text-sm">Health</div>
-          <div class="text-[10px] text-gray-400 mt-1">Wellness Tips 💚</div>
-        </div>
-        <!-- Career -->
-        <div class="subject-card" onclick="openSubject('career')" data-subject="career" data-levels="ACSEE,VETA,UNIVERSITY">
-          <div class="subject-icon" style="background: linear-gradient(135deg, #f59e0b, #fbbf24);"><i class="fas fa-briefcase"></i></div>
-          <div class="font-bold text-white text-sm">Career</div>
-          <div class="text-[10px] text-gray-400 mt-1">Guidance 🎯</div>
-        </div>
-        <!-- ICT -->
-        <div class="subject-card" onclick="openSubject('ict')" data-subject="ict" data-levels="VETA,UNIVERSITY">
-          <div class="subject-icon" style="background: linear-gradient(135deg, #3b82f6, #6366f1);"><i class="fas fa-laptop-code"></i></div>
-          <div class="font-bold text-white text-sm">ICT</div>
-          <div class="text-[10px] text-gray-400 mt-1">Coding & Tech 💻</div>
-        </div>
-      </div>
-
-      <!-- MAP READING SECTION (Featured) -->
-      <div class="glass p-5 md:p-6 rounded-3xl mb-6 border-l-4 border-brand-accent" data-aos="fade-up" data-aos-delay="100">
-        <h3 class="text-lg font-black text-white mb-4 flex items-center gap-2">
-          <i class="fas fa-map-marked-alt text-brand-accent"></i>🗺️ MAP READING MASTERCLASS
-        </h3>
-        <div class="map-container">
-          <div class="grid md:grid-cols-2 gap-4">
-            <div>
-              <h4 class="font-bold text-brand-accent mb-2 text-sm">📌 Fundamentals</h4>
-              <ul class="space-y-2 text-sm text-gray-300">
-                <li class="flex items-start gap-2"><i class="fas fa-check-circle text-brand-success mt-0.5"></i> <span>Grid references (4 & 6 figure)</span></li>
-                <li class="flex items-start gap-2"><i class="fas fa-check-circle text-brand-success mt-0.5"></i> <span>Scale conversion & distance</span></li>
-                <li class="flex items-start gap-2"><i class="fas fa-check-circle text-brand-success mt-0.5"></i> <span>Direction & bearing</span></li>
-                <li class="flex items-start gap-2"><i class="fas fa-check-circle text-brand-success mt-0.5"></i> <span>Relief representation</span></li>
-              </ul>
-            </div>
-            <div>
-              <h4 class="font-bold text-brand-accent mb-2 text-sm">🎯 Exam Tips</h4>
-              <ul class="space-y-2 text-sm text-gray-300">
-                <li class="flex items-start gap-2"><i class="fas fa-lightbulb text-brand-warning mt-0.5"></i> <span>Always use pencil & ruler</span></li>
-                <li class="flex items-start gap-2"><i class="fas fa-lightbulb text-brand-warning mt-0.5"></i> <span>Read questions twice</span></li>
-                <li class="flex items-start gap-2"><i class="fas fa-lightbulb text-brand-warning mt-0.5"></i> <span>Practice with NECTA maps</span></li>
-                <li class="flex items-start gap-2"><i class="fas fa-lightbulb text-brand-warning mt-0.5"></i> <span>Time management: 15 mins max</span></li>
-              </ul>
-            </div>
-          </div>
-          <div class="mt-4 pt-4 border-t border-white/10">
-            <button onclick="openMapPractice()" class="w-full bg-gradient-to-r from-brand-accent to-brand-primary py-3 rounded-xl font-bold text-white hover:opacity-90 transition btn-ripple flex items-center justify-center gap-2">
-              <i class="fas fa-play-circle"></i> PRACTICE MAP QUESTIONS NOW
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- HIGH-YIELD TOPICS (Repeated in Exams) -->
-      <h3 class="text-lg font-black text-white mb-4 flex items-center gap-2">
-        <i class="fas fa-fire text-orange-500 animate-pulse"></i>🔥 REPEATED TOPICS (NECTA SECRETS)
-      </h3>
-      
-      <!-- Physics High-Yield -->
-      <div class="glass p-4 md:p-5 rounded-2xl mb-4 topic-section" data-subject="physics" data-levels="CSEE,ACSEE">
-        <h4 class="text-brand-primary font-bold mb-3 flex justify-between items-center cursor-pointer" onclick="toggleSection('physics-topics')">
-          <span><i class="fas fa-atom mr-2"></i>PHYSICS - Must-Know Topics</span>
-          <span class="text-xs bg-orange-500/20 text-orange-400 px-3 py-1 rounded-full font-semibold flex items-center gap-1"><i class="fas fa-bolt"></i> 90% Repeated</span>
-        </h4>
-        <ul id="physics-topics" class="space-y-2 text-sm text-gray-300">
-          <li class="topic-card bg-white/5 p-3.5 rounded-xl" onclick="copyTopic(this)">
-            <div class="flex justify-between items-start">
-              <div><b class="text-white">⚡ Electricity:</b> Ohm's Law, Circuits, Power calculations</div>
-              <span class="text-[10px] text-brand-accent bg-brand-accent/15 px-2 py-0.5 rounded ml-2"><i class="fas fa-copy"></i> Copy</span>
-            </div>
-          </li>
-          <li class="topic-card bg-white/5 p-3.5 rounded-xl" onclick="copyTopic(this)">
-            <div class="flex justify-between items-start">
-              <div><b class="text-white">🔧 Mechanics:</b> Newton's Laws, Motion graphs, Pulleys</div>
-              <span class="text-[10px] text-brand-accent bg-brand-accent/15 px-2 py-0.5 rounded ml-2"><i class="fas fa-copy"></i> Copy</span>
-            </div>
-          </li>
-          <li class="topic-card bg-white/5 p-3.5 rounded-xl" onclick="copyTopic(this)">
-            <div class="flex justify-between items-start">
-              <div><b class="text-white">🔦 Optics:</b> Lenses formula, Refraction, Ray diagrams</div>
-              <span class="text-[10px] text-brand-accent bg-brand-accent/15 px-2 py-0.5 rounded ml-2"><i class="fas fa-copy"></i> Copy</span>
-            </div>
-          </li>
-          <li class="topic-card bg-white/5 p-3.5 rounded-xl" onclick="copyTopic(this)">
-            <div class="flex justify-between items-start">
-              <div><b class="text-white">🌊 Waves:</b> Frequency, Wavelength, Sound properties</div>
-              <span class="text-[10px] text-brand-accent bg-brand-accent/15 px-2 py-0.5 rounded ml-2"><i class="fas fa-copy"></i> Copy</span>
-            </div>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Chemistry High-Yield -->
-      <div class="glass p-4 md:p-5 rounded-2xl mb-4 topic-section" data-subject="chemistry" data-levels="CSEE,ACSEE">
-        <h4 class="text-brand-secondary font-bold mb-3 flex justify-between items-center cursor-pointer" onclick="toggleSection('chemistry-topics')">
-          <span><i class="fas fa-flask mr-2"></i>CHEMISTRY - Exam Favorites</span>
-          <span class="text-xs bg-brand-secondary/20 text-brand-secondary px-3 py-1 rounded-full font-semibold">Top Secrets 🔐</span>
-        </h4>
-        <ul id="chemistry-topics" class="space-y-2 text-sm text-gray-300">
-          <li class="topic-card bg-white/5 p-3.5 rounded-xl" onclick="copyTopic(this)">
-            <div class="flex justify-between items-start">
-              <div><b class="text-white">⚗️ Mole Concept:</b> Titration, Molarity, % composition</div>
-              <span class="text-[10px] text-brand-accent bg-brand-accent/15 px-2 py-0.5 rounded ml-2"><i class="fas fa-copy"></i> Copy</span>
-            </div>
-          </li>
-          <li class="topic-card bg-white/5 p-3.5 rounded-xl" onclick="copyTopic(this)">
-            <div class="flex justify-between items-start">
-              <div><b class="text-white">🔗 Bonding:</b> Ionic/Covalent, IUPAC naming, Oxidation states</div>
-              <span class="text-[10px] text-brand-accent bg-brand-accent/15 px-2 py-0.5 rounded ml-2"><i class="fas fa-copy"></i> Copy</span>
-            </div>
-          </li>
-          <li class="topic-card bg-white/5 p-3.5 rounded-xl" onclick="copyTopic(this)">
-            <div class="flex justify-between items-start">
-              <div><b class="text-white">🧪 Organic:</b> Hydrocarbons, Functional groups, Isomers</div>
-              <span class="text-[10px] text-brand-accent bg-brand-accent/15 px-2 py-0.5 rounded ml-2"><i class="fas fa-copy"></i> Copy</span>
-            </div>
-          </li>
-          <li class="topic-card bg-white/5 p-3.5 rounded-xl" onclick="copyTopic(this)">
-            <div class="flex justify-between items-start">
-              <div><b class="text-white">⚡ Electrolysis:</b> Applications, Ion discharge, Faraday's laws</div>
-              <span class="text-[10px] text-brand-accent bg-brand-accent/15 px-2 py-0.5 rounded ml-2"><i class="fas fa-copy"></i> Copy</span>
-            </div>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Quick Study Tip -->
-      <div class="glass p-4 rounded-2xl mt-2 border-l-4 border-brand-gold" data-aos="fade-up">
-        <h4 class="font-bold text-white mb-2 flex items-center gap-2">
-          <i class="fas fa-lightbulb text-brand-gold"></i>💡 Premium Study Tip
-        </h4>
-        <p class="text-sm text-gray-300" id="studyTip">Fanya past papers za miaka 5 iliyopita - NECTA inarudia concepts, siyo questions exactly! 🎯</p>
-      </div>
-    </section>
-
-    <!-- ===== TAB: AI TUTOR ===== -->
-    <section id="ai-tab" class="hidden p-4 md:p-6">
-      <div class="glass-premium p-5 rounded-3xl mb-4 border-l-4 border-brand-primary" data-aos="fade-up">
-        <div class="flex items-center gap-3 mb-2">
-          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-primary to-brand-secondary flex items-center justify-center">
-            <i class="fas fa-robot text-white text-lg"></i>
-          </div>
-          <div>
-            <h3 class="text-lg font-black text-white">ELIMU AI TUTOR ✨</h3>
-            <p class="text-xs text-gray-400">Uliza chochote - NECTA, VETA, University - ninajibu kwa Kiswahili! 🇹🇿</p>
-          </div>
-        </div>
-        <div class="mt-3 flex flex-wrap gap-2">
-          <button onclick="quickAsk('Explain Mole Concept with example')" class="text-[10px] bg-brand-primary/20 text-brand-primary px-3 py-1.5 rounded-full hover:bg-brand-primary/30 transition">🧪 Mole Concept</button>
-          <button onclick="quickAsk('How to solve map bearing questions?')" class="text-[10px] bg-brand-accent/20 text-brand-accent px-3 py-1.5 rounded-full hover:bg-brand-accent/30 transition">🗺️ Map Bearing</button>
-          <button onclick="quickAsk('Newton's Laws explained simply')" class="text-[10px] bg-brand-secondary/20 text-brand-secondary px-3 py-1.5 rounded-full hover:bg-brand-secondary/30 transition">🔧 Newton's Laws</button>
-          <button onclick="quickAsk('Tips for writing good insha')" class="text-[10px] bg-brand-gold/20 text-brand-gold px-3 py-1.5 rounded-full hover:bg-brand-gold/30 transition">✍️ Insha Tips</button>
-        </div>
-      </div>
-      
-      <div id="ai-chat-box" class="space-y-4 mb-36 min-h-[60vh]"></div>
-      
-      <!-- AI Input Premium -->
-      <div class="fixed bottom-20 left-0 right-0 p-4 z-30">
-        <div class="max-w-3xl mx-auto relative flex gap-2">
-          <input id="ai-input" type="text" placeholder="Uliza kuhusu somo lolote..." 
-                 class="flex-1 bg-brand-card/80 border border-brand-primary/30 rounded-2xl py-4 px-5 outline-none focus:ring-2 ring-brand-primary text-white placeholder-gray-500 font-medium"
-                 onkeypress="if(event.key==='Enter') askAI()">
-          <button onclick="askAI()" class="w-14 h-14 bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-accent rounded-2xl flex items-center justify-center shadow-lg hover:shadow-brand-primary/40 transition btn-ripple">
-            <i class="fas fa-paper-plane text-white"></i>
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== TAB: COMMUNITY CHAT ===== -->
-    <section id="chat-tab" class="hidden h-[85vh] flex flex-col">
-      <div class="glass p-4 rounded-2xl mb-3 flex items-center justify-between">
-        <h3 class="font-bold text-white flex items-center gap-2">
-          <i class="fas fa-users text-brand-primary"></i>Study Community
-        </h3>
-        <span class="text-xs bg-brand-success/20 text-brand-success px-2 py-1 rounded-full font-semibold"><i class="fas fa-circle text-[8px] mr-1 animate-pulse"></i>Live</span>
-      </div>
-      
-      <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-4 pb-4"></div>
-      
-      <!-- Reply Box -->
-      <div id="reply-box" class="hidden glass mx-4 p-3 mb-2 rounded-xl text-xs flex justify-between items-center border-l-4 border-brand-secondary">
-        <span id="reply-info" class="truncate">Replying...</span>
-        <button onclick="cancelReply()" class="text-gray-400 hover:text-white p-1"><i class="fas fa-times"></i></button>
-      </div>
-      
-      <!-- Chat Input -->
-      <div class="p-3 glass border-t border-brand-primary/20">
-        <div class="flex gap-2 items-center">
-          <label class="w-11 h-11 bg-brand-card rounded-xl flex items-center justify-center cursor-pointer hover:bg-brand-card/80 transition" title="Attach file">
-            <i class="fas fa-paperclip text-brand-primary"></i>
-            <input type="file" id="file-input" class="hidden" accept=".pdf,.jpg,.png,.doc,.docx" onchange="uploadFile()">
-          </label>
-          <input id="chat-input" type="text" placeholder="Tuma ujumbe, swali, au faili..." 
-                 class="flex-1 bg-black/40 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-brand-primary text-white placeholder-gray-500 font-medium"
-                 onkeypress="if(event.key==='Enter') sendChatMessage()">
-          <button onclick="sendChatMessage()" class="w-11 h-11 bg-gradient-to-r from-brand-primary to-brand-secondary rounded-xl flex items-center justify-center hover:opacity-90 transition btn-ripple">
-            <i class="fas fa-paper-plane text-white text-sm"></i>
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== TAB: HEALTH & WELLNESS ===== -->
-    <section id="health-tab" class="hidden p-4 md:p-6">
-      <div class="glass-premium p-5 md:p-6 rounded-3xl mb-6" data-aos="fade-up">
-        <h2 class="text-2xl font-black text-white mb-2 flex items-center gap-2">
-          <i class="fas fa-heartbeat text-brand-success"></i>🧠 HEALTH & WELLNESS HUB
-        </h2>
-        <p class="text-gray-300 text-sm">Mental health, nutrition, study balance - kwa wanafunzi wa Tanzania 💚</p>
-      </div>
-
-      <!-- Health Cards -->
-      <div class="grid md:grid-cols-2 gap-4 mb-6">
-        <!-- Mental Health -->
-        <div class="health-card glass p-4 rounded-2xl">
-          <h4 class="font-bold text-white mb-3 flex items-center gap-2">
-            <i class="fas fa-brain text-brand-success"></i>Mental Health
-          </h4>
-          <ul class="space-y-2 text-sm text-gray-300">
-            <li class="flex items-start gap-2"><i class="fas fa-check text-brand-success mt-1"></i> <span>Stress management before exams</span></li>
-            <li class="flex items-start gap-2"><i class="fas fa-check text-brand-success mt-1"></i> <span>Dealing with exam anxiety</span></li>
-            <li class="flex items-start gap-2"><i class="fas fa-check text-brand-success mt-1"></i> <span>Building confidence & motivation</span></li>
-            <li class="flex items-start gap-2"><i class="fas fa-check text-brand-success mt-1"></i> <span>When to seek help (free resources)</span></li>
-          </ul>
-        </div>
-        
-        <!-- Nutrition -->
-        <div class="health-card glass p-4 rounded-2xl">
-          <h4 class="font-bold text-white mb-3 flex items-center gap-2">
-            <i class="fas fa-apple-alt text-brand-accent"></i>Nutrition for Study
-          </h4>
-          <ul class="space-y-2 text-sm text-gray-300">
-            <li class="flex items-start gap-2"><i class="fas fa-check text-brand-success mt-1"></i> <span>Brain foods affordable in TZ</span></li>
-            <li class="flex items-start gap-2"><i class="fas fa-check text-brand-success mt-1"></i> <span>Hydration & focus connection</span></li>
-            <li class="flex items-start gap-2"><i class="fas fa-check text-brand-success mt-1"></i> <span>Meal timing for optimal study</span></li>
-            <li class="flex items-start gap-2"><i class="fas fa-check text-brand-success mt-1"></i> <span>Avoiding energy crashes</span></li>
-          </ul>
-        </div>
-        
-        <!-- Sleep & Rest -->
-        <div class="health-card glass p-4 rounded-2xl">
-          <h4 class="font-bold text-white mb-3 flex items-center gap-2">
-            <i class="fas fa-bed text-brand-primary"></i>Sleep & Recovery
-          </h4>
-          <ul class="space-y-2 text-sm text-gray-300">
-            <li class="flex items-start gap-2"><i class="fas fa-check text-brand-success mt-1"></i> <span>Why sleep boosts memory</span></li>
-            <li class="flex items-start gap-2"><i class="fas fa-check text-brand-success mt-1"></i> <span>Power nap techniques</span></li>
-            <li class="flex items-start gap-2"><i class="fas fa-check text-brand-success mt-1"></i> <span>Screen time before bed</span></li>
-            <li class="flex items-start gap-2"><i class="fas fa-check text-brand-success mt-1"></i> <span>Creating a sleep routine</span></li>
-          </ul>
-        </div>
-        
-        <!-- Physical Activity -->
-        <div class="health-card glass p-4 rounded-2xl">
-          <h4 class="font-bold text-white mb-3 flex items-center gap-2">
-            <i class="fas fa-running text-brand-secondary"></i>Move Your Body
-          </h4>
-          <ul class="space-y-2 text-sm text-gray-300">
-            <li class="flex items-start gap-2"><i class="fas fa-check text-brand-success mt-1"></i> <span>5-min study break exercises</span></li>
-            <li class="flex items-start gap-2"><i class="fas fa-check text-brand-success mt-1"></i> <span>Stretching for desk students</span></li>
-            <li class="flex items-start gap-2"><i class="fas fa-check text-brand-success mt-1"></i> <span>Walking & brain function</span></li>
-            <li class="flex items-start gap-2"><i class="fas fa-check text-brand-success mt-1"></i> <span>Free workout ideas (no gym)</span></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Quick Health Tip -->
-      <div class="glass p-4 rounded-2xl border-l-4 border-brand-success">
-        <h4 class="font-bold text-white mb-2 flex items-center gap-2">
-          <i class="fas fa-lightbulb text-brand-gold"></i>💚 Tip ya Leo
-        </h4>
-        <p class="text-sm text-gray-300" id="healthTip">Kunywa maji ya kutosha kunaboresha concentration kwa 20%! Weka chupa ya maji mezani wakati wa kusoma. 💧</p>
-      </div>
-    </section>
-
-    <!-- ===== TAB: CAREER & UNIVERSITY ===== -->
-    <section id="career-tab" class="hidden p-4 md:p-6">
-      <div class="glass-premium p-5 md:p-6 rounded-3xl mb-6" data-aos="fade-up">
-        <h2 class="text-2xl font-black text-white mb-2 flex items-center gap-2">
-          <i class="fas fa-rocket text-brand-gold"></i>🎯 CAREER & UNIVERSITY GUIDE
-        </h2>
-        <p class="text-gray-300 text-sm">Scholarships, applications, CV tips - free resources for your future ✨</p>
-      </div>
-
-      <!-- Career Sections -->
-      <div class="space-y-4">
-        <!-- Scholarships -->
-        <div class="glass p-4 rounded-2xl border-l-4 border-brand-gold">
-          <h4 class="font-bold text-white mb-3 flex items-center gap-2">
-            <i class="fas fa-graduation-cap text-brand-gold"></i>Scholarships & Funding
-          </h4>
-          <ul class="space-y-2 text-sm text-gray-300">
-            <li class="flex justify-between items-center"><span>🇹🇿 HESLB Loans Guide</span> <span class="resource-badge">Updated</span></li>
-            <li class="flex justify-between items-center"><span>🌍 International Scholarships</span> <span class="resource-badge">Free</span></li>
-            <li class="flex justify-between items-center"><span>🏫 University Bursaries</span> <span class="resource-badge">TZ Only</span></li>
-            <li class="flex justify-between items-center"><span>📝 Application Templates</span> <span class="resource-badge">Download</span></li>
-          </ul>
-        </div>
-        
-        <!-- University Prep -->
-        <div class="glass p-4 rounded-2xl border-l-4 border-brand-primary">
-          <h4 class="font-bold text-white mb-3 flex items-center gap-2">
-            <i class="fas fa-university text-brand-primary"></i>University Application
-          </h4>
-          <ul class="space-y-2 text-sm text-gray-300">
-            <li class="flex items-start gap-2"><i class="fas fa-check text-brand-success mt-1"></i> <span>Choosing the right course</span></li>
-            <li class="flex items-start gap-2"><i class="fas fa-check text-brand-success mt-1"></i> <span>UCTAS application walkthrough</span></li>
-            <li class="flex items-start gap-2"><i class="fas fa-check text-brand-success mt-1"></i> <span>Personal statement writing</span></li>
-            <li class="flex items-start gap-2"><i class="fas fa-check text-brand-success mt-1"></i> <span>Interview preparation tips</span></li>
-          </ul>
-        </div>
-        
-        <!-- Career Paths -->
-        <div class="glass p-4 rounded-2xl border-l-4 border-brand-accent">
-          <h4 class="font-bold text-white mb-3 flex items-center gap-2">
-            <i class="fas fa-briefcase text-brand-accent"></i>Career Exploration
-          </h4>
-          <ul class="space-y-2 text-sm text-gray-300">
-            <li class="flex items-start gap-2"><i class="fas fa-check text-brand-success mt-1"></i> <span>STEM careers in Tanzania</span></li>
-            <li class="flex items-start gap-2"><i class="fas fa-check text-brand-success mt-1"></i> <span>Entrepreneurship pathways</span></li>
-            <li class="flex items-start gap-2"><i class="fas fa-check text-brand-success mt-1"></i> <span>Government job opportunities</span></li>
-            <li class="flex items-start gap-2"><i class="fas fa-check text-brand-success mt-1"></i> <span>Freelancing & remote work</span></li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== BOTTOM NAVIGATION PREMIUM ===== -->
-    <nav class="fixed bottom-0 left-0 right-0 z-40 bottom-nav safe-bottom flex justify-around items-center px-2 h-16 md:hidden">
-      <button onclick="switchTab('resources')" class="nav-btn nav-item active flex flex-col items-center justify-center gap-0.5 text-brand-primary w-full h-full" id="nav-resources" aria-label="Resources">
-        <i class="fas fa-home text-lg"></i><span class="text-[9px] font-bold">Home</span>
-      </button>
-      <button onclick="switchTab('ai')" class="nav-btn nav-item flex flex-col items-center justify-center gap-0.5 text-gray-400 w-full h-full" id="nav-ai" aria-label="AI Tutor">
-        <i class="fas fa-robot text-lg"></i><span class="text-[9px] font-bold">AI</span>
-      </button>
-      <button onclick="switchTab('chat')" class="nav-btn nav-item flex flex-col items-center justify-center gap-0.5 text-gray-400 w-full h-full" id="nav-chat" aria-label="Community">
-        <i class="fas fa-users text-lg"></i><span class="text-[9px] font-bold">Chat</span>
-      </button>
-      <button onclick="switchTab('health')" class="nav-btn nav-item flex flex-col items-center justify-center gap-0.5 text-gray-400 w-full h-full" id="nav-health" aria-label="Health">
-        <i class="fas fa-heart text-lg"></i><span class="text-[9px] font-bold">Health</span>
-      </button>
-      <a href="https://wa.me/255787069580?text=Hello%20ELIMU%20HUB%20👋%20Ninahitaji%20msaada%20kwenye%20elimu" 
-         target="_blank" rel="noopener"
-         class="flex flex-col items-center justify-center w-full h-full" aria-label="Contact via WhatsApp">
-        <div class="w-12 h-12 rounded-full bg-brand-whatsapp flex items-center justify-center -mt-7 border-4 border-brand-dark shadow-lg whatsapp-pulse">
-          <i class="fab fa-whatsapp text-xl text-white"></i>
-        </div>
-        <span class="text-[9px] font-bold mt-1 text-brand-whatsapp">Support</span>
-      </a>
-    </nav>
-
-    <!-- DESKTOP WHATSAPP FLOAT PREMIUM -->
-    <a href="https://wa.me/255787069580?text=Hello%20ELIMU%20HUB%20👋%20Ninahitaji%20msaada%20kwenye%20elimu" 
-       target="_blank" rel="noopener"
-       class="hidden md:flex fixed bottom-6 right-6 z-50 w-14 h-14 bg-brand-whatsapp hover:bg-brand-whatsapp/90 rounded-full items-center justify-center shadow-lg shadow-brand-whatsapp/40 hover:scale-110 transition-all whatsapp-pulse group"
-       aria-label="Chat on WhatsApp" title="Get Help on WhatsApp">
-      <i class="fab fa-whatsapp text-white text-2xl"></i>
-      <span class="absolute right-full mr-3 px-3 py-1.5 bg-brand-dark rounded-xl text-xs font-medium text-white opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-lg border border-brand-primary/30">
-        <i class="fas fa-comments mr-1"></i>Chat na Stany
-      </span>
-    </a>
-
-  </main>
-
-  <!-- FIREBASE & APP SCRIPTS -->
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<body>
+  <!-- Background orbs -->
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
   
+  <!-- Particles canvas -->
+  <canvas id="canvas"></canvas>
+
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <div class="badge">
+        <i class="fa-solid fa-book-open"></i>
+        <span>Complete Deployment Guide • v2.0</span>
+      </div>
+      <img src="https://raw.githubusercontent.com/stanytz378/stanyimagesservers/refs/heads/main/bg.png" alt="IAM LEGEND" class="logo">
+      <h1 class="title">DEPLOYMENT<span>GUIDE</span></h1>
+      <div class="subtitle">Step-by-step instructions to deploy iamlegendv2 WhatsApp bot on all major platforms</div>
+    </div>
+
+    <!-- Prerequisites Section -->
+    <div class="section">
+      <h2 class="section-title"><i class="fa-solid fa-clipboard-list"></i> Prerequisites</h2>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon"><i class="fa-solid fa-check-circle"></i></div>
+          <h3>Before You Begin</h3>
+        </div>
+        <ul class="step-list">
+          <li>
+            <span class="step-number">1</span>
+            <span class="step-text"><strong>GitHub Account:</strong> <a href="https://github.com" target="_blank" class="link">Create one</a> if you don't have it</span>
+          </li>
+          <li>
+            <span class="step-number">2</span>
+            <span class="step-text"><strong>WhatsApp Number:</strong> A dedicated phone number (not your personal one)</span>
+          </li>
+          <li>
+            <span class="step-number">3</span>
+            <span class="step-text"><strong>Fork the Repository:</strong> <a href="https://github.com/Stanytz378/iamlegendv2/fork" target="_blank" class="link">Click here to fork iamlegendv2</a></span>
+          </li>
+          <li>
+            <span class="step-number">4</span>
+            <span class="step-text"><strong>Get Session ID:</strong> Visit <a href="https://sessionspair.onrender.com" target="_blank" class="link">Session Generator</a> and get your SESSION_ID</span>
+          </li>
+        </ul>
+        <div class="code-block">
+          <code>SESSION_ID example: Stanytz378/iamlegendv2_abc123</code>
+        </div>
+      </div>
+    </div>
+
+    <!-- Session Generator Card -->
+    <div class="section">
+      <h2 class="section-title"><i class="fa-solid fa-key"></i> Session Generator</h2>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon" style="color: var(--neon);"><i class="fa-solid fa-qrcode"></i></div>
+            <h3>QR Code Method</h3>
+          </div>
+          <p>Scan QR code with WhatsApp to get your session ID instantly.</p>
+          <a href="https://sessionspair.onrender.com/qrpage" target="_blank" class="link">Open QR Generator →</a>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon" style="color: var(--neon2);"><i class="fa-solid fa-key"></i></div>
+            <h3>Pairing Code Method</h3>
+          </div>
+          <p>Enter your phone number to receive an 8-character pairing code.</p>
+          <a href="https://sessionspair.onrender.com/pair" target="_blank" class="link">Open Pairing Generator →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Environment Variables -->
+    <div class="section">
+      <h2 class="section-title"><i class="fa-solid fa-gear"></i> Environment Variables</h2>
+      <div class="card">
+        <p style="margin-bottom: 20px;">These are the essential variables you need to set in your `.env` file or platform dashboard:</p>
+        <div class="env-table">
+          <div class="env-row">
+            <div class="env-key">SESSION_ID</div>
+            <div class="env-desc">Your session ID from the generator (required)</div>
+          </div>
+          <div class="env-row">
+            <div class="env-key">OWNER_NUMBER</div>
+            <div class="env-desc">Your WhatsApp number (e.g., 255618558502) – no + sign</div>
+          </div>
+          <div class="env-row">
+            <div class="env-key">BOT_NAME</div>
+            <div class="env-desc">Your bot's display name (default: iamlegendv2)</div>
+          </div>
+          <div class="env-row">
+            <div class="env-key">PREFIXES</div>
+            <div class="env-desc">Command prefixes (default: .,!,/)</div>
+          </div>
+          <div class="env-row">
+            <div class="env-key">COMMAND_MODE</div>
+            <div class="env-desc">public or private (default: public)</div>
+          </div>
+          <div class="env-row">
+            <div class="env-key">TIMEZONE</div>
+            <div class="env-desc">Your timezone (default: Africa/Nairobi)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Termux Deployment -->
+    <div class="section">
+      <h2 class="section-title"><i class="fa-brands fa-android"></i> Termux (Android)</h2>
+      <div class="card">
+        <div class="badge-sm"><i class="fa-regular fa-clock"></i> 5 minutes</div>
+        <p>Run the bot directly on your Android phone. Copy and paste these commands one by one:</p>
+        <div class="code-block">
+          <code>pkg update && pkg upgrade -y</code><br>
+          <code>pkg install git nodejs ffmpeg libvips -y</code><br>
+          <code>git clone https://github.com/YOUR_USERNAME/iamlegendv2.git</code><br>
+          <code>cd iamlegendv2</code><br>
+          <code>npm install</code><br>
+          <code>cp sample.env .env</code><br>
+          <code>nano .env   # Paste your SESSION_ID and OWNER_NUMBER here</code><br>
+          <code>npm start</code>
+        </div>
+        <p><strong>To keep bot running after closing Termux:</strong></p>
+        <div class="code-block">
+          <code>pkg install tmux</code><br>
+          <code>tmux new -s bot</code><br>
+          <code>npm start</code><br>
+          <code># Press Ctrl+B then D to detach</code>
+        </div>
+      </div>
+    </div>
+
+    <!-- VPS / Linux Server -->
+    <div class="section">
+      <h2 class="section-title"><i class="fa-brands fa-linux"></i> VPS / Linux Server</h2>
+      <div class="card">
+        <div class="badge-sm"><i class="fa-regular fa-clock"></i> 5-7 minutes</div>
+        <p>For Ubuntu/Debian servers – recommended for 24/7 operation:</p>
+        <div class="code-block">
+          <code>curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -</code><br>
+          <code>sudo apt install -y nodejs git ffmpeg libvips-dev libwebp-dev</code><br>
+          <code>git clone https://github.com/YOUR_USERNAME/iamlegendv2.git</code><br>
+          <code>cd iamlegendv2</code><br>
+          <code>npm install</code><br>
+          <code>cp sample.env .env</code><br>
+          <code>nano .env   # Add your SESSION_ID and OWNER_NUMBER</code><br>
+          <code>npm install -g pm2</code><br>
+          <code>pm2 start index.js --name iamlegendv2</code><br>
+          <code>pm2 save && pm2 startup</code>
+        </div>
+      </div>
+    </div>
+
+    <!-- Heroku Deployment -->
+    <div class="section">
+      <h2 class="section-title"><i class="fa-brands fa-connectdevelop"></i> Heroku</h2>
+      <div class="card">
+        <div class="badge-sm"><i class="fa-regular fa-clock"></i> 2 minutes</div>
+        <p>One-click deploy with automatic Docker build:</p>
+        <a href="https://heroku.com/deploy?template=https://github.com/Stanytz378/iamlegendv2" target="_blank" style="display: inline-block; margin-bottom: 20px;">
+          <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy to Heroku" height="40">
+        </a>
+        <p><strong>After clicking the button:</strong></p>
+        <ul class="step-list">
+          <li><span class="step-number">1</span> <span class="step-text">Enter your app name</span></li>
+          <li><span class="step-number">2</span> <span class="step-text">Add these environment variables:</span></li>
+        </ul>
+        <div class="code-block">
+          <code>SESSION_ID=Stanytz378/iamlegendv2_abc123</code><br>
+          <code>OWNER_NUMBER=255618558502</code>
+        </div>
+        <p><span class="step-number">3</span> Click "Deploy" and wait for completion.</p>
+      </div>
+    </div>
+
+    <!-- Render Deployment -->
+    <div class="section">
+      <h2 class="section-title"><i class="fa-solid fa-dharmachakra"></i> Render</h2>
+      <div class="card">
+        <div class="badge-sm"><i class="fa-regular fa-clock"></i> 3 minutes</div>
+        <a href="https://render.com/deploy?repo=https://github.com/Stanytz378/iamlegendv2" target="_blank" style="display: inline-block; margin-bottom: 20px;">
+          <img src="https://render.com/images/deploy-to-render-button.svg" alt="Deploy to Render" height="40">
+        </a>
+        <p><strong>Steps:</strong></p>
+        <ul class="step-list">
+          <li><span class="step-number">1</span> <span class="step-text">Click the button above</span></li>
+          <li><span class="step-number">2</span> <span class="step-text">Connect your GitHub account and select your forked repo</span></li>
+          <li><span class="step-number">3</span> <span class="step-text">In the Environment Variables section, add:</span></li>
+        </ul>
+        <div class="code-block">
+          <code>SESSION_ID=Stanytz378/iamlegendv2_abc123</code><br>
+          <code>OWNER_NUMBER=255618558502</code>
+        </div>
+        <p><span class="step-number">4</span> Click "Create Web Service"</p>
+      </div>
+    </div>
+
+    <!-- Railway Deployment -->
+    <div class="section">
+      <h2 class="section-title"><i class="fa-solid fa-train"></i> Railway</h2>
+      <div class="card">
+        <div class="badge-sm"><i class="fa-regular fa-clock"></i> 2 minutes</div>
+        <a href="https://railway.app/new/template?template=https://github.com/Stanytz378/iamlegendv2" target="_blank" style="display: inline-block; margin-bottom: 20px;">
+          <img src="https://railway.app/button.svg" alt="Deploy to Railway" height="40">
+        </a>
+        <p><strong>Steps:</strong></p>
+        <ul class="step-list">
+          <li><span class="step-number">1</span> <span class="step-text">Click the button above</span></li>
+          <li><span class="step-number">2</span> <span class="step-text">Select your GitHub repo</span></li>
+          <li><span class="step-number">3</span> <span class="step-text">Go to the Variables tab and add:</span></li>
+        </ul>
+        <div class="code-block">
+          <code>SESSION_ID=Stanytz378/iamlegendv2_abc123</code><br>
+          <code>OWNER_NUMBER=255618558502</code>
+        </div>
+        <p><span class="step-number">4</span> Click "Deploy"</p>
+      </div>
+    </div>
+
+    <!-- Koyeb Deployment -->
+    <div class="section">
+      <h2 class="section-title"><i class="fa-solid fa-globe"></i> Koyeb</h2>
+      <div class="card">
+        <div class="badge-sm"><i class="fa-regular fa-clock"></i> 3 minutes</div>
+        <a href="https://app.koyeb.com/deploy?type=git&repository=github.com/Stanytz378/iamlegendv2" target="_blank" style="display: inline-block; margin-bottom: 20px;">
+          <img src="https://www.koyeb.com/static/images/deploy/button.svg" alt="Deploy to Koyeb" height="40">
+        </a>
+        <p><strong>Steps:</strong></p>
+        <ul class="step-list">
+          <li><span class="step-number">1</span> <span class="step-text">Click the button</span></li>
+          <li><span class="step-number">2</span> <span class="step-text">Select your GitHub repository</span></li>
+          <li><span class="step-number">3</span> <span class="step-text">Add environment variables:</span></li>
+        </ul>
+        <div class="code-block">
+          <code>SESSION_ID=Stanytz378/iamlegendv2_abc123</code><br>
+          <code>OWNER_NUMBER=255618558502</code>
+        </div>
+        <p><span class="step-number">4</span> Click "Deploy"</p>
+      </div>
+    </div>
+
+    <!-- Fly.io Deployment -->
+    <div class="section">
+      <h2 class="section-title"><i class="fa-brands fa-fly"></i> Fly.io</h2>
+      <div class="card">
+        <div class="badge-sm"><i class="fa-regular fa-clock"></i> 4 minutes</div>
+        <a href="https://fly.io/launch?repo=https://github.com/Stanytz378/iamlegendv2" target="_blank" style="display: inline-block; margin-bottom: 20px;">
+          <img src="https://fly.io/button.svg" alt="Deploy to Fly.io" height="40">
+        </a>
+        <p><strong>Steps:</strong></p>
+        <ul class="step-list">
+          <li><span class="step-number">1</span> <span class="step-text">Install Fly CLI: <code>curl -L https://fly.io/install.sh | sh</code></span></li>
+          <li><span class="step-number">2</span> <span class="step-text">Login: <code>fly auth login</code></span></li>
+          <li><span class="step-number">3</span> <span class="step-text">Clone your fork and run: <code>fly launch</code></span></li>
+          <li><span class="step-number">4</span> <span class="step-text">Set secrets:</span></li>
+        </ul>
+        <div class="code-block">
+          <code>fly secrets set SESSION_ID=Stanytz378/iamlegendv2_abc123</code><br>
+          <code>fly secrets set OWNER_NUMBER=255618558502</code>
+        </div>
+        <p><span class="step-number">5</span> <code>fly deploy</code></p>
+      </div>
+    </div>
+
+    <!-- Replit Deployment -->
+    <div class="section">
+      <h2 class="section-title"><i class="fa-solid fa-code"></i> Replit</h2>
+      <div class="card">
+        <div class="badge-sm"><i class="fa-regular fa-clock"></i> 2 minutes</div>
+        <a href="https://replit.com/github/Stanytz378/iamlegendv2" target="_blank" class="link" style="font-size: 1.2rem; display: block; margin-bottom: 15px;">Open in Replit →</a>
+        <p><strong>Steps:</strong></p>
+        <ul class="step-list">
+          <li><span class="step-number">1</span> <span class="step-text">Click the link above</span></li>
+          <li><span class="step-number">2</span> <span class="step-text">Go to Secrets tab (lock icon) and add:</span></li>
+        </ul>
+        <div class="code-block">
+          <code>SESSION_ID=Stanytz378/iamlegendv2_abc123</code><br>
+          <code>OWNER_NUMBER=255618558502</code>
+        </div>
+        <p><span class="step-number">3</span> Click "Run"</p>
+      </div>
+    </div>
+
+    <!-- Docker Deployment -->
+    <div class="section">
+      <h2 class="section-title"><i class="fa-brands fa-docker"></i> Docker</h2>
+      <div class="card">
+        <div class="badge-sm"><i class="fa-regular fa-clock"></i> 2 minutes</div>
+        <p>Run anywhere Docker is installed:</p>
+        <div class="code-block">
+          <code>docker build -t iamlegendv2 .</code><br>
+          <code>docker run -d \</code><br>
+          <code>  -e SESSION_ID=Stanytz378/iamlegendv2_abc123 \</code><br>
+          <code>  -e OWNER_NUMBER=255618558502 \</code><br>
+          <code>  -p 5000:5000 \</code><br>
+          <code>  --name iamlegendv2 \</code><br>
+          <code>  iamlegendv2</code>
+        </div>
+      </div>
+    </div>
+
+    <!-- Windows WSL -->
+    <div class="section">
+      <h2 class="section-title"><i class="fa-brands fa-windows"></i> Windows WSL</h2>
+      <div class="card">
+        <div class="badge-sm"><i class="fa-regular fa-clock"></i> 5 minutes</div>
+        <p>Run on Windows using WSL (Ubuntu):</p>
+        <div class="code-block">
+          <code># Open WSL Ubuntu terminal</code><br>
+          <code>sudo apt update</code><br>
+          <code>curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -</code><br>
+          <code>sudo apt install -y nodejs git ffmpeg libvips-dev</code><br>
+          <code>git clone https://github.com/YOUR_USERNAME/iamlegendv2.git</code><br>
+          <code>cd iamlegendv2</code><br>
+          <code>npm install</code><br>
+          <code>cp sample.env .env</code><br>
+          <code>nano .env   # Add SESSION_ID and OWNER_NUMBER</code><br>
+          <code>npm start</code>
+        </div>
+      </div>
+    </div>
+
+    <!-- Database Options -->
+    <div class="section">
+      <h2 class="section-title"><i class="fa-solid fa-database"></i> Database Options</h2>
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon"><i class="fa-solid fa-leaf"></i></div>
+            <h3>MongoDB</h3>
+          </div>
+          <p>Recommended for cloud deployments. Get free tier at <a href="https://mongodb.com/atlas" target="_blank" class="link">MongoDB Atlas</a></p>
+          <div class="code-block">MONGO_URL=mongodb+srv://user:pass@cluster.mongodb.net/db</div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon"><i class="fa-solid fa-elephant"></i></div>
+            <h3>PostgreSQL</h3>
+          </div>
+          <p>Use with <a href="https://supabase.com" target="_blank" class="link">Supabase</a> or <a href="https://neon.tech" target="_blank" class="link">Neon</a></p>
+          <div class="code-block">POSTGRES_URL=postgresql://user:pass@host:5432/db</div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon"><i class="fa-solid fa-database"></i></div>
+            <h3>MySQL</h3>
+          </div>
+          <p>Compatible with many hosting providers</p>
+          <div class="code-block">MYSQL_URL=mysql://user:pass@host:3306/db</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Troubleshooting -->
+    <div class="section">
+      <h2 class="section-title"><i class="fa-solid fa-circle-exclamation"></i> Troubleshooting</h2>
+      <div class="card">
+        <ul class="step-list">
+          <li><span class="step-number">🔍</span> <span class="step-text"><strong>Session ID not working?</strong> Make sure you copied the full string including the prefix <code>Stanytz378/iamlegendv2_</code></span></li>
+          <li><span class="step-number">🔄</span> <span class="step-text"><strong>Bot disconnects?</strong> Check your internet connection. On cloud platforms, ensure you're not exceeding free tier limits.</span></li>
+          <li><span class="step-number">📝</span> <span class="step-text"><strong>"Cannot find module" error?</strong> Run <code>npm install</code> again and make sure all dependencies are installed.</span></li>
+          <li><span class="step-number">🚫</span> <span class="step-text"><strong>Commands not responding?</strong> Verify your <code>OWNER_NUMBER</code> in .env is correct and matches your WhatsApp number.</span></li>
+          <li><span class="step-number">💾</span> <span class="step-text"><strong>Data lost after restart?</strong> Add a database (MongoDB, PostgreSQL, etc.) for persistent storage.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="section">
+      <h2 class="section-title"><i class="fa-solid fa-link"></i> Quick Links</h2>
+      <div class="grid-3">
+        <a href="https://github.com/Stanytz378/iamlegendv2/fork" target="_blank" class="card">
+          <div class="card-header">
+            <div class="card-icon"><i class="fa-brands fa-github"></i></div>
+            <h3>Fork Repo</h3>
+          </div>
+          <p>Get your own copy</p>
+        </a>
+        <a href="https://sessionspair.onrender.com" target="_blank" class="card">
+          <div class="card-header">
+            <div class="card-icon"><i class="fa-solid fa-key"></i></div>
+            <h3>Session Generator</h3>
+          </div>
+          <p>Get SESSION_ID instantly</p>
+        </a>
+        <a href="https://whatsapp.com/channel/0029Vb7fzu4EwEjmsD4Tzs1p" target="_blank" class="card">
+          <div class="card-header">
+            <div class="card-icon"><i class="fa-brands fa-whatsapp"></i></div>
+            <h3>Join Channel</h3>
+          </div>
+          <p>Get updates and support</p>
+        </a>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="developer">
+        <i class="fa-solid fa-code"></i>
+        Developed by <a href="tel:+255787069580">STANY TZ</a>
+      </div>
+      <div class="footer-links">
+        <a href="https://github.com/Stanytz378" target="_blank"><i class="fa-brands fa-github"></i></a>
+        <a href="https://youtube.com/@STANYTZ" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://whatsapp.com/channel/0029Vb7fzu4EwEjmsD4Tzs1p" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+      </div>
+      <div>
+        &copy; <span id="year"></span> IAM LEGEND DEPLOYMENT GUIDE
+      </div>
+    </div>
+  </div>
+
   <script>
-    // === CONFIG & INIT ===
-    const firebaseConfig = {
-      apiKey: "AIzaSyCJ0ZQPHOopo4pk6Eni-WqpShyQ6z_ivZk",
-      authDomain: "stanytv.firebaseapp.com",
-      databaseURL: "https://stanytv-default-rtdb.firebaseio.com",
-      projectId: "stanytv",
-      storageBucket: "stanytv.firebasestorage.app",
-      messagingSenderId: "898881603619",
-      appId: "1:898881603619:web:f3689aac0c4fc34c474996"
-    };
-    
-    if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const db = firebase.database();
-    const storage = firebase.storage();
-    
-    let currentUser = null;
-    let replyingTo = null;
-    let isLoginMode = false;
-    let currentLevel = 'all';
-    
-    // === UTILITY FUNCTIONS ===
-    const $ = sel => document.querySelector(sel);
-    const $$ = sel => document.querySelectorAll(sel);
-    
-    function showToast(msg, type = 'success') {
-      const toast = $('#toast');
-      $('#toastMessage').textContent = msg;
-      toast.className = '';
-      toast.classList.add(type, 'show');
-      setTimeout(() => toast.classList.remove('show'), 3000);
-    }
-    
-    // === OFFLINE DETECTION ===
-    function updateOnlineStatus() {
-      const banner = $('#offlineBanner');
-      if (!navigator.onLine) {
-        banner.style.display = 'block';
-        showToast('Hauna intaneti. Baadhi ya vipengele vinafanya kazi offline.', 'error');
-      } else {
-        banner.style.display = 'none';
-        showToast('Umeunganishwa tena! 🎉', 'success');
-      }
-    }
-    window.addEventListener('online', updateOnlineStatus);
-    window.addEventListener('offline', updateOnlineStatus);
-    
-    // === LOADER & WELCOME ===
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        const loader = $('#loader');
-        loader.style.opacity = '0';
-        loader.style.visibility = 'hidden';
-        
-        if (currentUser) {
-          setTimeout(() => {
-            $('#welcomeName').textContent = currentUser.username?.split(' ')[0] || 'Mwanafunzi';
-            const welcome = $('#welcomeMsg');
-            welcome.classList.add('opacity-100');
-            setTimeout(() => welcome.classList.remove('opacity-100'), 3000);
-          }, 300);
-        }
-      }, 2000);
-      
-      checkAuth();
-      AOS.init({ once: true, offset: 30, duration: 600, easing: 'ease-out' });
-      updateOnlineStatus();
-      initStudyTips();
-    });
-    
-    // === AUTH LOGIC ===
-    function toggleAuthMode() {
-      isLoginMode = !isLoginMode;
-      const btn = document.querySelector('#auth-screen button');
-      btn.innerHTML = isLoginMode ? 
-        '<span class="relative z-10"><i class="fas fa-sign-in-alt mr-2"></i>INGIA SASA</span>' : 
-        '<span class="relative z-10"><i class="fas fa-user-plus mr-2"></i>JISAJILI - FREE!</span>';
-      showToast(isLoginMode ? 'Mode: Ingia' : 'Mode: Jisajili');
-    }
-    
-    async function handleAuth() {
-      const email = $('#reg-email').value.trim();
-      const pass = $('#reg-pass').value;
-      const name = $('#reg-name').value.trim();
-      const school = $('#reg-school').value.trim();
-      const level = $('#reg-level').value;
-      
-      if (!email || !pass || !name || !school) {
-        showToast('Jaza taarifa zote muhimu!', 'error');
-        return;
-      }
-      if (pass.length < 6) {
-        showToast('Password lazima iwe na herufi 6+', 'error');
-        return;
-      }
-      
-      const btn = document.querySelector('#auth-screen button');
-      const originalText = btn.innerHTML;
-      btn.disabled = true;
-      btn.innerHTML = '<span class="relative z-10"><i class="fas fa-spinner fa-spin mr-2"></i>Inasubiri...</span>';
-      
-      try {
-        if (isLoginMode) {
-          await auth.signInWithEmailAndPassword(email, pass);
-        } else {
-          const cred = await auth.createUserWithEmailAndPassword(email, pass);
-          await db.ref('users/' + cred.user.uid).set({
-            username: name, school, level, email,
-            joined: Date.now(), lastActive: Date.now(), premium: true
-          });
-        }
-        showToast(isLoginMode ? 'Karibu tena! 👋' : 'Akaunti imeundwa! Premium unlocked! 🎉', 'success');
-      } catch (err) {
-        showToast('Hitilafu: ' + (err.message?.split(':')[1]?.trim() || err.message), 'error');
-        btn.disabled = false;
-        btn.innerHTML = originalText;
-      }
-    }
-    
-    function checkAuth() {
-      auth.onAuthStateChanged(async user => {
-        if (user) {
-          db.ref('users/' + user.uid).once('value').then(snap => {
-            currentUser = { uid: user.uid, premium: true, ...snap.val() };
-            $('#auth-screen').classList.add('hidden');
-            $('#main-app').classList.remove('hidden');
-            $('#user-display').textContent = currentUser.username;
-            $('#school-display').innerHTML = `<i class="fas fa-school"></i> ${currentUser.school} | ${currentUser.level}`;
-            loadChat();
-            $('#welcomeName').textContent = currentUser.username?.split(' ')[0] || 'Mwanafunzi';
-            const welcome = $('#welcomeMsg');
-            welcome.classList.add('opacity-100');
-            setTimeout(() => welcome.classList.remove('opacity-100'), 3000);
-            db.ref('users/' + user.uid + '/lastActive').set(Date.now());
-          });
-        } else {
-          $('#auth-screen').classList.remove('hidden');
-          $('#main-app').classList.add('hidden');
-        }
-      });
-    }
-    
-    // === TAB SWITCHING ===
-    function switchTab(tab) {
-      ['resources', 'ai', 'chat', 'health', 'career'].forEach(t => {
-        const el = $(`#${t}-tab`);
-        if (el) el.classList.add('hidden');
-        const nav = $(`#nav-${t}`);
-        if (nav) {
-          nav.classList.remove('active', 'text-brand-primary');
-          nav.classList.add('text-gray-400');
-        }
-      });
-      
-      const activeTab = $(`#${tab}-tab`);
-      if (activeTab) activeTab.classList.remove('hidden');
-      const activeNav = $(`#nav-${tab}`);
-      if (activeNav) {
-        activeNav.classList.remove('text-gray-400');
-        activeNav.classList.add('active', 'text-brand-primary');
-      }
-      
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-    
-    // === LEVEL FILTER ===
-    function filterByLevel(level) {
-      currentLevel = level;
-      $$('.level-tab').forEach(tab => tab.classList.remove('active'));
-      event.currentTarget.classList.add('active');
-      
-      $$('.topic-section, .subject-card').forEach(el => {
-        const levels = el.dataset.levels?.split(',') || [];
-        if (level === 'all' || levels.includes(level)) {
-          el.style.display = '';
-          el.classList.add('animate-fade-in-up');
-        } else {
-          el.style.display = 'none';
-        }
-      });
-      
-      showToast(level === 'all' ? 'Zote zimeonyeshwa' : `${level} resources zimefilter`, 'success');
-    }
-    
-    // === SUBJECT OPEN ===
-    function openSubject(subject) {
-      showToast(`Loading ${subject.toUpperCase()} resources...`, 'success');
-      // In production: load subject-specific content
-      switchTab('resources');
-    }
-    
-    // === MAP READING PRACTICE ===
-    function openMapPractice() {
-      showToast('Opening Map Reading Practice Module... 🗺️', 'success');
-      // Could open modal or new section with interactive map questions
-    }
-    
-    // === AI TUTOR (Pollinations API) ===
-    async function askAI() {
-      const input = $('#ai-input');
-      const box = $('#ai-chat-box');
-      const question = input.value.trim();
-      
-      if (!question) { showToast('Andika swali lako kwanza! 🤔', 'error'); return; }
-      
-      box.innerHTML += `<div class="flex justify-end"><div class="message-bubble user p-4 rounded-2xl text-sm text-white">${escapeHtml(question)}</div></div>`;
-      input.value = '';
-      scrollToBottom(box);
-      
-      const typingId = 'typing-' + Date.now();
-      box.innerHTML += `<div class="flex justify-start" id="${typingId}"><div class="message-bubble ai p-4 rounded-2xl"><div class="flex gap-1"><span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span></div></div></div>`;
-      scrollToBottom(box);
-      
-      try {
-        const systemPrompt = `Wewe ni ELIMU AI TUTOR - mwalimu bora wa Tanzania. 
-        Jibu kwa Kiswahili na kingereza rahisi na kina. Tumia mifano ya NECTA, VETA, vyuo. 
-        Elezea kwa hatua. Kama hesabu, toa mfano wa nambari. 
-        Weka majibu mafupi lakini yenye maanda (max 300 words). 
-        Kama swali ni la health/career, jibu kwa ushauri wa vitendo.`;
-        
-        const response = await fetch(
-          `https://text.pollinations.ai/${encodeURIComponent(question)}?model=openai&system=${encodeURIComponent(systemPrompt)}`,
-          { headers: { 'Content-Type': 'text/plain' } }
-        );
-        
-        const answer = await response.text();
-        document.getElementById(typingId)?.remove();
-        
-        box.innerHTML += `
-          <div class="flex justify-start">
-            <div class="message-bubble ai p-4 rounded-2xl text-sm border-l-4 border-brand-accent max-w-[90%]">
-              <div class="text-xs text-brand-accent font-bold mb-1"><i class="fas fa-robot mr-1"></i>ELIMU AI:</div>
-              ${formatAnswer(answer)}
-              <div class="mt-3 flex gap-2">
-                <button onclick="copyToClipboard(this)" class="text-[10px] text-gray-400 hover:text-brand-accent transition"><i class="fas fa-copy mr-1"></i>Copy</button>
-                <button onclick="askFollowUp('${escapeHtml(question)}')" class="text-[10px] text-gray-400 hover:text-brand-primary transition"><i class="fas fa-redo mr-1"></i>Follow-up</button>
-              </div>
-            </div>
-          </div>
-        `;
-        scrollToBottom(box);
-      } catch (err) {
-        document.getElementById(typingId)?.remove();
-        box.innerHTML += `<div class="flex justify-start"><div class="message-bubble ai p-4 rounded-2xl text-sm border-l-4 border-brand-danger bg-brand-danger/10"><span class="text-brand-danger"><i class="fas fa-exclamation-triangle mr-1"></i>Hitilafu ya AI.</span><br><span class="text-xs text-gray-400">Jaribu tena au angalia intaneti.</span></div></div>`;
-        showToast('AI haipatikani kwa sasa', 'error');
-      }
-    }
-    
-    function quickAsk(question) {
-      $('#ai-input').value = question;
-      askAI();
-      switchTab('ai');
-    }
-    
-    function formatAnswer(text) {
-      return text
-        .replace(/\*\*(.*?)\*\*/g, '<b class="text-white">$1</b>')
-        .replace(/\n-\s/g, '<br>• ')
-        .replace(/`(.*?)`/g, '<code class="bg-black/30 px-1 rounded text-brand-accent">$1</code>')
-        .replace(/\n/g, '<br>');
-    }
-    
-    function escapeHtml(text) {
-      const div = document.createElement('div');
-      div.textContent = text;
-      return div.innerHTML;
-    }
-    
-    function scrollToBottom(el) {
-      setTimeout(() => el.scrollTop = el.scrollHeight, 100);
-    }
-    
-    function askFollowUp(originalQ) {
-      $('#ai-input').value = `Elezea zaidi kuhusu: ${originalQ}`;
-      $('#ai-input').focus();
-      switchTab('ai');
-    }
-    
-    // === CHAT FUNCTIONS ===
-    function sendChatMessage(customText = null, fileUrl = null) {
-      const input = $('#chat-input');
-      const text = customText || input.value.trim();
-      if (!text && !fileUrl) { showToast('Andika ujumbe au chagua faili', 'error'); return; }
-      
-      const message = {
-        uid: currentUser.uid, username: currentUser.username, school: currentUser.school, level: currentUser.level,
-        text: text, fileUrl: fileUrl, replyTo: replyingTo, timestamp: Date.now()
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Disable right click (optional)
+    document.addEventListener('contextmenu', e => e.preventDefault());
+
+    // Copy functionality (add to code blocks)
+    document.querySelectorAll('.code-block').forEach(block => {
+      const copyBtn = document.createElement('button');
+      copyBtn.className = 'btn-copy';
+      copyBtn.innerHTML = '<i class="fa-regular fa-copy"></i> Copy';
+      copyBtn.onclick = () => {
+        const text = block.innerText;
+        navigator.clipboard.writeText(text);
+        copyBtn.innerHTML = '<i class="fa-regular fa-check"></i> Copied!';
+        setTimeout(() => {
+          copyBtn.innerHTML = '<i class="fa-regular fa-copy"></i> Copy';
+        }, 2000);
       };
-      
-      db.ref('global_chat_2026').push(message).then(() => {
-        input.value = ''; cancelReply(); showToast('Ujumbe umetumwa! ✓', 'success');
-      }).catch(err => showToast('Hitilafu kutuma: ' + err.message, 'error'));
-    }
-    
-    function loadChat() {
-      db.ref('global_chat_2026').limitToLast(50).on('child_added', snap => {
-        const m = snap.val();
-        const isMe = m.uid === currentUser?.uid;
-        const box = $('#chat-messages');
-        
-        const replyHtml = m.replyTo ? `<div class="text-[9px] opacity-40 border-l-2 border-brand-primary pl-2 mb-1">↩ Replying to: ${escapeHtml(m.replyTo.text?.substring(0, 30) || '...')}</div>` : '';
-        const fileHtml = m.fileUrl ? `<a href="${m.fileUrl}" target="_blank" class="inline-flex items-center gap-1 text-brand-accent hover:underline font-medium mt-2"><i class="fas fa-file-alt"></i> ${escapeHtml(m.text?.replace('[FILE] ', '') || 'Download')}</a>` : '';
-        
-        const messageHtml = `
-          <div class="flex ${isMe ? 'justify-end' : 'justify-start'}">
-            <div class="${isMe ? 'message-bubble user' : 'message-bubble ai'} p-3 rounded-2xl ${isMe ? 'rounded-tr-none' : 'rounded-tl-none'} max-w-[85%]">
-              ${replyHtml}
-              <div class="text-[9px] font-bold ${isMe ? 'text-purple-200' : 'text-brand-secondary'} uppercase tracking-wide mb-1">${escapeHtml(m.username)} <span class="opacity-60">@ ${escapeHtml(m.school)}</span></div>
-              <div class="text-sm ${isMe ? 'text-white' : 'text-gray-200'}">${fileHtml || escapeHtml(m.text)}</div>
-              <div class="flex justify-between items-center mt-2">
-                <span class="text-[8px] opacity-40">${formatTime(m.timestamp)}</span>
-                ${!isMe ? `<button onclick="setupReply('${escapeHtml(m.username)}', '${escapeHtml(m.text)}')" class="text-[8px] opacity-40 hover:opacity-100 transition">↩ Reply</button>` : ''}
-              </div>
-            </div>
-          </div>
-        `;
-        box.insertAdjacentHTML('beforeend', messageHtml);
-        scrollToBottom(box);
-      });
-    }
-    
-    function formatTime(timestamp) {
-      return new Date(timestamp).toLocaleTimeString('sw-TZ', { hour: '2-digit', minute: '2-digit' });
-    }
-    
-    // === FILE UPLOAD ===
-    async function uploadFile() {
-      const file = $('#file-input').files[0];
-      if (!file) return;
-      
-      const validTypes = ['application/pdf', 'image/jpeg', 'image/png', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
-      if (!validTypes.includes(file.type)) { showToast('Aina ya faili hairuhusiwi. Tumia PDF, JPG, PNG au DOC.', 'error'); return; }
-      if (file.size > 10 * 1024 * 1024) { showToast('Faili ni kubwa sana. Chini ya 10MB tafadhali.', 'error'); return; }
-      
-      showToast('Inapakia faili... 📤', 'success');
-      
-      try {
-        const ref = storage.ref(`resources/${currentUser.uid}/${Date.now()}_${file.name.replace(/\s/g, '_')}`);
-        const snapshot = await ref.put(file);
-        const url = await snapshot.ref.getDownloadURL();
-        sendChatMessage(`[FILE] ${file.name}`, url);
-        showToast('Faili imetumwa! ✓', 'success');
-      } catch (err) { showToast('Hitilafu kupakia: ' + err.message, 'error'); }
-      $('#file-input').value = '';
-    }
-    
-    // === REPLY SYSTEM ===
-    function setupReply(name, text) {
-      replyingTo = { name, text };
-      $('#reply-box').classList.remove('hidden');
-      $('#reply-info').textContent = `↩ Kujibu ${name}: "${text.substring(0, 25)}..."`;
-      $('#chat-input').focus();
-    }
-    function cancelReply() { replyingTo = null; $('#reply-box').classList.add('hidden'); }
-    
-    // === TOPIC INTERACTIONS ===
-    function copyTopic(el) {
-      const text = el.textContent.replace('Copy', '').trim();
-      navigator.clipboard.writeText(text).then(() => {
-        showToast('Mada imecopy! 📋', 'success');
-        el.classList.add('active');
-        setTimeout(() => el.classList.remove('active'), 1000);
-      });
-    }
-    
-    function toggleSection(id) {
-      const list = document.getElementById(id);
-      if (list) {
-        list.style.display = list.style.display === 'none' ? 'block' : 'none';
-        showToast(list.style.display === 'none' ? 'Mada zimefichwa' : 'Mada zimeonyeshwa ✓');
+      block.appendChild(copyBtn);
+    });
+
+    // Particles animation
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    let width, height, particles = [];
+    let animationFrame;
+
+    function initParticles() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+
+      const particleCount = Math.min(Math.floor(width * height / 15000), 50);
+      particles = [];
+
+      for (let i = 0; i < particleCount; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.3,
+          vy: (Math.random() - 0.5) * 0.3,
+          size: Math.random() * 2 + 1,
+          opacity: Math.random() * 0.3 + 0.1
+        });
       }
     }
-    
-    // === COPY TO CLIPBOARD ===
-    function copyToClipboard(btn) {
-      const text = btn.closest('.message-bubble').textContent.replace('CopyFollow-up', '').trim();
-      navigator.clipboard.writeText(text).then(() => {
-        showToast('Maelezo yamecopy! 📋', 'success');
-        btn.innerHTML = '<i class="fas fa-check mr-1"></i>Copied!';
-        setTimeout(() => btn.innerHTML = '<i class="fas fa-copy mr-1"></i>Copy', 2000);
-      });
-    }
-    
-    // === QUICK ACTIONS ===
-    function showQuickActions() {
-      const actions = [
-        { icon: 'fa-robot', text: 'Uliza AI', action: () => switchTab('ai') },
-        { icon: 'fa-file-pdf', text: 'Past Papers', action: () => showToast('Feature inakuja soon! 🚀') },
-        { icon: 'fa-calendar-check', text: 'Study Schedule', action: () => showToast('Feature inakuja soon! 🚀') },
-        { icon: 'fa-users', text: 'Study Group', action: () => switchTab('chat') },
-        { icon: 'fa-heart', text: 'Health Tips', action: () => switchTab('health') },
-        { icon: 'fa-rocket', text: 'Career Guide', action: () => switchTab('career') }
-      ];
-      
-      const choice = prompt("Chagua action:\n1. Uliza AI\n2. Past Papers\n3. Study Schedule\n4. Study Group\n5. Health Tips\n6. Career Guide\n\nAndika namba (1-6):");
-      if (choice && actions[choice-1]) actions[choice-1].action();
-    }
-    
-    // === LOGOUT ===
-    function logout() {
-      if (confirm('Je, una uhakika unataka kutoka?')) {
-        auth.signOut().then(() => { showToast('Umetoka kwa mafanikio! 👋', 'success'); location.reload(); });
+
+    function drawParticles() {
+      ctx.clearRect(0, 0, width, height);
+
+      // Draw connections
+      ctx.strokeStyle = 'rgba(0, 207, 255, 0.1)';
+      ctx.lineWidth = 0.5;
+
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < 120) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(0, 207, 255, ${0.1 * (1 - distance / 120)})`;
+            ctx.stroke();
+          }
+        }
       }
+
+      // Draw particles
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > width) p.vx *= -1;
+        if (p.y < 0 || p.y > height) p.vy *= -1;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(0, 207, 255, ${p.opacity})`;
+        ctx.fill();
+      });
+
+      animationFrame = requestAnimationFrame(drawParticles);
     }
-    
-    // === PROGRESS BAR ===
-    window.addEventListener('scroll', () => {
-      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scrolled = (winScroll / height) * 100;
-      $('#progressBar').style.width = `${scrolled}%`;
-    }, { passive: true });
-    
-    // === STUDY & HEALTH TIPS ROTATOR ===
-    const studyTips = [
-      "Fanya past papers za miaka 5 iliyopita - NECTA inarudia concepts, siyo questions exactly! 🎯",
-      "Anza na mada unazozielewa vizuri, kisha endelea kwa ngumu. Pombea baada ya kila saa 45! ⏰",
-      "Jifunze na marafiki. Kufundisha ndio njia bora ya kukumbuka! 👥",
-      "Lala mapema usiku wa mtihani. Ubongo unahitaji kupumzika! 😴",
-      "Tumia mnemonic na vitendawili kukumbuka dhana ngumu. 🧠"
-    ];
-    const healthTips = [
-      "Kunywa maji ya kutosha kunaboresha concentration kwa 20%! Weka chupa ya maji mezani wakati wa kusoma. 💧",
-      "Fanya exercise ndogo ndogo kila baada ya saa 1 ya kusoma - inaboresha blood flow kwenye ubongo! 🏃",
-      "Lala angalau masaa 7-8. Usingizi wa kutosha unaimarisha memory na focus! 😴✨",
-      "Epuka sukari nyingi wakati wa kusoma - inakupa energy ya muda mfupi kisha unachoka. Chua matunda! 🍎",
-      "Pumzika macho kila baada ya dakika 20 ya kusoma: angalia mbali kwa sekunde 20. 👁️"
-    ];
-    
-    function initStudyTips() {
-      setInterval(() => {
-        const tipEl = $('#studyTip');
-        if (tipEl) {
-          tipEl.style.opacity = '0';
-          setTimeout(() => {
-            tipEl.textContent = studyTips[Math.floor(Math.random() * studyTips.length)];
-            tipEl.style.opacity = '1';
-          }, 300);
-        }
-      }, 35000);
-      
-      setInterval(() => {
-        const healthEl = $('#healthTip');
-        if (healthEl) {
-          healthEl.style.opacity = '0';
-          setTimeout(() => {
-            healthEl.textContent = healthTips[Math.floor(Math.random() * healthTips.length)];
-            healthEl.style.opacity = '1';
-          }, 300);
-        }
-      }, 40000);
-    }
-    
-    // === SECURITY: Disable Right Click on Content ===
-    document.addEventListener('contextmenu', e => {
-      if (!['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName)) e.preventDefault();
+
+    // Handle resize
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        initParticles();
+      }, 200);
     });
-    
-    // === KEYBOARD SHORTCUTS ===
-    document.addEventListener('keydown', e => {
-      if ((e.ctrlKey || e.metaKey) && e.key === 'k') { e.preventDefault(); switchTab('ai'); $('#ai-input')?.focus(); }
-      if (e.key === 'Escape') cancelReply();
+
+    // Start animation
+    initParticles();
+    drawParticles();
+
+    // Pause animation when tab is hidden
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        cancelAnimationFrame(animationFrame);
+      } else {
+        drawParticles();
+      }
     });
-    
-    // === PWA: Service Worker (for production) ===
-    if ('serviceWorker' in navigator && location.protocol === 'https:') {
-      // navigator.serviceWorker.register('/sw.js').catch(console.error);
-    }
   </script>
 </body>
 </html>
