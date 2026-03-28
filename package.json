@@ -1,0 +1,14 @@
+{
+  "name": "iamlegend-deployment-guide",
+  "version": "2.1.0",
+  "description": "IAM LEGEND Deployment Guide in TypeScript",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "serve": "npx live-server public --port=3000"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {}
+}
