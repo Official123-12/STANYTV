@@ -1,0 +1,1970 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="STANY TZ">
+  <meta name="theme-color" content="#0a0a12" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="description" content="IAM LEGEND - Complete Deployment Guide for iamlegendv2 WhatsApp Bot">
+  
+  <!-- Open Graph / Fixed URLs -->
+  <meta property="og:title" content="IAM LEGEND DEPLOYMENT GUIDE">
+  <meta property="og:description" content="Step-by-step guide to deploy iamlegendv2 on all platforms">
+  <meta property="og:image" content="https://raw.githubusercontent.com/Official123-12/STANYFREEBOT-/refs/heads/main/IMG_1377.jpeg">
+  <meta property="og:url" content="https://sessionspair.onrender.com/guide">
+  <meta property="og:type" content="website">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="IAM LEGEND DEPLOYMENT GUIDE">
+  <meta name="twitter:description" content="Deploy iamlegendv2 WhatsApp bot in minutes">
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/Official123-12/STANYFREEBOT-/refs/heads/main/IMG_1377.jpeg">
+  
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "IAM LEGEND Deployment Guide",
+    "description": "Complete guide to deploy iamlegendv2 WhatsApp bot",
+    "author": {"@type": "Person", "name": "Stany TZ"},
+    "publisher": {"@type": "Organization", "name": "STANY TZ"},
+    "datePublished": "2026-01-01"
+  }
+  </script>
+  
+  <title>STANY TZ • IAM LEGEND Deployment Guide</title>
+  
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://raw.githubusercontent.com">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    /* ===== CSS VARIABLES & THEMES ===== */
+    :root {
+      /* Dark Theme (Default) */
+      --bg-primary: #0a0a12;
+      --bg-secondary: rgba(255, 255, 255, 0.03);
+      --bg-tertiary: rgba(255, 255, 255, 0.06);
+      --surface: rgba(30, 30, 45, 0.8);
+      --surface-hover: rgba(40, 40, 60, 0.9);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(0, 255, 136, 0.3);
+      
+      /* Accent Colors */
+      --neon: #00ff88;
+      --neon-glow: rgba(0, 255, 136, 0.4);
+      --neon2: #00cfff;
+      --neon2-glow: rgba(0, 207, 255, 0.3);
+      --accent: #a259ff;
+      
+      /* Text */
+      --text-primary: #ffffff;
+      --text-secondary: rgba(255, 255, 255, 0.7);
+      --text-muted: rgba(255, 255, 255, 0.4);
+      --text-link: var(--neon2);
+      
+      /* Effects */
+      --glass: blur(20px) saturate(180%);
+      --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 16px 64px rgba(0, 0, 0, 0.5);
+      --shadow-neon: 0 0 20px var(--neon-glow);
+      
+      /* Spacing & Layout */
+      --radius-sm: 12px;
+      --radius-md: 20px;
+      --radius-lg: 28px;
+      --radius-xl: 60px;
+      --container-max: 1200px;
+      --nav-height: 70px;
+      
+      /* Transitions */
+      --transition-fast: 150ms ease;
+      --transition-normal: 300ms ease;
+      --transition-slow: 500ms ease;
+    }
+    
+    /* Light Theme */
+    [data-theme="light"] {
+      --bg-primary: #f8f9fc;
+      --bg-secondary: rgba(10, 10, 18, 0.03);
+      --bg-tertiary: rgba(10, 10, 18, 0.06);
+      --surface: rgba(255, 255, 255, 0.85);
+      --surface-hover: rgba(255, 255, 255, 0.95);
+      --border: rgba(10, 10, 18, 0.08);
+      --border-hover: rgba(0, 255, 136, 0.4);
+      
+      --text-primary: #1a1a2e;
+      --text-secondary: rgba(26, 26, 46, 0.7);
+      --text-muted: rgba(26, 26, 46, 0.4);
+      --text-link: #0099aa;
+      
+      --shadow-sm: 0 4px 16px rgba(10, 10, 18, 0.08);
+      --shadow-md: 0 8px 32px rgba(10, 10, 18, 0.12);
+      --shadow-lg: 0 16px 64px rgba(10, 10, 18, 0.15);
+    }
+    
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--nav-height) + 20px);
+    }
+    
+    body {
+      width: 100%;
+      min-height: 100vh;
+      background: var(--bg-primary);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    /* Skip Link for Accessibility */
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: var(--neon);
+      color: #000;
+      padding: 8px 16px;
+      z-index: 1000;
+      border-radius: 0 0 var(--radius-sm) 0;
+      transition: top var(--transition-fast);
+    }
+    .skip-link:focus {
+      top: 0;
+    }
+    
+    /* ===== BACKGROUND EFFECTS ===== */
+    .bg-wrapper {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    
+    .bg-image {
+      position: absolute;
+      inset: 0;
+      background: url('https://raw.githubusercontent.com/stanytz378/stanyimagesservers/refs/heads/main/bg.png') center/cover fixed;
+      background-blend-mode: overlay;
+      opacity: 0.4;
+    }
+    
+    .bg-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at top, 
+        rgba(10, 10, 18, 0.6) 0%, 
+        rgba(10, 10, 18, 0.92) 50%,
+        var(--bg-primary) 100%);
+    }
+    
+    [data-theme="light"] .bg-overlay {
+      background: radial-gradient(ellipse at top,
+        rgba(248, 249, 252, 0.7) 0%,
+        rgba(248, 249, 252, 0.95) 50%,
+        var(--bg-primary) 100%);
+    }
+    
+    /* Animated Orbs */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.4;
+      animation: float 20s ease-in-out infinite alternate;
+    }
+    
+    .orb-1 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(0, 255, 136, 0.25), transparent 70%);
+      top: -150px; left: -100px;
+      animation-delay: 0s;
+    }
+    
+    .orb-2 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(0, 207, 255, 0.2), transparent 70%);
+      bottom: -100px; right: -80px;
+      animation-delay: -5s;
+    }
+    
+    .orb-3 {
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(162, 89, 255, 0.15), transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      animation-delay: -10s;
+      animation-duration: 25s;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(30px, -20px) scale(1.05); }
+      50% { transform: translate(-20px, 30px) scale(0.95); }
+      75% { transform: translate(15px, 15px) scale(1.02); }
+    }
+    
+    /* Particles Canvas */
+    #particles-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
+    
+    /* ===== LAYOUT ===== */
+    .main-wrapper {
+      position: relative;
+      z-index: 10;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .container {
+      width: 100%;
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 20px;
+      flex: 1;
+    }
+    
+    /* ===== NAVIGATION ===== */
+    .nav-bar {
+      position: sticky;
+      top: 16px;
+      z-index: 100;
+      background: var(--surface);
+      backdrop-filter: var(--glass);
+      -webkit-backdrop-filter: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 8px 16px;
+      margin: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      box-shadow: var(--shadow-md);
+      transition: all var(--transition-normal);
+    }
+    
+    .nav-bar.scrolled {
+      padding: 6px 12px;
+      border-radius: var(--radius-lg);
+      background: rgba(30, 30, 45, 0.95);
+    }
+    
+    .nav-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 14px;
+      border-radius: 40px;
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-secondary);
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all var(--transition-fast);
+      position: relative;
+      min-height: 44px; /* Touch target */
+    }
+    
+    .nav-item i {
+      font-size: 15px;
+      color: var(--neon2);
+      transition: color var(--transition-fast);
+    }
+    
+    .nav-item:hover {
+      background: var(--bg-tertiary);
+      border-color: var(--border-hover);
+      color: var(--text-primary);
+      transform: translateY(-2px);
+    }
+    
+    .nav-item:hover i {
+      color: var(--neon);
+    }
+    
+    .nav-item.active {
+      background: linear-gradient(135deg, rgba(0, 255, 136, 0.15), rgba(0, 207, 255, 0.1));
+      border-color: var(--neon);
+      color: var(--neon);
+      box-shadow: var(--shadow-neon);
+    }
+    
+    .nav-item.active i {
+      color: var(--neon);
+    }
+    
+    /* Theme Toggle */
+    .theme-toggle {
+      margin-left: auto;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      font-size: 18px;
+    }
+    
+    .theme-toggle:hover {
+      background: var(--surface-hover);
+      color: var(--neon);
+      transform: rotate(15deg);
+    }
+    
+    /* ===== HEADER ===== */
+    .header {
+      text-align: center;
+      padding: 40px 20px 30px;
+      animation: fadeUp 0.6s ease;
+    }
+    
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 20px;
+      background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 207, 255, 0.05));
+      border: 1px solid rgba(0, 255, 136, 0.25);
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--neon);
+      margin-bottom: 24px;
+      backdrop-filter: blur(10px);
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.2); }
+      50% { box-shadow: 0 0 0 10px rgba(0, 255, 136, 0); }
+    }
+    
+    .logo {
+      width: 100px;
+      height: 100px;
+      border-radius: 28px;
+      border: 2px solid var(--neon);
+      box-shadow: 0 0 40px rgba(0, 255, 136, 0.35);
+      margin: 0 auto 20px;
+      animation: logoFloat 4s ease-in-out infinite;
+      object-fit: cover;
+      background: var(--surface);
+    }
+    
+    @keyframes logoFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    
+    .title {
+      font-size: clamp(2.2rem, 7vw, 3.8rem);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
+    }
+    
+    .title span {
+      background: linear-gradient(135deg, var(--neon), var(--neon2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.1rem);
+      color: var(--text-secondary);
+      max-width: 650px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+    
+    /* ===== QUICK LINKS GRID ===== */
+    .quick-links {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin: 24px 0 40px;
+    }
+    
+    .quick-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 16px;
+      background: var(--surface);
+      backdrop-filter: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      color: var(--text-primary);
+      transition: all var(--transition-normal);
+      min-height: 120px;
+      text-align: center;
+      gap: 12px;
+    }
+    
+    .quick-card:hover {
+      transform: translateY(-4px) scale(1.02);
+      border-color: var(--border-hover);
+      background: var(--surface-hover);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .quick-card i {
+      font-size: 32px;
+      transition: transform var(--transition-fast);
+    }
+    
+    .quick-card:hover i {
+      transform: scale(1.1);
+    }
+    
+    .quick-card.github i { color: #fff; }
+    .quick-card.session i { color: var(--neon); }
+    .quick-card.whatsapp i { color: #25D366; }
+    .quick-card.group i { color: #00ACEE; }
+    
+    .quick-card h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin: 0;
+    }
+    
+    /* ===== SECTIONS & CARDS ===== */
+    .section {
+      scroll-margin-top: calc(var(--nav-height) + 30px);
+      margin-bottom: 36px;
+      animation: fadeUp 0.5s ease both;
+    }
+    
+    .section:nth-child(2) { animation-delay: 0.1s; }
+    .section:nth-child(3) { animation-delay: 0.15s; }
+    .section:nth-child(4) { animation-delay: 0.2s; }
+    
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .section-title {
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 700;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--text-primary);
+    }
+    
+    .section-title i {
+      background: linear-gradient(135deg, var(--neon), var(--neon2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 1.8rem;
+    }
+    
+    .card {
+      background: var(--surface);
+      backdrop-filter: var(--glass);
+      -webkit-backdrop-filter: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      transition: all var(--transition-normal);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, 
+        rgba(0, 255, 136, 0.03), 
+        rgba(0, 207, 255, 0.02), 
+        transparent 60%);
+      opacity: 0;
+      transition: opacity var(--transition-normal);
+      pointer-events: none;
+      z-index: 0;
+    }
+    
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-hover);
+      background: var(--surface-hover);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .card:hover::before {
+      opacity: 1;
+    }
+    
+    .card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, 
+        transparent, 
+        var(--neon), 
+        var(--neon2), 
+        var(--accent), 
+        transparent);
+      transform: scaleX(0);
+      transition: transform 0.5s ease;
+    }
+    
+    .card:hover::after {
+      transform: scaleX(1);
+    }
+    
+    .card > * {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .card-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(0, 255, 136, 0.12), rgba(0, 207, 255, 0.08));
+      border: 1px solid rgba(0, 255, 136, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: var(--neon);
+      flex-shrink: 0;
+      transition: transform var(--transition-fast);
+    }
+    
+    .card:hover .card-icon {
+      transform: scale(1.05) rotate(2deg);
+    }
+    
+    .card h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    
+    .card p {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      font-size: 0.98rem;
+      line-height: 1.6;
+    }
+    
+    /* ===== BADGES & LABELS ===== */
+    .badge-sm {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 14px;
+      background: linear-gradient(135deg, rgba(0, 207, 255, 0.12), rgba(0, 255, 136, 0.08));
+      border: 1px solid rgba(0, 207, 255, 0.25);
+      border-radius: 50px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--neon2);
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    /* ===== CODE BLOCKS ===== */
+    .code-block {
+      background: rgba(0, 0, 0, 0.45);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      margin: 16px 0;
+      border: 1px solid var(--border);
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 13px;
+      color: var(--neon2);
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+      position: relative;
+      line-height: 1.5;
+    }
+    
+    [data-theme="light"] .code-block {
+      background: rgba(10, 10, 18, 0.06);
+      color: #006688;
+    }
+    
+    .code-block code {
+      display: block;
+    }
+    
+    .btn-copy {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: rgba(0, 207, 255, 0.15);
+      border: 1px solid rgba(0, 207, 255, 0.3);
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--neon2);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      z-index: 2;
+      min-height: 32px;
+    }
+    
+    .btn-copy:hover {
+      background: rgba(0, 207, 255, 0.25);
+      border-color: var(--neon2);
+      transform: translateY(-1px);
+    }
+    
+    .btn-copy.copied {
+      background: rgba(0, 255, 136, 0.2);
+      border-color: var(--neon);
+      color: var(--neon);
+    }
+    
+    /* ===== STEP LIST ===== */
+    .step-list {
+      list-style: none;
+      margin: 16px 0;
+      padding-left: 4px;
+    }
+    
+    .step-list li {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 14px;
+      align-items: flex-start;
+      padding: 8px 0;
+    }
+    
+    .step-number {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(0, 207, 255, 0.15), rgba(0, 255, 136, 0.1));
+      border: 1px solid rgba(0, 207, 255, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--neon2);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    
+    .step-text {
+      color: var(--text-secondary);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    
+    .step-text strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+    
+    .step-text code {
+      background: rgba(0, 207, 255, 0.1);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 12px;
+      color: var(--neon2);
+    }
+    
+    /* ===== LINKS ===== */
+    .link {
+      color: var(--text-link);
+      text-decoration: none;
+      font-weight: 600;
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: color var(--transition-fast);
+    }
+    
+    .link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: currentColor;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform var(--transition-fast);
+    }
+    
+    .link:hover {
+      color: var(--neon);
+    }
+    
+    .link:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+    
+    .link i {
+      font-size: 12px;
+      transition: transform var(--transition-fast);
+    }
+    
+    .link:hover i {
+      transform: translateX(3px);
+    }
+    
+    /* ===== DEPLOY BUTTONS ===== */
+    .deploy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 24px;
+      background: linear-gradient(135deg, var(--neon), var(--neon2));
+      color: #0a0a12;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      font-size: 14px;
+      text-decoration: none;
+      transition: all var(--transition-normal);
+      box-shadow: 0 4px 20px rgba(0, 255, 136, 0.3);
+      margin: 8px 0;
+      min-height: 48px;
+    }
+    
+    .deploy-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0, 255, 136, 0.45);
+      filter: brightness(1.05);
+    }
+    
+    .deploy-btn:active {
+      transform: translateY(0);
+    }
+    
+    .deploy-btn img {
+      height: 24px;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    }
+    
+    /* ===== GRIDS ===== */
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    
+    /* ===== FOOTER ===== */
+    .footer {
+      margin-top: 40px;
+      padding: 40px 20px 60px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      background: linear-gradient(to top, var(--bg-primary), transparent);
+    }
+    
+    .developer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+    
+    .developer a {
+      color: var(--neon2);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color var(--transition-fast);
+    }
+    
+    .developer a:hover {
+      color: var(--neon);
+    }
+    
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin: 24px 0;
+    }
+    
+    .footer-links a {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      font-size: 18px;
+      transition: all var(--transition-fast);
+      text-decoration: none;
+    }
+    
+    .footer-links a:hover {
+      background: var(--surface-hover);
+      color: var(--neon2);
+      border-color: var(--border-hover);
+      transform: translateY(-3px);
+    }
+    
+    .footer-copyright {
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+    
+    /* ===== BACK TO TOP ===== */
+    .back-to-top {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--surface);
+      backdrop-filter: var(--glass);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--neon);
+      font-size: 18px;
+      text-decoration: none;
+      transition: all var(--transition-normal);
+      z-index: 99;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      box-shadow: var(--shadow-md);
+    }
+    
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    
+    .back-to-top:hover {
+      background: var(--surface-hover);
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: var(--shadow-lg), var(--shadow-neon);
+    }
+    
+    /* ===== TOAST NOTIFICATIONS ===== */
+    .toast {
+      position: fixed;
+      bottom: 90px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--surface);
+      backdrop-filter: var(--glass);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--neon);
+      border-radius: var(--radius-sm);
+      padding: 12px 20px;
+      color: var(--text-primary);
+      font-size: 14px;
+      font-weight: 500;
+      box-shadow: var(--shadow-lg);
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all var(--transition-normal);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      max-width: 90vw;
+    }
+    
+    .toast.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+    
+    .toast i {
+      color: var(--neon);
+      font-size: 16px;
+    }
+    
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .grid-4 { grid-template-columns: repeat(2, 1fr); }
+      .quick-links { grid-template-columns: repeat(2, 1fr); }
+    }
+    
+    @media (max-width: 768px) {
+      :root {
+        --nav-height: auto;
+      }
+      
+      .nav-bar {
+        position: relative;
+        top: 0;
+        margin: 12px;
+        border-radius: var(--radius-lg);
+        padding: 10px 12px;
+      }
+      
+      .nav-item {
+        padding: 8px 10px;
+        font-size: 11px;
+        min-height: 40px;
+      }
+      
+      .nav-item span {
+        display: none;
+      }
+      
+      .nav-item i {
+        font-size: 16px;
+      }
+      
+      .theme-toggle {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+      }
+      
+      .header {
+        padding: 30px 16px 24px;
+      }
+      
+      .logo {
+        width: 85px;
+        height: 85px;
+      }
+      
+      .quick-links {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin: 20px 0 32px;
+      }
+      
+      .quick-card {
+        padding: 16px 12px;
+        min-height: 100px;
+      }
+      
+      .quick-card i {
+        font-size: 28px;
+      }
+      
+      .section {
+        margin-bottom: 28px;
+      }
+      
+      .card {
+        padding: 20px;
+        border-radius: var(--radius-md);
+      }
+      
+      .card-header {
+        padding-bottom: 14px;
+        margin-bottom: 14px;
+      }
+      
+      .card-icon {
+        width: 46px;
+        height: 46px;
+        font-size: 20px;
+      }
+      
+      .grid-2, .grid-3, .grid-4 {
+        grid-template-columns: 1fr;
+      }
+      
+      .footer {
+        padding: 32px 16px 80px;
+      }
+      
+      .footer-links {
+        gap: 16px;
+      }
+      
+      .footer-links a {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+      }
+      
+      .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 46px;
+        height: 46px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .container {
+        padding: 12px;
+      }
+      
+      .nav-bar {
+        margin: 8px;
+        padding: 8px 10px;
+      }
+      
+      .nav-item {
+        padding: 7px 8px;
+      }
+      
+      .title {
+        font-size: clamp(1.8rem, 8vw, 2.5rem);
+      }
+      
+      .subtitle {
+        font-size: 0.95rem;
+      }
+      
+      .quick-links {
+        grid-template-columns: 1fr 1fr;
+      }
+      
+      .badge {
+        padding: 6px 16px;
+        font-size: 11px;
+      }
+      
+      .code-block {
+        padding: 14px 12px;
+        font-size: 12px;
+      }
+      
+      .btn-copy {
+        padding: 5px 10px;
+        font-size: 10px;
+      }
+      
+      .step-list li {
+        gap: 10px;
+      }
+      
+      .step-number {
+        width: 24px;
+        height: 24px;
+        font-size: 11px;
+      }
+    }
+    
+    /* ===== FOCUS STATES (Accessibility) ===== */
+    a:focus-visible,
+    button:focus-visible,
+    .nav-item:focus-visible,
+    .quick-card:focus-visible,
+    .theme-toggle:focus-visible {
+      outline: 2px solid var(--neon);
+      outline-offset: 2px;
+    }
+    
+    /* ===== REDUCED MOTION ===== */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      
+      html {
+        scroll-behavior: auto;
+      }
+    }
+    
+    /* ===== PRINT STYLES ===== */
+    @media print {
+      .nav-bar, .back-to-top, .theme-toggle, .btn-copy, .orb, #particles-canvas {
+        display: none !important;
+      }
+      
+      body {
+        background: #fff;
+        color: #000;
+      }
+      
+      .card {
+        break-inside: avoid;
+        border: 1px solid #ccc;
+        background: #fff;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to content</a>
+  
+  <!-- Background Effects -->
+  <div class="bg-wrapper">
+    <div class="bg-image"></div>
+    <div class="bg-overlay"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+  
+  <!-- Particles Canvas -->
+  <canvas id="particles-canvas"></canvas>
+  
+  <!-- Toast Notification -->
+  <div class="toast" id="toast" role="alert" aria-live="polite">
+    <i class="fa-solid fa-check-circle"></i>
+    <span id="toast-message">Copied to clipboard!</span>
+  </div>
+  
+  <!-- Main Wrapper -->
+  <div class="main-wrapper">
+    
+    <!-- Sticky Navigation -->
+    <nav class="nav-bar" role="navigation" aria-label="Main navigation">
+      <a href="#prerequisites" class="nav-item" aria-label="Prerequisites section">
+        <i class="fa-solid fa-clipboard-list"></i>
+        <span class="nav-text">Prerequisites</span>
+      </a>
+      <a href="#session" class="nav-item" aria-label="Session section">
+        <i class="fa-solid fa-key"></i>
+        <span class="nav-text">Session</span>
+      </a>
+      <a href="#termux" class="nav-item" aria-label="Termux section">
+        <i class="fa-brands fa-android"></i>
+        <span class="nav-text">Termux</span>
+      </a>
+      <a href="#vps" class="nav-item" aria-label="VPS section">
+        <i class="fa-brands fa-linux"></i>
+        <span class="nav-text">VPS</span>
+      </a>
+      <a href="#heroku" class="nav-item" aria-label="Heroku section">
+        <i class="fa-brands fa-connectdevelop"></i>
+        <span class="nav-text">Heroku</span>
+      </a>
+      <a href="#render" class="nav-item" aria-label="Render section">
+        <i class="fa-solid fa-dharmachakra"></i>
+        <span class="nav-text">Render</span>
+      </a>
+      <a href="#railway" class="nav-item" aria-label="Railway section">
+        <i class="fa-solid fa-train"></i>
+        <span class="nav-text">Railway</span>
+      </a>
+      <a href="#koyeb" class="nav-item" aria-label="Koyeb section">
+        <i class="fa-solid fa-globe"></i>
+        <span class="nav-text">Koyeb</span>
+      </a>
+      <a href="#fly" class="nav-item" aria-label="Fly.io section">
+        <i class="fa-brands fa-fly"></i>
+        <span class="nav-text">Fly.io</span>
+      </a>
+      <a href="#replit" class="nav-item" aria-label="Replit section">
+        <i class="fa-solid fa-code"></i>
+        <span class="nav-text">Replit</span>
+      </a>
+      <a href="#docker" class="nav-item" aria-label="Docker section">
+        <i class="fa-brands fa-docker"></i>
+        <span class="nav-text">Docker</span>
+      </a>
+      <a href="#windows" class="nav-item" aria-label="Windows section">
+        <i class="fa-brands fa-windows"></i>
+        <span class="nav-text">WSL</span>
+      </a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light theme">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+    </nav>
+
+    <main id="main-content" class="container">
+      <!-- Header -->
+      <header class="header">
+        <div class="badge" role="status">
+          <i class="fa-solid fa-book-open"></i>
+          <span>Complete Deployment Guide • v2.1</span>
+        </div>
+        <img 
+          src="https://raw.githubusercontent.com/stanytz378/stanyimagesservers/refs/heads/main/bg.png" 
+          alt="IAM LEGEND Bot Logo" 
+          class="logo"
+          loading="eager"
+          width="100"
+          height="100"
+        >
+        <h1 class="title">DEPLOYMENT<span>GUIDE</span></h1>
+        <p class="subtitle">Step-by-step instructions to deploy iamlegendv2 WhatsApp bot on all major platforms worldwide</p>
+      </header>
+
+      <!-- Quick Links Grid -->
+      <div class="quick-links">
+        <a href="https://github.com/Stanytz378/iamlegendv2/fork" target="_blank" rel="noopener noreferrer" class="quick-card github" aria-label="Fork repository on GitHub">
+          <i class="fa-brands fa-github"></i>
+          <h4>Fork Repo</h4>
+        </a>
+        <a href="https://session-id-generator-4xuy.onrender.com" target="_blank" rel="noopener noreferrer" class="quick-card session" aria-label="Generate session ID">
+          <i class="fa-solid fa-key"></i>
+          <h4>Session ID</h4>
+        </a>
+        <a href="https://whatsapp.com/channel/0029Vb7fzu4EwEjmsD4Tzs1p" target="_blank" rel="noopener noreferrer" class="quick-card whatsapp" aria-label="Join WhatsApp channel">
+          <i class="fa-brands fa-whatsapp"></i>
+          <h4>Join Channel</h4>
+        </a>
+        <a href="https://chat.whatsapp.com/J19JASXoaK0GVSoRvShr4Y" target="_blank" rel="noopener noreferrer" class="quick-card group" aria-label="Join support group">
+          <i class="fa-solid fa-users"></i>
+          <h4>Support Group</h4>
+        </a>
+      </div>
+
+      <!-- Prerequisites Section -->
+      <section id="prerequisites" class="section">
+        <h2 class="section-title"><i class="fa-solid fa-clipboard-list"></i> Prerequisites</h2>
+        <article class="card">
+          <div class="card-header">
+            <div class="card-icon"><i class="fa-solid fa-check-circle"></i></div>
+            <h3>Before You Begin</h3>
+          </div>
+          <ul class="step-list">
+            <li>
+              <span class="step-number">1</span>
+              <span class="step-text">
+                <strong>GitHub Account:</strong> 
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="link">Create one free <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+              </span>
+            </li>
+            <li>
+              <span class="step-number">2</span>
+              <span class="step-text">
+                <strong>WhatsApp Number:</strong> Use a dedicated number (not your personal account)
+              </span>
+            </li>
+            <li>
+              <span class="step-number">3</span>
+              <span class="step-text">
+                <strong>Fork Repository:</strong> 
+                <a href="https://github.com/Stanytz378/iamlegendv2/fork" target="_blank" rel="noopener noreferrer" class="link">Click here to fork <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+              </span>
+            </li>
+            <li>
+              <span class="step-number">4</span>
+              <span class="step-text">
+                <strong>Get Session ID:</strong> Visit 
+                <a href="https://session-id-generator-4xuy.onrender.com" target="_blank" rel="noopener noreferrer" class="link">Session Generator <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+              </span>
+            </li>
+          </ul>
+          <div class="code-block">
+            <code>SESSION_ID format: Stanytz378/iamlegendv2_abc123xyz</code>
+            <button class="btn-copy" aria-label="Copy SESSION_ID format">
+              <i class="fa-regular fa-copy"></i> Copy
+            </button>
+          </div>
+        </article>
+      </section>
+
+      <!-- Session Generator Section -->
+      <section id="session" class="section">
+        <h2 class="section-title"><i class="fa-solid fa-key"></i> Session Generator</h2>
+        <div class="grid-2">
+          <article class="card">
+            <div class="card-header">
+              <div class="card-icon"><i class="fa-solid fa-qrcode"></i></div>
+              <h3>QR Code Method</h3>
+            </div>
+            <p>Scan the QR code with your WhatsApp app to get your session ID instantly. Fast and secure.</p>
+            <a href="https://session-id-generator-4xuy.onrender.com/qrpage" target="_blank" rel="noopener noreferrer" class="link">
+              Open QR Generator <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+          </article>
+          <article class="card">
+            <div class="card-header">
+              <div class="card-icon"><i class="fa-solid fa-key"></i></div>
+              <h3>Pairing Code Method</h3>
+            </div>
+            <p>Enter your phone number to receive an 8-character pairing code via WhatsApp.</p>
+            <a href="https://session-id-generator-4xuy.onrender.com/pair" target="_blank" rel="noopener noreferrer" class="link">
+              Open Pairing Generator <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+          </article>
+        </div>
+      </section>
+
+      <!-- Environment Variables -->
+      <section class="section">
+        <h2 class="section-title"><i class="fa-solid fa-gear"></i> Environment Variables</h2>
+        <article class="card">
+          <p style="margin-bottom: 20px;">Configure these variables in your <code>.env</code> file or platform dashboard:</p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
+            <div>
+              <span style="color: var(--neon); font-weight: 600;">SESSION_ID</span>
+              <span style="color: var(--text-muted); margin-left: 6px;">(required)</span>
+            </div>
+            <div>
+              <span style="color: var(--neon2); font-weight: 600;">OWNER_NUMBER</span>
+              <span style="color: var(--text-muted); margin-left: 6px;">(required)</span>
+            </div>
+            <div>
+              <span style="color: var(--text-primary); font-weight: 600;">BOT_NAME</span>
+              <span style="color: var(--text-muted); margin-left: 6px;">(optional)</span>
+            </div>
+            <div>
+              <span style="color: var(--text-primary); font-weight: 600;">PREFIXES</span>
+              <span style="color: var(--text-muted); margin-left: 6px;">(default: .,!,/)</span>
+            </div>
+            <div>
+              <span style="color: var(--text-primary); font-weight: 600;">COMMAND_MODE</span>
+              <span style="color: var(--text-muted); margin-left: 6px;">(public/private)</span>
+            </div>
+            <div>
+              <span style="color: var(--text-primary); font-weight: 600;">TIMEZONE</span>
+              <span style="color: var(--text-muted); margin-left: 6px;">(e.g., Africa/Dar_es_Salaam)</span>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- Deployment Methods -->
+      <section id="termux" class="section">
+        <h2 class="section-title"><i class="fa-brands fa-android"></i> Termux (Android)</h2>
+        <article class="card">
+          <div class="badge-sm"><i class="fa-regular fa-clock"></i> ~5 min</div>
+          <div class="code-block">
+            <code>pkg update && pkg upgrade -y
+pkg install git nodejs ffmpeg libvips -y
+git clone https://github.com/YOUR_USERNAME/iamlegendv2.git
+cd iamlegendv2
+npm install
+cp sample.env .env
+nano .env   # Paste SESSION_ID & OWNER_NUMBER
+npm start</code>
+            <button class="btn-copy" aria-label="Copy Termux commands">
+              <i class="fa-regular fa-copy"></i> Copy
+            </button>
+          </div>
+          <p><strong>💡 Pro Tip:</strong> Keep bot running after closing Termux by installing tmux:</p>
+          <div class="code-block">
+            <code>pkg install tmux
+tmux new -s bot
+npm start   # Press Ctrl+B then D to detach</code>
+            <button class="btn-copy" aria-label="Copy tmux commands">
+              <i class="fa-regular fa-copy"></i> Copy
+            </button>
+          </div>
+        </article>
+      </section>
+
+      <section id="vps" class="section">
+        <h2 class="section-title"><i class="fa-brands fa-linux"></i> VPS / Linux Server</h2>
+        <article class="card">
+          <div class="badge-sm"><i class="fa-regular fa-clock"></i> 5-7 min</div>
+          <div class="code-block">
+            <code>curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt install -y nodejs git ffmpeg libvips-dev libwebp-dev
+git clone https://github.com/YOUR_USERNAME/iamlegendv2.git
+cd iamlegendv2
+npm install
+cp sample.env .env
+nano .env   # Add SESSION_ID & OWNER_NUMBER
+npm install -g pm2
+pm2 start index.js --name iamlegendv2
+pm2 save && pm2 startup</code>
+            <button class="btn-copy" aria-label="Copy VPS commands">
+              <i class="fa-regular fa-copy"></i> Copy
+            </button>
+          </div>
+        </article>
+      </section>
+
+      <section id="heroku" class="section">
+        <h2 class="section-title"><i class="fa-brands fa-connectdevelop"></i> Heroku</h2>
+        <article class="card">
+          <a href="https://heroku.com/deploy?template=https://github.com/Stanytz378/iamlegendv2" 
+             target="_blank" 
+             rel="noopener noreferrer"
+             class="deploy-btn"
+             aria-label="Deploy to Heroku">
+            <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy to Heroku" height="24">
+            Deploy to Heroku
+          </a>
+          <p style="margin-top: 16px;">After clicking the button, configure these environment variables:</p>
+          <div class="code-block">
+            <code>SESSION_ID=Stanytz378/iamlegendv2_abc123xyz
+OWNER_NUMBER=255618558502</code>
+            <button class="btn-copy" aria-label="Copy Heroku config">
+              <i class="fa-regular fa-copy"></i> Copy
+            </button>
+          </div>
+          <p>Then click <strong>Deploy App</strong> to start the process.</p>
+        </article>
+      </section>
+
+      <section id="render" class="section">
+        <h2 class="section-title"><i class="fa-solid fa-dharmachakra"></i> Render</h2>
+        <article class="card">
+          <a href="https://render.com/deploy?repo=https://github.com/Stanytz378/iamlegendv2" 
+             target="_blank" 
+             rel="noopener noreferrer"
+             class="deploy-btn"
+             aria-label="Deploy to Render">
+            <img src="https://render.com/images/deploy-to-render-button.svg" alt="Deploy to Render" height="24">
+            Deploy to Render
+          </a>
+          <p style="margin-top: 16px;">Add these environment variables in the Render dashboard:</p>
+          <div class="code-block">
+            <code>SESSION_ID=Stanytz378/iamlegendv2_abc123xyz
+OWNER_NUMBER=255618558502</code>
+            <button class="btn-copy" aria-label="Copy Render config">
+              <i class="fa-regular fa-copy"></i> Copy
+            </button>
+          </div>
+        </article>
+      </section>
+
+      <section id="railway" class="section">
+        <h2 class="section-title"><i class="fa-solid fa-train"></i> Railway</h2>
+        <article class="card">
+          <a href="https://railway.app/new/template?template=https://github.com/Stanytz378/iamlegendv2" 
+             target="_blank" 
+             rel="noopener noreferrer"
+             class="deploy-btn"
+             aria-label="Deploy to Railway">
+            <img src="https://railway.app/button.svg" alt="Deploy to Railway" height="24">
+            Deploy to Railway
+          </a>
+          <p style="margin-top: 16px;">In the Variables tab, add:</p>
+          <div class="code-block">
+            <code>SESSION_ID=Stanytz378/iamlegendv2_abc123xyz
+OWNER_NUMBER=255618558502</code>
+            <button class="btn-copy" aria-label="Copy Railway config">
+              <i class="fa-regular fa-copy"></i> Copy
+            </button>
+          </div>
+        </article>
+      </section>
+
+      <section id="koyeb" class="section">
+        <h2 class="section-title"><i class="fa-solid fa-globe"></i> Koyeb</h2>
+        <article class="card">
+          <a href="https://app.koyeb.com/deploy?type=git&repository=github.com/Stanytz378/iamlegendv2" 
+             target="_blank" 
+             rel="noopener noreferrer"
+             class="deploy-btn"
+             aria-label="Deploy to Koyeb">
+            <img src="https://www.koyeb.com/static/images/deploy/button.svg" alt="Deploy to Koyeb" height="24">
+            Deploy to Koyeb
+          </a>
+          <p style="margin-top: 16px;">Configure environment variables:</p>
+          <div class="code-block">
+            <code>SESSION_ID=Stanytz378/iamlegendv2_abc123xyz
+OWNER_NUMBER=255618558502</code>
+            <button class="btn-copy" aria-label="Copy Koyeb config">
+              <i class="fa-regular fa-copy"></i> Copy
+            </button>
+          </div>
+        </article>
+      </section>
+
+      <section id="fly" class="section">
+        <h2 class="section-title"><i class="fa-brands fa-fly"></i> Fly.io</h2>
+        <article class="card">
+          <a href="https://fly.io/launch?repo=https://github.com/Stanytz378/iamlegendv2" 
+             target="_blank" 
+             rel="noopener noreferrer"
+             class="deploy-btn"
+             aria-label="Deploy to Fly.io">
+            <img src="https://fly.io/button.svg" alt="Deploy to Fly.io" height="24">
+            Deploy to Fly.io
+          </a>
+          <p style="margin-top: 16px;">Set secrets via Fly CLI:</p>
+          <div class="code-block">
+            <code>fly secrets set SESSION_ID=Stanytz378/iamlegendv2_abc123xyz
+fly secrets set OWNER_NUMBER=255618558502</code>
+            <button class="btn-copy" aria-label="Copy Fly.io commands">
+              <i class="fa-regular fa-copy"></i> Copy
+            </button>
+          </div>
+        </article>
+      </section>
+
+      <section id="replit" class="section">
+        <h2 class="section-title"><i class="fa-solid fa-code"></i> Replit</h2>
+        <article class="card">
+          <a href="https://replit.com/github/Stanytz378/iamlegendv2" 
+             target="_blank" 
+             rel="noopener noreferrer" 
+             class="link" 
+             style="font-size: 1.1rem; margin-bottom: 12px; display: inline-flex; align-items: center; gap: 6px;">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            Open in Replit
+          </a>
+          <p>Add to Secrets (click the 🔒 lock icon in sidebar):</p>
+          <div class="code-block">
+            <code>SESSION_ID=Stanytz378/iamlegendv2_abc123xyz
+OWNER_NUMBER=255618558502</code>
+            <button class="btn-copy" aria-label="Copy Replit secrets">
+              <i class="fa-regular fa-copy"></i> Copy
+            </button>
+          </div>
+        </article>
+      </section>
+
+      <section id="docker" class="section">
+        <h2 class="section-title"><i class="fa-brands fa-docker"></i> Docker</h2>
+        <article class="card">
+          <div class="code-block">
+            <code># Build the image
+docker build -t iamlegendv2 .
+
+# Run the container
+docker run -d \
+  -e SESSION_ID=your_session_here \
+  -e OWNER_NUMBER=your_number_here \
+  -p 5000:5000 \
+  --name iamlegendv2 \
+  iamlegendv2</code>
+            <button class="btn-copy" aria-label="Copy Docker commands">
+              <i class="fa-regular fa-copy"></i> Copy
+            </button>
+          </div>
+        </article>
+      </section>
+
+      <section id="windows" class="section">
+        <h2 class="section-title"><i class="fa-brands fa-windows"></i> Windows / WSL</h2>
+        <article class="card">
+          <div class="code-block">
+            <code># In WSL Ubuntu terminal:
+sudo apt update
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt install -y nodejs git ffmpeg libvips-dev
+git clone https://github.com/YOUR_USERNAME/iamlegendv2.git
+cd iamlegendv2
+npm install
+cp sample.env .env
+nano .env  # Add your credentials
+npm start</code>
+            <button class="btn-copy" aria-label="Copy WSL commands">
+              <i class="fa-regular fa-copy"></i> Copy
+            </button>
+          </div>
+        </article>
+      </section>
+
+      <!-- Database Options -->
+      <section class="section">
+        <h2 class="section-title"><i class="fa-solid fa-database"></i> Database Options</h2>
+        <div class="grid-3">
+          <article class="card">
+            <h3 style="margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+              <i class="fa-solid fa-leaf" style="color: #47A248;"></i> MongoDB
+            </h3>
+            <p>Free tier available at <a href="https://mongodb.com/atlas" target="_blank" rel="noopener noreferrer" class="link">MongoDB Atlas <i class="fa-solid fa-arrow-up-right-from-square"></i></a></p>
+            <div class="code-block" style="margin: 12px 0 0;">
+              <code>MONGO_URL=mongodb+srv://...</code>
+            </div>
+          </article>
+          <article class="card">
+            <h3 style="margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+              <i class="fa-solid fa-database" style="color: #3B82F6;"></i> PostgreSQL
+            </h3>
+            <p>Try <a href="https://supabase.com" target="_blank" rel="noopener noreferrer" class="link">Supabase <i class="fa-solid fa-arrow-up-right-from-square"></i></a> or <a href="https://neon.tech" target="_blank" rel="noopener noreferrer" class="link">Neon <i class="fa-solid fa-arrow-up-right-from-square"></i></a></p>
+            <div class="code-block" style="margin: 12px 0 0;">
+              <code>POSTGRES_URL=postgresql://...</code>
+            </div>
+          </article>
+          <article class="card">
+            <h3 style="margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+              <i class="fa-solid fa-server" style="color: #F59E0B;"></i> MySQL
+            </h3>
+            <p>Self-hosted or cloud options available</p>
+            <div class="code-block" style="margin: 12px 0 0;">
+              <code>MYSQL_URL=mysql://...</code>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Troubleshooting -->
+      <section class="section">
+        <h2 class="section-title"><i class="fa-solid fa-circle-exclamation"></i> Troubleshooting</h2>
+        <article class="card">
+          <ul class="step-list">
+            <li>
+              <span class="step-number">🔍</span>
+              <span class="step-text">
+                <strong>Session ID not working?</strong> Ensure you include the full prefix: <code>Stanytz378/iamlegendv2_</code>
+              </span>
+            </li>
+            <li>
+              <span class="step-number">🔄</span>
+              <span class="step-text">
+                <strong>Bot disconnects frequently?</strong> Check your internet connection and platform rate limits
+              </span>
+            </li>
+            <li>
+              <span class="step-number">📦</span>
+              <span class="step-text">
+                <strong>"Cannot find module" error?</strong> Run <code>npm install</code> to install dependencies
+              </span>
+            </li>
+            <li>
+              <span class="step-number">🚫</span>
+              <span class="step-text">
+                <strong>Commands not responding?</strong> Verify your <code>OWNER_NUMBER</code> is in international format
+              </span>
+            </li>
+            <li>
+              <span class="step-number">💾</span>
+              <span class="step-text">
+                <strong>Data lost on restart?</strong> Configure a database for persistent storage
+              </span>
+            </li>
+          </ul>
+          <p style="margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border);">
+            <strong>Need more help?</strong> Join our 
+            <a href="https://chat.whatsapp.com/J19JASXoaK0GVSoRvShr4Y" target="_blank" rel="noopener noreferrer" class="link">
+              Support Group <i class="fa-brands fa-whatsapp"></i>
+            </a>
+          </p>
+        </article>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="developer">
+        <i class="fa-solid fa-code"></i> 
+        Developed with ❤️ by 
+        <a href="tel:+255787069580" aria-label="Call Stany TZ">STANY TZ</a>
+      </div>
+      <div class="footer-links">
+        <a href="https://github.com/Stanytz378" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="https://youtube.com/@STANYTZ" target="_blank" rel="noopener noreferrer" aria-label="YouTube channel">
+          <i class="fa-brands fa-youtube"></i>
+        </a>
+        <a href="https://whatsapp.com/channel/0029Vb7fzu4EwEjmsD4Tzs1p" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp channel">
+          <i class="fa-brands fa-whatsapp"></i>
+        </a>
+        <a href="mailto:stanytz@example.com" aria-label="Send email">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+      </div>
+      <p class="footer-copyright">
+        &copy; <span id="current-year"></span> IAM LEGEND DEPLOYMENT GUIDE • All rights reserved
+      </p>
+    </footer>
+  </div>
+
+  <!-- Back to Top Button -->
+  <a href="#" class="back-to-top" id="backToTop" aria-label="Back to top of page">
+    <i class="fa-solid fa-arrow-up"></i>
+  </a>
+
+  <!-- JavaScript -->
+  <script>
+    // ===== THEME TOGGLE =====
+    const themeToggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
+    const themeIcon = themeToggle.querySelector('i');
+    
+    // Check for saved theme or system preference
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    if (savedTheme === 'light' || (!savedTheme && !systemPrefersDark)) {
+      html.setAttribute('data-theme', 'light');
+      themeIcon.className = 'fa-solid fa-sun';
+    }
+    
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = html.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      
+      html.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      themeIcon.className = newTheme === 'light' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+      
+      // Update meta theme-color
+      const metaTheme = document.querySelector('meta[name="theme-color"]');
+      if (metaTheme) {
+        metaTheme.setAttribute('content', newTheme === 'light' ? '#ffffff' : '#0a0a12');
+      }
+    });
+    
+    // ===== COPY BUTTONS =====
+    const toast = document.getElementById('toast');
+    const toastMessage = document.getElementById('toast-message');
+    
+    function showToast(message, type = 'success') {
+      toastMessage.textContent = message;
+      toast.className = 'toast show';
+      if (type === 'error') {
+        toast.style.borderLeftColor = '#ef4444';
+        toast.querySelector('i').className = 'fa-solid fa-circle-xmark';
+        toast.querySelector('i').style.color = '#ef4444';
+      } else {
+        toast.style.borderLeftColor = 'var(--neon)';
+        toast.querySelector('i').className = 'fa-solid fa-check-circle';
+        toast.querySelector('i').style.color = 'var(--neon)';
+      }
+      
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2500);
+    }
+    
+    document.querySelectorAll('.code-block').forEach(block => {
+      const copyBtn = block.querySelector('.btn-copy');
+      if (!copyBtn) return;
+      
+      copyBtn.addEventListener('click', async () => {
+        const code = block.querySelector('code').textContent;
+        try {
+          await navigator.clipboard.writeText(code.trim());
+          copyBtn.classList.add('copied');
+          copyBtn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+          showToast('✓ Copied to clipboard!');
+          
+          setTimeout(() => {
+            copyBtn.classList.remove('copied');
+            copyBtn.innerHTML = '<i class="fa-regular fa-copy"></i> Copy';
+          }, 2000);
+        } catch (err) {
+          showToast('Failed to copy', 'error');
+          console.error('Copy failed:', err);
+        }
+      });
+    });
+    
+    // ===== BACK TO TOP =====
+    const backToTop = document.getElementById('backToTop');
+    
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    });
+    
+    backToTop.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    
+    // ===== NAV ACTIVE STATE ON SCROLL =====
+    const navItems = document.querySelectorAll('.nav-item');
+    const sections = document.querySelectorAll('.section');
+    
+    function updateNavActive() {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 100;
+        if (pageYOffset >= sectionTop) {
+          current = section.getAttribute('id');
+        }
+      });
+      
+      navItems.forEach(item => {
+        item.classList.remove('active');
+        if (item.getAttribute('href') === `#${current}`) {
+          item.classList.add('active');
+        }
+      });
+    }
+    
+    window.addEventListener('scroll', updateNavActive);
+    window.addEventListener('load', updateNavActive);
+    
+    // ===== PARTICLES ANIMATION (Optimized) =====
+    const canvas = document.getElementById('particles-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let animationFrame;
+    let isAnimating = true;
+    
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    
+    function createParticles() {
+      const particleCount = Math.min(Math.floor(window.innerWidth * window.innerHeight / 20000), 40);
+      particles = [];
+      
+      for (let i = 0; i < particleCount; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: (Math.random() - 0.5) * 0.4,
+          size: Math.random() * 2 + 0.5,
+          opacity: Math.random() * 0.4 + 0.1
+        });
+      }
+    }
+    
+    function drawParticles() {
+      if (!isAnimating) return;
+      
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Draw connections
+      ctx.strokeStyle = 'rgba(0, 207, 255, 0.08)';
+      ctx.lineWidth = 0.4;
+      
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          
+          if (dist < 100) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.globalAlpha = 0.15 * (1 - dist / 100);
+            ctx.stroke();
+          }
+        }
+        
+        // Update position
+        particles[i].x += particles[i].vx;
+        particles[i].y += particles[i].vy;
+        
+        // Bounce off edges
+        if (particles[i].x < 0 || particles[i].x > canvas.width) particles[i].vx *= -1;
+        if (particles[i].y < 0 || particles[i].y > canvas.height) particles[i].vy *= -1;
+        
+        // Draw particle
+        ctx.beginPath();
+        ctx.arc(particles[i].x, particles[i].y, particles[i].size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(0, 207, 255, ${particles[i].opacity})`;
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+      
+      animationFrame = requestAnimationFrame(drawParticles);
+    }
+    
+    // Initialize particles
+    function initParticles() {
+      resizeCanvas();
+      createParticles();
+      if (isAnimating) drawParticles();
+    }
+    
+    // Event listeners
+    window.addEventListener('resize', () => {
+      clearTimeout(window.resizeTimer);
+      window.resizeTimer = setTimeout(initParticles, 200);
+    });
+    
+    document.addEventListener('visibilitychange', () => {
+      isAnimating = !document.hidden;
+      if (isAnimating) {
+        drawParticles();
+      } else {
+        cancelAnimationFrame(animationFrame);
+      }
+    });
+    
+    // Reduce motion preference
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      isAnimating = false;
+      canvas.style.display = 'none';
+    } else {
+      initParticles();
+    }
+    
+    // ===== YEAR UPDATE =====
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+    
+    // ===== SMOOTH SCROLL FOR ANCHOR LINKS =====
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+        
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          const navHeight = document.querySelector('.nav-bar').offsetHeight;
+          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
+          
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // ===== LAZY LOADING FOR IMAGES =====
+    if ('loading' in HTMLImageElement.prototype) {
+      // Browser supports native lazy loading
+      document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+        img.src = img.dataset.src;
+      });
+    }
+  </script>
+</body>
+</html>
