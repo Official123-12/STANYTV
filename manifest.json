@@ -1,0 +1,10 @@
+{
+  "name": "STANYTECH Bot Hub",
+  "short_name": "STANYTECH",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a12",
+  "theme_color": "#0f0f1a",
+  "icons": [{ "src": "https://raw.githubusercontent.com/stanytz378/stanyimagesservers/refs/heads/main/C2585B79-C829-4452-9FBD-405B5AB8019B.png", "sizes": "192x192", "type": "image/png", "purpose": "any" }]
+}
+
