@@ -1,499 +1,181 @@
-<!DOCTYPE html>
+
+                        <!DOCTYPE html>
+                        <html lang="en">
+                        <head>
+                            <meta charset="UTF-8">
+                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <style>
+                body {
+                  background-color: white; /* Ensure the iframe has a white background */
+                }
+
+                
+              </style>
+                        </head>
+                        <body>
+                            <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="STANYTECH">
   <meta name="theme-color" content="#0f0f1a">
   
   <title>STANYTECH | Bot Deployment Hub</title>
   <meta name="description" content="Premium WhatsApp Bot Deployment Services - Fork First, Then Deploy">
-  
   <meta property="og:title" content="STANYTECH | Bot Deployment Hub">
   <meta property="og:description" content="Fork the bot repository first, then deploy anywhere">
   <meta property="og:image" content="https://raw.githubusercontent.com/stanytz378/stanyimagesservers/refs/heads/main/C2585B79-C829-4452-9FBD-405B5AB8019B.png">
   <meta property="og:type" content="website">
   
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/stanytz378/stanyimagesservers/refs/heads/main/C2585B79-C829-4452-9FBD-405B5AB8019B.png">
+  
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
+  <!-- Firebase -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
   
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
-    }
-
     :root {
       --bg-primary: #0a0a12;
       --bg-secondary: #0f0f1a;
-      --bg-card: #1a1a2e;
-      --bg-card-hover: #222838;
+      --bg-card: rgba(26, 26, 46, 0.85);
       --primary: #f97316;
-      --primary-dark: #ea580c;
       --secondary: #8b5cf6;
-      --accent: #06b6d4;
       --success: #10b981;
       --danger: #ef4444;
-      --warning: #f59e0b;
       --text-main: #f1f5f9;
       --text-muted: #94a3b8;
-      --border: #2d2d3a;
-      --shadow-sm: 0 4px 12px rgba(0,0,0,0.3);
-      --shadow-md: 0 8px 24px rgba(0,0,0,0.4);
-      --shadow-xl: 0 25px 50px -12px rgba(0,0,0,0.5);
-      --shadow-glow: 0 0 30px rgba(249,115,22,0.2);
+      --border: rgba(255,255,255,0.08);
       --radius-sm: 12px;
       --radius-md: 18px;
       --radius-lg: 24px;
       --radius-xl: 32px;
     }
 
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background: linear-gradient(145deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
       color: var(--text-main);
       min-height: 100vh;
       overflow-x: hidden;
     }
-
     body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
+      content: ''; position: fixed; inset: 0; z-index: -1;
       background: radial-gradient(ellipse at 20% 30%, rgba(249,115,22,0.08), transparent 60%),
                   radial-gradient(ellipse at 80% 70%, rgba(139,92,246,0.06), transparent 50%);
-      pointer-events: none;
-      z-index: -1;
     }
 
-    /* Glass Morphism */
-    .glass-card {
-      background: rgba(26, 26, 46, 0.85);
-      backdrop-filter: blur(16px);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: var(--radius-xl);
-    }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 16px; }
+    .glass-card { background: var(--bg-card); backdrop-filter: blur(16px); border: 1px solid var(--border); border-radius: var(--radius-xl); }
 
-    .container {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    /* Header */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(10, 10, 18, 0.85);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-      padding: 16px 0;
-    }
-
-    .header-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-
-    .logo-area {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      cursor: pointer;
-    }
-
-    .logo {
-      width: 48px;
-      height: 48px;
-      border-radius: 16px;
-      object-fit: cover;
-      border: 2px solid var(--primary);
-      box-shadow: var(--shadow-glow);
-    }
-
-    .brand {
-      font-size: 1.5rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, #fff, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    /* Buttons */
+    /* 🔥 PERFECT BUTTON ALIGNMENT */
     .btn {
-      padding: 10px 24px;
-      border-radius: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 50px;
       font-weight: 600;
-      border: none;
+      font-size: 0.85rem;
+      line-height: 1;
+      border: 2px solid transparent;
       cursor: pointer;
       transition: all 0.2s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.9rem;
+      text-decoration: none;
+      white-space: nowrap;
+      min-height: 42px;
+      vertical-align: middle;
+      box-sizing: border-box;
     }
+    .btn i { font-size: 1rem; flex-shrink: 0; }
+    .btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
+    .btn:active { transform: translateY(0); filter: brightness(0.95); }
+    
+    .btn-primary { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; box-shadow: 0 4px 15px rgba(249,115,22,0.3); }
+    .btn-outline { background: transparent; border-color: var(--primary); color: var(--primary); }
+    .btn-outline:hover { background: rgba(249,115,22,0.1); }
+    .btn-success { background: linear-gradient(135deg, #25D366, #128C7E); color: white; border: none; box-shadow: 0 4px 12px rgba(37,211,102,0.3); }
+    .btn-copy { background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--text-muted); padding: 6px 10px; border-radius: 8px; font-size: 0.75rem; cursor: pointer; transition: all 0.2s; min-height: auto; line-height: 1.2; }
+    .btn-copy:hover { background: rgba(249,115,22,0.15); color: var(--primary); border-color: var(--primary); }
 
-    .btn-primary {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: white;
-      box-shadow: 0 4px 15px rgba(249,115,22,0.3);
-    }
+    /* Header */
+    header { position: sticky; top: 0; z-index: 100; background: rgba(10,10,18,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 12px 0; }
+    .header-content { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .logo-area { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+    .logo { width: 40px; height: 40px; border-radius: 12px; object-fit: cover; border: 2px solid var(--primary); box-shadow: 0 0 15px rgba(249,115,22,0.3); }
+    .brand { font-size: 1.3rem; font-weight: 800; background: linear-gradient(135deg, #fff, var(--primary), var(--secondary)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .header-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(249,115,22,0.5);
-    }
-
-    .btn-outline {
-      background: transparent;
-      border: 2px solid var(--primary);
-      color: var(--primary);
-    }
-
-    .btn-outline:hover {
-      background: rgba(249,115,22,0.1);
-      transform: translateY(-2px);
-    }
-
-    .btn-success {
-      background: linear-gradient(135deg, #25D366, #128C7E);
-      color: white;
-    }
-
-    .btn-danger {
-      background: var(--danger);
-      color: white;
-    }
-
-    /* Hero Section */
-    .hero {
-      text-align: center;
-      padding: 50px 0 30px;
-    }
-
-    .hero h1 {
-      font-size: 2.8rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, #fff, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      margin-bottom: 16px;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(249,115,22,0.1);
-      border: 1px solid rgba(249,115,22,0.3);
-      border-radius: 40px;
-      padding: 8px 20px;
-      font-size: 0.85rem;
-    }
+    /* Hero & Sections */
+    .hero { text-align: center; padding: 32px 0 20px; }
+    .hero h1 { font-size: 2.2rem; font-weight: 800; background: linear-gradient(135deg, #fff, var(--primary), var(--secondary)); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 12px; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(249,115,22,0.1); border: 1px solid rgba(249,115,22,0.3); border-radius: 40px; padding: 8px 16px; font-size: 0.8rem; }
+    .section-title { font-size: 1.5rem; font-weight: 700; margin: 36px 0 20px; border-left: 4px solid var(--primary); padding-left: 14px; }
 
     /* Fork Section */
-    .fork-section {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-xl);
-      padding: 40px 32px;
-      margin: 30px 0;
-      text-align: center;
-    }
+    .fork-section { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 28px 20px; margin: 20px 0; text-align: center; }
+    .fork-input-group { display: flex; gap: 10px; max-width: 500px; margin: 18px auto; flex-wrap: wrap; justify-content: center; }
+    .fork-input { flex: 1; min-width: 220px; padding: 13px 16px; background: rgba(0,0,0,0.4); border: 1px solid var(--border); border-radius: 60px; color: white; font-size: 0.95rem; outline: none; transition: all 0.2s; }
+    .fork-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(249,115,22,0.2); }
+    .verification-status { margin-top: 16px; padding: 12px 16px; border-radius: 60px; display: none; font-size: 0.85rem; text-align: center; }
+    .verification-status.success { display: block; background: rgba(16,185,129,0.15); border: 1px solid var(--success); color: var(--success); }
+    .verification-status.error { display: block; background: rgba(239,68,68,0.15); border: 1px solid var(--danger); color: var(--danger); }
+    .verification-status.loading { display: block; background: rgba(249,115,22,0.1); border: 1px solid var(--primary); color: var(--primary); }
 
-    .fork-input-group {
-      display: flex;
-      gap: 16px;
-      max-width: 550px;
-      margin: 24px auto;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
+    /* Deploy Content & Cards */
+    .deploy-content { display: none; animation: fadeIn 0.5s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+    .success-banner { display: flex; align-items: center; justify-content: space-between; background: rgba(16,185,129,0.1); border: 1px solid var(--success); border-radius: 60px; padding: 10px 16px; margin-bottom: 24px; flex-wrap: wrap; gap: 10px; }
+    .repo-badge { background: rgba(0,0,0,0.5); padding: 6px 12px; border-radius: 40px; font-family: monospace; font-size: 0.8rem; }
+    
+    .services-grid, .deploy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin: 20px 0 36px; }
+    .deploy-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    
+    .card-wrapper { position: relative; }
+    .service-card, .deploy-card { background: var(--bg-card); border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border); transition: all 0.3s ease; height: 100%; }
+    .service-card:hover, .deploy-card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
+    
+    .service-img { width: 100%; height: 160px; object-fit: cover; border-bottom: 3px solid var(--primary); }
+    .service-content, .deploy-content-inner { padding: 18px; }
+    .service-title, .deploy-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; }
+    .service-price { font-size: 1.5rem; font-weight: 800; color: var(--primary); margin: 10px 0; }
+    
+    .price-options { background: rgba(0,0,0,0.3); border-radius: var(--radius-md); padding: 12px; margin: 12px 0; }
+    .price-item { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 0.85rem; }
+    .price-item:last-child { border-bottom: none; }
+    .price-item .amount { color: var(--primary); font-weight: 700; }
+    .feature-list { list-style: none; margin: 12px 0; }
+    .feature-list li { padding: 5px 0; display: flex; align-items: center; gap: 10px; color: var(--text-muted); font-size: 0.8rem; }
+    .feature-list li i { color: var(--success); width: 16px; }
+    .order-btn { width: 100%; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; border: none; padding: 13px; border-radius: 50px; font-weight: 600; cursor: pointer; transition: all 0.2s; margin-top: 12px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; }
+    .order-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(249,115,22,0.4); }
 
-    .fork-input {
-      flex: 1;
-      min-width: 250px;
-      padding: 14px 20px;
-      background: rgba(0,0,0,0.5);
-      border: 1px solid var(--border);
-      border-radius: 60px;
-      color: white;
-      font-size: 1rem;
-      outline: none;
-      transition: all 0.2s;
-    }
+    .deploy-card { padding: 20px 16px; text-align: center; cursor: pointer; position: relative; }
+    .deploy-icon { width: 50px; height: 50px; margin: 0 auto 12px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+    .deploy-card p { color: var(--text-muted); font-size: 0.75rem; }
+    .copy-btn-top { position: absolute; top: 10px; right: 10px; z-index: 2; }
 
-    .fork-input:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(249,115,22,0.2);
-    }
+    /* Footer & Toast */
+    .footer { text-align: center; padding: 24px 0; border-top: 1px solid var(--border); margin-top: 32px; color: var(--text-muted); font-size: 0.8rem; }
+    .footer a { color: var(--primary); text-decoration: none; }
+    #toast { visibility: hidden; min-width: 220px; background: var(--bg-card); color: var(--text-main); text-align: center; border-radius: 40px; padding: 10px 18px; position: fixed; z-index: 1000; left: 50%; bottom: 24px; transform: translateX(-50%); box-shadow: 0 8px 20px rgba(0,0,0,0.6); border: 1px solid var(--primary); font-size: 0.85rem; opacity: 0; transition: opacity 0.3s, bottom 0.3s; }
+    #toast.show { visibility: visible; opacity: 1; bottom: 32px; }
 
-    .verification-status {
-      margin-top: 20px;
-      padding: 14px 20px;
-      border-radius: 60px;
-      display: none;
-      font-size: 0.9rem;
-    }
-
-    .verification-status.success {
-      display: block;
-      background: rgba(16,185,129,0.15);
-      border: 1px solid var(--success);
-      color: var(--success);
-    }
-
-    .verification-status.error {
-      display: block;
-      background: rgba(239,68,68,0.15);
-      border: 1px solid var(--danger);
-      color: var(--danger);
-    }
-
-    .verification-status.loading {
-      display: block;
-      background: rgba(249,115,22,0.1);
-      border: 1px solid var(--primary);
-      color: var(--primary);
-    }
-
-    /* Services Grid */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 28px;
-      margin: 40px 0;
-    }
-
-    .service-card {
-      background: var(--bg-card);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      border: 1px solid var(--border);
-      transition: all 0.3s ease;
-    }
-
-    .service-card:hover {
-      transform: translateY(-6px);
-      border-color: var(--primary);
-      box-shadow: var(--shadow-xl);
-    }
-
-    .service-img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      border-bottom: 3px solid var(--primary);
-    }
-
-    .service-content {
-      padding: 24px;
-    }
-
-    .service-title {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 12px;
-      color: var(--text-main);
-    }
-
-    .service-price {
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: var(--primary);
-      margin: 16px 0;
-    }
-
-    .price-options {
-      background: rgba(0,0,0,0.3);
-      border-radius: var(--radius-md);
-      padding: 16px;
-      margin: 16px 0;
-    }
-
-    .price-item {
-      display: flex;
-      justify-content: space-between;
-      padding: 10px 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .price-item:last-child {
-      border-bottom: none;
-    }
-
-    .price-item .amount {
-      color: var(--primary);
-      font-weight: 700;
-    }
-
-    .feature-list {
-      list-style: none;
-      margin: 16px 0;
-    }
-
-    .feature-list li {
-      padding: 8px 0;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--text-muted);
-      font-size: 0.85rem;
-    }
-
-    .feature-list li i {
-      color: var(--success);
-      width: 20px;
-    }
-
-    .order-btn {
-      width: 100%;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: white;
-      border: none;
-      padding: 14px;
-      border-radius: 40px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-      margin-top: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-
-    .order-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(249,115,22,0.4);
-    }
-
-    /* Section Title */
-    .section-title {
-      font-size: 1.8rem;
-      font-weight: 700;
-      margin: 50px 0 30px;
-      border-left: 4px solid var(--primary);
-      padding-left: 20px;
-    }
-
-    /* Deploy Content */
-    .deploy-content {
-      display: none;
-      animation: fadeIn 0.5s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Deploy Grid */
-    .deploy-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-      margin: 30px 0;
-    }
-
-    .deploy-card {
-      background: var(--bg-card);
-      border-radius: var(--radius-md);
-      padding: 24px;
-      border: 1px solid var(--border);
-      transition: all 0.3s ease;
-      text-align: center;
-      cursor: pointer;
-    }
-
-    .deploy-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--primary);
-      box-shadow: var(--shadow-md);
-    }
-
-    .deploy-icon {
-      width: 60px;
-      height: 60px;
-      margin: 0 auto 16px;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      border-radius: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.8rem;
-    }
-
-    .deploy-card h3 {
-      font-size: 1.2rem;
-      margin-bottom: 8px;
-    }
-
-    .deploy-card p {
-      color: var(--text-muted);
-      font-size: 0.8rem;
-    }
-
-    /* Success Banner */
-    .success-banner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: rgba(16,185,129,0.1);
-      border: 1px solid var(--success);
-      border-radius: 60px;
-      padding: 12px 24px;
-      margin-bottom: 30px;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-
-    .repo-badge {
-      background: rgba(0,0,0,0.5);
-      padding: 6px 14px;
-      border-radius: 40px;
-      font-family: monospace;
-      font-size: 0.8rem;
-    }
-
-    /* Footer */
-    .footer {
-      text-align: center;
-      padding: 40px 0;
-      border-top: 1px solid var(--border);
-      margin-top: 50px;
-      color: var(--text-muted);
-    }
-
-    .footer a {
-      color: var(--primary);
-      text-decoration: none;
-    }
-
-    @media (max-width: 768px) {
-      .container { padding: 0 16px; }
+    @media (max-width: 480px) {
       .hero h1 { font-size: 1.8rem; }
-      .section-title { font-size: 1.4rem; }
-      .services-grid { gap: 16px; }
-      .deploy-grid { gap: 16px; }
-      .success-banner { flex-direction: column; text-align: center; }
-    }
-
-    /* Animations */
-    @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 30px rgba(249,115,22,0.2); }
-      50% { box-shadow: 0 0 50px rgba(249,115,22,0.4); }
+      .header-actions .btn { padding: 8px 14px; font-size: 0.8rem; min-height: 38px; }
+      .brand { font-size: 1.1rem; }
+      .logo { width: 36px; height: 36px; }
     }
   </style>
 </head>
@@ -501,12 +183,18 @@
 
 <header>
   <div class="container header-content">
-    <div class="logo-area" onclick="location.reload()">
+    <div class="logo-area" onclick="window.scrollTo({top:0, behavior:'smooth'})">
       <img src="https://raw.githubusercontent.com/stanytz378/stanyimagesservers/refs/heads/main/C2585B79-C829-4452-9FBD-405B5AB8019B.png" class="logo">
       <span class="brand">STANYTECH</span>
     </div>
-    <div>
-      <a href="https://whatsapp.com/channel/0029Vb7fzu4EwEjmsD4Tzs1p" target="_blank" class="btn btn-success"><i class="fab fa-whatsapp"></i> Join Channel</a>
+    
+    <div class="header-actions">
+      <a href="https://whatsapp.com/channel/0029Vb7fzu4EwEjmsD4Tzs1p" target="_blank" class="btn btn-success">
+        <i class="fab fa-whatsapp"></i> Join
+      </a>
+      <button id="installBtn" class="btn btn-outline" style="display:none;">
+        <i class="fas fa-download"></i> Install
+      </button>
     </div>
   </div>
 </header>
@@ -519,151 +207,149 @@
 
   <!-- FORK VERIFICATION SECTION -->
   <div id="forkSection" class="fork-section">
-    <i class="fas fa-code-branch" style="font-size: 2.8rem; color: var(--primary); margin-bottom: 16px; display: block;"></i>
-    <h2 style="margin-bottom: 16px;">Verify Your Fork</h2>
-    <p style="color: var(--text-muted); margin-bottom: 8px;">You must fork the official repository before deploying.</p>
-    <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 24px;">This is a <strong>one-time verification</strong>.</p>
+    <i class="fas fa-shield-alt" style="font-size: 2.2rem; color: var(--primary); margin-bottom: 12px; display: block;"></i>
+    <h2 style="margin-bottom: 10px;">Verify Your Fork</h2>
+    <p style="color: var(--text-muted); margin-bottom: 4px;">Fork the official repository before deploying.</p>
+    <p style="color: var(--text-muted); font-size: 0.75rem; margin-bottom: 16px;">One-time verification via GitHub API</p>
     
     <div class="fork-input-group">
-      <input type="text" id="githubUsername" class="fork-input" placeholder="GitHub Username">
-      <button id="verifyForkBtn" class="btn btn-primary"><i class="fas fa-check-circle"></i> Verify Fork</button>
+      <input type="text" id="githubUsername" class="fork-input" placeholder="Your GitHub Username">
+      <button id="verifyForkBtn" class="btn btn-primary"><i class="fas fa-check-circle"></i> Verify</button>
     </div>
     
-    <a href="https://github.com/stanytz378/iamlegendv2.1/fork" target="_blank" class="btn btn-outline" style="margin-top: 8px;">
-      <i class="fab fa-github"></i> Fork Official Repo (iamlegendv2.1)
+    <a href="https://github.com/stanytz378/iamlegendv2.1/fork" target="_blank" class="btn btn-outline" style="margin-top: 8px; font-size:0.8rem; min-height:36px;">
+      <i class="fab fa-github"></i> Fork Official Repo
     </a>
     
     <div id="verifyStatus" class="verification-status"></div>
+    <div id="apiNotice" style="margin-top:10px; font-size:0.7rem; color:var(--text-muted); display:none;">
+      ⚠️ GitHub API rate limit reached. Try again in 5 mins.
+    </div>
   </div>
 
-  <!-- DEPLOYMENT CONTENT (Shows after verification) -->
+  <!-- DEPLOYMENT CONTENT -->
   <div id="deployContent" class="deploy-content">
     <div id="verifiedBanner" class="success-banner">
-      <div><i class="fas fa-check-circle" style="color: var(--success);"></i> <strong>✓ Fork Verified!</strong> You're ready to deploy</div>
+      <div><i class="fas fa-check-circle" style="color: var(--success);"></i> <strong>✓ Fork Verified!</strong> Ready to deploy</div>
       <div class="repo-badge" id="repoDisplay"></div>
-      <button id="logoutBtn" class="btn btn-outline" style="padding: 6px 16px; font-size: 0.8rem;"><i class="fas fa-trash-alt"></i> Clear Data</button>
+      <button id="logoutBtn" class="btn btn-outline" style="padding: 6px 12px; font-size: 0.7rem; min-height:32px;"><i class="fas fa-trash-alt"></i> Reset</button>
     </div>
 
-    <!-- SERVICES SECTION -->
+    <!-- SERVICES -->
     <h2 class="section-title"><i class="fas fa-cube"></i> Our Services</h2>
     <div class="services-grid">
-      <!-- Panel Service -->
-      <div class="service-card">
-        <img src="https://raw.githubusercontent.com/stanytz378/stanyimagesservers/refs/heads/main/IMG_3426.png" class="service-img" alt="Panels" onerror="this.src='https://placehold.co/400x200/1a1a2e/f97316?text=Panels'">
-        <div class="service-content">
-          <h3 class="service-title">Premium Panels</h3>
-          <div class="price-options">
-            <div class="price-item"><span class="plan">Unlimited Panel</span><span class="amount">5,000 TZS</span></div>
-            <div class="price-item"><span class="plan">2GB Panel</span><span class="amount">3,000 TZS</span></div>
-            <div class="price-item"><span class="plan">4GB Panel</span><span class="amount">4,000 TZS</span></div>
-            <div class="price-item"><span class="plan">5GB Panel</span><span class="amount">4,500 TZS</span></div>
+      <!-- Panels -->
+      <div class="card-wrapper" id="service-panels">
+        <button class="btn btn-copy copy-btn-top" onclick="copySectionLink('service-panels')"><i class="fas fa-link"></i></button>
+        <div class="service-card">
+          <img src="https://raw.githubusercontent.com/stanytz378/stanyimagesservers/refs/heads/main/IMG_3426.png" class="service-img" alt="Panels" onerror="this.src='https://placehold.co/400x200/1a1a2e/f97316?text=Panels'">
+          <div class="service-content">
+            <h3 class="service-title">Premium Panels</h3>
+            <div class="price-options">
+              <div class="price-item"><span>Unlimited Panel</span><span class="amount">5,000 TZS</span></div>
+              <div class="price-item"><span>2GB Panel</span><span class="amount">3,000 TZS</span></div>
+              <div class="price-item"><span>4GB Panel</span><span class="amount">4,000 TZS</span></div>
+            </div>
+            <ul class="feature-list">
+              <li><i class="fas fa-check-circle"></i> 24/7 Premium Support</li>
+              <li><i class="fas fa-rocket"></i> High Speed Servers</li>
+              <li><i class="fas fa-shield-alt"></i> Secure & Stable</li>
+            </ul>
+            <button class="order-btn" onclick="openWhatsAppOrder('Premium Panels')"><i class="fab fa-whatsapp"></i> Order via WhatsApp</button>
           </div>
-          <ul class="feature-list">
-            <li><i class="fas fa-check-circle"></i> 24/7 Premium Support</li>
-            <li><i class="fas fa-rocket"></i> High Speed Servers</li>
-            <li><i class="fas fa-shield-alt"></i> Secure & Stable</li>
-          </ul>
-          <button class="order-btn" onclick="openWhatsAppOrder('Premium Panels')"><i class="fab fa-whatsapp"></i> Order via WhatsApp</button>
         </div>
       </div>
 
-      <!-- Bot Deployment Service -->
-      <div class="service-card">
-        <img src="https://raw.githubusercontent.com/stanytz378/stanyimagesservers/refs/heads/main/C2585B79-C829-4452-9FBD-405B5AB8019B.png" class="service-img" alt="Bot Deployment" onerror="this.src='https://placehold.co/400x200/1a1a2e/f97316?text=Bots'">
-        <div class="service-content">
-          <h3 class="service-title">Bot Deployment</h3>
-          <div class="price-options">
-            <div class="price-item"><span class="plan">Bug Bot</span><span class="amount">5,000 TZS</span></div>
-            <div class="price-item"><span class="plan">Normal Bot</span><span class="amount">4,000 TZS</span></div>
+      <!-- Bot Deployment -->
+      <div class="card-wrapper" id="service-deployment">
+        <button class="btn btn-copy copy-btn-top" onclick="copySectionLink('service-deployment')"><i class="fas fa-link"></i></button>
+        <div class="service-card">
+          <img src="https://raw.githubusercontent.com/stanytz378/stanyimagesservers/refs/heads/main/C2585B79-C829-4452-9FBD-405B5AB8019B.png" class="service-img" alt="Bots" onerror="this.src='https://placehold.co/400x200/1a1a2e/f97316?text=Bots'">
+          <div class="service-content">
+            <h3 class="service-title">Bot Deployment</h3>
+            <div class="price-options">
+              <div class="price-item"><span>Bug Bot</span><span class="amount">5,000 TZS</span></div>
+              <div class="price-item"><span>Normal Bot</span><span class="amount">4,000 TZS</span></div>
+            </div>
+            <ul class="feature-list">
+              <li><i class="fas fa-check-circle"></i> 24/7 Uptime</li>
+              <li><i class="fas fa-rocket"></i> Fast Deployment</li>
+              <li><i class="fas fa-headset"></i> Lifetime Support</li>
+            </ul>
+            <button class="order-btn" onclick="openWhatsAppOrder('Bot Deployment')"><i class="fab fa-whatsapp"></i> Order via WhatsApp</button>
           </div>
-          <ul class="feature-list">
-            <li><i class="fas fa-check-circle"></i> 24/7 Uptime</li>
-            <li><i class="fas fa-rocket"></i> Fast Deployment</li>
-            <li><i class="fas fa-headset"></i> Lifetime Support</li>
-          </ul>
-          <button class="order-btn" onclick="openWhatsAppOrder('Bot Deployment')"><i class="fab fa-whatsapp"></i> Order via WhatsApp</button>
         </div>
       </div>
 
-      <!-- Bot Development Service -->
-      <div class="service-card">
-        <img src="https://raw.githubusercontent.com/stanytz378/stanyimagesservers/refs/heads/main/C2585B79-C829-4452-9FBD-405B5AB8019B.png" class="service-img" alt="Bot Development" onerror="this.src='https://placehold.co/400x200/1a1a2e/f97316?text=Development'">
-        <div class="service-content">
-          <h3 class="service-title">Bot Development</h3>
-          <div class="price-options">
-            <div class="price-item"><span class="plan">Custom Bot</span><span class="amount">25,000 TZS</span></div>
+      <!-- Bot Development -->
+      <div class="card-wrapper" id="service-development">
+        <button class="btn btn-copy copy-btn-top" onclick="copySectionLink('service-development')"><i class="fas fa-link"></i></button>
+        <div class="service-card">
+          <img src="https://raw.githubusercontent.com/stanytz378/stanyimagesservers/refs/heads/main/C2585B79-C829-4452-9FBD-405B5AB8019B.png" class="service-img" alt="Dev" onerror="this.src='https://placehold.co/400x200/1a1a2e/f97316?text=Development'">
+          <div class="service-content">
+            <h3 class="service-title">Bot Development</h3>
+            <div class="price-options">
+              <div class="price-item"><span>Custom Bot</span><span class="amount">25,000 TZS</span></div>
+            </div>
+            <ul class="feature-list">
+              <li><i class="fas fa-check-circle"></i> Fully Customizable</li>
+              <li><i class="fas fa-rocket"></i> AI Integration</li>
+              <li><i class="fas fa-headset"></i> 30 Days Free Support</li>
+            </ul>
+            <button class="order-btn" onclick="openWhatsAppOrder('Bot Development')"><i class="fab fa-whatsapp"></i> Order via WhatsApp</button>
           </div>
-          <ul class="feature-list">
-            <li><i class="fas fa-check-circle"></i> Fully Customizable</li>
-            <li><i class="fas fa-rocket"></i> AI Integration</li>
-            <li><i class="fas fa-headset"></i> 30 Days Free Support</li>
-          </ul>
-          <button class="order-btn" onclick="openWhatsAppOrder('Bot Development')"><i class="fab fa-whatsapp"></i> Order via WhatsApp</button>
         </div>
       </div>
     </div>
 
-    <!-- DEPLOYMENT PLATFORMS SECTION -->
-    <h2 class="section-title"><i class="fas fa-cloud-upload-alt"></i> Deploy Your Forked Bot</h2>
+    <!-- PLATFORMS -->
+    <h2 class="section-title"><i class="fas fa-cloud-upload-alt"></i> Deploy Platforms</h2>
     <div class="deploy-grid">
-      <div class="deploy-card" onclick="deployTo('heroku')">
-        <div class="deploy-icon"><i class="fab fa-salesforce"></i></div>
-        <h3>Heroku</h3>
-        <p>One-click deploy on Heroku</p>
+      <div class="card-wrapper" id="deploy-heroku">
+        <button class="btn btn-copy copy-btn-top" onclick="copySectionLink('deploy-heroku')"><i class="fas fa-link"></i></button>
+        <div class="deploy-card" onclick="deployTo('heroku')"><div class="deploy-icon"><i class="fab fa-salesforce"></i></div><h3>Heroku</h3><p>One-click deploy</p></div>
       </div>
-      
-      <div class="deploy-card" onclick="deployTo('render')">
-        <div class="deploy-icon"><i class="fas fa-dharmachakra"></i></div>
-        <h3>Render</h3>
-        <p>Deploy on Render with auto SSL</p>
+      <div class="card-wrapper" id="deploy-render">
+        <button class="btn btn-copy copy-btn-top" onclick="copySectionLink('deploy-render')"><i class="fas fa-link"></i></button>
+        <div class="deploy-card" onclick="deployTo('render')"><div class="deploy-icon"><i class="fas fa-dharmachakra"></i></div><h3>Render</h3><p>Auto SSL included</p></div>
       </div>
-      
-      <div class="deploy-card" onclick="deployTo('railway')">
-        <div class="deploy-icon"><i class="fas fa-train"></i></div>
-        <h3>Railway</h3>
-        <p>Deploy on Railway platform</p>
+      <div class="card-wrapper" id="deploy-railway">
+        <button class="btn btn-copy copy-btn-top" onclick="copySectionLink('deploy-railway')"><i class="fas fa-link"></i></button>
+        <div class="deploy-card" onclick="deployTo('railway')"><div class="deploy-icon"><i class="fas fa-train"></i></div><h3>Railway</h3><p>Easy templates</p></div>
       </div>
-      
-      <div class="deploy-card" onclick="deployTo('koyeb')">
-        <div class="deploy-icon"><i class="fas fa-globe"></i></div>
-        <h3>Koyeb</h3>
-        <p>Global deployment on Koyeb</p>
+      <div class="card-wrapper" id="deploy-koyeb">
+        <button class="btn btn-copy copy-btn-top" onclick="copySectionLink('deploy-koyeb')"><i class="fas fa-link"></i></button>
+        <div class="deploy-card" onclick="deployTo('koyeb')"><div class="deploy-icon"><i class="fas fa-globe"></i></div><h3>Koyeb</h3><p>Free tier friendly</p></div>
       </div>
-      
-      <div class="deploy-card" onclick="deployTo('replit')">
-        <div class="deploy-icon"><i class="fas fa-code"></i></div>
-        <h3>Replit</h3>
-        <p>Run directly on Replit</p>
+      <div class="card-wrapper" id="deploy-replit">
+        <button class="btn btn-copy copy-btn-top" onclick="copySectionLink('deploy-replit')"><i class="fas fa-link"></i></button>
+        <div class="deploy-card" onclick="deployTo('replit')"><div class="deploy-icon"><i class="fas fa-code"></i></div><h3>Replit</h3><p>Run in browser</p></div>
       </div>
-      
-      <div class="deploy-card" onclick="deployTo('flyio')">
-        <div class="deploy-icon"><i class="fab fa-fly"></i></div>
-        <h3>Fly.io</h3>
-        <p>Deploy on Fly.io globally</p>
+      <div class="card-wrapper" id="deploy-flyio">
+        <button class="btn btn-copy copy-btn-top" onclick="copySectionLink('deploy-flyio')"><i class="fas fa-link"></i></button>
+        <div class="deploy-card" onclick="deployTo('flyio')"><div class="deploy-icon"><i class="fab fa-fly"></i></div><h3>Fly.io</h3><p>Global edge</p></div>
       </div>
-      
-      <div class="deploy-card" onclick="deployTo('cyclic')">
-        <div class="deploy-icon"><i class="fas fa-sync-alt"></i></div>
-        <h3>Cyclic</h3>
-        <p>Deploy on Cyclic.sh</p>
+      <div class="card-wrapper" id="deploy-cyclic">
+        <button class="btn btn-copy copy-btn-top" onclick="copySectionLink('deploy-cyclic')"><i class="fas fa-link"></i></button>
+        <div class="deploy-card" onclick="deployTo('cyclic')"><div class="deploy-icon"><i class="fas fa-sync-alt"></i></div><h3>Cyclic</h3><p>Node.js optimized</p></div>
       </div>
-      
-      <div class="deploy-card" onclick="deployTo('vercel')">
-        <div class="deploy-icon"><i class="fab fa-vercel"></i></div>
-        <h3>Vercel</h3>
-        <p>Deploy on Vercel platform</p>
+      <div class="card-wrapper" id="deploy-vercel">
+        <button class="btn btn-copy copy-btn-top" onclick="copySectionLink('deploy-vercel')"><i class="fas fa-link"></i></button>
+        <div class="deploy-card" onclick="deployTo('vercel')"><div class="deploy-icon"><i class="fab fa-vercel"></i></div><h3>Vercel</h3><p>Fastest DX</p></div>
       </div>
     </div>
   </div>
 
   <div class="footer">
-    <p>© 2025 STANYTECH Bot Deployment Hub | All Rights Reserved</p>
+    <p>© 2026 STANYTECH Bot Deployment Hub | All Rights Reserved</p>
     <p>Developed with <i class="fas fa-heart" style="color: var(--primary);"></i> by <a href="#" target="_blank">StanyTz</a></p>
   </div>
 </main>
 
+<div id="toast"></div>
+
 <script>
-  // Firebase Config
+  // 🔥 Firebase Config
   const firebaseConfig = {
     apiKey: "AIzaSyBhF_jesV0dMhy3cEgehrWlT_mZOtKXySE",
     authDomain: "stanytechzone.firebaseapp.com",
@@ -676,223 +362,184 @@
   firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
   
-  let currentVerifiedUser = null;
   let verifiedUsername = null;
   const OFFICIAL_REPO = "stanytz378/iamlegendv2.1";
-  
-  // Generate or get device ID
+  const BASE_URL = window.location.origin;
+
+  // 🔑 Device ID
   function getDeviceId() {
-    let deviceId = localStorage.getItem('stanytech_device_id');
-    if(!deviceId) {
-      deviceId = 'device_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-      localStorage.setItem('stanytech_device_id', deviceId);
+    let id = localStorage.getItem('stanytech_device_id');
+    if(!id) {
+      id = 'device_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+      localStorage.setItem('stanytech_device_id', id);
     }
-    return deviceId;
+    return id;
   }
-  
-  // Check if user already verified (1 TIME ONLY)
+
+  // 📡 Check Existing
   async function checkExistingVerification() {
-    const deviceId = getDeviceId();
-    
     try {
-      const doc = await db.collection('forkVerifications').doc(deviceId).get();
+      const doc = await db.collection('forkVerifications').doc(getDeviceId()).get();
       if(doc.exists) {
-        const data = doc.data();
-        currentVerifiedUser = data;
-        verifiedUsername = data.username;
-        showVerifiedContent(data.username);
+        verifiedUsername = doc.data().username;
+        showVerifiedContent(verifiedUsername);
         return true;
       }
-    } catch(e) {
-      console.error("Firestore error:", e);
-    }
+    } catch(e) { console.warn("Firestore offline"); }
     return false;
   }
-  
-  // Save verification to Firestore
+
+  // 💾 Save Verification
   async function saveVerification(username) {
-    const deviceId = getDeviceId();
-    
     try {
-      await db.collection('forkVerifications').doc(deviceId).set({
-        username: username,
-        verifiedAt: new Date().toISOString(),
-        deviceId: deviceId,
-        repo: OFFICIAL_REPO
+      await db.collection('forkVerifications').doc(getDeviceId()).set({
+        username, verifiedAt: new Date().toISOString(), deviceId: getDeviceId(), repo: OFFICIAL_REPO
       });
-      currentVerifiedUser = { username: username };
       verifiedUsername = username;
       return true;
-    } catch(e) {
-      console.error("Save error:", e);
-      return false;
-    }
+    } catch(e) { console.error("Save failed"); return false; }
   }
-  
-  // Verify fork using GitHub API
+
+  // 🛡️ GitHub API Verify
   async function verifyFork(username) {
-    const repoFullName = `${username}/iamlegendv2.1`;
-    
     try {
-      const response = await fetch(`https://api.github.com/repos/${repoFullName}`);
-      
-      if(!response.ok) {
-        if(response.status === 404) {
-          return { success: false, message: `❌ Repository not found! Make sure you have forked "iamlegendv2.1" to your account.` };
-        }
-        return { success: false, message: `❌ Error checking repository. Status: ${response.status}` };
-      }
-      
-      const repoData = await response.json();
-      
-      // Check if it's a fork of the official repo
-      if(repoData.fork === true && repoData.parent && repoData.parent.full_name === OFFICIAL_REPO) {
-        return { success: true, message: `✅ Verified! You have successfully forked the repository.`, username: username };
-      } else if(repoData.full_name === OFFICIAL_REPO) {
-        return { success: false, message: `⚠️ This is the original repository, not a fork. Please click "Fork" button above to create your own copy.` };
-      } else {
-        return { success: false, message: `⚠️ This repository exists but is not a fork of ${OFFICIAL_REPO}. Please fork the official repository.` };
-      }
-    } catch(e) {
-      return { success: false, message: `❌ Network error: ${e.message}. Please try again.` };
-    }
+      const res = await fetch(`https://api.github.com/repos/${username}/iamlegendv2.1`);
+      if(res.status === 403) { document.getElementById('apiNotice').style.display = 'block'; return { success: false, message: "❌ GitHub API limit. Wait 5 mins." }; }
+      if(!res.ok) return { success: false, message: "❌ Repo not found. Check username." };
+      const data = await res.json();
+      if(data.fork && data.parent?.full_name === OFFICIAL_REPO) return { success: true, message: "✅ Verified! Fork matched.", username };
+      if(data.full_name === OFFICIAL_REPO) return { success: false, message: "⚠️ Original repo. Please fork it first." };
+      return { success: false, message: "⚠️ Repo exists but not a fork of official." };
+    } catch(e) { return { success: false, message: `❌ Network error: ${e.message}` }; }
   }
-  
-  // Show verified content
+
+  // 🖥️ UI States
   function showVerifiedContent(username) {
     document.getElementById('forkSection').style.display = 'none';
     document.getElementById('deployContent').style.display = 'block';
+    document.getElementById('repoDisplay').textContent = `${username}/iamlegendv2.1`;
+    document.getElementById('logoutBtn').onclick = clearVerification;
     
-    // Update banner with username
-    document.getElementById('repoDisplay').innerHTML = `<i class="fab fa-github"></i> ${username}/iamlegendv2.1`;
-    document.getElementById('logoutBtn').addEventListener('click', clearVerification);
-  }
-  
-  // Clear verification (for testing or reset)
-  async function clearVerification() {
-    if(!confirm("Are you sure you want to clear your verification data? You will need to verify again.")) return;
-    
-    const deviceId = getDeviceId();
-    try {
-      await db.collection('forkVerifications').doc(deviceId).delete();
-      localStorage.removeItem('stanytech_device_id');
-    } catch(e) {}
-    
-    currentVerifiedUser = null;
-    verifiedUsername = null;
-    document.getElementById('forkSection').style.display = 'block';
-    document.getElementById('deployContent').style.display = 'none';
-    document.getElementById('githubUsername').value = '';
-    const statusDiv = document.getElementById('verifyStatus');
-    statusDiv.className = 'verification-status';
-    statusDiv.style.display = 'none';
-  }
-  
-  // Handle verify button click
-  async function handleVerify() {
-    const username = document.getElementById('githubUsername').value.trim();
-    
-    if(!username) {
-      showStatus('Please enter your GitHub username', 'error');
-      return;
-    }
-    
-    // Clean username
-    const cleanUsername = username.replace('@', '').replace('https://github.com/', '').replace('/iamlegendv2.1', '').replace('/iamlegendv2', '');
-    
-    showStatus('🔍 Checking repository... Please wait.', 'loading');
-    
-    const result = await verifyFork(cleanUsername);
-    
-    if(result.success) {
-      showStatus(result.message, 'success');
-      await saveVerification(cleanUsername);
+    if(window.location.hash) {
       setTimeout(() => {
-        showVerifiedContent(cleanUsername);
-      }, 1500);
+        const el = document.querySelector(window.location.hash);
+        if(el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 300);
+    }
+  }
+
+  async function clearVerification() {
+    if(!confirm("Reset verification? You'll need to verify again.")) return;
+    try { await db.collection('forkVerifications').doc(getDeviceId()).delete(); } catch(e){}
+    localStorage.removeItem('stanytech_device_id');
+    location.reload();
+  }
+
+  // 🔍 Verify Handler
+  async function handleVerify() {
+    const input = document.getElementById('githubUsername').value.trim();
+    if(!input) return showStatus('Enter GitHub username', 'error');
+    const clean = input.replace(/@|https?:\/\/github\.com\/|\/iamlegendv2.1/g, '');
+    if(!/^[a-zA-Z0-9-]+$/.test(clean)) return showStatus('Invalid username format', 'error');
+    
+    showStatus('🔍 Checking repository...', 'loading');
+    const res = await verifyFork(clean);
+    
+    if(res.success) {
+      showStatus(res.message, 'success');
+      await saveVerification(clean);
+      setTimeout(() => showVerifiedContent(clean), 1200);
     } else {
-      showStatus(result.message, 'error');
+      showStatus(res.message, 'error');
     }
   }
-  
-  function showStatus(message, type) {
-    const statusDiv = document.getElementById('verifyStatus');
-    statusDiv.textContent = message;
-    statusDiv.className = `verification-status ${type}`;
-    statusDiv.style.display = 'block';
+
+  function showStatus(msg, type) {
+    const el = document.getElementById('verifyStatus');
+    el.textContent = msg; el.className = `verification-status ${type}`; el.style.display = 'block';
   }
-  
-  // Deploy to platform
+
+  // 🚀 Deploy Logic
   function deployTo(platform) {
-    if(!verifiedUsername) {
-      alert('❌ Please verify your fork first!');
-      return;
-    }
-    
-    const repoUrl = `https://github.com/${verifiedUsername}/iamlegendv2.1`;
-    const encodedRepo = encodeURIComponent(repoUrl);
-    
-    let deployUrl = '';
-    switch(platform) {
-      case 'heroku':
-        deployUrl = `https://heroku.com/deploy?template=${repoUrl}`;
-        break;
-      case 'render':
-        deployUrl = `https://render.com/deploy?repo=${repoUrl}`;
-        break;
-      case 'railway':
-        deployUrl = `https://railway.app/new/template?template=${repoUrl}`;
-        break;
-      case 'koyeb':
-        deployUrl = `https://app.koyeb.com/deploy?type=git&repository=${repoUrl}`;
-        break;
-      case 'replit':
-        deployUrl = `https://replit.com/github/${verifiedUsername}/iamlegendv2.1`;
-        break;
-      case 'flyio':
-        deployUrl = `https://fly.io/launch?repo=${repoUrl}`;
-        break;
-      case 'cyclic':
-        deployUrl = `https://app.cyclic.sh/api/app/deploy/${verifiedUsername}/iamlegendv2.1`;
-        break;
-      case 'vercel':
-        deployUrl = `https://vercel.com/new/clone?repository-url=${repoUrl}`;
-        break;
-      default:
-        return;
-    }
-    
-    window.open(deployUrl, '_blank');
+    if(!verifiedUsername) return showStatus('❌ Verify fork first!', 'error');
+    const repo = `https://github.com/${verifiedUsername}/iamlegendv2.1`;
+    const urls = {
+      heroku: `https://heroku.com/deploy?template=${repo}`,
+      render: `https://render.com/deploy?repo=${repo}`,
+      railway: `https://railway.app/new/template?repo=${repo}`,
+      koyeb: `https://app.koyeb.com/deploy?type=git&repository=${repo}`,
+      replit: `https://replit.com/github/${verifiedUsername}/iamlegendv2.1`,
+      flyio: `https://fly.io/launch?repo=${repo}`,
+      cyclic: `https://app.cyclic.sh/api/app/deploy/${verifiedUsername}/iamlegendv2.1`,
+      vercel: `https://vercel.com/new/clone?repository-url=${repo}`
+    };
+    if(urls[platform]) window.open(urls[platform], '_blank');
   }
-  
-  // WhatsApp Order Function
+
+  // 📱 WhatsApp Order
   function openWhatsAppOrder(service) {
-    const phone = "255787069580";
-    let message = `*🛒 NEW ORDER - STANYTECH BOT DEPLOYMENT*%0A%0A`;
-    message += `📦 *Service:* ${service}%0A`;
-    message += `👤 *GitHub:* ${verifiedUsername || 'Not verified yet'}%0A`;
-    message += `🔗 *Repo:* ${verifiedUsername ? `https://github.com/${verifiedUsername}/iamlegendv2.1` : 'N/A'}%0A`;
-    message += `%0A✅ I need this service. Please confirm and share payment details.`;
-    
-    window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+    const msg = `*🛒 NEW ORDER - STANYTECH*\n\n📦 Service: ${service}\n👤 GitHub: ${verifiedUsername || 'Not verified'}\n🔗 Repo: https://github.com/${verifiedUsername}/iamlegendv2.1\n\n✅ Confirm payment details please.`;
+    window.open(`https://wa.me/255787069580?text=${encodeURIComponent(msg)}`, '_blank');
   }
-  
-  // Make functions global
-  window.verifyFork = handleVerify;
-  window.deployTo = deployTo;
-  window.openWhatsAppOrder = openWhatsAppOrder;
-  window.clearVerification = clearVerification;
-  
-  // Event listeners
-  document.getElementById('verifyForkBtn').addEventListener('click', handleVerify);
-  document.getElementById('githubUsername').addEventListener('keypress', (e) => {
-    if(e.key === 'Enter') handleVerify();
+
+  // 🔗 Copy Section Link
+  function copySectionLink(id) {
+    const url = `${BASE_URL}#${id}`;
+    navigator.clipboard.writeText(url).then(() => showToast(`🔗 Copied: #${id}`))
+      .catch(() => prompt("Copy link:", url));
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg; t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2200);
+  }
+
+  // 🌐 PWA Install Prompt
+  let deferredPrompt;
+  window.addEventListener('beforeinstallprompt', e => {
+    e.preventDefault(); deferredPrompt = e;
+    const btn = document.getElementById('installBtn');
+    btn.style.display = 'inline-flex';
+    btn.onclick = async () => {
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      deferredPrompt = null; btn.remove();
+    };
   });
-  
-  // Check if user already verified on page load
+  window.addEventListener('appinstalled', () => {
+    document.getElementById('installBtn')?.remove();
+    showToast('🎉 App installed!');
+  });
+
+  // 🚦 Init
+  document.getElementById('verifyForkBtn').addEventListener('click', handleVerify);
+  document.getElementById('githubUsername').addEventListener('keypress', e => e.key === 'Enter' && handleVerify());
   document.addEventListener('DOMContentLoaded', () => {
     checkExistingVerification();
+    if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(console.warn);
   });
+
+  // Global exports
+  window.deployTo = deployTo;
+  window.openWhatsAppOrder = openWhatsAppOrder;
+  window.copySectionLink = copySectionLink;
 </script>
 </body>
 </html>
+
+
+
+              <script>
+                              const CACHE = 'stanytech-v1';
+self.addEventListener('install', e => self.skipWaiting());
+self.addEventListener('activate', e => clients.claim());
+self.addEventListener('fetch', e => {
+  e.respondWith(fetch(e.request).catch(() => caches.match(e.request)));
+});
+
+
+              </script>
+                        </body>
+                        </html>
+                    
